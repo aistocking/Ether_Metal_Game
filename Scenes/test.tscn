@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://db4djnmwm3kv0"]
+
+[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/ui.tscn" id="1_iuv7g"]
+[ext_resource type="PackedScene" uid="uid://dfynqcjekokn0" path="res://Scenes/player_character.tscn" id="1_sph4r"]
+[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/main_camera.tscn" id="2_trbbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
+size = Vector2(860, 16.63)
+
+[node name="test" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_iuv7g")]
+
+[node name="Main_Camera" parent="." instance=ExtResource("2_trbbm")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_sph4r")]
+
+[node name="platform" type="StaticBody2D" parent="."]
+position = Vector2(0, 58.685)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+shape = SubResource("RectangleShape2D_ncig0")
+
+[node name="ColorRect" type="ColorRect" parent="platform"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -441.0
+offset_top = -9.0
+offset_right = 441.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="platform2" type="StaticBody2D" parent="."]
+position = Vector2(-438.95, -206.935)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform2"]
+shape = SubResource("RectangleShape2D_ncig0")
+
+[node name="ColorRect" type="ColorRect" parent="platform2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -9.0
+offset_right = 273.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="platform3" type="StaticBody2D" parent="."]
+position = Vector2(438.95, -206.945)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform3"]
+shape = SubResource("RectangleShape2D_ncig0")
+
+[node name="ColorRect" type="ColorRect" parent="platform3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -9.0
+offset_right = 273.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
