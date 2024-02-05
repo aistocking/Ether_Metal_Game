@@ -5,23 +5,24 @@ var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var PlayerInput : bool = false
 
-const GhostResource = preload("res://Scenes/ghost_fade.tscn")
+const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 @onready var DashTimer = $DashTimer
 
-const BasicShotResource = preload("res://Scenes/Shot.tscn")
-const ShotEffectResource = preload("res://Scenes/shot_effect.tscn")
+const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
+const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition
 @onready var ShotTimer = $ShotTimer
 var ChargeCounter : int = 0
 var ChargeLevel : int = 0
-var MaxChargeLevel : int = 0
+var MaxChargeLevel : int = 2
 
 enum STATE {ENTRANCE, EXIT, IDLE, RUN, JUMP, DASH, AIRDASH, JUMPDASH, SHOT, CHARGESHOT, RUNSHOT, JUMPSHOT, JUMPDASHSHOT, DASHSHOT, AIRDASHSHOT, DAMAGE, SLIDE}
 
 var CurrentState = STATE.ENTRANCE
 
 var FacingRight : bool = true
+var IsShooting : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -33,11 +34,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	PlayerSprite.play("entrance")
-	DashTimer.stop()
 
 func _physics_process(delta):
 	
-	HandleState()
+	handleState()
+	
+	handleCharging()
 	
 	# Set gravity and speed depending on state
 	if !is_on_floor() && !is_on_wall() && CurrentState != STATE.AIRDASH:
@@ -61,7 +63,7 @@ func _physics_process(delta):
 			if(get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
 				pass
 			else:
-				BasicShot()
+				basicShot()
 		
 		# Handle jumping
 		if Input.is_action_just_pressed("Jump") && is_on_floor():
@@ -80,10 +82,10 @@ func _physics_process(delta):
 		# Check which way the player is facing and flip sprites acccordingle
 		if (direction > 0):
 			FacingRight = true
-			FlipPlayerSprite()
+			flipPlayerSprite()
 		elif (direction < 0):
 			FacingRight = false
-			FlipPlayerSprite()
+			flipPlayerSprite()
 		if (direction):
 			velocity.x = direction * SPEED
 		else:
@@ -109,7 +111,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func HandleState():
+func handleState():
 	match CurrentState:
 		STATE.ENTRANCE:
 			PlayerInput = false
@@ -124,18 +126,18 @@ func HandleState():
 			DebugStateLabel.set_text("JUMP")
 		STATE.JUMPDASH:
 			PlayerSprite.play("jump")
-			GhostEffect()
+			ghostEffect()
 			DebugStateLabel.set_text("JUMPDASH")
 		STATE.RUN:
 			PlayerSprite.play("run")
 			DebugStateLabel.set_text("RUN")
 		STATE.DASH:
 			PlayerSprite.play("dash")
-			GhostEffect()
+			ghostEffect()
 			DebugStateLabel.set_text("DASH")
 		STATE.AIRDASH:
 			PlayerSprite.play("dash")
-			GhostEffect()
+			ghostEffect()
 			DebugStateLabel.set_text("AIRDASH")
 		STATE.SHOT:
 			PlayerSprite.play("run")
@@ -144,43 +146,43 @@ func HandleState():
 			PlayerSprite.play("run")
 			DebugStateLabel.set_text("CHARGESHOT")
 
-func BasicShot():
+func basicShot():
 	var BasicShotInstance = BasicShotResource.instantiate()
 	var ShotEffectInstance = ShotEffectResource.instantiate()
 	if(FacingRight):
 		BasicShotInstance.getDirection(Vector2(1, 0))
 		if(BusterPosition.position.x < 0):
-			FlipBusterPosition()
+			flipBusterPosition()
 	else:
 		BasicShotInstance.getDirection(Vector2(-1, 0))
 		ShotEffectInstance.flip_h = true
 		BasicShotInstance.flip(true)
 		if(BusterPosition.position.x > 0):
-			FlipBusterPosition()
+			flipBusterPosition()
 	get_parent().add_child(BasicShotInstance)
 	add_child(ShotEffectInstance)
 	BasicShotInstance.position = BusterPosition.global_position
 	ShotEffectInstance.position = BusterPosition.position
 
-func HandleCharging():
+func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
 		pass
 	else:
 		ChargeCounter += 1
-		if(ChargeCounter > 40):
+		if(ChargeCounter > 200):
 			ChargeLevel += 1
 			ChargeCounter = 0
 
-func FlipBusterPosition():
+func flipBusterPosition():
 	BusterPosition.position.x = BusterPosition.position.x * -1
 
-func FlipPlayerSprite():
+func flipPlayerSprite():
 	if (FacingRight):
 		PlayerSprite.flip_h = true
 	else:
 		PlayerSprite.flip_h = false
 
-func GhostEffect():
+func ghostEffect():
 	ghostCounter += 1
 	if(ghostCounter > 2):
 		var GhostInstance = GhostResource.instantiate()

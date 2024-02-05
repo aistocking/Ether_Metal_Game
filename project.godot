@@ -13,7 +13,7 @@ config_version=5
 config/name="Megaman_X_Game"
 run/main_scene="res://Scenes/test.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://project_icon.png"
 
 [debug]
 
@@ -25,6 +25,14 @@ window/size/viewport_width=1600
 window/size/viewport_height=980
 window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/Effects/": "yellow",
+"res://Scenes/Enemies/": "red",
+"res://Scenes/Player/": "blue"
+}
 
 [input]
 
