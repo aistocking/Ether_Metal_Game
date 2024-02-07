@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://mr6u6pex72ps"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_shot.gd" id="1_8m3v6"]
+[ext_resource type="Texture2D" uid="uid://dm3w6s1xlp41a" path="res://Art/Effects/Enemy_Bullet.png" id="2_njy8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_riinp"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ee0v"]
+atlas = ExtResource("2_njy8y")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcud8"]
+atlas = ExtResource("2_njy8y")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpkxg"]
+atlas = ExtResource("2_njy8y")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lek0e"]
+atlas = ExtResource("2_njy8y")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsht3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ee0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcud8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpkxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lek0e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Enemy Shot" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_8m3v6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_riinp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lsht3")
+autoplay = "default"
+frame_progress = 0.803028
+
+[node name="Death Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Death Timer" to="." method="_on_death_timer_timeout"]

@@ -1,8 +1,8 @@
 extends Area2D
 
 var Direction
-var Speed = 10
-var Damage = 1
+var Speed : int = 5
+var Damage : int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,13 +15,10 @@ func _process(delta):
 func getDirection(vec):
 	Direction = vec
 
-func flip(val):
-	$Sprites.flip_h = val
-
-func _on_timer_timeout():
-	queue_free()
-
 func _on_area_entered(area):
 	if(area.has_method("takeDamage")):
 		area.takeDamage(Damage)
+	queue_free()
+
+func _on_death_timer_timeout():
 	queue_free()

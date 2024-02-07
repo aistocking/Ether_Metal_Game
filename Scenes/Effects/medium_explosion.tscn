@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=3 uid="uid://kmkh78w82juu"]
+
+[ext_resource type="Texture2D" uid="uid://csfqy1thviyhc" path="res://Art/Effects/Explosion.png" id="1_gg0k8"]
+[ext_resource type="Script" path="res://Scripts/medium_explosion.gd" id="2_o6jaf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3d4i"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b4tp"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5x0c"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkds0"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwpaa"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg3m4"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1yv3"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8lgn"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmw3x"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf1rm"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfpmj"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5rr1"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw7gy"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcn0p"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kfe3"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqq7u"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytjcw"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wwb4"]
+atlas = ExtResource("1_gg0k8")
+region = Rect2(512, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqxum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3d4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b4tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5x0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkds0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwpaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg3m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1yv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8lgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmw3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf1rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfpmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5rr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw7gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcn0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kfe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqq7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytjcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wwb4")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 18.0
+}]
+
+[node name="Medium Explosion" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kqxum")
+animation = &"explode"
+autoplay = "explode"
+script = ExtResource("2_o6jaf")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=6 format=3 uid="uid://db4djnmwm3kv0"]
 
-[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/ui.tscn" id="1_iuv7g"]
-[ext_resource type="PackedScene" uid="uid://dfynqcjekokn0" path="res://Scenes/player_character.tscn" id="1_sph4r"]
-[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/main_camera.tscn" id="2_trbbm"]
+[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
+[ext_resource type="PackedScene" uid="uid://dfynqcjekokn0" path="res://Scenes/Player/player_character.tscn" id="1_sph4r"]
+[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
+[ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="4_f3c2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
 size = Vector2(860, 16.63)
@@ -17,6 +18,8 @@ size = Vector2(860, 16.63)
 
 [node name="platform" type="StaticBody2D" parent="."]
 position = Vector2(0, 58.685)
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
 shape = SubResource("RectangleShape2D_ncig0")
@@ -37,6 +40,8 @@ grow_vertical = 2
 [node name="platform2" type="StaticBody2D" parent="."]
 position = Vector2(-438.95, -206.935)
 rotation = 1.5708
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform2"]
 shape = SubResource("RectangleShape2D_ncig0")
@@ -57,6 +62,8 @@ grow_vertical = 2
 [node name="platform3" type="StaticBody2D" parent="."]
 position = Vector2(438.95, -206.945)
 rotation = 1.5708
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform3"]
 shape = SubResource("RectangleShape2D_ncig0")
@@ -73,3 +80,6 @@ offset_right = 273.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Medium Enemy" parent="." instance=ExtResource("4_f3c2o")]
+position = Vector2(282, 28.625)

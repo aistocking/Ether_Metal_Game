@@ -1,27 +1,35 @@
 extends CharacterBody2D
 
+const RIGHT : int = 1
+const LEFT : int = -1
 
 var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var PlayerInput : bool = false
+var SpentDash : bool = false
+var FacingDirection : int = -1
+var IsShooting : bool = false
+var IsDashing : bool = false
 
-const GhostResource = preload("res://Scenes/ghost_fade.tscn")
+const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 @onready var DashTimer = $DashTimer
 
-const BasicShotResource = preload("res://Scenes/Shot.tscn")
-const ShotEffectResource = preload("res://Scenes/shot_effect.tscn")
+const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
+const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition
 @onready var ShotTimer = $ShotTimer
+
 var ChargeCounter : int = 0
 var ChargeLevel : int = 0
-var MaxChargeLevel : int = 0
+var MaxChargeLevel : int = 2
 
-enum STATE {ENTRANCE, EXIT, IDLE, RUN, JUMP, DASH, AIRDASH, JUMPDASH, SHOT, CHARGESHOT, RUNSHOT, JUMPSHOT, JUMPDASHSHOT, DASHSHOT, AIRDASHSHOT, DAMAGE, SLIDE}
+var Health : int = 16
 
-var CurrentState = STATE.ENTRANCE
+enum STATE {ENTRANCE, EXIT, IDLE, RUN, JUMP, DASH, AIRDASH, JUMPDASH, SPECIAL, DAMAGE, SLIDE, DIE}
+enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, BLINK, FLASH, PARRY, DISENGAGE}
 
-var FacingRight : bool = true
+var CurrentState
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -32,155 +40,193 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	PlayerSprite.play("entrance")
-	DashTimer.stop()
+	switchState(STATE.ENTRANCE)
+
+func _input(event):
+	if(PlayerInput == false):
+		pass
+	
+	#Handle jumping
+	if(event.is_action_pressed("Jump") && is_on_floor()):
+		if(Input.is_action_pressed("Dash")):
+			switchState(STATE.JUMPDASH)
+			velocity.y = JUMP_VELOCITY
+		else:
+			switchState(STATE.JUMP)
+			velocity.y = JUMP_VELOCITY
+	
+	#Handle dashing and its possible interactions with other buttons
+	if(event.is_action_pressed("Dash")):
+		if(is_on_floor()):
+			switchState(STATE.DASH)
+		elif(!SpentDash && !is_on_floor()):
+			switchState(STATE.AIRDASH)
+	if(event.is_action_released("Dash")):
+		if(is_on_floor()):
+			switchState(STATE.IDLE)
+		elif(!is_on_wall()):
+			switchState(STATE.JUMPDASH)
+	
+	#Basic attack
+	if(event.is_action_pressed("Shot")):
+		#If more than 3 shots exist, ignore shot button presses
+			if(get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
+				pass
+			else:
+				basicShot()
+	
+	#Offensive special attacks
+	if(event.is_action_pressed("Shot") && event.is_action_pressed("Offensive Trigger")):
+		pass
+	#Defensive special attacks
+	if(event.is_action_pressed("Shot") && event.is_action_pressed("Defensive Trigger")):
+		pass
+	
+	# Check which way the player is facing and flip sprites acccordingly
+	if(event.is_action_pressed("Left")):
+		changeFacingDirection(LEFT)
+	if(event.is_action_pressed("Right")):
+		changeFacingDirection(RIGHT)
 
 func _physics_process(delta):
 	
-	HandleState()
+	handleCharging()
+	
+	if(IsDashing == true):
+		ghostEffect()
+		if(CurrentState == STATE.DASH || CurrentState == STATE.AIRDASH):
+			velocity.x = FacingDirection * 3 * SPEED
+		else:
+			velocity.x = FacingDirection * 2 * SPEED
 	
 	# Set gravity and speed depending on state
-	if !is_on_floor() && !is_on_wall() && CurrentState != STATE.AIRDASH:
+	if (!is_on_floor() && !is_on_wall() && CurrentState != STATE.AIRDASH):
 		velocity.y += gravity * delta
+	if(CurrentState == STATE.AIRDASH):
+		velocity.y = 0
 	if(is_on_wall_only()):
 		velocity.y += (gravity/4) * delta
-	if(CurrentState == STATE.JUMPDASH || CurrentState == STATE.JUMPDASHSHOT):
+	if(CurrentState == STATE.JUMPDASH):
 		SPEED = 500
 	else:
 		SPEED = 300
 	
 	# Check if the player is idling
-	if (velocity == Vector2.ZERO && PlayerInput == true && is_on_floor() && ShotTimer.is_stopped()):
-		CurrentState = STATE.IDLE
+	if (PlayerInput == true && is_on_floor() && ShotTimer.is_stopped() && !Input.is_anything_pressed()):
+		switchState(STATE.IDLE)
 
 	# Check if the player is allowed to move the character
 	if(PlayerInput == true):
 		
-		# Handle Shooting
-		if(Input.is_action_just_pressed("Shot")):
-			if(get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
-				pass
-			else:
-				BasicShot()
 		
-		# Handle jumping
-		if Input.is_action_just_pressed("Jump") && is_on_floor():
-			# Check if dashing and if so, switch to a jumpdash
-			if(Input.is_action_pressed("Dash")):
-				CurrentState = STATE.JUMPDASH
-				velocity.y = JUMP_VELOCITY
-			else:
-				CurrentState = STATE.JUMP
-				velocity.y = JUMP_VELOCITY
-		
-		# Get the input direction and handle the movement/deceleration.
+		# Handle left and right movement
 		var direction = Input.get_axis("Left", "Right")
 		if (direction != 0 && is_on_floor() && velocity.y >= 0 && CurrentState != STATE.DASH):
-			CurrentState = STATE.RUN
-		# Check which way the player is facing and flip sprites acccordingle
-		if (direction > 0):
-			FacingRight = true
-			FlipPlayerSprite()
-		elif (direction < 0):
-			FacingRight = false
-			FlipPlayerSprite()
-		if (direction):
+			switchState(STATE.RUN)
+		if (CurrentState == STATE.RUN || CurrentState == STATE.JUMP):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-		# Handle dashing
-		if(Input.is_action_just_pressed("Dash")):
-			DashTimer.start()
-		if(Input.is_action_pressed("Dash") && !DashTimer.is_stopped()):
-			if(CurrentState != STATE.JUMPDASH && is_on_floor()):
-				CurrentState = STATE.DASH
-			elif(CurrentState != STATE.JUMPDASH && !is_on_floor()):
-				velocity.y = 0
-				CurrentState = STATE.AIRDASH
-			if(CurrentState == STATE.AIRDASH || CurrentState == STATE.DASH && FacingRight):
-				velocity.x = 2 * SPEED
-			elif(CurrentState == STATE.AIRDASH || CurrentState == STATE.DASH):
-				velocity.x = -2 * SPEED
-		if(Input.is_action_just_released("Dash") || DashTimer.is_stopped() && CurrentState == STATE.AIRDASH):
-			CurrentState = STATE.JUMPDASH
-		if(Input.is_action_just_released("Dash") || DashTimer.is_stopped() && CurrentState == STATE.DASH):
-			CurrentState = STATE.IDLE
-	
+
 	move_and_slide()
 
-func HandleState():
-	match CurrentState:
+func switchState(state):
+	if(CurrentState == state):
+		pass
+	match state:
 		STATE.ENTRANCE:
+			CurrentState = STATE.ENTRANCE
 			PlayerInput = false
-			if(PlayerSprite.is_playing() == false):
-				CurrentState = STATE.IDLE
-				PlayerInput = true
+			PlayerSprite.play("entrance")
+			DebugStateLabel.set_text("ENTRANCE")
 		STATE.IDLE:
+			CurrentState = STATE.IDLE
+			resetDashProperties()
 			PlayerSprite.play("idle")
 			DebugStateLabel.set_text("IDLE")
 		STATE.JUMP:
+			CurrentState = STATE.JUMP
+			resetDashProperties()
 			PlayerSprite.play("jump")
 			DebugStateLabel.set_text("JUMP")
 		STATE.JUMPDASH:
+			CurrentState = STATE.JUMPDASH
+			setDashProperties()
 			PlayerSprite.play("jump")
-			GhostEffect()
 			DebugStateLabel.set_text("JUMPDASH")
 		STATE.RUN:
+			CurrentState = STATE.RUN
+			resetDashProperties()
 			PlayerSprite.play("run")
 			DebugStateLabel.set_text("RUN")
 		STATE.DASH:
+			CurrentState = STATE.DASH
+			setDashProperties()
 			PlayerSprite.play("dash")
-			GhostEffect()
 			DebugStateLabel.set_text("DASH")
 		STATE.AIRDASH:
+			CurrentState = STATE.AIRDASH
+			setDashProperties()
 			PlayerSprite.play("dash")
-			GhostEffect()
 			DebugStateLabel.set_text("AIRDASH")
-		STATE.SHOT:
-			PlayerSprite.play("run")
-			DebugStateLabel.set_text("SHOT")
-		STATE.CHARGESHOT:
-			PlayerSprite.play("run")
-			DebugStateLabel.set_text("CHARGESHOT")
+		STATE.DIE:
+			pass
 
-func BasicShot():
+
+func basicShot():
+	IsShooting = true
+	ShotTimer.start(0.3)
 	var BasicShotInstance = BasicShotResource.instantiate()
 	var ShotEffectInstance = ShotEffectResource.instantiate()
-	if(FacingRight):
-		BasicShotInstance.getDirection(Vector2(1, 0))
-		if(BusterPosition.position.x < 0):
-			FlipBusterPosition()
-	else:
-		BasicShotInstance.getDirection(Vector2(-1, 0))
+	BasicShotInstance.getDirection(Vector2(FacingDirection, 0))
+	if(FacingDirection == LEFT):
 		ShotEffectInstance.flip_h = true
 		BasicShotInstance.flip(true)
-		if(BusterPosition.position.x > 0):
-			FlipBusterPosition()
 	get_parent().add_child(BasicShotInstance)
 	add_child(ShotEffectInstance)
 	BasicShotInstance.position = BusterPosition.global_position
 	ShotEffectInstance.position = BusterPosition.position
 
-func HandleCharging():
+func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
 		pass
 	else:
 		ChargeCounter += 1
-		if(ChargeCounter > 40):
+		if(ChargeCounter > 200):
 			ChargeLevel += 1
 			ChargeCounter = 0
+			
+func takeDamage(damage):
+	Health -= damage
+	if(Health <= 0):
+		CurrentState = STATE.DIE
 
-func FlipBusterPosition():
+func setDashProperties():
+	IsDashing = true
+	DashTimer.start(0.7)
+	if(CurrentState == STATE.AIRDASH || CurrentState == STATE.JUMPDASH):
+		SpentDash = true
+
+func resetDashProperties():
+	IsDashing = false
+	SpentDash = false
+	
+
+func changeFacingDirection(direction):
+	if(FacingDirection == direction):
+		pass
+	else:
+		FacingDirection = direction
+		flipPlayerSprite()
+		flipBusterPosition()
+
+func flipBusterPosition():
 	BusterPosition.position.x = BusterPosition.position.x * -1
 
-func FlipPlayerSprite():
-	if (FacingRight):
-		PlayerSprite.flip_h = true
-	else:
-		PlayerSprite.flip_h = false
+func flipPlayerSprite():
+	PlayerSprite.flip_h = !PlayerSprite.flip_h
 
-func GhostEffect():
+func ghostEffect():
 	ghostCounter += 1
 	if(ghostCounter > 2):
 		var GhostInstance = GhostResource.instantiate()
@@ -191,3 +237,19 @@ func GhostEffect():
 		GhostInstance.position = global_position
 		ghostCounter = 0
 
+
+func _on_shot_timer_timeout():
+	IsShooting = false
+
+
+func _on_dash_timer_timeout():
+	if(CurrentState != STATE.JUMPDASH && CurrentState != STATE.AIRDASH):
+		resetDashProperties()
+	elif(CurrentState == STATE.AIRDASH && !is_on_wall()):
+		switchState(STATE.JUMPDASH)
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if(PlayerSprite.animation == "entrance"):
+		PlayerInput = true
+		switchState(STATE.IDLE)
