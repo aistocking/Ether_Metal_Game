@@ -1,12 +1,17 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqlrhrg6x76ql"]
 
 [ext_resource type="Script" path="res://Scripts/Shot.gd" id="1_ohyrg"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/Effects/1st_Level_Buster_Shot.png" id="2_t3jou"]
+=======
+[ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/1st_Level_Buster_Shot.png" id="2_m52wh"]
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8no8"]
 size = Vector2(14, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pogsp"]
+<<<<<<< HEAD
 atlas = ExtResource("2_t3jou")
 region = Rect2(100, 0, 20, 26)
 
@@ -24,6 +29,25 @@ region = Rect2(160, 0, 20, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oj185"]
 atlas = ExtResource("2_t3jou")
+=======
+atlas = ExtResource("2_m52wh")
+region = Rect2(100, 0, 20, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_770c8"]
+atlas = ExtResource("2_m52wh")
+region = Rect2(120, 0, 20, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8epof"]
+atlas = ExtResource("2_m52wh")
+region = Rect2(140, 0, 20, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwusx"]
+atlas = ExtResource("2_m52wh")
+region = Rect2(160, 0, 20, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj185"]
+atlas = ExtResource("2_m52wh")
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 region = Rect2(180, 0, 20, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqu2g"]

@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 [gd_scene load_steps=4 format=3 uid="uid://2sees10ulkto"]
 
 [ext_resource type="Shader" path="res://Shaders/ghost_fade.gdshader" id="1_bjitf"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://2sees10ulkto"]
+
+[ext_resource type="Shader" path="res://Shaders/ghost_fade.gdshader" id="1_bjitf"]
+[ext_resource type="Texture2D" uid="uid://jfa1bdq3fvmj" path="res://icon.svg" id="2_p5q5h"]
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 [ext_resource type="Script" path="res://Scripts/GhostFade.gd" id="3_ekqc4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2a4r"]
@@ -9,4 +16,8 @@ shader = ExtResource("1_bjitf")
 [node name="GhostFade" type="Sprite2D"]
 z_index = -1
 material = SubResource("ShaderMaterial_h2a4r")
+<<<<<<< HEAD
+=======
+texture = ExtResource("2_p5q5h")
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 script = ExtResource("3_ekqc4")

@@ -29,9 +29,12 @@ window/stretch/scale_mode="integer"
 [file_customization]
 
 folder_colors={
+<<<<<<< HEAD
 "res://Art/Effects/": "yellow",
 "res://Art/Enemies/": "red",
 "res://Art/Player/": "blue",
+=======
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 "res://Scenes/Effects/": "yellow",
 "res://Scenes/Enemies/": "red",
 "res://Scenes/Player/": "blue"

@@ -29,7 +29,12 @@ var Health : int = 16
 enum STATE {ENTRANCE, EXIT, IDLE, RUN, JUMP, DASH, AIRDASH, JUMPDASH, SPECIAL, DAMAGE, SLIDE, DIE}
 enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, BLINK, FLASH, PARRY, DISENGAGE}
 
+<<<<<<< HEAD
 var CurrentState
+=======
+var FacingRight : bool = true
+var IsShooting : bool = false
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -40,6 +45,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
+<<<<<<< HEAD
 	switchState(STATE.ENTRANCE)
 
 func _input(event):
@@ -98,6 +104,15 @@ func _physics_process(delta):
 			velocity.x = FacingDirection * 3 * SPEED
 		else:
 			velocity.x = FacingDirection * 2 * SPEED
+=======
+	PlayerSprite.play("entrance")
+
+func _physics_process(delta):
+	
+	handleState()
+	
+	handleCharging()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 	
 	# Set gravity and speed depending on state
 	if (!is_on_floor() && !is_on_wall() && CurrentState != STATE.AIRDASH):
@@ -118,22 +133,48 @@ func _physics_process(delta):
 	# Check if the player is allowed to move the character
 	if(PlayerInput == true):
 		
+<<<<<<< HEAD
+=======
+		# Handle Shooting
+		if(Input.is_action_just_pressed("Shot")):
+			if(get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
+				pass
+			else:
+				basicShot()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 		
 		# Handle left and right movement
 		var direction = Input.get_axis("Left", "Right")
 		if (direction != 0 && is_on_floor() && velocity.y >= 0 && CurrentState != STATE.DASH):
+<<<<<<< HEAD
 			switchState(STATE.RUN)
 		if (CurrentState == STATE.RUN || CurrentState == STATE.JUMP):
+=======
+			CurrentState = STATE.RUN
+		# Check which way the player is facing and flip sprites acccordingle
+		if (direction > 0):
+			FacingRight = true
+			flipPlayerSprite()
+		elif (direction < 0):
+			FacingRight = false
+			flipPlayerSprite()
+		if (direction):
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
+<<<<<<< HEAD
 func switchState(state):
 	if(CurrentState == state):
 		pass
 	match state:
+=======
+func handleState():
+	match CurrentState:
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 		STATE.ENTRANCE:
 			CurrentState = STATE.ENTRANCE
 			PlayerInput = false
@@ -153,6 +194,10 @@ func switchState(state):
 			CurrentState = STATE.JUMPDASH
 			setDashProperties()
 			PlayerSprite.play("jump")
+<<<<<<< HEAD
+=======
+			ghostEffect()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 			DebugStateLabel.set_text("JUMPDASH")
 		STATE.RUN:
 			CurrentState = STATE.RUN
@@ -163,15 +208,24 @@ func switchState(state):
 			CurrentState = STATE.DASH
 			setDashProperties()
 			PlayerSprite.play("dash")
+<<<<<<< HEAD
+=======
+			ghostEffect()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 			DebugStateLabel.set_text("DASH")
 		STATE.AIRDASH:
 			CurrentState = STATE.AIRDASH
 			setDashProperties()
 			PlayerSprite.play("dash")
+<<<<<<< HEAD
+=======
+			ghostEffect()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 			DebugStateLabel.set_text("AIRDASH")
 		STATE.DIE:
 			pass
 
+<<<<<<< HEAD
 
 func basicShot():
 	IsShooting = true
@@ -182,6 +236,21 @@ func basicShot():
 	if(FacingDirection == LEFT):
 		ShotEffectInstance.flip_h = true
 		BasicShotInstance.flip(true)
+=======
+func basicShot():
+	var BasicShotInstance = BasicShotResource.instantiate()
+	var ShotEffectInstance = ShotEffectResource.instantiate()
+	if(FacingRight):
+		BasicShotInstance.getDirection(Vector2(1, 0))
+		if(BusterPosition.position.x < 0):
+			flipBusterPosition()
+	else:
+		BasicShotInstance.getDirection(Vector2(-1, 0))
+		ShotEffectInstance.flip_h = true
+		BasicShotInstance.flip(true)
+		if(BusterPosition.position.x > 0):
+			flipBusterPosition()
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 	get_parent().add_child(BasicShotInstance)
 	add_child(ShotEffectInstance)
 	BasicShotInstance.position = BusterPosition.global_position
@@ -201,6 +270,7 @@ func takeDamage(damage):
 	if(Health <= 0):
 		CurrentState = STATE.DIE
 
+<<<<<<< HEAD
 func setDashProperties():
 	IsDashing = true
 	DashTimer.start(0.7)
@@ -220,11 +290,20 @@ func changeFacingDirection(direction):
 		flipPlayerSprite()
 		flipBusterPosition()
 
+=======
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 func flipBusterPosition():
 	BusterPosition.position.x = BusterPosition.position.x * -1
 
 func flipPlayerSprite():
+<<<<<<< HEAD
 	PlayerSprite.flip_h = !PlayerSprite.flip_h
+=======
+	if (FacingRight):
+		PlayerSprite.flip_h = true
+	else:
+		PlayerSprite.flip_h = false
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 func ghostEffect():
 	ghostCounter += 1

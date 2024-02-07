@@ -37,6 +37,7 @@ offset_right = 40.0
 offset_bottom = -54.845
 grow_vertical = 0
 text = "1"
+<<<<<<< HEAD
 
 [node name="ProgressBar" type="ProgressBar" parent="WholeScreen"]
 layout_mode = 1
@@ -52,3 +53,5 @@ step = 1.0
 value = 16.0
 fill_mode = 3
 show_percentage = false
+=======
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd

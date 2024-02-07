@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=92 format=3 uid="uid://dfynqcjekokn0"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_c6o77"]
@@ -8,6 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://booltu88oglek" path="res://Art/Player/X_Entrance.png" id="4_er7v0"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="5_p3xwv"]
 [ext_resource type="Texture2D" uid="uid://5yt1ilmxoj66" path="res://Art/Player/X_Idle_Run_Jump.png" id="8_sip6j"]
+=======
+[gd_scene load_steps=83 format=3 uid="uid://dfynqcjekokn0"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_c6o77"]
+[ext_resource type="Texture2D" uid="uid://dkw6sddm0q1ip" path="res://Art/X_Idle.png" id="2_rbohy"]
+[ext_resource type="Texture2D" uid="uid://qr2ch6uetpe8" path="res://Art/X_Dash.png" id="3_g6y72"]
+[ext_resource type="Texture2D" uid="uid://dpe4agf5libpk" path="res://Art/X_Jump.png" id="3_k0pda"]
+[ext_resource type="Texture2D" uid="uid://bfdknvbtw8dmq" path="res://Art/X_Run.png" id="3_w6xyb"]
+[ext_resource type="Texture2D" uid="uid://booltu88oglek" path="res://Art/X_Entrance.png" id="4_er7v0"]
+[ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/X_Shot.png" id="5_p3xwv"]
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(34, 45)
@@ -564,6 +576,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_0dx57"]
 resource_name = "Start_Dash"
+<<<<<<< HEAD
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -730,11 +743,20 @@ _data = {
 "RESET": SubResource("Animation_ydw3r"),
 "Run_Loop": SubResource("Animation_x3up6"),
 "Run_Start": SubResource("Animation_ac6w5"),
+=======
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
+_data = {
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 "Start_Dash": SubResource("Animation_0dx57")
 }
 
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
+<<<<<<< HEAD
 collision_mask = 28
+=======
+collision_mask = 24
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 floor_constant_speed = true
 floor_max_angle = 0.261799
 script = ExtResource("1_c6o77")
@@ -769,6 +791,7 @@ libraries = {
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+<<<<<<< HEAD
 
 [node name="DashSprite" type="Sprite2D" parent="."]
 visible = false
@@ -790,3 +813,5 @@ visible = false
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+=======
+>>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
