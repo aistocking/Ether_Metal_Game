@@ -1,10 +1,7 @@
 extends Area2D
 
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
-<<<<<<< HEAD
 const EnemyShot = preload("res://Scenes/Enemies/enemy_shot.tscn")
-=======
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 var health : int = 5
 var FacingDirection : int = -1
@@ -51,20 +48,12 @@ func stateChange(state):
 			currentState = STATE.SHOOT
 			WaitTimer.stop()
 			AnimPlayer.play("Shooting")
-<<<<<<< HEAD
 			shoot()
 			DebugStateLabel.text = "SHOOT"
 		STATE.HIT:
 			AnimPlayer.stop()
 			Sprite.frame = 9
 			WaitTimer.start(0.3)
-=======
-			DebugStateLabel.text = "SHOOT"
-		STATE.HIT:
-			AnimPlayer.stop()
-			Sprite.frame = 7
-			WaitTimer.start(0.1)
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 			DebugStateLabel.text = "HIT"
 		STATE.DEATH:
 			currentState = STATE.DEATH
@@ -77,19 +66,12 @@ func die():
 	ExplosionInstance.position = global_position
 	queue_free()
 
-<<<<<<< HEAD
 func takeDamage(damage):
 	health -= damage
 	if(health <= 0):
 		stateChange(STATE.DEATH)
 	else:
 		stateChange(STATE.HIT)
-=======
-func takeDamage():
-	health -= 1
-	if(health <= 0):
-		stateChange(STATE.DEATH)
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 
 func turnAround():
 	FacingDirection = FacingDirection * -1
@@ -100,7 +82,6 @@ func turnAround():
 	elif(currentState == STATE.WALK):
 		stateChange(STATE.IDLE)
 
-<<<<<<< HEAD
 func shoot():
 	var ShotInstance = EnemyShot.instantiate()
 	get_parent().add_child(ShotInstance)
@@ -137,25 +118,3 @@ func _on_vision_cone_body_entered(body):
 
 func _on_vision_cone_body_exited(body):
 	WaitTimer.start(0.5)
-=======
-func _on_area_entered(area):
-	if(area.is_in_group("PlayerProjectiles")):
-		takeDamage()
-
-func _on_wait_timer_timeout():
-	if(currentState == STATE.HIT):
-		stateChange(STATE.IDLE)
-	if(currentState == STATE.WALK || currentState == STATE.SHOOT):
-		stateChange(STATE.IDLE)
-	else:
-		turnAround()
-
-
-func _on_vision_cone_body_entered(body):
-	if(body.is_in_group("Player")):
-		stateChange(STATE.SHOOT)
-
-
-func _on_vision_cone_body_exited(body):
-	WaitTimer.start(0.8)
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd

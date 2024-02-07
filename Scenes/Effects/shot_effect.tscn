@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://dc3e5fmqoff5q"]
 
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/Effects/1st_Level_Buster_Shot.png" id="1_0r77d"]
 [ext_resource type="Script" path="res://Scripts/ShotEffect.gd" id="2_ieqn2"]
 
@@ -22,29 +21,6 @@ region = Rect2(60, 0, 20, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ksnv"]
 atlas = ExtResource("1_0r77d")
-=======
-[ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/1st_Level_Buster_Shot.png" id="1_8q3lf"]
-[ext_resource type="Script" path="res://Scripts/ShotEffect.gd" id="2_ieqn2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rp332"]
-atlas = ExtResource("1_8q3lf")
-region = Rect2(0, 0, 20, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t3tpw"]
-atlas = ExtResource("1_8q3lf")
-region = Rect2(20, 0, 20, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pidgc"]
-atlas = ExtResource("1_8q3lf")
-region = Rect2(40, 0, 20, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl0up"]
-atlas = ExtResource("1_8q3lf")
-region = Rect2(60, 0, 20, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ksnv"]
-atlas = ExtResource("1_8q3lf")
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
 region = Rect2(80, 0, 20, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nfir3"]

@@ -82,8 +82,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Medium Enemy" parent="." instance=ExtResource("4_f3c2o")]
-<<<<<<< HEAD
 position = Vector2(282, 28.625)
-=======
-position = Vector2(282, 27)
->>>>>>> b51dec78ace348a8b11d9cb8e36d3fb6c5df8edd
