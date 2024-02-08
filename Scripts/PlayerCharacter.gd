@@ -87,6 +87,14 @@ func _input(event):
 		changeFacingDirection(LEFT)
 	if(event.is_action_pressed("Right")):
 		changeFacingDirection(RIGHT)
+		
+	# Check if the player is allowed to move the character
+	if(PlayerInput == true):
+		# Handle left and right movement
+		var direction = Input.get_axis("Left", "Right")
+		if (direction != 0 && is_on_floor() && velocity.y >= 0 && CurrentState != STATE.DASH):
+			switchState(STATE.RUN)
+		velocity.x = direction * SPEED
 
 func _physics_process(delta):
 	
@@ -114,19 +122,6 @@ func _physics_process(delta):
 	# Check if the player is idling
 	if (PlayerInput == true && is_on_floor() && ShotTimer.is_stopped() && !Input.is_anything_pressed()):
 		switchState(STATE.IDLE)
-
-	# Check if the player is allowed to move the character
-	if(PlayerInput == true):
-		
-		
-		# Handle left and right movement
-		var direction = Input.get_axis("Left", "Right")
-		if (direction != 0 && is_on_floor() && velocity.y >= 0 && CurrentState != STATE.DASH):
-			switchState(STATE.RUN)
-		if (CurrentState == STATE.RUN || CurrentState == STATE.JUMP):
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
