@@ -11,9 +11,9 @@ signal transitioned(state_name)
 func _ready() -> void:
 	await owner.ready
 	
-	set_process(false)
-	set_physics_process(false)
-	set_process_input(false)
+	set_process(true)
+	set_physics_process(true)
+	set_process_input(true)
 	
 	DebugStateLabel.text = state.name
 	

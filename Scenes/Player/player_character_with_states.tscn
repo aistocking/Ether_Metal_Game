@@ -797,7 +797,6 @@ vframes = 6
 visible = false
 
 [node name="StateMachine" type="Node" parent="."]
-process_mode = 4
 script = ExtResource("9_djrh4")
 initial_state = NodePath("Entrance")
 
