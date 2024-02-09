@@ -200,13 +200,12 @@ func takeDamage(damage):
 func setDashProperties():
 	IsDashing = true
 	DashTimer.start(0.7)
-	if(CurrentState == STATE.AIRDASH || CurrentState == STATE.JUMPDASH):
+	if(!is_on_floor()):
 		SpentDash = true
 
 func resetDashProperties():
 	IsDashing = false
 	SpentDash = false
-	
 
 func changeFacingDirection(direction):
 	if(FacingDirection == direction):
@@ -233,22 +232,8 @@ func ghostEffect():
 		GhostInstance.position = global_position
 		ghostCounter = 0
 
-
 func _on_shot_timer_timeout():
 	IsShooting = false
-
-
-func _on_dash_timer_timeout():
-	if(CurrentState != STATE.JUMPDASH && CurrentState != STATE.AIRDASH):
-		resetDashProperties()
-	elif(CurrentState == STATE.AIRDASH && !is_on_wall()):
-		switchState(STATE.JUMPDASH)
-
-
-func _on_animated_sprite_2d_animation_finished():
-	if(PlayerSprite.animation == "entrance"):
-		PlayerInput = true
-		switchState(STATE.IDLE)
 
 func handle_horizontal():
 	var input_direction_x: float = (
