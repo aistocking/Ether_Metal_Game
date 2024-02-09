@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=101 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="2_28kil"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" path="res://Scenes/Player/Jump.gd" id="12_nvavq"]
 [ext_resource type="Script" path="res://Scenes/Player/Falling.gd" id="13_q85jw"]
 [ext_resource type="Script" path="res://Scenes/Player/Dash.gd" id="14_sglpw"]
+[ext_resource type="Script" path="res://Scenes/Player/Special_Attack.gd" id="15_7l818"]
+[ext_resource type="Script" path="res://Scenes/Player/Sliding.gd" id="16_01rhr"]
+[ext_resource type="Script" path="res://Scenes/Player/Entrance.gd" id="17_776qv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(34, 45)
@@ -758,6 +761,10 @@ animation = &"dash"
 wait_time = 0.6
 one_shot = true
 
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
 [node name="CurrentStateDebug" type="Label" parent="."]
 offset_left = -21.0
 offset_top = -39.0
@@ -771,10 +778,6 @@ position = Vector2(-22, -6)
 libraries = {
 "": SubResource("AnimationLibrary_xj4p7")
 }
-
-[node name="ShotTimer" type="Timer" parent="."]
-wait_time = 0.35
-one_shot = true
 
 [node name="DashSprite" type="Sprite2D" parent="."]
 visible = false
@@ -812,6 +815,15 @@ script = ExtResource("13_q85jw")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("14_sglpw")
+
+[node name="Special Attack" type="Node" parent="StateMachine"]
+script = ExtResource("15_7l818")
+
+[node name="Sliding" type="Node" parent="StateMachine"]
+script = ExtResource("16_01rhr")
+
+[node name="Entrance" type="Node" parent="StateMachine"]
+script = ExtResource("17_776qv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
