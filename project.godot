@@ -26,6 +26,10 @@ window/size/viewport_height=980
 window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
 
+[dotnet]
+
+project/assembly_name="Megaman_X_Game"
+
 [file_customization]
 
 folder_colors={

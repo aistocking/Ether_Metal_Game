@@ -4,6 +4,7 @@ const RIGHT : int = 1
 const LEFT : int = -1
 
 var SPEED = 300.0
+var speed = 300.0
 const JUMP_VELOCITY = -400.0
 var PlayerInput : bool = false
 var SpentDash : bool = false
@@ -248,3 +249,12 @@ func _on_animated_sprite_2d_animation_finished():
 	if(PlayerSprite.animation == "entrance"):
 		PlayerInput = true
 		switchState(STATE.IDLE)
+
+func handle_horizontal():
+	var input_direction_x: float = (
+		Input.get_action_strength("Right") - Input.get_action_strength("Left")
+	)
+	
+	PlayerSprite.flip_h = velocity.x > 0
+	
+	velocity.x = speed * input_direction_x
