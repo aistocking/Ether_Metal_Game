@@ -27,9 +27,6 @@ var MaxChargeLevel : int = 2
 
 var Health : int = 16
 
-enum STATE {ENTRANCE, EXIT, IDLE, RUN, JUMP, DASH, AIRDASH, JUMPDASH, SPECIAL, DAMAGE, SLIDE, DIE}
-enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, BLINK, FLASH, PARRY, DISENGAGE}
-
 var CurrentState
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -41,32 +38,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	switchState(STATE.ENTRANCE)
+	pass
 
 func _input(event):
 	if(PlayerInput == false):
 		pass
-	
-	#Handle jumping
-	if(event.is_action_pressed("Jump") && is_on_floor()):
-		if(Input.is_action_pressed("Dash")):
-			switchState(STATE.JUMPDASH)
-			velocity.y = JUMP_VELOCITY
-		else:
-			switchState(STATE.JUMP)
-			velocity.y = JUMP_VELOCITY
-	
-	#Handle dashing and its possible interactions with other buttons
-	if(event.is_action_pressed("Dash")):
-		if(is_on_floor()):
-			switchState(STATE.DASH)
-		elif(!SpentDash && !is_on_floor()):
-			switchState(STATE.AIRDASH)
-	if(event.is_action_released("Dash")):
-		if(is_on_floor()):
-			switchState(STATE.IDLE)
-		elif(!is_on_wall()):
-			switchState(STATE.JUMPDASH)
 	
 	#Basic attack
 	if(event.is_action_pressed("Shot")):
@@ -76,97 +52,10 @@ func _input(event):
 			else:
 				basicShot()
 	
-	#Offensive special attacks
-	if(event.is_action_pressed("Shot") && event.is_action_pressed("Offensive Trigger")):
-		pass
-	#Defensive special attacks
-	if(event.is_action_pressed("Shot") && event.is_action_pressed("Defensive Trigger")):
-		pass
-	
-	# Check which way the player is facing and flip sprites acccordingly
-	if(event.is_action_pressed("Left")):
-		changeFacingDirection(LEFT)
-	if(event.is_action_pressed("Right")):
-		changeFacingDirection(RIGHT)
-		
-	# Check if the player is allowed to move the character
-	if(PlayerInput == true):
-		# Handle left and right movement
-		var direction = Input.get_axis("Left", "Right")
-		if (direction != 0 && is_on_floor() && velocity.y >= 0 && CurrentState != STATE.DASH):
-			switchState(STATE.RUN)
-		velocity.x = direction * SPEED
 
 func _physics_process(delta):
 	
 	handleCharging()
-	
-	if(IsDashing == true):
-		ghostEffect()
-		if(CurrentState == STATE.DASH || CurrentState == STATE.AIRDASH):
-			velocity.x = FacingDirection * 3 * SPEED
-		else:
-			velocity.x = FacingDirection * 2 * SPEED
-	
-	# Set gravity and speed depending on state
-	if (!is_on_floor() && !is_on_wall() && CurrentState != STATE.AIRDASH):
-		velocity.y += gravity * delta
-	if(CurrentState == STATE.AIRDASH):
-		velocity.y = 0
-	if(is_on_wall_only()):
-		velocity.y += (gravity/4) * delta
-	if(CurrentState == STATE.JUMPDASH):
-		SPEED = 500
-	else:
-		SPEED = 300
-	
-	# Check if the player is idling
-	if (PlayerInput == true && is_on_floor() && ShotTimer.is_stopped() && !Input.is_anything_pressed()):
-		switchState(STATE.IDLE)
-
-	move_and_slide()
-
-func switchState(state):
-	if(CurrentState == state):
-		pass
-	match state:
-		STATE.ENTRANCE:
-			CurrentState = STATE.ENTRANCE
-			PlayerInput = false
-			PlayerSprite.play("entrance")
-			DebugStateLabel.set_text("ENTRANCE")
-		STATE.IDLE:
-			CurrentState = STATE.IDLE
-			resetDashProperties()
-			PlayerSprite.play("idle")
-			DebugStateLabel.set_text("IDLE")
-		STATE.JUMP:
-			CurrentState = STATE.JUMP
-			resetDashProperties()
-			PlayerSprite.play("jump")
-			DebugStateLabel.set_text("JUMP")
-		STATE.JUMPDASH:
-			CurrentState = STATE.JUMPDASH
-			setDashProperties()
-			PlayerSprite.play("jump")
-			DebugStateLabel.set_text("JUMPDASH")
-		STATE.RUN:
-			CurrentState = STATE.RUN
-			resetDashProperties()
-			PlayerSprite.play("run")
-			DebugStateLabel.set_text("RUN")
-		STATE.DASH:
-			CurrentState = STATE.DASH
-			setDashProperties()
-			PlayerSprite.play("dash")
-			DebugStateLabel.set_text("DASH")
-		STATE.AIRDASH:
-			CurrentState = STATE.AIRDASH
-			setDashProperties()
-			PlayerSprite.play("dash")
-			DebugStateLabel.set_text("AIRDASH")
-		STATE.DIE:
-			pass
 
 
 func basicShot():
@@ -194,8 +83,7 @@ func handleCharging():
 			
 func takeDamage(damage):
 	Health -= damage
-	if(Health <= 0):
-		CurrentState = STATE.DIE
+
 
 func setDashProperties():
 	IsDashing = true
@@ -228,7 +116,6 @@ func ghostEffect():
 		get_parent().add_child(GhostInstance)
 		GhostInstance.set_texture(CurrentPlayerSprite.get_frame_texture(PlayerSprite.animation, PlayerSprite.frame))
 		GhostInstance.flip_h = PlayerSprite.flip_h
-		GhostInstance.flip_v = PlayerSprite.flip_v
 		GhostInstance.position = global_position
 		ghostCounter = 0
 
