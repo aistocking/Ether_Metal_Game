@@ -815,6 +815,8 @@ script = ExtResource("13_q85jw")
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("14_sglpw")
 
+[node name="Timer" type="Timer" parent="PlayerStateMachine/Dash"]
+
 [node name="Special Attack" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("15_7l818")
 
@@ -827,3 +829,4 @@ script = ExtResource("17_776qv")
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerStateMachine" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]
