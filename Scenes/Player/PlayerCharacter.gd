@@ -127,6 +127,9 @@ func handle_horizontal():
 		Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	)
 	
-	PlayerSprite.flip_h = velocity.x > 0
+	if (velocity.x > 0):
+		PlayerSprite.flip_h = true
+	elif (velocity.x < 0):
+		PlayerSprite.flip_h = false
 	
 	velocity.x = speed * input_direction_x
