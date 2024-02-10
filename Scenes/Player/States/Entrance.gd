@@ -11,5 +11,5 @@ func enter(_msg := {}) -> void:
 func update(delta: float) -> void:
 	pass
 
-func _on_animated_sprite_2d_animation_finished():
+func on_animated_sprite_2d_animation_finished():
 	state_machine.transition_to("Idle")

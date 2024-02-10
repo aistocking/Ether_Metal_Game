@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=7 format=3 uid="uid://db4djnmwm3kv0"]
 
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
 size = Vector2(860, 16.63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08f8o"]
+size = Vector2(42.5, 8)
 
 [node name="test" type="Node2D"]
 
@@ -79,6 +82,28 @@ offset_left = -274.0
 offset_top = -9.0
 offset_right = 273.0
 offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="platform4" type="StaticBody2D" parent="."]
+position = Vector2(-184, -67)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform4"]
+position = Vector2(11, 48)
+shape = SubResource("RectangleShape2D_08f8o")
+
+[node name="ColorRect" type="ColorRect" parent="platform4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 44.0
+offset_right = 32.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 
