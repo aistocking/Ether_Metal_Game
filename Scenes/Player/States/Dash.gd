@@ -6,6 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction = 0
 
+var IsAirdash : bool
+
 @onready var timer = $Timer
 
 func enter(msg := {}) -> void:
@@ -17,6 +19,9 @@ func enter(msg := {}) -> void:
 	direction = 0
 	timer.one_shot = true
 	timer.start(0.4)
+	if(!player.is_on_floor()):
+		IsAirdash = true
+		player.velocity.y = 0
 	if (msg.has("direction")):
 		direction = msg.direction
 
@@ -35,9 +40,12 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Run")
 	if (Input.is_action_pressed("Right") && direction < 0):
 		state_machine.transition_to("Run")
-	if (Input.is_action_just_pressed("Jump")):
+	if (Input.is_action_just_pressed("Jump") && !IsAirdash):
 		state_machine.transition_to("Jump")
 	player.velocity.x = player.speed * direction
+	if (!IsAirdash && !player.is_on_floor()):
+		player.resetDashProperties()
+		state_machine.transition_to("Falling")
 	player.move_and_slide()
 
 # Make sure you stop the timer otherwise this can fire even outside of the state
