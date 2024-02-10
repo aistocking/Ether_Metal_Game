@@ -9,7 +9,9 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2(0, 0)
 	
 func physics_update(delta: float) -> void:
-		
+	if(player.IsDashing):
+		player.ghostEffect()
+	
 	player.velocity.y += gravity * delta
 	player.handle_horizontal()
 	player.move_and_slide()

@@ -6,6 +6,7 @@ func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
 	player.PlayerSprite.play("idle")
+	player.resetDashProperties()
 
 func update(delta: float) -> void:
 	if (!player.is_on_floor()):

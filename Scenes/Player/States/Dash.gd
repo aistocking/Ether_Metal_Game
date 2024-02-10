@@ -35,6 +35,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Run")
 	if (Input.is_action_pressed("Right") && direction < 0):
 		state_machine.transition_to("Run")
+	if (Input.is_action_just_pressed("Jump")):
+		state_machine.transition_to("Jump")
 	player.velocity.x = player.speed * direction
 	player.move_and_slide()
 

@@ -6,6 +6,7 @@ func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
 	player.PlayerSprite.play("run")
+	player.resetDashProperties()
 	
 func physics_update(delta: float) -> void:
 	

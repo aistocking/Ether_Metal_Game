@@ -10,6 +10,8 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("jump")
 	
 func physics_update(delta: float) -> void:
+	if(player.IsDashing):
+		player.ghostEffect()
 	
 	if (Input.is_action_just_released("Jump") || player.velocity.y > 0):
 		state_machine.transition_to("Falling")
