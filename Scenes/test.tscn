@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
-[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character_with_states.tscn" id="3_qngyy"]
+[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_qngyy"]
 [ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="4_f3c2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
