@@ -23,13 +23,21 @@ func exit() -> void:
 	timer.stop()
 	
 func physics_update(delta: float) -> void:
+	if (Input.is_action_just_released("Dash")):
+		if(Input.is_action_pressed("Left") || Input.is_action_pressed("Right")):
+			state_machine.transition_to("Run")
+		else:
+			state_machine.transition_to("Idle")
 	if (Input.is_action_pressed("Left") && direction > 0):
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("Run")
 	if (Input.is_action_pressed("Right") && direction < 0):
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("Run")
 	player.velocity.x = player.speed * direction
 	player.move_and_slide()
 
 # Make sure you stop the timer otherwise this can fire even outside of the state
 func _on_timer_timeout():
-	state_machine.transition_to("Idle")
+	if(Input.is_action_pressed("Left") || Input.is_action_pressed("Right")):
+		state_machine.transition_to("Run")
+	else:
+		state_machine.transition_to("Idle")
