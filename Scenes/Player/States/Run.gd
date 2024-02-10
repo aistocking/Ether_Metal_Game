@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 	if (!player.is_on_floor()):
 		state_machine.transition_to("Falling")
 	
-	if Input.is_action_pressed("Dash"):
+	if Input.is_action_just_pressed("Dash"):
 		var direction = 1 if player.PlayerSprite.flip_h == true else -1
 		state_machine.transition_to("Dash", { "direction": direction })
 	
