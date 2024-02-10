@@ -12,6 +12,8 @@ func enter(msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
 	player.speed = 600
+	player.PlayerSprite.play("dash")
+	player.setDashProperties()
 	direction = 0
 	timer.one_shot = true
 	timer.start(0.4)
@@ -23,6 +25,7 @@ func exit() -> void:
 	timer.stop()
 	
 func physics_update(delta: float) -> void:
+	player.ghostEffect()
 	if (Input.is_action_just_released("Dash")):
 		if(Input.is_action_pressed("Left") || Input.is_action_pressed("Right")):
 			state_machine.transition_to("Run")

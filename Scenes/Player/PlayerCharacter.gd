@@ -87,7 +87,6 @@ func takeDamage(damage):
 
 func setDashProperties():
 	IsDashing = true
-	DashTimer.start(0.7)
 	if(!is_on_floor()):
 		SpentDash = true
 
