@@ -4,14 +4,16 @@ extends Node
 signal transitioned(state_name)
 
 @export var initial_state := NodePath()
+@export var debugLabelPath := NodePath()
 
 @onready var state: State = get_node(initial_state)
-@onready var DebugStateLabel = $"../CurrentStateDebug"
+@onready var DebugStateLabel: = get_node(debugLabelPath)
 
 func _ready() -> void:
 	await owner.ready
 	
-	DebugStateLabel.setText(state.name)
+	if DebugStateLabel != null:
+		DebugStateLabel.setText(state.name)
 	
 	for child in get_children():
 		child.state_machine = self
@@ -27,7 +29,9 @@ func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	DebugStateLabel.setText(state.name)
+	if DebugStateLabel != null:
+		DebugStateLabel.setText(state.name)
+	
 	if not has_node(target_state_name):
 		return
 

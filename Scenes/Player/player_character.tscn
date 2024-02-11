@@ -801,6 +801,7 @@ visible = false
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("9_c2ogj")
 initial_state = NodePath("Entrance")
+debugLabelPath = NodePath("../CurrentStateDebug")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_ycp14")
