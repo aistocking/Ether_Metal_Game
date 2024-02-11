@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=102 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="2_28kil"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dpe4agf5libpk" path="res://Art/Player/X_Jump.png" id="6_ya4mu"]
 [ext_resource type="Texture2D" uid="uid://bfdknvbtw8dmq" path="res://Art/Player/X_Run.png" id="7_r7mno"]
 [ext_resource type="Texture2D" uid="uid://5yt1ilmxoj66" path="res://Art/Player/X_Idle_Run_Jump.png" id="8_im0qj"]
+[ext_resource type="Script" path="res://Scenes/Player/CurrentStateDebug.gd" id="8_u0rhq"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerStateMachine.gd" id="9_c2ogj"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Idle.gd" id="10_ycp14"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Run.gd" id="11_cvhcd"]
@@ -770,6 +771,7 @@ offset_left = -21.0
 offset_top = -39.0
 offset_right = 19.0
 offset_bottom = -16.0
+script = ExtResource("8_u0rhq")
 
 [node name="BusterPosition" type="Marker2D" parent="."]
 position = Vector2(-22, -6)

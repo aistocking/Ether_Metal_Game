@@ -11,7 +11,7 @@ signal transitioned(state_name)
 func _ready() -> void:
 	await owner.ready
 	
-	DebugStateLabel.text = state.name
+	DebugStateLabel.setText(state.name)
 	
 	for child in get_children():
 		child.state_machine = self
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	DebugStateLabel.text = target_state_name
+	DebugStateLabel.setText(state.name)
 	if not has_node(target_state_name):
 		return
 
