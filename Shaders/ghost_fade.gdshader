@@ -6,8 +6,8 @@ void vertex() {
 
 void fragment() {
 	vec4 spriteTex = texture(TEXTURE, UV);
-	vec3 whiteSpriteTex = mix(spriteTex.rgb, vec3(1,1,1), 1.0);
-	COLOR.rgb = whiteSpriteTex;
+	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(0,0,1), 1);
+	COLOR.rgb = blueSpriteTex;
 	// Called for every pixel the material is visible on.
 }
 
