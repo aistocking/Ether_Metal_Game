@@ -127,8 +127,8 @@ func handle_horizontal():
 	)
 	
 	if (velocity.x > 0):
-		PlayerSprite.flip_h = true
+		changeFacingDirection(RIGHT)
 	elif (velocity.x < 0):
-		PlayerSprite.flip_h = false
+		changeFacingDirection(LEFT)
 	
 	velocity.x = speed * input_direction_x
