@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl24fje6uuif8"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_dpnep"]
+
+[node name="MainMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dpnep")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
