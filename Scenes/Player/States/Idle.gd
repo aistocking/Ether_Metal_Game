@@ -19,6 +19,6 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Jump")
 	elif (left or right) and not (left and right):
 		state_machine.transition_to("Run")
-	elif Input.is_action_pressed("Dash"):
+	elif Input.is_action_just_pressed("Dash"):
 		var direction = 1 if player.PlayerSprite.flip_h == true else -1
 		state_machine.transition_to("Dash", { "direction": direction })
