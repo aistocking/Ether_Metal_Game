@@ -29,8 +29,6 @@ func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	if DebugStateLabel != null:
-		DebugStateLabel.setText(state.name)
 	
 	if not has_node(target_state_name):
 		return
@@ -39,3 +37,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state = get_node(target_state_name)
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
+	
+	if DebugStateLabel != null:
+		DebugStateLabel.setText(state.name)
