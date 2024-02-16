@@ -1,7 +1,8 @@
-[gd_scene load_steps=102 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=108 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="2_28kil"]
+[ext_resource type="Texture2D" uid="uid://ckf8t3p53kxsg" path="res://Art/Player/X_Damaged.png" id="3_2bw8w"]
 [ext_resource type="Texture2D" uid="uid://qr2ch6uetpe8" path="res://Art/Player/X_Dash.png" id="3_hne1c"]
 [ext_resource type="Texture2D" uid="uid://booltu88oglek" path="res://Art/Player/X_Entrance.png" id="4_eydhj"]
 [ext_resource type="Texture2D" uid="uid://dkw6sddm0q1ip" path="res://Art/Player/X_Idle.png" id="5_q0aeg"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/Special_Attack.gd" id="15_7l818"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Sliding.gd" id="16_01rhr"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Entrance.gd" id="17_776qv"]
+[ext_resource type="Script" path="res://Scenes/Player/States/Damaged.gd" id="19_p8egc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(34, 45)
@@ -49,6 +51,22 @@ region = Rect2(480, 0, 48, 51)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojaub"]
 atlas = ExtResource("2_28kil")
 region = Rect2(528, 0, 48, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7yn7"]
+atlas = ExtResource("3_2bw8w")
+region = Rect2(51, 0, 51, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wsfl"]
+atlas = ExtResource("3_2bw8w")
+region = Rect2(102, 0, 51, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miixm"]
+atlas = ExtResource("3_2bw8w")
+region = Rect2(153, 0, 51, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_untar"]
+atlas = ExtResource("3_2bw8w")
+region = Rect2(204, 0, 51, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_004df"]
 atlas = ExtResource("3_hne1c")
@@ -332,6 +350,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge_shot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7yn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wsfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miixm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_untar")
+}],
+"loop": true,
+"name": &"damaged",
 "speed": 12.0
 }, {
 "frames": [{
@@ -758,10 +793,6 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_js54m")
 animation = &"entrance"
 
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.6
-one_shot = true
-
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
@@ -829,7 +860,12 @@ script = ExtResource("16_01rhr")
 [node name="Entrance" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("17_776qv")
 
+[node name="Damaged" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("19_p8egc")
+
+[node name="Timer" type="Timer" parent="PlayerStateMachine/Damaged"]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerStateMachine" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="PlayerStateMachine/Damaged/Timer" to="PlayerStateMachine/Damaged" method="_on_timer_timeout"]

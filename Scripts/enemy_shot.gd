@@ -15,10 +15,11 @@ func _physics_process(delta):
 func getDirection(vec):
 	Direction = vec
 
-func _on_area_entered(area):
-	if(area.has_method("takeDamage")):
-		area.takeDamage(Damage)
-	queue_free()
-
 func _on_death_timer_timeout():
 	queue_free()
+
+
+func _on_body_entered(body):
+	if(body.has_method("takeDamage")):
+		body.takeDamage(Damage)
+		queue_free()

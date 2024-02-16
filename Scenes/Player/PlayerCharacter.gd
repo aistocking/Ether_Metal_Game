@@ -12,6 +12,8 @@ var FacingDirection : int = -1
 var IsShooting : bool = false
 var IsDashing : bool = false
 
+@onready var PlyrStateMachine = $PlayerStateMachine
+
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 @onready var DashTimer = $DashTimer
@@ -83,7 +85,7 @@ func handleCharging():
 			
 func takeDamage(damage):
 	Health -= damage
-
+	PlyrStateMachine.transition_to("Damaged")
 
 func setDashProperties():
 	IsDashing = true
