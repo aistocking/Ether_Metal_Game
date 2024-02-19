@@ -3,9 +3,9 @@ extends CharacterBody2D
 const RIGHT : int = 1
 const LEFT : int = -1
 
-var SPEED = 300.0
-var speed = 300.0
-const JUMP_VELOCITY = -400.0
+var SPEED : float = 300.0
+var speed : float = 300.0
+const JUMP_VELOCITY : float = -400.0
 var PlayerInput : bool = false
 var SpentDash : bool = false
 var FacingDirection : int = -1
@@ -17,6 +17,8 @@ var IsDashing : bool = false
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 @onready var DashTimer = $DashTimer
+
+@onready var InvulnerabilityTimer = $InvulnTimer
 
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
@@ -35,7 +37,7 @@ var CurrentState
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var PlayerSprite = $AnimatedSprite2D
-@onready var CurrentPlayerSprite = PlayerSprite.sprite_frames
+@onready var CurrentPlayerSprite : SpriteFrames = PlayerSprite.sprite_frames
 @onready var DebugStateLabel = $CurrentStateDebug
 
 
@@ -83,9 +85,10 @@ func handleCharging():
 			ChargeLevel += 1
 			ChargeCounter = 0
 			
-func takeDamage(damage):
-	Health -= damage
-	PlyrStateMachine.transition_to("Damaged")
+func takeDamage(damage : int):
+	if InvulnerabilityTimer.is_stopped():
+		Health -= damage
+		PlyrStateMachine._takeDamage()
 
 func setDashProperties():
 	IsDashing = true
@@ -96,7 +99,7 @@ func resetDashProperties():
 	IsDashing = false
 	SpentDash = false
 
-func changeFacingDirection(direction):
+func changeFacingDirection(direction : int):
 	if(FacingDirection == direction):
 		pass
 	else:
