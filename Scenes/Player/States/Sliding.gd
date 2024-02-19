@@ -9,5 +9,5 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("idle")
 	player.resetDashProperties()
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass

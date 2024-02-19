@@ -8,7 +8,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("run")
 	player.resetDashProperties()
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	
 	if (Input.is_action_just_pressed("Jump")):
 		state_machine.transition_to("Jump")

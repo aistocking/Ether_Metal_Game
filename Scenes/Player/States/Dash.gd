@@ -51,7 +51,7 @@ func exit() -> void:
 	player.speed = 300
 	timer.stop()
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	player.ghostEffect()
 
 	player.velocity.x = player.speed * direction

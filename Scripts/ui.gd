@@ -11,7 +11,7 @@ func _ready():
 	HealthBar.value = Player.Health
 
 
-func _process(delta):
+func _process(_delta):
 	ChargeBar.value = Player.ChargeCounter
 	ChargeLevel.text = str(Player.ChargeLevel)
 	HealthBar.value = Player.Health

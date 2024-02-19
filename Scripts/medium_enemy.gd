@@ -20,9 +20,9 @@ var currentState
 func _ready():
 	stateChange(STATE.IDLE)
 
-
+# TODO shouldn't this be in the physics_process?
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(currentState == STATE.WALK):
 		position.x +=  FacingDirection * 2
 	
@@ -112,9 +112,9 @@ func _on_wait_timer_timeout():
 			else:
 				stateChange(STATE.IDLE)
 
-func _on_vision_cone_body_entered(body):
+func _on_vision_cone_body_entered(_body):
 	stateChange(STATE.AIM)
 	WaitTimer.start(0.3)
 
-func _on_vision_cone_body_exited(body):
+func _on_vision_cone_body_exited(_body):
 	WaitTimer.start(0.5)

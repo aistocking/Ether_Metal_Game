@@ -8,7 +8,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("idle")
 	player.resetDashProperties()
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if (!player.is_on_floor()):
 		state_machine.transition_to("Falling")
 	

@@ -8,7 +8,7 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.PlayerSprite.play("entrance")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass
 
 func on_animated_sprite_2d_animation_finished():

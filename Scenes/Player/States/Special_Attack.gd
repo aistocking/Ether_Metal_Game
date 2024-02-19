@@ -10,5 +10,5 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.PlayerSprite.play("idle")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass

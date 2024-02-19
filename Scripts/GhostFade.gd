@@ -8,7 +8,7 @@ func _ready():
 	tween.connect("finished", on_tween_finished)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func on_tween_finished():
