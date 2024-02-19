@@ -41,10 +41,11 @@ text = "Resume
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ExitToMainMenu" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ExitStage" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Exit to Main Menu"
+text = "Exit Stage
+"
 
 [node name="QuitToDesktop" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -56,5 +57,5 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitToMainMenu" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitStage" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/QuitToDesktop" to="." method="_on_quit_pressed"]
