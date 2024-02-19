@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=8 format=3 uid="uid://db4djnmwm3kv0"]
 
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="1_g43a5"]
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_qngyy"]
@@ -12,6 +13,8 @@ size = Vector2(860, 16.63)
 size = Vector2(42.5, 8)
 
 [node name="test" type="Node2D"]
+
+[node name="PauseUI" parent="." instance=ExtResource("1_g43a5")]
 
 [node name="UI" parent="." instance=ExtResource("1_iuv7g")]
 
