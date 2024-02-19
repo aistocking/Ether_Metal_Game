@@ -40,3 +40,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	
 	if DebugStateLabel != null:
 		DebugStateLabel.setText(state.name)
+
+func _takeDamage() -> void:
+	state.takeDamage()

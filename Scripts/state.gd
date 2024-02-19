@@ -20,3 +20,6 @@ func enter(_msg := {}) -> void:
 
 func exit() -> void:
 	pass
+
+func takeDamage() -> void:
+	state_machine.transition_to("Damaged")
