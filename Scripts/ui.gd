@@ -4,12 +4,14 @@ var Player
 
 @onready var ChargeBar = $WholeScreen/ChargeBar
 @onready var ChargeLevel = $WholeScreen/ChargeLevels
-# Called when the node enters the scene tree for the first time.
+@onready var HealthBar = $WholeScreen/HealthBar
+
 func _ready():
 	Player = get_tree().get_first_node_in_group("Player")
+	HealthBar.value = Player.Health
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	ChargeBar.value = Player.ChargeCounter
 	ChargeLevel.text = str(Player.ChargeLevel)
+	HealthBar.value = Player.Health

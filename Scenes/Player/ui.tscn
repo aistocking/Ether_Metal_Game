@@ -38,7 +38,7 @@ offset_bottom = -54.845
 grow_vertical = 0
 text = "1"
 
-[node name="ProgressBar" type="ProgressBar" parent="WholeScreen"]
+[node name="HealthBar" type="ProgressBar" parent="WholeScreen" groups=["UI Elements"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
