@@ -9,13 +9,17 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter(_msg := {}) -> void:
 	player = owner
-	player.velocity.y = -50
+	player.velocity = Vector2.ZERO
+	player.velocity.y = -150
 	player.PlayerSprite.play("damaged")
-	timer.start(0.5)
+	timer.start(0.35)
+	player.InvulnerabilityTimer.start(1.0)
 
 func physics_update(delta: float) -> void:
-	player.velocity.x += (player.FacingDirection * -10) * delta
+	player.velocity.x += (player.FacingDirection * -70) * delta
 	player.velocity.y += gravity * delta
+	
+	player.move_and_slide()
 
 func _on_timer_timeout():
 	if !Input.is_anything_pressed():
