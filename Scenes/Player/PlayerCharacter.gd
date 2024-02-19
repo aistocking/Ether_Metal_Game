@@ -16,7 +16,6 @@ var IsDashing : bool = false
 
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
-@onready var DashTimer = $DashTimer
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
