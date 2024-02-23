@@ -10,7 +10,7 @@ func _ready():
 
 func changeMusic(path : String):
 	MusicPlayer.stop()
-	MusicPlayer.set_stream(path)
+	MusicPlayer.set_stream(load(path))
 	MusicPlayer.play()
 
 func saveGame():
