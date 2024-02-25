@@ -781,7 +781,7 @@ _data = {
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 28
 floor_constant_speed = true
-floor_max_angle = 0.261799
+floor_max_angle = 0.872665
 script = ExtResource("1_otumk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

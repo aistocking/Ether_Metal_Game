@@ -49,11 +49,10 @@ text = "
 
 "
 
-[node name="Button2" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Stage2" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-disabled = true
 
 [node name="Button3" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
@@ -97,3 +96,4 @@ size_flags_vertical = 3
 disabled = true
 
 [connection signal="pressed" from="MarginContainer/AspectRatioContainer/GridContainer/Stage1" to="." method="_on_stage1_pressed"]
+[connection signal="pressed" from="MarginContainer/AspectRatioContainer/GridContainer/Stage2" to="." method="_on_stage_2_pressed"]

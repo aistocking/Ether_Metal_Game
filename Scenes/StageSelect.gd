@@ -13,3 +13,8 @@ func _process(_delta):
 func _on_stage1_pressed():
 	Global.changeMusic("res://Sound/Music/06_Opening Stage X.mp3")
 	get_tree().change_scene_to_file("res://Scenes/test.tscn")
+
+
+func _on_stage_2_pressed():
+	Global.changeMusic("res://Sound/Music/06_Opening Stage X.mp3")
+	get_tree().change_scene_to_file("res://Scenes/Stages/stage_alpha.tscn")

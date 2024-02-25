@@ -43,7 +43,8 @@ folder_colors={
 "res://Art/Player/": "blue",
 "res://Scenes/Effects/": "yellow",
 "res://Scenes/Enemies/": "red",
-"res://Scenes/Player/": "blue"
+"res://Scenes/Player/": "blue",
+"res://Scenes/Stages/": "green"
 }
 
 [input]
