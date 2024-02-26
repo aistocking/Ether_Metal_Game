@@ -782,6 +782,7 @@ _data = {
 collision_mask = 28
 floor_constant_speed = true
 floor_max_angle = 0.872665
+floor_snap_length = 15.0
 script = ExtResource("1_otumk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
