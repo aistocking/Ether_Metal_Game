@@ -19,6 +19,8 @@ func enter(msg := {}) -> void:
 	direction = 0
 	timer.one_shot = true
 	timer.start(0.4)
+	player.SFXPlayer.set_stream(player.DashSFX)
+	player.SFXPlayer.play()
 	if(!player.is_on_floor()):
 		IsAirdash = true
 		player.SpentDash = true

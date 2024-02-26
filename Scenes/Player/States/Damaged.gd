@@ -14,6 +14,8 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("damaged")
 	timer.start(0.35)
 	player.InvulnerabilityTimer.start(1.0)
+	player.SFXPlayer.set_stream(player.DamagedSFX)
+	player.SFXPlayer.play()
 
 func physics_update(delta: float) -> void:
 	player.velocity.x += (player.FacingDirection * -70) * delta

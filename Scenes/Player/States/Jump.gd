@@ -8,6 +8,8 @@ func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity.y = player.JUMP_VELOCITY
 	player.PlayerSprite.play("jump")
+	player.SFXPlayer.set_stream(player.JumpSFX)
+	player.SFXPlayer.play()
 	
 func physics_update(delta: float) -> void:
 	if(player.IsDashing):

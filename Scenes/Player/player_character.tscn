@@ -816,6 +816,9 @@ libraries = {
 "": SubResource("AnimationLibrary_xj4p7")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.928
+
 [node name="DashSprite" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1

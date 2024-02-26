@@ -12,10 +12,17 @@ var FacingDirection : int = -1
 var IsShooting : bool = false
 var IsDashing : bool = false
 
+@onready var SFXPlayer = $AudioStreamPlayer
+
 @onready var PlyrStateMachine = $PlayerStateMachine
 
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
+
+@onready var ShotSFX = load("res://Sound/BusterShot.wav")
+@onready var JumpSFX = load("res://Sound/XJump.wav")
+@onready var DashSFX = load("res://Sound/XDash.wav")
+@onready var DamagedSFX = load("res://Sound/XHit.wav")
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
@@ -62,6 +69,8 @@ func _physics_process(_delta):
 
 
 func basicShot():
+	SFXPlayer.set_stream(ShotSFX)
+	SFXPlayer.play()
 	IsShooting = true
 	ShotTimer.start(0.3)
 	var BasicShotInstance = BasicShotResource.instantiate()
