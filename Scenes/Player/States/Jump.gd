@@ -10,6 +10,8 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("jump")
 	player.SFXPlayer.set_stream(player.JumpSFX)
 	player.SFXPlayer.play()
+	if Input.is_action_pressed("Dash"):
+		player.setDashProperties()
 	if player.IsDashing:
 		player.speed = 450
 
