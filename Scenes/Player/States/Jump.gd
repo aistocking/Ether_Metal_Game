@@ -10,20 +10,26 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("jump")
 	player.SFXPlayer.set_stream(player.JumpSFX)
 	player.SFXPlayer.play()
-	
-func physics_update(delta: float) -> void:
-	if(player.IsDashing):
-		player.ghostEffect()
-	
-	if (Input.is_action_just_released("Jump") || player.velocity.y > 0):
+	if player.IsDashing:
+		player.speed = 450
+
+func handle_input(event) -> void:
+	if event.is_action_released("Jump"):
 		state_machine.transition_to("Falling")
 	
-	if(Input.is_action_just_pressed("Dash")):
+	if event.is_action_pressed("Dash") && !player.IsDashing:
 		state_machine.transition_to("Dash")
+
+func physics_update(delta: float) -> void:
+	if player.IsDashing:
+		player.ghostEffect()
+	
+	if player.velocity.y > 0:
+		state_machine.transition_to("Falling")
 		
 	player.velocity.y += gravity * delta
 	player.handle_horizontal()
 	player.move_and_slide()
 	
-	if (player.is_on_floor() && player.velocity.y == 0):
+	if player.is_on_floor() && player.velocity.y == 0:
 		state_machine.transition_to("Idle")	

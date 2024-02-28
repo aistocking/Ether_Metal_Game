@@ -37,15 +37,15 @@ func handle_input(event):
 		state_machine.transition_to("Run")
 	if event.is_action_pressed("Right") && direction < 0:
 		state_machine.transition_to("Run")
-	if (event.is_action_released("Dash")):
+	if event.is_action_released("Dash"):
 		if IsAirdash:
 			state_machine.transition_to("Falling")
 		else:
-			if(event.is_action_pressed("Left") || event.is_action_pressed("Right")):
+			if event.is_action_pressed("Left") || event.is_action_pressed("Right"):
 				state_machine.transition_to("Run")
 			else:
 				state_machine.transition_to("Idle")
-	if (event.is_action_pressed("Jump") && !IsAirdash):
+	if event.is_action_pressed("Jump") && !IsAirdash:
 		state_machine.transition_to("Jump")
 
 
