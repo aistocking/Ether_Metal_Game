@@ -801,6 +801,10 @@ one_shot = true
 [node name="InvulnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="CayotTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="CurrentStateDebug" type="Label" parent="."]
 offset_left = -21.0
 offset_top = -39.0

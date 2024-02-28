@@ -26,6 +26,8 @@ var ghostCounter : int = 0
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
+@onready var CayoteTimer = $CayotTimer
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition

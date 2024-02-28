@@ -47,6 +47,7 @@ func handle_input(event):
 				state_machine.transition_to("Idle")
 	if event.is_action_pressed("Jump") && !IsAirdash:
 		state_machine.transition_to("Jump")
+	
 
 
 func exit() -> void:
@@ -60,6 +61,7 @@ func physics_update(_delta: float) -> void:
 
 #This is to check if the Player dashes off a ledge and to discontinue that dash
 	if (!IsAirdash && !player.is_on_floor()):
+		player.CoyoteTimer.start(.15)
 		state_machine.transition_to("Falling")
 	
 	player.move_and_slide()

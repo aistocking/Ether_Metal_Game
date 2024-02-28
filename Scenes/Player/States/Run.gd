@@ -20,6 +20,7 @@ func handle_input(event) -> void:
 func physics_update(_delta: float) -> void:
 
 	if !player.is_on_floor():
+		player.CayoteTimer.start(.15)
 		state_machine.transition_to("Falling")
 	
 	var input_direction_x: float = (
