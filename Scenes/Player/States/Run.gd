@@ -8,6 +8,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("run")
 	player.resetDashProperties()
 	player.speed = 300
+	player.CayoteTimer.stop()
 
 func handle_input(event) -> void:
 	if event.is_action_pressed("Jump"):
@@ -20,7 +21,7 @@ func handle_input(event) -> void:
 func physics_update(_delta: float) -> void:
 
 	if !player.is_on_floor():
-		player.CayoteTimer.start(.15)
+		player.CayoteTimer.start(.08)
 		state_machine.transition_to("Falling")
 	
 	var input_direction_x: float = (

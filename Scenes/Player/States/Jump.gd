@@ -10,6 +10,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerSprite.play("jump")
 	player.SFXPlayer.set_stream(player.JumpSFX)
 	player.SFXPlayer.play()
+	player.CayoteTimer.stop()
 	if Input.is_action_pressed("Dash"):
 		player.setDashProperties()
 	if player.IsDashing:

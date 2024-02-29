@@ -61,7 +61,7 @@ func physics_update(_delta: float) -> void:
 
 #This is to check if the Player dashes off a ledge and to discontinue that dash
 	if (!IsAirdash && !player.is_on_floor()):
-		player.CoyoteTimer.start(.15)
+		player.CoyoteTimer.start(.07)
 		state_machine.transition_to("Falling")
 	
 	player.move_and_slide()
