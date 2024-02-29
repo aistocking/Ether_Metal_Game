@@ -24,3 +24,7 @@ func _on_area_entered(area):
 	if(area.has_method("takeDamage")):
 		area.takeDamage(Damage)
 	queue_free()
+
+
+func _on_body_entered(body):
+	queue_free()

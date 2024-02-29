@@ -44,6 +44,7 @@ animations = [{
 
 [node name="Enemy Shot" type="Area2D"]
 collision_layer = 8
+collision_mask = 17
 script = ExtResource("1_8m3v6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

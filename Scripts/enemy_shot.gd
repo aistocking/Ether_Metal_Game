@@ -22,4 +22,5 @@ func _on_death_timer_timeout():
 func _on_body_entered(body):
 	if(body.has_method("takeDamage")):
 		body.takeDamage(Damage)
-		queue_free()
+	queue_free()
+	
