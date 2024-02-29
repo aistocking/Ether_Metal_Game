@@ -18,7 +18,7 @@ func handle_input(event) -> void:
 		var direction = player.FacingDirection
 		state_machine.transition_to("Dash", { "direction": direction })
 
-func update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if !player.is_on_floor():
 		state_machine.transition_to("Falling")
 	
