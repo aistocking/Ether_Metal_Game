@@ -28,6 +28,9 @@ var ghostCounter : int = 0
 
 @onready var CayoteTimer = $CayotTimer
 
+@onready var RightRayCast = $RightRCast
+@onready var LeftRayCast = $LeftRCast
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition

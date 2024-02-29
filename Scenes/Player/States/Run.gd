@@ -19,7 +19,6 @@ func handle_input(event) -> void:
 		state_machine.transition_to("Dash", { "direction": direction })
 
 func physics_update(_delta: float) -> void:
-
 	if !player.is_on_floor():
 		player.CayoteTimer.start(.08)
 		state_machine.transition_to("Falling")

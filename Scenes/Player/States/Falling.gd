@@ -9,6 +9,8 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2(0, 0)
 	if player.IsDashing:
 		player.speed = 450
+	else:
+		player.speed = 300
 
 func handle_input(event):
 	if event.is_action_pressed("Dash") && player.SpentDash == false:
@@ -20,6 +22,12 @@ func handle_input(event):
 func physics_update(delta: float) -> void:
 	if player.IsDashing:
 		player.ghostEffect()
+	
+	if player.LeftRayCast.is_colliding() && Input.is_action_pressed("Left"):
+		state_machine.transition_to("Sliding")
+	
+	if player.RightRayCast.is_colliding() && Input.is_action_pressed("Right"):
+		state_machine.transition_to("Sliding")
 	
 	player.velocity.y += gravity * delta
 	player.handle_horizontal()

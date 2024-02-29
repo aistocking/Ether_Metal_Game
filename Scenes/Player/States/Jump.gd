@@ -15,6 +15,8 @@ func enter(_msg := {}) -> void:
 		player.setDashProperties()
 	if player.IsDashing:
 		player.speed = 450
+	else:
+		player.speed = 300
 
 func handle_input(event) -> void:
 	if event.is_action_released("Jump"):
@@ -29,6 +31,7 @@ func physics_update(delta: float) -> void:
 	
 	if player.velocity.y > 0:
 		state_machine.transition_to("Falling")
+	
 		
 	player.velocity.y += gravity * delta
 	player.handle_horizontal()

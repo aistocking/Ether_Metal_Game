@@ -805,6 +805,14 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
+[node name="RightRCast" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 16
+
+[node name="LeftRCast" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)
+collision_mask = 16
+
 [node name="CurrentStateDebug" type="Label" parent="."]
 offset_left = -21.0
 offset_top = -39.0
