@@ -43,3 +43,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 
 func _takeDamage() -> void:
 	state.takeDamage()
+
+func _die() -> void:
+	state.die()

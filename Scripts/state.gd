@@ -23,3 +23,6 @@ func exit() -> void:
 
 func takeDamage() -> void:
 	state_machine.transition_to("Damaged")
+
+func die() -> void:
+	state_machine.transition_to("Die")
