@@ -1,10 +1,11 @@
-[gd_scene load_steps=108 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=118 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="2_28kil"]
 [ext_resource type="Texture2D" uid="uid://ckf8t3p53kxsg" path="res://Art/Player/X_Damaged.png" id="3_2bw8w"]
 [ext_resource type="Texture2D" uid="uid://qr2ch6uetpe8" path="res://Art/Player/X_Dash.png" id="3_hne1c"]
 [ext_resource type="Texture2D" uid="uid://booltu88oglek" path="res://Art/Player/X_Entrance.png" id="4_eydhj"]
+[ext_resource type="Texture2D" uid="uid://cimxyltjfogku" path="res://Art/Player/X_Die.png" id="5_83hli"]
 [ext_resource type="Texture2D" uid="uid://dkw6sddm0q1ip" path="res://Art/Player/X_Idle.png" id="5_q0aeg"]
 [ext_resource type="Texture2D" uid="uid://dpe4agf5libpk" path="res://Art/Player/X_Jump.png" id="6_ya4mu"]
 [ext_resource type="Texture2D" uid="uid://bfdknvbtw8dmq" path="res://Art/Player/X_Run.png" id="7_r7mno"]
@@ -20,9 +21,13 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/Sliding.gd" id="16_01rhr"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Entrance.gd" id="17_776qv"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Damaged.gd" id="19_p8egc"]
+[ext_resource type="Script" path="res://Scenes/Player/States/Die.gd" id="22_ta164"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(34, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8v5uu"]
+size = Vector2(38, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0lyj"]
 atlas = ExtResource("2_28kil")
@@ -115,6 +120,34 @@ region = Rect2(192, 0, 64, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mk7w"]
 atlas = ExtResource("3_hne1c")
 region = Rect2(256, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ptc"]
+atlas = ExtResource("5_83hli")
+region = Rect2(0, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4g2p"]
+atlas = ExtResource("5_83hli")
+region = Rect2(48, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g60u6"]
+atlas = ExtResource("5_83hli")
+region = Rect2(96, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qej68"]
+atlas = ExtResource("5_83hli")
+region = Rect2(144, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0f33"]
+atlas = ExtResource("5_83hli")
+region = Rect2(192, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufk38"]
+atlas = ExtResource("5_83hli")
+region = Rect2(240, 0, 48, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iemr"]
+atlas = ExtResource("5_83hli")
+region = Rect2(288, 0, 48, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x1m16"]
 atlas = ExtResource("4_eydhj")
@@ -413,6 +446,32 @@ animations = [{
 }],
 "loop": true,
 "name": &"dash_loop",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3ptc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4g2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g60u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qej68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0f33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufk38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iemr")
+}],
+"loop": false,
+"name": &"die",
 "speed": 12.0
 }, {
 "frames": [{
@@ -785,14 +844,23 @@ floor_max_angle = 0.872665
 floor_snap_length = 15.0
 script = ExtResource("1_otumk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicalCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_70gom")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="HurtCollision" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_8v5uu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_js54m")
-animation = &"entrance"
+animation = &"die"
+frame = 6
+frame_progress = 1.0
 
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.35
@@ -885,6 +953,10 @@ script = ExtResource("19_p8egc")
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Damaged"]
 one_shot = true
 
+[node name="Die" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("22_ta164")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerStateMachine" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]

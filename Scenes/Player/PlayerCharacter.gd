@@ -101,7 +101,10 @@ func handleCharging():
 func takeDamage(damage : int):
 	if InvulnerabilityTimer.is_stopped():
 		Health -= damage
-		PlyrStateMachine._takeDamage()
+		if Health <= 0:
+			PlyrStateMachine._die()
+		else:
+			PlyrStateMachine._takeDamage()
 
 func setDashProperties():
 	IsDashing = true
@@ -150,3 +153,8 @@ func handle_horizontal():
 		changeFacingDirection(LEFT)
 	
 	velocity.x = speed * input_direction_x
+
+
+func _on_hurtbox_body_entered(body):
+	if body.is_in_group("Hazards"):
+		takeDamage(32)
