@@ -31,6 +31,8 @@ var ghostCounter : int = 0
 @onready var RightRayCast = $RightRCast
 @onready var LeftRayCast = $LeftRCast
 
+@onready var DeathParticles = $"Death Particles"
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition
@@ -102,6 +104,7 @@ func takeDamage(damage : int):
 	if InvulnerabilityTimer.is_stopped():
 		Health -= damage
 		if Health <= 0:
+			DeathParticles.emitting = true
 			PlyrStateMachine._die()
 		else:
 			PlyrStateMachine._takeDamage()
