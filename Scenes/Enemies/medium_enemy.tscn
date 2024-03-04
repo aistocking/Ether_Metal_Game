@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://6mvh68uo4uwc"]
+[gd_scene load_steps=11 format=3 uid="uid://6mvh68uo4uwc"]
 
 [ext_resource type="Script" path="res://Scripts/medium_enemy.gd" id="1_8sxkv"]
+[ext_resource type="Shader" path="res://Shaders/hit_effect.gdshader" id="2_8uvri"]
 [ext_resource type="Texture2D" uid="uid://trut2k521ryw" path="res://Art/Enemies/Gunner.png" id="2_xiahg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhlo8"]
 size = Vector2(20, 38)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbe15"]
+shader = ExtResource("2_8uvri")
+shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_moh6a"]
 resource_name = "PrepareShot"
@@ -89,6 +94,7 @@ shape = SubResource("RectangleShape2D_nhlo8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_bbe15")
 texture = ExtResource("2_xiahg")
 hframes = 5
 vframes = 2

@@ -54,6 +54,7 @@ func stateChange(state):
 			AnimPlayer.stop()
 			Sprite.frame = 9
 			WaitTimer.start(0.3)
+			hitFlash()
 			DebugStateLabel.text = "HIT"
 		STATE.DEATH:
 			currentState = STATE.DEATH
@@ -72,6 +73,11 @@ func takeDamage(damage):
 		stateChange(STATE.DEATH)
 	else:
 		stateChange(STATE.HIT)
+
+func hitFlash():
+	Sprite.material.set_shader_parameter("active", true)
+	await get_tree().create_timer(0.1).timeout
+	Sprite.material.set_shader_parameter("active", false)
 
 func turnAround():
 	FacingDirection = FacingDirection * -1
