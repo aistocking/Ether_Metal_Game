@@ -1,12 +1,14 @@
 extends AnimatedSprite2D
 
 
-# Called when the node enters the scene tree for the first time.
+@onready var SFXPlayer = $SFXPlayer
+var ExplosionSFX = preload("res://Sound/MediumExplosion.wav")
+
 func _ready():
-	pass # Replace with function body.
+	SFXPlayer.set_stream(ExplosionSFX)
+	SFXPlayer.play()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 

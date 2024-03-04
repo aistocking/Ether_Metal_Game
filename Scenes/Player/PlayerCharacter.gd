@@ -19,10 +19,11 @@ var IsDashing : bool = false
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 
-@onready var ShotSFX = load("res://Sound/BusterShot.wav")
-@onready var JumpSFX = load("res://Sound/XJump.wav")
-@onready var DashSFX = load("res://Sound/XDash.wav")
-@onready var DamagedSFX = load("res://Sound/XHit.wav")
+var ShotSFX = preload("res://Sound/BusterShot.wav")
+var JumpSFX = preload("res://Sound/XJump.wav")
+var DashSFX = preload("res://Sound/XDash.wav")
+var DamagedSFX = preload("res://Sound/XHit.wav")
+var DeathSFX = preload("res://Sound/XDeath.wav")
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
@@ -105,6 +106,8 @@ func takeDamage(damage : int):
 		Health -= damage
 		if Health <= 0:
 			DeathParticles.emitting = true
+			SFXPlayer.set_stream(DeathSFX)
+			SFXPlayer.play()
 			PlyrStateMachine._die()
 		else:
 			PlyrStateMachine._takeDamage()

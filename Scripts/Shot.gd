@@ -3,11 +3,13 @@ extends Area2D
 var Direction
 var Speed = 10
 var Damage = 1
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var SFXPlayer = $SFXPlayer
+var HitSFX = preload("res://Sound/BusterShotHit.wav")
+
+func _ready():
+	SFXPlayer.set_stream(HitSFX)
+
 func _physics_process(_delta):
 	position += Direction * Speed
 
@@ -22,9 +24,13 @@ func _on_timer_timeout():
 
 func _on_area_entered(area):
 	if(area.has_method("takeDamage")):
+		SFXPlayer.play()
 		area.takeDamage(Damage)
+	$Sprites.queue_free()
+
+func _on_body_entered(body):
 	queue_free()
 
 
-func _on_body_entered(body):
+func _on_sfx_player_finished():
 	queue_free()
