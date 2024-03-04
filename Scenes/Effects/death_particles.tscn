@@ -36,6 +36,8 @@ frame_4/duration = 0.1
 
 [node name="Death Particles" type="GPUParticles2D"]
 emitting = false
-amount = 16
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_1xwom")
 texture = SubResource("AnimatedTexture_1x25w")
+one_shot = true
+fixed_fps = 60
