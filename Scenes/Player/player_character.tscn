@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=124 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://d1jcu3kjvql0e" path="res://Art/Player/X_Shot.png" id="2_28kil"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/CurrentStateDebug.gd" id="8_u0rhq"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerStateMachine.gd" id="9_c2ogj"]
 [ext_resource type="PackedScene" uid="uid://c1pstklyl2kp1" path="res://Scenes/Effects/death_particles.tscn" id="10_iq7bk"]
+[ext_resource type="Texture2D" uid="uid://dd6jrioydl1fj" path="res://Art/Player/X_Wall_Cling.png" id="10_pcmhu"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Idle.gd" id="10_ycp14"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Run.gd" id="11_cvhcd"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Jump.gd" id="12_nvavq"]
@@ -25,10 +26,10 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/Die.gd" id="22_ta164"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
-size = Vector2(34, 45)
+size = Vector2(28, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v5uu"]
-size = Vector2(36, 47)
+size = Vector2(32, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0lyj"]
 atlas = ExtResource("2_28kil")
@@ -358,6 +359,22 @@ region = Rect2(144, 0, 48, 51)
 atlas = ExtResource("2_28kil")
 region = Rect2(192, 0, 48, 51)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoa83"]
+atlas = ExtResource("10_pcmhu")
+region = Rect2(0, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nos7b"]
+atlas = ExtResource("10_pcmhu")
+region = Rect2(40, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nv0s"]
+atlas = ExtResource("10_pcmhu")
+region = Rect2(80, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dku4y"]
+atlas = ExtResource("10_pcmhu")
+region = Rect2(120, 0, 40, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_js54m"]
 animations = [{
 "frames": [{
@@ -668,6 +685,23 @@ animations = [{
 "loop": false,
 "name": &"shot",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoa83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nos7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nv0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dku4y")
+}],
+"loop": false,
+"name": &"sliding",
+"speed": 16.0
 }]
 
 [sub_resource type="Animation" id="Animation_clase"]
@@ -863,7 +897,9 @@ shape = SubResource("RectangleShape2D_8v5uu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_js54m")
-animation = &"die"
+animation = &"sliding"
+frame = 3
+frame_progress = 1.0
 
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.35
@@ -895,6 +931,9 @@ script = ExtResource("8_u0rhq")
 
 [node name="BusterPosition" type="Marker2D" parent="."]
 position = Vector2(-22, -6)
+
+[node name="DustPosition" type="Marker2D" parent="."]
+position = Vector2(-13.865, 24.185)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

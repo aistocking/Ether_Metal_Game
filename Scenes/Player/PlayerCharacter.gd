@@ -34,6 +34,10 @@ var DeathSFX = preload("res://Sound/XDeath.wav")
 
 @onready var DeathParticles = $"Death Particles"
 
+const DustResource = preload("res://Scenes/Effects/dust_particle.tscn")
+@onready var DustPosition = $DustPosition
+var DustCounter: int = 0
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var BusterPosition = $BusterPosition
@@ -127,10 +131,11 @@ func changeFacingDirection(direction : int):
 	else:
 		FacingDirection = direction
 		flipPlayerSprite()
-		flipBusterPosition()
+		flipPositionMarkers()
 
-func flipBusterPosition():
+func flipPositionMarkers():
 	BusterPosition.position.x = BusterPosition.position.x * -1
+	DustPosition.position.x = DustPosition.position.x * -1
 
 func flipPlayerSprite():
 	PlayerSprite.flip_h = !PlayerSprite.flip_h
@@ -144,6 +149,14 @@ func ghostEffect():
 		GhostInstance.flip_h = PlayerSprite.flip_h
 		GhostInstance.position = global_position
 		ghostCounter = 0
+
+func createDust():
+	DustCounter += 1
+	if(DustCounter > 4):
+		var DustInstance = DustResource.instantiate()
+		get_parent().add_child(DustInstance)
+		DustInstance.position = DustPosition.global_position
+		DustCounter = 0
 
 func _on_shot_timer_timeout():
 	IsShooting = false

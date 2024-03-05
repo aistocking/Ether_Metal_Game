@@ -10,7 +10,7 @@ var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /3
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
-	player.PlayerSprite.play("idle")
+	player.PlayerSprite.play("sliding")
 	player.resetDashProperties()
 	if player.LeftRayCast.is_colliding():
 		direction = player.RIGHT
@@ -42,6 +42,8 @@ func physics_update(delta: float) -> void:
 		
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")
+	
+	player.createDust()
 
 	player.velocity.y += gravity * delta
 	
