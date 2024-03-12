@@ -20,6 +20,9 @@ func handle_input(event):
 		state_machine.transition_to("Jump")
 
 func physics_update(delta: float) -> void:
+	if (player.is_on_floor()):
+		state_machine.transition_to("Idle")
+		
 	if player.IsDashing:
 		player.ghostEffect()
 	
@@ -33,5 +36,3 @@ func physics_update(delta: float) -> void:
 	player.handle_horizontal()
 	player.move_and_slide()
 	
-	if (player.is_on_floor()):
-		state_machine.transition_to("Idle")
