@@ -933,7 +933,7 @@ script = ExtResource("8_u0rhq")
 position = Vector2(-22, -6)
 
 [node name="DustPosition" type="Marker2D" parent="."]
-position = Vector2(-13.865, 24.185)
+position = Vector2(13.865, 24.185)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

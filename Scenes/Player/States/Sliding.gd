@@ -5,7 +5,7 @@ var player: CharacterBody2D
 
 var direction: int
 
-var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /3
+var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /8
 
 func enter(_msg := {}) -> void:
 	player = owner
@@ -16,7 +16,8 @@ func enter(_msg := {}) -> void:
 		direction = player.RIGHT
 	elif player.RightRayCast.is_colliding():
 		direction = player.LEFT
-
+	player.changeFacingDirection(direction)
+	
 func handle_input(event) -> void:
 	if event.is_action_pressed("Jump"):
 		state_machine.transition_to("Jump", { "walljumpdirection": direction })
@@ -45,6 +46,6 @@ func physics_update(delta: float) -> void:
 	
 	player.createDust()
 
-	player.velocity.y += gravity * delta
+	player.velocity.y = gravity
 	
 	player.move_and_slide()
