@@ -4,6 +4,8 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var walljumpdirection: int = 0
+
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity.y = player.JUMP_VELOCITY
@@ -12,7 +14,8 @@ func enter(_msg := {}) -> void:
 	player.SFXPlayer.play()
 	player.CayoteTimer.stop()
 	if _msg.has("walljumpdirection"):
-		player.velocity.x = _msg.walljumpdirection * 50
+		walljumpdirection = _msg.walljumpdirection
+		player.velocity.x = walljumpdirection * 150
 	if Input.is_action_pressed("Dash"):
 		player.setDashProperties()
 	if player.IsDashing:
@@ -36,7 +39,19 @@ func physics_update(delta: float) -> void:
 	
 		
 	player.velocity.y += gravity * delta
-	player.handle_horizontal()
+	if walljumpdirection != 0:
+		if Input.is_action_pressed("Left"):
+			player.changeFacingDirection(player.LEFT)
+			if walljumpdirection == -1:
+				walljumpdirection = 0
+			player.velocity.x += -20
+		if Input.is_action_pressed("Right"):
+			player.changeFacingDirection(player.RIGHT)
+			if walljumpdirection == 1:
+				walljumpdirection = 0
+			player.velocity.x += 20
+	else:
+		player.handle_horizontal()
 	player.move_and_slide()
 	
 	if player.is_on_floor() && player.velocity.y == 0:
