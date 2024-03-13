@@ -22,6 +22,14 @@ func physics_update(delta: float) -> void:
 	if !player.is_on_floor():
 		state_machine.transition_to("Falling")
 	
+	if Input.is_action_pressed("Offensive Trigger"):
+		if Input.is_action_just_pressed("Face Buttons"):
+			state_machine.transition_to("Special Attack", { "IsOffensive": true })
+	
+	if Input.is_action_pressed("Defensive Trigger"):
+		if Input.is_action_pressed("Face Buttons"):
+			state_machine.transition_to("Special Attack", { "IsOffensive": false })
+	
 	var left = Input.is_action_pressed("Left")
 	var right = Input.is_action_pressed("Right")
 	

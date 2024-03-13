@@ -68,8 +68,10 @@ func _input(event):
 	
 	#Basic attack
 	if(event.is_action_pressed("Shot")):
-		#If more than 3 shots exist, ignore shot button presses
-			if(get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
+		#If more than 3 shots exist or one of the triggers is held, ignore shot button presses
+			if (get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3):
+				pass
+			elif Input.is_action_pressed("Defensive Trigger") || Input.is_action_pressed("Offensive Trigger"):
 				pass
 			else:
 				basicShot()
