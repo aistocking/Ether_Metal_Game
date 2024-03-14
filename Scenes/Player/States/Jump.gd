@@ -9,7 +9,7 @@ var walljumpdirection: int = 0
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity.y = player.JUMP_VELOCITY
-	player.PlayerSprite.play("jump")
+	player.PlayerAnimations.play("Jump")
 	player.SFXPlayer.set_stream(player.JumpSFX)
 	player.SFXPlayer.play()
 	player.CayoteTimer.stop()

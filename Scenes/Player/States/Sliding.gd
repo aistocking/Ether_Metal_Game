@@ -10,7 +10,7 @@ var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /8
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
-	player.PlayerSprite.play("sliding")
+	player.PlayerAnimations.play("Wall_Slide")
 	player.resetDashProperties()
 	if player.LeftRayCast.is_colliding():
 		direction = player.RIGHT

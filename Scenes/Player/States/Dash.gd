@@ -14,7 +14,8 @@ func enter(msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
 	player.speed = 600
-	player.PlayerSprite.play("dash")
+	player.PlayerAnimations.play("Dash_Start")
+	player.PlayerAnimations.queue("Dash_Loop")
 	player.setDashProperties()
 	direction = 0
 	timer.one_shot = true

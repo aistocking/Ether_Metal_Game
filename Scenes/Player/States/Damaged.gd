@@ -11,7 +11,8 @@ func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
 	player.velocity.y = -150
-	player.PlayerSprite.play("damaged")
+	player.PlayerAnimations.play("Damaged_Start")
+	player.PlayerAnimations.queue("Damaged_Loop")
 	timer.start(0.35)
 	player.InvulnerabilityTimer.start(1.0)
 	player.SFXPlayer.set_stream(player.DamagedSFX)

@@ -51,13 +51,12 @@ var MaxChargeLevel : int = 2
 
 var Health : int = 16
 
-var CurrentState
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var PlayerSprite = $AnimatedSprite2D
-@onready var CurrentPlayerSprite : SpriteFrames = PlayerSprite.sprite_frames
+var CurrentPlayerSprite
+@onready var PlayerAnimations = $AnimationPlayer
 @onready var DebugStateLabel = $CurrentStateDebug
 
 
@@ -152,7 +151,12 @@ func flipPositionMarkers():
 	DustPosition.position.x = DustPosition.position.x * -1
 
 func flipPlayerSprite():
-	PlayerSprite.flip_h = !PlayerSprite.flip_h
+	$DashSprite.flip_h = !$DashSprite.flip_h
+	$IdleJumpRunSprite.flip_h = !$IdleJumpRunSprite.flip_h
+	$EntranceExitSprite.flip_h = !$EntranceExitSprite.flip_h
+	$ShootSprite.flip_h = !$ShootSprite.flip_h
+	$DamageSprite.flip_h = !$DamageSprite.flip_h
+	$WallClingSprite.flip_h = !$WallClingSprite.flip_h
 
 func ghostEffect():
 	ghostCounter += 1

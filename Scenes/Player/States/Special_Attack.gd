@@ -18,7 +18,7 @@ func enter(_msg := {}) -> void:
 	if Input.is_action_pressed("Left Button"):
 		CurrentSpecial = SPECIALS.PLASMA
 		player.velocity.x = player.FacingDirection * -200
-		player.PlayerSprite.play("charge_shot")
+		player.PlayerAnimations.play("Plasma_Shot")
 		player.plasmaShot()
 
 
@@ -26,3 +26,8 @@ func physics_update(delta: float) -> void:
 	player.createDust()
 	player.velocity.x += player.FacingDirection * 7
 	player.move_and_slide()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Plasma_Shot":
+		state_machine.transition_to("Idle")
