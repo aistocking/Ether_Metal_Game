@@ -52,6 +52,7 @@ frame = 1
 frame_progress = 0.309436
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.928
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
