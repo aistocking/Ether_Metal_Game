@@ -23,11 +23,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Falling")
 	
 	if Input.is_action_pressed("Offensive Trigger"):
-		if Input.is_action_just_pressed("Face Buttons"):
+		if Input.is_action_just_pressed("Face Buttons") && player.ChargeLevel != 0:
 			state_machine.transition_to("Special Attack", { "IsOffensive": true })
 	
 	if Input.is_action_pressed("Defensive Trigger"):
-		if Input.is_action_pressed("Face Buttons"):
+		if Input.is_action_pressed("Face Buttons") && player.ChargeLevel != 0:
 			state_machine.transition_to("Special Attack", { "IsOffensive": false })
 	
 	var left = Input.is_action_pressed("Left")
