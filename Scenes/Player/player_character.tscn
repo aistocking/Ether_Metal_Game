@@ -903,6 +903,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("IdleJumpRunSprite")],
+"method": &"setCurrentSprite"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_xpg37"]
 resource_name = "Land"
@@ -1238,6 +1252,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("ShootSprite")],
+"method": &"setCurrentSprite"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_j77q0"]
 resource_name = "Dash_Start"
@@ -1314,6 +1342,20 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("DashSprite")],
+"method": &"setCurrentSprite"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_fom4x"]
@@ -1407,7 +1449,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_cendp"]
 resource_name = "Die"
-length = 0.5
+length = 0.55
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1416,10 +1458,10 @@ tracks/0/path = NodePath("DamageSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 12]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1753,6 +1795,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("IdleJumpRunSprite")],
+"method": &"setCurrentSprite"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]

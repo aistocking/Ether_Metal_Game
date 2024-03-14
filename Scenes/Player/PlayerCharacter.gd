@@ -158,13 +158,19 @@ func flipPlayerSprite():
 	$DamageSprite.flip_h = !$DamageSprite.flip_h
 	$WallClingSprite.flip_h = !$WallClingSprite.flip_h
 
+func setCurrentSprite(path):
+	CurrentPlayerSprite = get_node(path)
+
 func ghostEffect():
 	ghostCounter += 1
 	if(ghostCounter > 2):
 		var GhostInstance = GhostResource.instantiate()
 		get_parent().add_child(GhostInstance)
-		GhostInstance.set_texture(CurrentPlayerSprite.get_frame_texture(PlayerSprite.animation, PlayerSprite.frame))
-		GhostInstance.flip_h = PlayerSprite.flip_h
+		GhostInstance.set_texture(CurrentPlayerSprite.texture)
+		GhostInstance.hframes = CurrentPlayerSprite.hframes
+		GhostInstance.vframes = CurrentPlayerSprite.vframes
+		GhostInstance.frame = CurrentPlayerSprite.frame
+		GhostInstance.flip_h = CurrentPlayerSprite.flip_h
 		GhostInstance.position = global_position
 		ghostCounter = 0
 
@@ -190,7 +196,6 @@ func handle_horizontal():
 		changeFacingDirection(LEFT)
 	
 	velocity.x = speed * input_direction_x
-
 
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("Hazards"):
