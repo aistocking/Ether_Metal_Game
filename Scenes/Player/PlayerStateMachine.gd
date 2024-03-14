@@ -1,5 +1,4 @@
 class_name PlayerStateMachine
 extends StateMachine
 
-func _on_animated_sprite_2d_animation_finished():
-	state.on_animated_sprite_2d_animation_finished()
+

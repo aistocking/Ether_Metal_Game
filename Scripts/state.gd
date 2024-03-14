@@ -12,9 +12,6 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	pass
 
-func on_animated_sprite_2d_animation_finished() -> void:
-	pass
-
 func enter(_msg := {}) -> void:
 	pass
 

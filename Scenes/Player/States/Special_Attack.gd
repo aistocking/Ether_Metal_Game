@@ -26,7 +26,3 @@ func physics_update(delta: float) -> void:
 	player.createDust()
 	player.velocity.x += player.FacingDirection * 7
 	player.move_and_slide()
-
-
-func _on_animated_sprite_2d_animation_finished():
-	state_machine.transition_to("Idle")
