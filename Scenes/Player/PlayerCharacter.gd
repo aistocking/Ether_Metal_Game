@@ -20,6 +20,7 @@ const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 
 var ShotSFX = preload("res://Sound/BusterShot.wav")
+var ChargeShotSFX = preload("res://Sound/BusterChargeShot.wav")
 var JumpSFX = preload("res://Sound/XJump.wav")
 var DashSFX = preload("res://Sound/XDash.wav")
 var DamagedSFX = preload("res://Sound/XHit.wav")
@@ -40,6 +41,7 @@ var DustCounter: int = 0
 
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
+const ChargeShotResource = preload("res://Scenes/Effects/plasma_shot.tscn")
 @onready var BusterPosition = $BusterPosition
 @onready var ShotTimer = $ShotTimer
 
@@ -97,6 +99,16 @@ func basicShot():
 	add_child(ShotEffectInstance)
 	BasicShotInstance.position = BusterPosition.global_position
 	ShotEffectInstance.position = BusterPosition.position
+
+func plasmaShot():
+	SFXPlayer.set_stream(ChargeShotSFX)
+	SFXPlayer.play()
+	var PlasmaShotInstance = ChargeShotResource.instantiate()
+	PlasmaShotInstance.getDirection(Vector2(FacingDirection, 0))
+	if(FacingDirection == LEFT):
+		PlasmaShotInstance.flip(true)
+	get_parent().add_child(PlasmaShotInstance)
+	PlasmaShotInstance.position = BusterPosition.global_position
 
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):

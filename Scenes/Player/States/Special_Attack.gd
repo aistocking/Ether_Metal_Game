@@ -17,6 +17,7 @@ func enter(_msg := {}) -> void:
 	if Input.is_action_pressed("Left Button"):
 		CurrentSpecial = SPECIALS.PLASMA
 		player.velocity.x = player.FacingDirection * -200
+		player.plasmaShot()
 	player.PlayerSprite.play("charge_shot")
 
 

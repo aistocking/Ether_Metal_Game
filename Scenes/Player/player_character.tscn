@@ -32,37 +32,37 @@ size = Vector2(28, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v5uu"]
 size = Vector2(32, 47)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ci5i4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b2a1"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(392, 0, 56, 80)
+region = Rect2(392, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4iths"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2genv"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(336, 0, 56, 80)
+region = Rect2(336, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o6gxg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga3b0"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(280, 0, 56, 80)
+region = Rect2(280, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ykrus"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pxi5"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(224, 0, 56, 80)
+region = Rect2(224, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxhee"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nloy"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(168, 0, 56, 80)
+region = Rect2(168, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v2u4o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ym0g"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(112, 0, 56, 80)
+region = Rect2(112, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5xj6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s31d8"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(56, 0, 56, 80)
+region = Rect2(56, 0, 56, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yfw2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdt06"]
 atlas = ExtResource("2_bcyhj")
-region = Rect2(0, 0, 56, 80)
+region = Rect2(0, 0, 56, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7yn7"]
 atlas = ExtResource("3_2bw8w")
@@ -384,28 +384,28 @@ region = Rect2(120, 0, 40, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ci5i4")
+"texture": SubResource("AtlasTexture_1b2a1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4iths")
+"texture": SubResource("AtlasTexture_2genv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o6gxg")
+"texture": SubResource("AtlasTexture_ga3b0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ykrus")
+"texture": SubResource("AtlasTexture_8pxi5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jxhee")
+"texture": SubResource("AtlasTexture_2nloy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v2u4o")
+"texture": SubResource("AtlasTexture_5ym0g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d5xj6")
+"texture": SubResource("AtlasTexture_s31d8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6yfw2")
+"texture": SubResource("AtlasTexture_vdt06")
 }],
 "loop": false,
 "name": &"charge_shot",
@@ -906,8 +906,6 @@ shape = SubResource("RectangleShape2D_8v5uu")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_js54m")
 animation = &"charge_shot"
-frame = 7
-frame_progress = 1.0
 
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.35

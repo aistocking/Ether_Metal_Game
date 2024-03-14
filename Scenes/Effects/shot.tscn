@@ -64,6 +64,7 @@ animation = &"basic_shot"
 autoplay = "basic_shot"
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
 one_shot = true
 autostart = true
 
