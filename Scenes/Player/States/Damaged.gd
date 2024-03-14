@@ -24,6 +24,7 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 func _on_timer_timeout():
+	timer.stop()
 	if Input.is_action_pressed("Left") || Input.is_action_pressed("Right"):
 		state_machine.transition_to("Run")
 	else:

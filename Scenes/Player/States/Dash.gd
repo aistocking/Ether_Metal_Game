@@ -68,6 +68,7 @@ func physics_update(_delta: float) -> void:
 
 # Make sure you stop the timer otherwise this can fire even outside of the state
 func _on_timer_timeout():
+	timer.stop()
 	if IsAirdash:
 		state_machine.transition_to("Falling")
 	else:
