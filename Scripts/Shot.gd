@@ -26,10 +26,17 @@ func _on_area_entered(area):
 	if(area.has_method("takeDamage")):
 		SFXPlayer.play()
 		area.takeDamage(Damage)
-	$Sprites.queue_free()
+		$Sprites.queue_free()
+	else:
+		queue_free()
 
 func _on_body_entered(body):
-	queue_free()
+	if(body.has_method("takeDamage")):
+		SFXPlayer.play()
+		body.takeDamage(Damage)
+		$Sprites.queue_free()
+	else:
+		queue_free()
 
 
 func _on_sfx_player_finished():
