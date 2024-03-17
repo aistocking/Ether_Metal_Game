@@ -21,7 +21,7 @@ size = Vector2(42.5, 8)
 [node name="Main_Camera" parent="." instance=ExtResource("2_trbbm")]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_qngyy")]
-position = Vector2(0, 26.305)
+position = Vector2(0, -400)
 
 [node name="platform" type="StaticBody2D" parent="."]
 position = Vector2(0, 58.685)

@@ -1,0 +1,193 @@
+[gd_scene load_steps=9 format=3 uid="uid://b82fv4j54eyej"]
+
+[ext_resource type="Texture2D" uid="uid://keh5m5vvx535" path="res://Art/Effects/Ready_Black.png" id="1_rlyn6"]
+[ext_resource type="Script" path="res://Scenes/Effects/ready_intro.gd" id="1_y1nqs"]
+[ext_resource type="Texture2D" uid="uid://cuglmxecfmixf" path="res://Art/Effects/Ready_White.png" id="2_c4shc"]
+[ext_resource type="AudioStream" uid="uid://dywcx1eshyf2y" path="res://Sound/AnnouncerReady.wav" id="3_85sjr"]
+[ext_resource type="PackedScene" uid="uid://bejr1h8g3e6nr" path="res://Scenes/Effects/ready_intro_ghosts.tscn" id="4_0ci6e"]
+
+[sub_resource type="Animation" id="Animation_lh8uf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SFXPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5uula"]
+resource_name = "intro"
+length = 3.4
+step = 0.025
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(400, -0.25, 0, 0.25, 0, 18, -0.114234, 54.5, 0.1, -49.5, -161, -0.25, 0, 0.25, 0, 0, -0.175957, -16.2603, 0.25, 0, 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.1, 86.2267, 800, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2, 2.3, 2.5, 2.8, 3.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("black:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.144617, 71.5857, 200, -0.25, 0, 0.25, 0, 88, -0.22177, 60.7837, 0.188756, -53.6823, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2, 2.3, 2.5, 2.8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("white:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-400, -0.25, 0, 0.25, 0, -18, -0.114234, -48.5, 0.1, 50.5, 161, -0.25, 0, 0.25, 0, 0, -0.133971, 9.5, 0.25, 0, 0, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.1, -72.1623, -600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2, 2.3, 2.5, 2.8, 3.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("white:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -65.5, -200, -0.25, 0, 0.25, 0, -88, -0.179784, -39.5, 0.175, 43.5, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2, 2.3, 2.5, 2.8)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFXPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ReadyIntroGhost")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ReadyIntroGhost2")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.225),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ReadyIntroGhost3")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ReadyIntro")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.525),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"IntroFinished"],
+"method": &"emit_signal"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_basdf"]
+_data = {
+"RESET": SubResource("Animation_lh8uf"),
+"intro": SubResource("Animation_5uula")
+}
+
+[node name="ReadyIntroControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ReadyIntroGhost3" parent="." instance=ExtResource("4_0ci6e")]
+GhostLevel = 0.25
+
+[node name="ReadyIntroGhost2" parent="." instance=ExtResource("4_0ci6e")]
+GhostLevel = 0.5
+
+[node name="ReadyIntroGhost" parent="." instance=ExtResource("4_0ci6e")]
+GhostLevel = 0.75
+
+[node name="ReadyIntro" type="AnimationPlayer" parent="." groups=["ReadyAnnounce"]]
+libraries = {
+"": SubResource("AnimationLibrary_basdf")
+}
+autoplay = "intro"
+script = ExtResource("1_y1nqs")
+
+[node name="black" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rlyn6")
+
+[node name="white" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_c4shc")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_85sjr")
+volume_db = -14.0
