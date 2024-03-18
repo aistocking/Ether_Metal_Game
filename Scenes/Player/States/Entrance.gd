@@ -10,7 +10,10 @@ func enter(_msg := {}) -> void:
 	player.PlayerAnimations.play("Entrance")
 	player.PlayerAnimations.stop()
 	var Announcer = get_tree().get_first_node_in_group("ReadyAnnounce")
-	Announcer.IntroFinished.connect(self.introDone)
+	if Announcer == null:
+		introDone()
+	else:
+		Announcer.IntroFinished.connect(self.introDone)
 
 func physics_update(delta: float) -> void:
 	if IntroComplete:
