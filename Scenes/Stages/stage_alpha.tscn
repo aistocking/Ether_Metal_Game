@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://db4lf6nbwbtfc"]
+[gd_scene load_steps=12 format=3 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="1_fcknc"]
 [ext_resource type="Script" path="res://Scenes/Stages/StageAlpha.gd" id="1_h57h2"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="2_en5ec"]
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_q0xmu"]
 [ext_resource type="Texture2D" uid="uid://drnn75sgkoyq5" path="res://Art/Stages/sheet-alt.png" id="3_0i7wh"]
 [ext_resource type="PackedScene" uid="uid://bor21t7xaioed" path="res://Scenes/Enemies/rolling_enemy.tscn" id="5_lebl6"]
 
@@ -1154,6 +1155,8 @@ sources/0 = SubResource("TileSetAtlasSource_ct8kk")
 
 [node name="StageAlpha" type="Node2D"]
 script = ExtResource("1_h57h2")
+
+[node name="PauseUI" parent="." instance=ExtResource("2_q0xmu")]
 
 [node name="Main_Camera" parent="." instance=ExtResource("1_fcknc")]
 
