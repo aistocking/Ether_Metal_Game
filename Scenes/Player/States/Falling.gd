@@ -17,7 +17,7 @@ func handle_input(event):
 	if event.is_action_pressed("Dash") && player.SpentDash == false:
 		state_machine.transition_to("Dash")
 	
-	if event.is_action_pressed("Jump") && !player.CayoteTimer.is_stopped():
+	if event.is_action_pressed("Jump") && !player.CoyoteTimer.is_stopped():
 		state_machine.transition_to("Jump")
 
 func physics_update(delta: float) -> void:

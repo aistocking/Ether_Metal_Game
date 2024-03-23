@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerAnimations.play("Jump")
 	player.SFXPlayer.set_stream(player.JumpSFX)
 	player.SFXPlayer.play()
-	player.CayoteTimer.stop()
+	player.CoyoteTimer.stop()
 	if _msg.has("walljumpdirection"):
 		walljumpdirection = _msg.walljumpdirection
 		player.velocity.x = walljumpdirection * 150

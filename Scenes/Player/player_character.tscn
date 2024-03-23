@@ -1864,7 +1864,7 @@ one_shot = true
 [node name="InvulnTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="CayotTimer" type="Timer" parent="."]
+[node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
 

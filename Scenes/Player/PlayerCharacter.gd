@@ -28,7 +28,7 @@ var DeathSFX = preload("res://Sound/XDeath.wav")
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
-@onready var CayoteTimer = $CayotTimer
+@onready var CoyoteTimer = $CoyoteTimer
 
 @onready var RightRayCast = $RightRCast
 @onready var LeftRayCast = $LeftRCast

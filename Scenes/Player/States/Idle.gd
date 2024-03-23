@@ -8,7 +8,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerAnimations.play("Idle")
 	player.resetDashProperties()
 	player.speed = 300
-	player.CayoteTimer.stop()
+	player.CoyoteTimer.stop()
 
 func handle_input(event) -> void:
 	if event.is_action_pressed("Jump"):

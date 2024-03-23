@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 	player.PlayerAnimations.queue("Run_Loop")
 	player.resetDashProperties()
 	player.speed = 300
-	player.CayoteTimer.stop()
+	player.CoyoteTimer.stop()
 
 func handle_input(event) -> void:
 	if event.is_action_pressed("Jump"):
@@ -21,7 +21,7 @@ func handle_input(event) -> void:
 
 func physics_update(_delta: float) -> void:
 	if !player.is_on_floor():
-		player.CayoteTimer.start(.08)
+		player.CoyoteTimer.start(.08)
 		state_machine.transition_to("Falling")
 	
 	var input_direction_x: float = (
