@@ -17,3 +17,5 @@ func _on_quit_pressed():
 func toggle_pause():
 	visible = not visible
 	get_tree().paused = visible
+	if visible:
+		$VBoxContainer/HBoxContainer/Resume.grab_focus()

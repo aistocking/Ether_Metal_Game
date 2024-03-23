@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$MarginContainer/AspectRatioContainer/GridContainer/Stage1.grab_focus()
 	Global.changeMusic("res://Sound/Music/05_Stage Select.mp3")
 
 

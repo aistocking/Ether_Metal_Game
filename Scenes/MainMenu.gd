@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CenterContainer/Start.grab_focus()
 	Global.changeMusic("res://Sound/Music/03_Title.mp3")
 
 
