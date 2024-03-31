@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=9 format=3 uid="uid://db4djnmwm3kv0"]
 
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="1_g43a5"]
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_qngyy"]
 [ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="4_f3c2o"]
+[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/aerial_drone_enemy.tscn" id="6_j1c5v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
 size = Vector2(860, 16.63)
@@ -112,3 +113,6 @@ grow_vertical = 2
 
 [node name="Medium Enemy" parent="." instance=ExtResource("4_f3c2o")]
 position = Vector2(282, 28.625)
+
+[node name="AerialDroneEnemy" parent="." instance=ExtResource("6_j1c5v")]
+position = Vector2(383, -44)

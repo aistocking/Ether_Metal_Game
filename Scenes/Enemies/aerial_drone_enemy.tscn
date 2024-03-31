@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://dusmkdis6va78"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/aerial_drone_enemy.gd" id="1_mv247"]
+[ext_resource type="Texture2D" uid="uid://dbamd0f3eqpdv" path="res://Art/Enemies/Bat.png" id="2_mvrkk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc2lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm8in"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkeov"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(0, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdr2k"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(43, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dylkd"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(86, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt5qb"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(129, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x71i2"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(172, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t18ja"]
+atlas = ExtResource("2_mvrkk")
+region = Rect2(215, 0, 43, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alb5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkeov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdr2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dylkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt5qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x71i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t18ja")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="AerialDroneEnemy" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_mv247")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jc2lx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_fm8in")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_alb5q")
+autoplay = "default"
+frame = 5
+frame_progress = 0.701812
