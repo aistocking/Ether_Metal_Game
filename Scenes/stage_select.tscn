@@ -45,14 +45,13 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "
-
-"
+text = "General Test"
 
 [node name="Stage2" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "TileSet Test"
 
 [node name="Button3" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2

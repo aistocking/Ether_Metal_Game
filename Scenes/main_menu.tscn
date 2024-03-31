@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl24fje6uuif8"]
+[gd_scene load_steps=3 format=3 uid="uid://dl24fje6uuif8"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_dpnep"]
+[ext_resource type="Texture2D" uid="uid://bbp8ck85opnvf" path="res://Art/MiscUI/TitleScreen.png" id="2_435no"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,6 +33,12 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_435no")
 
 [node name="Start" type="Button" parent="CenterContainer"]
 custom_minimum_size = Vector2(100, 40)
