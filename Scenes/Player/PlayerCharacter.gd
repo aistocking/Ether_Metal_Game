@@ -39,6 +39,8 @@ const DustResource = preload("res://Scenes/Effects/dust_particle.tscn")
 @onready var DustPosition = $DustPosition
 var DustCounter: int = 0
 
+const BombResource = preload("res://Scenes/Effects/small_bombs.tscn")
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 const ChargeShotResource = preload("res://Scenes/Effects/plasma_shot.tscn")
@@ -108,6 +110,12 @@ func plasmaShot():
 		PlasmaShotInstance.flip(true)
 	get_parent().add_child(PlasmaShotInstance)
 	PlasmaShotInstance.position = BusterPosition.global_position
+
+func disengage():
+	var BombInstance = BombResource.instantiate()
+	BombInstance.getDirection(FacingDirection)
+	get_parent().add_child(BombInstance)
+	BombInstance.position = BusterPosition.global_position
 
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
