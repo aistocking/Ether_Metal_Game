@@ -39,10 +39,10 @@ func physics_update(delta: float) -> void:
 			if !player.is_on_floor():
 				state_machine.transition_to("Falling")
 			player.createDust()
-			player.velocity = player.velocity.move_toward(Vector2.ZERO, 150 * delta)
+			player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 			player.move_and_slide()
 		SPECIALS.DISENGAGE:
-			player.velocity = player.velocity.move_toward(Vector2.ZERO, 150 * delta)
+			player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 			player.move_and_slide()
 	
 

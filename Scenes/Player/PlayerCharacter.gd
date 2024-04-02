@@ -112,10 +112,25 @@ func plasmaShot():
 	PlasmaShotInstance.position = BusterPosition.global_position
 
 func disengage():
-	var BombInstance = BombResource.instantiate()
-	BombInstance.getDirection(FacingDirection)
-	get_parent().add_child(BombInstance)
-	BombInstance.position = BusterPosition.global_position
+	var BombInstanceHigh = BombResource.instantiate()
+	var BombInstanceMid = BombResource.instantiate()
+	var BombInstanceLow = BombResource.instantiate()
+	BombInstanceHigh.getDirection(FacingDirection)
+	BombInstanceMid.getDirection(FacingDirection)
+	BombInstanceLow.getDirection(FacingDirection)
+	get_parent().add_child(BombInstanceHigh)
+	get_parent().add_child(BombInstanceMid)
+	get_parent().add_child(BombInstanceLow)
+	BombInstanceHigh.position = BusterPosition.global_position
+	BombInstanceHigh.position.y -= 15
+	BombInstanceHigh.velocity.x += FacingDirection * 50
+	BombInstanceHigh.velocity.y += -90
+	BombInstanceMid.position = BusterPosition.global_position
+	BombInstanceMid.velocity.x += FacingDirection * 20
+	BombInstanceMid.velocity.y += -40
+	BombInstanceLow.position = BusterPosition.global_position
+	BombInstanceLow.position.x += FacingDirection * -10
+	BombInstanceLow.position.y += 15
 
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
