@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dusmkdis6va78"]
+[gd_scene load_steps=13 format=3 uid="uid://dusmkdis6va78"]
 
+[ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_2x1k4"]
 [ext_resource type="Script" path="res://Scenes/Enemies/aerial_drone_enemy.gd" id="1_mv247"]
 [ext_resource type="Texture2D" uid="uid://dbamd0f3eqpdv" path="res://Art/Enemies/Bat.png" id="2_mvrkk"]
 
@@ -59,7 +60,7 @@ animations = [{
 }]
 
 [node name="AerialDroneEnemy" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_mv247")
 
@@ -74,7 +75,10 @@ shape = SubResource("RectangleShape2D_fm8in")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("1_2x1k4")
 sprite_frames = SubResource("SpriteFrames_alb5q")
 autoplay = "default"
 frame = 5
 frame_progress = 0.701812
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
