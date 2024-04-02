@@ -41,6 +41,8 @@ var DustCounter: int = 0
 
 const BombResource = preload("res://Scenes/Effects/small_bombs.tscn")
 
+const UpperResource = preload("res://Scenes/Effects/ether_fire.tscn")
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 const ChargeShotResource = preload("res://Scenes/Effects/plasma_shot.tscn")
@@ -132,6 +134,18 @@ func disengage():
 	BombInstanceLow.position.x += FacingDirection * -10
 	BombInstanceLow.position.y += 15
 
+func upper(time):
+	var UpperInstance = UpperResource.instantiate()
+	UpperInstance.time = time
+	add_child(UpperInstance)
+	UpperInstance.position = BusterPosition.position
+	if FacingDirection == LEFT:
+		UpperInstance.position.x += 11
+	else:
+		UpperInstance.position.x -= 11
+	UpperInstance.position.y -= 21
+
+
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
 		pass
@@ -180,6 +194,7 @@ func flipPlayerSprite():
 	$ShootSprite.flip_h = !$ShootSprite.flip_h
 	$DamageSprite.flip_h = !$DamageSprite.flip_h
 	$WallClingSprite.flip_h = !$WallClingSprite.flip_h
+	$UpperSprite.flip_h = !$UpperSprite.flip_h
 
 func setCurrentSprite(path):
 	CurrentPlayerSprite = get_node(path)
@@ -223,3 +238,8 @@ func handle_horizontal():
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("Hazards"):
 		takeDamage(32)
+
+
+func _on_hit_box_body_entered(body):
+	if(body.has_method("takeDamage")):
+		body.takeDamage(15)

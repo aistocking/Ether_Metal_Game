@@ -61,14 +61,14 @@ animations = [{
 
 [node name="AerialDroneEnemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 16
+collision_mask = 18
 script = ExtResource("1_mv247")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jc2lx")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 0
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_fm8in")

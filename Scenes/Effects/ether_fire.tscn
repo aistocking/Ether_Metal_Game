@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://blbjx2n5kjy2r"]
+
+[ext_resource type="Texture2D" uid="uid://cvpa5ietp7t58" path="res://Art/Effects/Upper_Fire.png" id="1_o1lfq"]
+[ext_resource type="Script" path="res://Scenes/Effects/ether_fire.gd" id="2_xdqqk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdo73"]
+atlas = ExtResource("1_o1lfq")
+region = Rect2(0, 0, 36, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv2l2"]
+atlas = ExtResource("1_o1lfq")
+region = Rect2(36, 0, 36, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02e1v"]
+atlas = ExtResource("1_o1lfq")
+region = Rect2(72, 0, 36, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x244s"]
+atlas = ExtResource("1_o1lfq")
+region = Rect2(144, 0, 36, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwtkk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdo73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv2l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02e1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x244s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hq3x"]
+size = Vector2(34, 46)
+
+[node name="EtherFire" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gwtkk")
+autoplay = "default"
+frame_progress = 0.00633276
+script = ExtResource("2_xdqqk")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(9.83, 7.815)
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-10, -17.48)
+shape = SubResource("RectangleShape2D_2hq3x")
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
