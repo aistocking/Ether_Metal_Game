@@ -25,7 +25,12 @@ func enter(_msg := {}) -> void:
 		player.PlayerAnimations.play("Plasma_Shot")
 		player.plasmaShot()
 		CurrentSpecial = SPECIALS.PLASMA
-		player.ChargeLevel -= 1	
+		player.ChargeLevel -= 1
+	if Input.is_action_pressed("Right Button") && IsOffensive:
+		player.PlayerAnimations.play("Plasma_Shot")
+		player.barrage()
+		CurrentSpecial = SPECIALS.BARRAGE
+		player.ChargeLevel -= 1
 	if Input.is_action_pressed("Bottom Button") && !IsOffensive:
 		player.velocity.x = player.FacingDirection * -200
 		player.velocity.y = -150

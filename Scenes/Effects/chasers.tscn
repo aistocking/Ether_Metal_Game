@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4t4072qe35t"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/chasers.gd" id="1_86is2"]
+[ext_resource type="Texture2D" uid="uid://bar8bkojj12j5" path="res://Art/Effects/Chasers.png" id="2_6yc2d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuqf2"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxy0y"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk007"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn8y6"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihwfs"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0a2l"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jijx3"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3se06"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t4pj"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ojxq"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76wix"]
+atlas = ExtResource("2_6yc2d")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lxhy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuqf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxy0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk007")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn8y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihwfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0a2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jijx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3se06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t4pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ojxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76wix")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e5qk"]
+size = Vector2(28, 28)
+
+[node name="Chasers" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_86is2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0lxhy")
+autoplay = "default"
+frame = 5
+frame_progress = 0.696819
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2e5qk")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

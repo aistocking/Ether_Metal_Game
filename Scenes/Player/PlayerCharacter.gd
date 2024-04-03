@@ -43,6 +43,8 @@ const BombResource = preload("res://Scenes/Effects/small_bombs.tscn")
 
 const UpperResource = preload("res://Scenes/Effects/ether_fire.tscn")
 
+const BarrageResource = preload("res://Scenes/Effects/chasers.tscn")
+
 const BasicShotResource = preload("res://Scenes/Effects/shot.tscn")
 const ShotEffectResource = preload("res://Scenes/Effects/shot_effect.tscn")
 const ChargeShotResource = preload("res://Scenes/Effects/plasma_shot.tscn")
@@ -145,6 +147,11 @@ func upper(time):
 		UpperInstance.position.x -= 11
 	UpperInstance.position.y -= 21
 
+func barrage():
+	var ChaserInstance = BarrageResource.instantiate()
+	ChaserInstance.getDirection(FacingDirection)
+	get_parent().add_child(ChaserInstance)
+	ChaserInstance.position = BusterPosition.global_position
 
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
