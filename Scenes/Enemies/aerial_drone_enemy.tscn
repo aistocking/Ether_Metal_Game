@@ -59,7 +59,7 @@ animations = [{
 "speed": 14.0
 }]
 
-[node name="AerialDroneEnemy" type="CharacterBody2D"]
+[node name="AerialDroneEnemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 18
 script = ExtResource("1_mv247")

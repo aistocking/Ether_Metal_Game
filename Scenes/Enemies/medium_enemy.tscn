@@ -79,7 +79,7 @@ _data = {
 "Walk": SubResource("Animation_w2abj")
 }
 
-[node name="Medium Enemy" type="Area2D"]
+[node name="Medium Enemy" type="Area2D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 18
 script = ExtResource("1_8sxkv")
