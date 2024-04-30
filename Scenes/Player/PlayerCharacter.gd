@@ -108,6 +108,7 @@ func basicShot():
 	ShotEffectInstance.position = BusterPosition.position
 
 func plasmaShot():
+	removeChargeLevel()
 	SFXPlayer.set_stream(ChargeShotSFX)
 	SFXPlayer.play()
 	var PlasmaShotInstance = ChargeShotResource.instantiate()
@@ -118,6 +119,7 @@ func plasmaShot():
 	PlasmaShotInstance.position = BusterPosition.global_position
 
 func disengage():
+	removeChargeLevel()
 	var BombInstanceHigh = BombResource.instantiate()
 	var BombInstanceMid = BombResource.instantiate()
 	var BombInstanceLow = BombResource.instantiate()
@@ -139,6 +141,7 @@ func disengage():
 	BombInstanceLow.position.y += 15
 
 func upper(time):
+	removeChargeLevel()
 	var UpperInstance = UpperResource.instantiate()
 	UpperInstance.time = time
 	add_child(UpperInstance)
@@ -150,6 +153,7 @@ func upper(time):
 	UpperInstance.position.y -= 21
 
 func barrage():
+	removeChargeLevel()
 	var ChaserInstance1 = BarrageResource.instantiate()
 	var ChaserInstance2 = BarrageResource.instantiate()
 	var ChaserInstance3 = BarrageResource.instantiate()
