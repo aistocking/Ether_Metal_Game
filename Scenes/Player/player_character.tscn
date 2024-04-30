@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=46 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://coy8n8unkdbnw" path="res://Art/Player/X_Charge_Shot.png" id="2_bcyhj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dd6jrioydl1fj" path="res://Art/Player/X_Wall_Cling.png" id="10_pcmhu"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Idle.gd" id="10_ycp14"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Run.gd" id="11_cvhcd"]
+[ext_resource type="Texture2D" uid="uid://cwigak2i6ka68" path="res://Art/Player/XDive.png" id="11_kxt2h"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Jump.gd" id="12_nvavq"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Falling.gd" id="13_q85jw"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Dash.gd" id="14_sglpw"]
@@ -21,6 +22,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/Entrance.gd" id="17_776qv"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Damaged.gd" id="19_p8egc"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Die.gd" id="22_ta164"]
+[ext_resource type="Script" path="res://Scenes/Player/Cutscene.gd" id="23_5vgfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(28, 45)
@@ -426,6 +428,119 @@ tracks/7/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_7rt8t"]
+resource_name = "Dive"
+length = 0.45
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiveSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpperSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallClingSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DamageSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShootSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EntranceExitSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("IdleJumpRunSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DashSprite:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DiveSprite:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="Animation" id="Animation_yri23"]
 resource_name = "Entrance"
 length = 1.3
@@ -509,6 +624,18 @@ tracks/6/path = NodePath("WallClingSprite:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DiveSprite:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -725,6 +852,18 @@ tracks/7/path = NodePath("UpperSprite:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DiveSprite:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1111,6 +1250,30 @@ tracks/14/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("DiveSprite:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("DiveSprite:frame")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_x3up6"]
 resource_name = "Run"
@@ -1431,6 +1594,7 @@ _data = {
 "Dash_Start": SubResource("Animation_j77q0"),
 "Die": SubResource("Animation_cendp"),
 "Disengage": SubResource("Animation_8khiu"),
+"Dive": SubResource("Animation_7rt8t"),
 "Entrance": SubResource("Animation_yri23"),
 "Falling": SubResource("Animation_1xpcr"),
 "Idle": SubResource("Animation_jlkc0"),
@@ -1547,6 +1711,11 @@ position = Vector2(0, -8.52)
 texture = ExtResource("10_n75mw")
 hframes = 6
 
+[node name="DiveSprite" type="Sprite2D" parent="."]
+position = Vector2(-8.905, -1.97)
+texture = ExtResource("11_kxt2h")
+hframes = 4
+
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("9_c2ogj")
 initial_state = NodePath("Entrance")
@@ -1587,6 +1756,9 @@ one_shot = true
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("22_ta164")
+
+[node name="Cutscene" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("23_5vgfg")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="PlayerStateMachine/Special Attack" method="_on_animation_player_animation_finished"]

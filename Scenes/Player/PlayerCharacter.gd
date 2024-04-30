@@ -16,6 +16,8 @@ var IsDashing : bool = false
 
 @onready var PlyrStateMachine = $PlayerStateMachine
 
+@onready var UIControl = get_tree().get_first_node_in_group("UI Elements")
+
 const GhostResource = preload("res://Scenes/Effects/ghost_fade.tscn")
 var ghostCounter : int = 0
 
@@ -148,23 +150,46 @@ func upper(time):
 	UpperInstance.position.y -= 21
 
 func barrage():
-	var ChaserInstance = BarrageResource.instantiate()
-	ChaserInstance.getDirection(FacingDirection)
-	get_parent().add_child(ChaserInstance)
-	ChaserInstance.position = BusterPosition.global_position
+	var ChaserInstance1 = BarrageResource.instantiate()
+	var ChaserInstance2 = BarrageResource.instantiate()
+	var ChaserInstance3 = BarrageResource.instantiate()
+	var ChaserInstance4 = BarrageResource.instantiate()
+	ChaserInstance1.getDirection(Vector2(FacingDirection * 2, -1))
+	ChaserInstance2.getDirection(Vector2(FacingDirection, -1))
+	ChaserInstance3.getDirection(Vector2(FacingDirection * -2, -1))
+	ChaserInstance4.getDirection(Vector2(FacingDirection * -1, -1))
+	get_parent().add_child(ChaserInstance1)
+	get_parent().add_child(ChaserInstance2)
+	get_parent().add_child(ChaserInstance3)
+	get_parent().add_child(ChaserInstance4)
+	ChaserInstance1.position = BusterPosition.global_position - Vector2(0, 10)
+	ChaserInstance2.position = BusterPosition.global_position - Vector2(0, 10)
+	ChaserInstance3.position = BusterPosition.global_position - Vector2(0, 10)
+	ChaserInstance4.position = BusterPosition.global_position - Vector2(0, 10)
+
+func dive():
+	pass
 
 func handleCharging():
 	if(ChargeLevel == MaxChargeLevel):
 		pass
 	else:
 		ChargeCounter += 1
+		UIControl.CurrentPellet.value = ChargeCounter
 		if(ChargeCounter > 200):
 			ChargeLevel += 1
+			UIControl.changePellet()
 			ChargeCounter = 0
-			
+
+func removeChargeLevel():
+	ChargeLevel -= 1
+	UIControl.decreasePellet()
+	UIControl.CurrentPellet.value = ChargeCounter
+
 func takeDamage(damage : int):
 	if InvulnerabilityTimer.is_stopped():
 		Health -= damage
+		UIControl.HealthBar.value = Health
 		if Health <= 0:
 			DeathParticles.emitting = true
 			SFXPlayer.set_stream(DeathSFX)

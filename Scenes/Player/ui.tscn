@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=11 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
+[ext_resource type="Texture2D" uid="uid://boblfeqllus2l" path="res://Art/MiscUI/HealthBarBG.png" id="3_i7cal"]
+[ext_resource type="Texture2D" uid="uid://r6d4y22fbrra" path="res://Art/MiscUI/HealthBar.png" id="4_417n4"]
+[ext_resource type="Texture2D" uid="uid://dqj7qylhe6gt2" path="res://Art/MiscUI/HealthPellet.png" id="5_74xd3"]
+[ext_resource type="Texture2D" uid="uid://ptcroiems3kk" path="res://Art/MiscUI/EnergyBar.png" id="6_c4pgy"]
+[ext_resource type="Texture2D" uid="uid://bloeur5xju4np" path="res://Art/MiscUI/EnergyPellet.png" id="6_txg3r"]
 
-[node name="UI" type="CanvasLayer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw28h"]
+atlas = ExtResource("3_i7cal")
+region = Rect2(48, 0, 6, 80)
+margin = Rect2(3, 3, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crgou"]
+atlas = ExtResource("4_417n4")
+region = Rect2(96, 0, 12, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riocf"]
+atlas = ExtResource("6_c4pgy")
+region = Rect2(0, 0, 12, 85)
+
+[node name="UI" type="CanvasLayer" groups=["UI Elements"]]
 script = ExtResource("1_echso")
 
 [node name="WholeScreen" type="Control" parent="."]
@@ -28,42 +46,134 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ChargeBar" type="ProgressBar" parent="WholeScreen" groups=["UI Elements"]]
-layout_direction = 2
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -52.0
-offset_right = 224.0
-offset_bottom = -12.0
-grow_vertical = 0
-max_value = 200.0
-step = 1.0
-show_percentage = false
-
-[node name="ChargeLevels" type="Label" parent="WholeScreen" groups=["UI Elements"]]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -77.845
-offset_right = 40.0
-offset_bottom = -54.845
-grow_vertical = 0
-text = "1"
-
-[node name="HealthBar" type="ProgressBar" parent="WholeScreen" groups=["UI Elements"]]
+[node name="HealthBar" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -13.5
-offset_right = 18.715
-offset_bottom = 111.38
+offset_left = 20.0
+offset_top = -211.0
+offset_right = 60.0
+offset_bottom = -131.0
 grow_vertical = 2
-max_value = 16.0
-step = 1.0
+scale = Vector2(2, 2)
+max_value = 32.0
 value = 16.0
 fill_mode = 3
-show_percentage = false
+texture_under = SubResource("AtlasTexture_aw28h")
+texture_over = SubResource("AtlasTexture_crgou")
+texture_progress = ExtResource("5_74xd3")
+texture_progress_offset = Vector2(3, 3)
+
+[node name="ChargePellet1" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -78.0
+offset_right = 54.0
+offset_bottom = -64.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="ChargePellet2" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -104.0
+offset_right = 54.0
+offset_bottom = -90.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="ChargePellet3" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -130.0
+offset_right = 54.0
+offset_bottom = -116.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="ChargePellet4" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -156.0
+offset_right = 54.0
+offset_bottom = -142.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="ChargePellet5" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -182.0
+offset_right = 54.0
+offset_bottom = -168.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="ChargePellet6" type="TextureProgressBar" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -208.0
+offset_right = 54.0
+offset_bottom = -194.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 200.0
+fill_mode = 3
+texture_progress = ExtResource("6_txg3r")
+
+[node name="TextureRect" type="TextureRect" parent="WholeScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 42.0
+offset_top = -214.0
+offset_right = 54.0
+offset_bottom = -129.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_riocf")
+stretch_mode = 2
