@@ -25,25 +25,21 @@ func enter(_msg := {}) -> void:
 		player.PlayerAnimations.play("Plasma_Shot")
 		player.plasmaShot()
 		CurrentSpecial = SPECIALS.PLASMA
-		player.ChargeLevel -= 1
 	if Input.is_action_pressed("Right Button") && IsOffensive:
 		player.PlayerAnimations.play("Plasma_Shot")
 		player.barrage()
 		CurrentSpecial = SPECIALS.BARRAGE
-		player.ChargeLevel -= 1
 	if Input.is_action_pressed("Bottom Button") && !IsOffensive:
 		player.velocity.x = player.FacingDirection * -200
 		player.velocity.y = -150
 		player.PlayerAnimations.play("Disengage")
 		player.disengage()
 		CurrentSpecial = SPECIALS.DISENGAGE
-		player.ChargeLevel -= 1
 	if Input.is_action_pressed("Top Button") && IsOffensive:
 		tweenX.tween_property(player, "velocity:x", player.FacingDirection * 300, .2).set_trans(Tween.TRANS_CUBIC)
 		tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
 		player.PlayerAnimations.play("Upper")
 		CurrentSpecial = SPECIALS.UPPER
-		player.ChargeLevel -= 1	
 	if CurrentSpecial == SPECIALS.NONE:
 		state_machine.transition_to("Idle")
 	
