@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=12 format=3 uid="uid://db4djnmwm3kv0"]
 
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="1_g43a5"]
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_qngyy"]
 [ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="4_f3c2o"]
 [ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/aerial_drone_enemy.tscn" id="6_j1c5v"]
+[ext_resource type="PackedScene" uid="uid://dyhhn3flnctub" path="res://Scenes/Misc/HeartTank.tscn" id="7_h274m"]
+[ext_resource type="PackedScene" uid="uid://dkiyhlrmwu41f" path="res://Scenes/Misc/EnergyTank.tscn" id="8_flday"]
+[ext_resource type="PackedScene" uid="uid://brtxa5gm21b0" path="res://Scenes/Misc/SmallHealth.tscn" id="9_431re"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
 size = Vector2(860, 16.63)
@@ -111,8 +114,61 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="platform5" type="StaticBody2D" parent="."]
+position = Vector2(-263.825, -109)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform5"]
+position = Vector2(11, 48)
+shape = SubResource("RectangleShape2D_08f8o")
+
+[node name="ColorRect" type="ColorRect" parent="platform5"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 44.0
+offset_right = 32.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="platform6" type="StaticBody2D" parent="."]
+position = Vector2(-100, -150)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform6"]
+position = Vector2(11, 48)
+shape = SubResource("RectangleShape2D_08f8o")
+
+[node name="ColorRect" type="ColorRect" parent="platform6"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 44.0
+offset_right = 32.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Medium Enemy" parent="." instance=ExtResource("4_f3c2o")]
 position = Vector2(282, 28.625)
 
 [node name="AerialDroneEnemy" parent="." instance=ExtResource("6_j1c5v")]
 position = Vector2(383, -44)
+
+[node name="HeartTank" parent="." instance=ExtResource("7_h274m")]
+position = Vector2(-254, -77)
+
+[node name="EnergyTank" parent="." instance=ExtResource("8_flday")]
+position = Vector2(-90, -123)
+
+[node name="SmallHealth" parent="." instance=ExtResource("9_431re")]
+position = Vector2(-359, 44)

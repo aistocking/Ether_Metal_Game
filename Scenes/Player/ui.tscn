@@ -19,7 +19,7 @@ region = Rect2(96, 0, 12, 83)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_riocf"]
 atlas = ExtResource("6_c4pgy")
-region = Rect2(0, 0, 12, 85)
+region = Rect2(48, 0, 12, 85)
 
 [node name="UI" type="CanvasLayer" groups=["UI Elements"]]
 script = ExtResource("1_echso")
@@ -75,7 +75,7 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -78.0
 offset_right = 54.0
-offset_bottom = -64.0
+offset_bottom = -65.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
@@ -92,7 +92,7 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -104.0
 offset_right = 54.0
-offset_bottom = -90.0
+offset_bottom = -91.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
@@ -108,7 +108,7 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -130.0
 offset_right = 54.0
-offset_bottom = -116.0
+offset_bottom = -117.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
@@ -124,7 +124,7 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -156.0
 offset_right = 54.0
-offset_bottom = -142.0
+offset_bottom = -143.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
@@ -140,7 +140,7 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -182.0
 offset_right = 54.0
-offset_bottom = -168.0
+offset_bottom = -169.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
@@ -156,14 +156,14 @@ anchor_bottom = 0.5
 offset_left = 48.0
 offset_top = -208.0
 offset_right = 54.0
-offset_bottom = -194.0
+offset_bottom = -195.0
 grow_vertical = 2
 scale = Vector2(2, 2)
 max_value = 200.0
 fill_mode = 3
 texture_progress = ExtResource("6_txg3r")
 
-[node name="TextureRect" type="TextureRect" parent="WholeScreen"]
+[node name="ChargeBar" type="TextureRect" parent="WholeScreen"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4

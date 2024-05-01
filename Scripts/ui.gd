@@ -3,7 +3,6 @@ extends CanvasLayer
 var Player
 
 @onready var ChargeBar = $WholeScreen/ChargeBar
-@onready var ChargeLevel = $WholeScreen/ChargeLevels
 @onready var HealthBar = $WholeScreen/HealthBar
 
 @onready var ChargePellet1 = $WholeScreen/ChargePellet1
@@ -41,3 +40,9 @@ func changePellet():
 func decreasePellet():
 	CurrentPellet.value = 0
 	changePellet()
+
+func upgradeHealth():
+	HealthBar.texture_over.region.position.x -= 12
+
+func upgradeEnergy():
+	ChargeBar.texture.region.position.x -= 12

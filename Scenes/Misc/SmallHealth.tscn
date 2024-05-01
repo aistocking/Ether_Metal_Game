@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://brtxa5gm21b0"]
+
+[ext_resource type="Texture2D" uid="uid://bvsicr4dif2wn" path="res://Art/MiscUI/SmallHealthUp.png" id="1_0ntod"]
+[ext_resource type="Script" path="res://Scenes/Misc/SmallHealth.gd" id="2_hc33a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c211"]
+atlas = ExtResource("1_0ntod")
+region = Rect2(0, 0, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw5o5"]
+atlas = ExtResource("1_0ntod")
+region = Rect2(15, 0, 15, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5af6d"]
+atlas = ExtResource("1_0ntod")
+region = Rect2(30, 0, 15, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3evfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c211")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw5o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5af6d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mskp"]
+size = Vector2(18, 10)
+
+[node name="SmallHealth" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3evfw")
+autoplay = "default"
+frame_progress = 0.76868
+script = ExtResource("2_hc33a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3mskp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

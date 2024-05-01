@@ -12,6 +12,13 @@ var FacingDirection : int = -1
 var IsShooting : bool = false
 var IsDashing : bool = false
 
+var ChargeCounter : int = 0
+var ChargeLevel : int = 0
+var MaxChargeLevel : int = 2
+
+var MaxHealth : int = 16
+var Health : int = 16
+
 @onready var SFXPlayer = $AudioStreamPlayer
 
 @onready var PlyrStateMachine = $PlayerStateMachine
@@ -53,11 +60,7 @@ const ChargeShotResource = preload("res://Scenes/Effects/plasma_shot.tscn")
 @onready var BusterPosition = $BusterPosition
 @onready var ShotTimer = $ShotTimer
 
-var ChargeCounter : int = 0
-var ChargeLevel : int = 0
-var MaxChargeLevel : int = 2
 
-var Health : int = 16
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -201,6 +204,28 @@ func takeDamage(damage : int):
 			PlyrStateMachine._die()
 		else:
 			PlyrStateMachine._takeDamage()
+
+func restoreHealth(value : int):
+	if Health + value <= MaxHealth:
+		Health += value
+	else:
+		Health = MaxHealth
+	UIControl.HealthBar.value = Health
+
+func upgradeHealth():
+	if MaxHealth != 32:
+		UIControl.upgradeHealth()
+		MaxHealth += 2
+		restoreHealth(2)
+	else:
+		pass
+
+func upgradeEnergy():
+	if MaxChargeLevel != 6:
+		UIControl.upgradeEnergy()
+		MaxChargeLevel += 1
+	else:
+		pass
 
 func setDashProperties():
 	IsDashing = true
