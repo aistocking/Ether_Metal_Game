@@ -12,7 +12,7 @@ var tween
 func _ready():
 	SFXPlayer.set_stream(HitSFX)
 	tween = get_tree().create_tween()
-	tween.tween_property(self, "Speed", 12, .5)
+	tween.tween_property(self, "Speed", 12, .7)
 
 func _physics_process(_delta):
 	position += Direction * Speed
@@ -35,7 +35,9 @@ func _on_area_entered(area):
 
 
 func _on_body_entered(body):
-	queue_free()
+	if(body.has_method("takeDamage")):
+		SFXPlayer.play()
+		body.takeDamage(Damage)
 
 
 func _on_sfx_player_finished():
