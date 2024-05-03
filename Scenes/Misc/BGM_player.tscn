@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://daddxw7spqwjh" path="res://Sound/Music/03_Title.mp3" id="1_nar0h"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_nar0h")
 volume_db = -19.025
 autoplay = true

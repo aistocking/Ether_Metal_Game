@@ -15,7 +15,9 @@ func _on_quit_pressed():
 	get_tree().quit()
 
 func toggle_pause():
+	Global.MusicPlayer.volume_db = Global.MusicVolume
 	visible = not visible
 	get_tree().paused = visible
 	if visible:
+		Global.MusicPlayer.volume_db -= 15 
 		$VBoxContainer/HBoxContainer/Resume.grab_focus()

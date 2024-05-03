@@ -1668,6 +1668,7 @@ position = Vector2(-22, -6)
 position = Vector2(13.865, 24.185)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 volume_db = -15.928
 
 [node name="DashSprite" type="Sprite2D" parent="."]

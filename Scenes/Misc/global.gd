@@ -13,8 +13,11 @@ var AcquiredChargeCapacitors = [false, false, false, false]
 enum EtherTanks {ETank1, ETank2}
 var AcquiredEtherTanks = [false, false]
 
+var MusicVolume : float = -20
+var SFXVolume : float = -20
+
 func _ready():
-	pass
+	MusicPlayer.volume_db = MusicVolume
 
 func changeMusic(path : String):
 	MusicPlayer.stop()

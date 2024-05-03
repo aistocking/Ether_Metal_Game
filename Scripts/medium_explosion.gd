@@ -5,6 +5,7 @@ extends AnimatedSprite2D
 var ExplosionSFX = preload("res://Sound/MediumExplosion.wav")
 
 func _ready():
+	SFXPlayer.volume_db = Global.SFXVolume
 	SFXPlayer.set_stream(ExplosionSFX)
 	SFXPlayer.play()
 

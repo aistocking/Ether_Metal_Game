@@ -10,6 +10,7 @@ var HitSFX = preload("res://Sound/BusterShotHit.wav")
 var tween
 
 func _ready():
+	SFXPlayer.volume_db = Global.SFXVolume
 	SFXPlayer.set_stream(HitSFX)
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "Speed", 12, .7)

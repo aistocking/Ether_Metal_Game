@@ -34,6 +34,7 @@ var JumpSFX = preload("res://Sound/XJump.wav")
 var DashSFX = preload("res://Sound/XDash.wav")
 var DamagedSFX = preload("res://Sound/XHit.wav")
 var DeathSFX = preload("res://Sound/XDeath.wav")
+var TankGetSFX = preload("res://Sound/Heart Powerup.wav")
 
 @onready var InvulnerabilityTimer = $InvulnTimer
 
@@ -72,7 +73,7 @@ var CurrentPlayerSprite
 
 
 func _ready():
-	pass
+	SFXPlayer.volume_db = Global.SFXVolume
 
 func _input(event):
 	if(PlayerInput == false):
@@ -214,6 +215,13 @@ func restoreHealth(value : int):
 
 func upgradeHealth():
 	if MaxHealth != 32:
+		Global.MusicPlayer.volume_db -= 15 
+		get_tree().paused = true
+		SFXPlayer.set_stream(TankGetSFX)
+		SFXPlayer.play()
+		await get_tree().create_timer(0.6).timeout
+		get_tree().paused = false
+		Global.MusicPlayer.volume_db = Global.MusicVolume
 		UIControl.upgradeHealth()
 		MaxHealth += 2
 		restoreHealth(2)
