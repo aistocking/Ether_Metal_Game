@@ -23,3 +23,6 @@ func takeDamage() -> void:
 
 func die() -> void:
 	state_machine.transition_to("Die")
+
+func cutscene() -> void:
+	state_machine.transition_to("Cutscene")

@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3ltb80osdyjn"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/TextBox.gd" id="1_15bii"]
+[ext_resource type="Texture2D" uid="uid://bg3wpg7wyc54r" path="res://Art/MiscUI/XMugShot.png" id="1_kvo1w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdso4"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(0, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aowrn"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(78, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n00c7"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(156, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnlbb"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(234, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfhsd"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(312, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13jcy"]
+atlas = ExtResource("1_kvo1w")
+region = Rect2(390, 0, 78, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_12fdu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aowrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n00c7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aowrn")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnlbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfhsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13jcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfhsd")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 12.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsry"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_15bii")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -191.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Text"
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 190
+
+[node name="Container" type="Control" parent="MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Character Portrait" type="AnimatedSprite2D" parent="MarginContainer/HSplitContainer/Container"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_12fdu")
+animation = &"rest"
+autoplay = "rest"
+frame_progress = 0.901724
+
+[node name="Box" type="Panel" parent="MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fjsry")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/Box"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Text" type="Label" parent="MarginContainer/HSplitContainer/Box/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 22
+text = "Text etxt text text.
+hippity hoppity gloop glomp"
+visible_characters = 12
+visible_ratio = 0.265
