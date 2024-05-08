@@ -19,3 +19,10 @@ func _on_music_vloume_value_changed(value):
 
 func _on_sfx_volume_value_changed(value):
 	Global.SFXVolume = value
+
+
+func _on_check_box_toggled(toggled_on):
+	if toggled_on == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
