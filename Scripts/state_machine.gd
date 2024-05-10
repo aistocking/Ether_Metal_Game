@@ -47,5 +47,3 @@ func _takeDamage() -> void:
 func _die() -> void:
 	state.die()
 
-func _cutscene() -> void:
-	state.cutscene()
