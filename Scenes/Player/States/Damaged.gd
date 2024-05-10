@@ -17,6 +17,7 @@ func enter(_msg := {}) -> void:
 	player.InvulnerabilityTimer.start(1.0)
 	player.SFXPlayer.set_stream(player.DamagedSFX)
 	player.SFXPlayer.play()
+	player.changePlayerControl(false)
 
 func physics_update(delta: float) -> void:
 	player.velocity.x += (player.FacingDirection * -70) * delta
@@ -26,6 +27,7 @@ func physics_update(delta: float) -> void:
 
 func _on_timer_timeout():
 	timer.stop()
+	player.changePlayerControl(true)
 	if Input.is_action_pressed("Left") || Input.is_action_pressed("Right"):
 		state_machine.transition_to("Run")
 	else:

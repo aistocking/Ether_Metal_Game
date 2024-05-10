@@ -12,6 +12,8 @@ func enter(_msg := {}) -> void:
 	player.CoyoteTimer.stop()
 
 func handle_input(event) -> void:
+	if(player.PlayerInput == false):
+		return
 	if event.is_action_pressed("Jump"):
 		state_machine.transition_to("Jump")
 	
@@ -24,11 +26,12 @@ func physics_update(_delta: float) -> void:
 		player.CoyoteTimer.start(.08)
 		state_machine.transition_to("Falling")
 	
+	
 	var input_direction_x: float = (
 		Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	)
 	
-	if is_equal_approx(input_direction_x, 0.0):
+	if is_equal_approx(input_direction_x, 0.0) || player.PlayerInput == false:
 		state_machine.transition_to("Idle")
 	
 	player.handle_horizontal()

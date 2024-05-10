@@ -77,7 +77,7 @@ func _ready():
 
 func _input(event):
 	if(PlayerInput == false):
-		pass
+		return
 	
 	#Basic attack
 	if(event.is_action_pressed("Shot")):
@@ -94,6 +94,8 @@ func _physics_process(_delta):
 	
 	handleCharging()
 
+func changePlayerControl(boolean):
+	PlayerInput = boolean
 
 func basicShot():
 	SFXPlayer.set_stream(ShotSFX)

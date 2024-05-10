@@ -11,6 +11,8 @@ func enter(_msg := {}) -> void:
 	player.CoyoteTimer.stop()
 
 func handle_input(event) -> void:
+	if(player.PlayerInput == false):
+		return
 	if Input.is_action_pressed("Offensive Trigger") || Input.is_action_pressed("Defensive Trigger"):
 		if Input.is_action_pressed("Offensive Trigger"):
 			if event.is_action_pressed("Face Buttons") && player.ChargeLevel != 0:
@@ -30,11 +32,10 @@ func handle_input(event) -> void:
 func physics_update(delta: float) -> void:
 	if !player.is_on_floor():
 		state_machine.transition_to("Falling")
-	
 
-	
 	var left = Input.is_action_pressed("Left")
 	var right = Input.is_action_pressed("Right")
-	
-	if (left or right) and not (left and right):
+	if player.PlayerInput == false:
+		return
+	elif (left or right) and not (left and right):
 		state_machine.transition_to("Run")

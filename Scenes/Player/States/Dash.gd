@@ -34,6 +34,8 @@ func enter(msg := {}) -> void:
 		direction = player.FacingDirection
 
 func handle_input(event):
+	if(player.PlayerInput == false):
+		return
 	if event.is_action_pressed("Left") && direction > 0:
 		state_machine.transition_to("Run")
 	if event.is_action_pressed("Right") && direction < 0:

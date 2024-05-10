@@ -19,6 +19,8 @@ func enter(_msg := {}) -> void:
 	player.changeFacingDirection(direction)
 	
 func handle_input(event) -> void:
+	if(player.PlayerInput == false):
+		return
 	if event.is_action_pressed("Jump"):
 		state_machine.transition_to("Jump", { "walljumpdirection": direction })
 	

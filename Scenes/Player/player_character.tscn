@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=45 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://coy8n8unkdbnw" path="res://Art/Player/X_Charge_Shot.png" id="2_bcyhj"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/Entrance.gd" id="17_776qv"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Damaged.gd" id="19_p8egc"]
 [ext_resource type="Script" path="res://Scenes/Player/States/Die.gd" id="22_ta164"]
-[ext_resource type="Script" path="res://Scenes/Player/Cutscene.gd" id="23_5vgfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(28, 45)
@@ -1757,9 +1756,6 @@ one_shot = true
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("22_ta164")
-
-[node name="Cutscene" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("23_5vgfg")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="PlayerStateMachine/Special Attack" method="_on_animation_player_animation_finished"]

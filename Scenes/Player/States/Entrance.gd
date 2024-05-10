@@ -30,4 +30,5 @@ func introDone():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Entrance":
+		player.changePlayerControl(true)
 		state_machine.transition_to("Idle")

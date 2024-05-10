@@ -24,6 +24,8 @@ func enter(_msg := {}) -> void:
 		player.speed = 300
 
 func handle_input(event) -> void:
+	if(player.PlayerInput == false):
+		return
 	if event.is_action_released("Jump"):
 		state_machine.transition_to("Falling")
 	

@@ -14,6 +14,8 @@ func enter(_msg := {}) -> void:
 		player.speed = 300
 
 func handle_input(event):
+	if(player.PlayerInput == false):
+		return
 	if event.is_action_pressed("Dash") && player.SpentDash == false:
 		state_machine.transition_to("Dash")
 	
