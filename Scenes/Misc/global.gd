@@ -20,6 +20,7 @@ func _ready():
 	MusicPlayer.volume_db = MusicVolume
 
 func changeMusic(path : String):
+	MusicPlayer.volume_db = MusicVolume
 	MusicPlayer.stop()
 	MusicPlayer.set_stream(load(path))
 	MusicPlayer.play()
