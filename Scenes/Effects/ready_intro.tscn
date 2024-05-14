@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b82fv4j54eyej"]
+[gd_scene load_steps=10 format=3 uid="uid://b82fv4j54eyej"]
 
 [ext_resource type="Texture2D" uid="uid://keh5m5vvx535" path="res://Art/Effects/Ready_Black.png" id="1_rlyn6"]
 [ext_resource type="Script" path="res://Scenes/Effects/ready_intro.gd" id="1_y1nqs"]
 [ext_resource type="Texture2D" uid="uid://cuglmxecfmixf" path="res://Art/Effects/Ready_White.png" id="2_c4shc"]
 [ext_resource type="AudioStream" uid="uid://dywcx1eshyf2y" path="res://Sound/AnnouncerReady.wav" id="3_85sjr"]
 [ext_resource type="PackedScene" uid="uid://bejr1h8g3e6nr" path="res://Scenes/Effects/ready_intro_ghosts.tscn" id="4_0ci6e"]
+[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="6_7cp2n"]
 
 [sub_resource type="Animation" id="Animation_lh8uf"]
 length = 0.001
@@ -195,3 +196,4 @@ texture = ExtResource("2_c4shc")
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_85sjr")
 volume_db = -14.0
+script = ExtResource("6_7cp2n")

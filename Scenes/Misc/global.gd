@@ -14,7 +14,9 @@ enum EtherTanks {ETank1, ETank2}
 var AcquiredEtherTanks = [false, false]
 
 var MusicVolume : float = -20
-var SFXVolume : float = -20
+var _SFXVolume : float = -20
+
+signal effect_volume_changed
 
 func _ready():
 	MusicPlayer.volume_db = MusicVolume
@@ -24,6 +26,13 @@ func changeMusic(path : String):
 	MusicPlayer.stop()
 	MusicPlayer.set_stream(load(path))
 	MusicPlayer.play()
+
+func get_effect_volume():
+	return _SFXVolume
+
+func set_effect_volume(volume):
+	_SFXVolume = volume
+	effect_volume_changed.emit()
 
 func defeatBoss(bossname : Bosses):
 	if DefeatedBosses[bossname] == true:

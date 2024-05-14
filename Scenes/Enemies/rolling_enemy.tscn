@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bor21t7xaioed"]
+[gd_scene load_steps=14 format=3 uid="uid://bor21t7xaioed"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/rolling_enemy.gd" id="1_uojtw"]
 [ext_resource type="Texture2D" uid="uid://cdscbkbr7xp72" path="res://Art/Enemies/Spike_Wheel.png" id="2_2j0te"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="2_sbeyf"]
+[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="4_22idg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roepb"]
 atlas = ExtResource("2_2j0te")
@@ -85,5 +86,6 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_ums8r")
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("4_22idg")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -8,7 +8,6 @@ var Damage = 1
 var HitSFX = preload("res://Sound/BusterShotHit.wav")
 
 func _ready():
-	SFXPlayer.volume_db = Global.SFXVolume
 	SFXPlayer.set_stream(HitSFX)
 
 func _physics_process(_delta):

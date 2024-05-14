@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=46 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCharacter.gd" id="1_otumk"]
 [ext_resource type="Texture2D" uid="uid://coy8n8unkdbnw" path="res://Art/Player/X_Charge_Shot.png" id="2_bcyhj"]
 [ext_resource type="Texture2D" uid="uid://qr2ch6uetpe8" path="res://Art/Player/X_Dash.png" id="3_hne1c"]
 [ext_resource type="Texture2D" uid="uid://booltu88oglek" path="res://Art/Player/X_Entrance.png" id="4_eydhj"]
+[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="4_msi58"]
 [ext_resource type="Texture2D" uid="uid://5yt1ilmxoj66" path="res://Art/Player/X_Idle_Run_Jump.png" id="8_im0qj"]
 [ext_resource type="Script" path="res://Scenes/Player/CurrentStateDebug.gd" id="8_u0rhq"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerStateMachine.gd" id="9_c2ogj"]
@@ -1669,6 +1670,7 @@ position = Vector2(13.865, 24.185)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 volume_db = -15.928
+script = ExtResource("4_msi58")
 
 [node name="DashSprite" type="Sprite2D" parent="."]
 visible = false

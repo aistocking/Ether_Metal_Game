@@ -73,7 +73,7 @@ var CurrentPlayerSprite
 
 
 func _ready():
-	SFXPlayer.volume_db = Global.SFXVolume
+	pass
 
 func _input(event):
 	if(PlayerInput == false):
