@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://db4djnmwm3kv0"]
+[gd_scene load_steps=13 format=3 uid="uid://db4djnmwm3kv0"]
 
-[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="1_g43a5"]
-[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="1_iuv7g"]
-[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="2_trbbm"]
-[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_qngyy"]
-[ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="4_f3c2o"]
-[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/aerial_drone_enemy.tscn" id="6_j1c5v"]
-[ext_resource type="PackedScene" uid="uid://dyhhn3flnctub" path="res://Scenes/Misc/HeartTank.tscn" id="7_h274m"]
-[ext_resource type="PackedScene" uid="uid://dkiyhlrmwu41f" path="res://Scenes/Misc/EnergyTank.tscn" id="8_flday"]
-[ext_resource type="PackedScene" uid="uid://brtxa5gm21b0" path="res://Scenes/Misc/SmallHealth.tscn" id="9_431re"]
+[ext_resource type="Script" path="res://Scenes/Stages/Alpha/StageAlpha.gd" id="1_s37sx"]
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_w38qf"]
+[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="3_dadqg"]
+[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_h4dba"]
+[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="5_kwypl"]
+[ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="6_8v7hk"]
+[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/aerial_drone_enemy.tscn" id="7_0hng8"]
+[ext_resource type="PackedScene" uid="uid://dyhhn3flnctub" path="res://Scenes/Misc/HeartTank.tscn" id="8_1b1nh"]
+[ext_resource type="PackedScene" uid="uid://dkiyhlrmwu41f" path="res://Scenes/Misc/EnergyTank.tscn" id="9_4txhr"]
+[ext_resource type="PackedScene" uid="uid://brtxa5gm21b0" path="res://Scenes/Misc/SmallHealth.tscn" id="10_rcuv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncig0"]
 size = Vector2(860, 16.63)
@@ -16,15 +17,16 @@ size = Vector2(860, 16.63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08f8o"]
 size = Vector2(42.5, 8)
 
-[node name="test" type="Node2D"]
+[node name="StageAlpha" type="Node2D"]
+script = ExtResource("1_s37sx")
 
-[node name="PauseUI" parent="." instance=ExtResource("1_g43a5")]
+[node name="PauseUI" parent="." instance=ExtResource("2_w38qf")]
 
-[node name="UI" parent="." instance=ExtResource("1_iuv7g")]
+[node name="UI" parent="." instance=ExtResource("3_dadqg")]
 
-[node name="Main_Camera" parent="." instance=ExtResource("2_trbbm")]
+[node name="Main_Camera" parent="." instance=ExtResource("4_h4dba")]
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("3_qngyy")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("5_kwypl")]
 position = Vector2(0, -400)
 
 [node name="platform" type="StaticBody2D" parent="."]
@@ -158,17 +160,17 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Medium Enemy" parent="." instance=ExtResource("4_f3c2o")]
+[node name="Medium Enemy" parent="." instance=ExtResource("6_8v7hk")]
 position = Vector2(282, 28.625)
 
-[node name="AerialDroneEnemy" parent="." instance=ExtResource("6_j1c5v")]
+[node name="AerialDroneEnemy" parent="." instance=ExtResource("7_0hng8")]
 position = Vector2(383, -44)
 
-[node name="HeartTank" parent="." instance=ExtResource("7_h274m")]
+[node name="HeartTank" parent="." instance=ExtResource("8_1b1nh")]
 position = Vector2(-254, -77)
 
-[node name="EnergyTank" parent="." instance=ExtResource("8_flday")]
+[node name="EnergyTank" parent="." instance=ExtResource("9_4txhr")]
 position = Vector2(-90, -123)
 
-[node name="SmallHealth" parent="." instance=ExtResource("9_431re")]
+[node name="SmallHealth" parent="." instance=ExtResource("10_rcuv7")]
 position = Vector2(-359, 44)

@@ -1,18 +1,18 @@
 [gd_scene load_steps=15 format=3 uid="uid://db4lf6nbwbtfc"]
 
-[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="1_fcknc"]
-[ext_resource type="Script" path="res://Scenes/Stages/StageAlpha.gd" id="1_h57h2"]
-[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="2_en5ec"]
-[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_q0xmu"]
-[ext_resource type="Texture2D" uid="uid://drnn75sgkoyq5" path="res://Art/Stages/sheet-alt.png" id="3_0i7wh"]
-[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="3_i7seu"]
-[ext_resource type="PackedScene" uid="uid://bor21t7xaioed" path="res://Scenes/Enemies/rolling_enemy.tscn" id="5_lebl6"]
+[ext_resource type="Script" path="res://Scenes/Stages/Beta/StageBeta.gd" id="1_fflmp"]
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_d3haq"]
+[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="3_otbpm"]
+[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_v5bpl"]
+[ext_resource type="Texture2D" uid="uid://drnn75sgkoyq5" path="res://Art/Stages/sheet-alt.png" id="5_m86va"]
+[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="6_i1ylh"]
+[ext_resource type="PackedScene" uid="uid://bor21t7xaioed" path="res://Scenes/Enemies/rolling_enemy.tscn" id="7_rbfhj"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0dxuu"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbkcq"]
-texture = ExtResource("3_0i7wh")
+texture = ExtResource("5_m86va")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1131,7 +1131,7 @@ sources/0 = SubResource("TileSetAtlasSource_xbkcq")
 pattern_0 = SubResource("TileMapPattern_0dxuu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ct8kk"]
-texture = ExtResource("3_0i7wh")
+texture = ExtResource("5_m86va")
 0:15/0 = 0
 0:15/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:15/0/physics_layer_0/angular_velocity = 0.0
@@ -1163,14 +1163,14 @@ point_count = 5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2qc8"]
 size = Vector2(48, 76)
 
-[node name="StageAlpha" type="Node2D"]
-script = ExtResource("1_h57h2")
+[node name="StageBeta" type="Node2D"]
+script = ExtResource("1_fflmp")
 
-[node name="PauseUI" parent="." instance=ExtResource("2_q0xmu")]
+[node name="PauseUI" parent="." instance=ExtResource("2_d3haq")]
 
-[node name="UI" parent="." instance=ExtResource("3_i7seu")]
+[node name="UI" parent="." instance=ExtResource("3_otbpm")]
 
-[node name="Main_Camera" parent="." instance=ExtResource("1_fcknc")]
+[node name="Main_Camera" parent="." instance=ExtResource("4_v5bpl")]
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -1187,10 +1187,10 @@ tile_set = SubResource("TileSet_2i7jy")
 format = 2
 layer_0/tile_data = PackedInt32Array(262154, 0, 15, 262155, 0, 15, 262156, 0, 15, 262157, 0, 15, 262158, 0, 15, 262159, 0, 15, 262160, 0, 15, 262161, 0, 15, 262162, 0, 15, -1441780, 65536, 15, -1441779, 65536, 15, -1441778, 65536, 15, -1048567, 196608, 15, -983031, 196608, 15, -524272, 131072, 15, -458736, 131072, 15, -589808, 131072, 15)
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_en5ec")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("6_i1ylh")]
 position = Vector2(-35.325, -8.695)
 
-[node name="RollingEnemy" parent="." instance=ExtResource("5_lebl6")]
+[node name="RollingEnemy" parent="." instance=ExtResource("7_rbfhj")]
 position = Vector2(-505, -371)
 
 [node name="Path2D" type="Path2D" parent="."]
