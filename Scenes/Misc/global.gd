@@ -13,59 +13,59 @@ var _acquired_charge_capacitors: Array[bool] = [false, false, false, false]
 enum EtherTanks { ETank1, ETank2 }
 var _acquired_ether_tanks: Array[bool] = [false, false]
 
-var music_volume : float = -20
-var _effect_volume : float = -20
+var music_volume := -20.0
+var _effect_volume := -20.0
 
 signal effect_volume_changed
 
-func _ready():
+func _ready() -> void:
 	MusicPlayer.volume_db = music_volume
 
-func changeMusic(path : String):
+func change_music(path: String) -> void:
 	MusicPlayer.volume_db = music_volume
 	MusicPlayer.stop()
 	MusicPlayer.set_stream(load(path))
 	MusicPlayer.play()
 
-func get_effect_volume():
+func get_effect_volume() -> float:
 	return _effect_volume
 
-func set_effect_volume(volume):
+func set_effect_volume(volume: float) -> void:
 	_effect_volume = volume
 	effect_volume_changed.emit()
 
-func defeatBoss(bossname : Bosses):
-	if _defeated_bosses[bossname] == true:
+func defeat_boss(boss: Bosses) -> void:
+	if _defeated_bosses[boss] == true:
 		push_error("Ruh roh, boss is already labled defeated")
 	else:
-		_defeated_bosses[bossname] = true
+		_defeated_bosses[boss] = true
 
-func acquireArmor(armorpart : Armors):
-	if _acquired_armors[armorpart] == true:
+func acquire_armor(armor: Armors) -> void:
+	if _acquired_armors[armor] == true:
 		push_error("Ruh roh, armor is already labled acquired")
 	else:
-		_acquired_armors[armorpart] = true
+		_acquired_armors[armor] = true
 
-func acquireHeartTank(hearttank : HeartTanks):
-	if _acquired_tanks[hearttank] == true:
+func acquire_heart_tank(heart_tank: HeartTanks) -> void:
+	if _acquired_tanks[heart_tank] == true:
 		push_error("Ruh roh, tank is already labled acquired")
 	else:
-		_acquired_tanks[hearttank] = true
+		_acquired_tanks[heart_tank] = true
 
-func acquireChargeCapacitor(cap : ChargeCapacitors):
+func acquire_charge_capacitor(cap: ChargeCapacitors) -> void:
 	if _acquired_charge_capacitors[cap] == true:
 		push_error("Ruh roh, capacitor is already labled acquired")
 	else:
 		_acquired_charge_capacitors[cap] = true
 
-func acquireEtherTank(ethertank : EtherTanks):
-	if _acquired_ether_tanks[ethertank] == true:
+func acquire_ether_tank(ether_tank: EtherTanks) -> void:
+	if _acquired_ether_tanks[ether_tank] == true:
 		push_error("Ruh roh, tank is already labled acquired")
 	else:
-		_acquired_ether_tanks[ethertank] = true
+		_acquired_ether_tanks[ether_tank] = true
 
-func saveGame():
+func save_game() -> void:
 	pass
 
-func loadGame():
+func load_game() -> void:
 	pass

@@ -3,7 +3,7 @@ extends Node2D
 var DialogueBoxResource = preload("res://Scenes/Misc/TextBox.tscn")
 
 func _ready():
-	Global.changeMusic("res://Sound/Music/06_Opening Stage X.mp3")
+	Global.change_music("res://Sound/Music/06_Opening Stage X.mp3")
 	RenderingServer.set_default_clear_color(Color(0,0,0))
 
 func _process(delta):
