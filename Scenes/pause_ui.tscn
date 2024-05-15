@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://nffbgp1naxa1"]
 
-[ext_resource type="Script" path="res://Scenes/PauseUi.gd" id="1_ellje"]
+[ext_resource type="Script" path="res://Scenes/pause_ui.gd" id="1_otqik"]
 
 [node name="PauseUI" type="CanvasLayer"]
 process_mode = 3
 layer = 2
 visible = false
-script = ExtResource("1_ellje")
+script = ExtResource("1_otqik")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

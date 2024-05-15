@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hi8ye1uk38ff"]
 
-[ext_resource type="Script" path="res://Scenes/optionsUI.gd" id="1_jdc7s"]
+[ext_resource type="Script" path="res://Scenes/options_ui.gd" id="1_d3sea"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jdc7s")
+script = ExtResource("1_d3sea")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -28,45 +28,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Options Text" type="Label" parent="CenterContainer"]
+[node name="Options" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 61
 text = "Options"
 
-[node name="Control2" type="Control" parent="CenterContainer"]
+[node name="Spacer1" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Music Volume Text" type="Label" parent="CenterContainer"]
+[node name="MusicVolumeText" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 22
 text = "Music Volume"
 
-[node name="Music Vloume" type="HSlider" parent="CenterContainer"]
+[node name="MusicVolume" type="HSlider" parent="CenterContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 min_value = -40.0
 max_value = 10.0
 
-[node name="SFX Volume Text" type="Label" parent="CenterContainer"]
+[node name="EffectVolumeText" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 22
 text = "SFX Volume
 "
 
-[node name="SFX Volume" type="HSlider" parent="CenterContainer"]
+[node name="EffectVolume" type="HSlider" parent="CenterContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 min_value = -40.0
 max_value = 10.0
 
-[node name="CheckBox" type="CheckBox" parent="CenterContainer"]
+[node name="Fullscreen" type="CheckBox" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -80,12 +80,12 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 0.3
 text = "Exit"
 
-[node name="Control" type="Control" parent="CenterContainer"]
+[node name="Spacer2" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[connection signal="value_changed" from="CenterContainer/Music Vloume" to="." method="_on_music_vloume_value_changed"]
-[connection signal="value_changed" from="CenterContainer/SFX Volume" to="." method="_on_sfx_volume_value_changed"]
-[connection signal="toggled" from="CenterContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="value_changed" from="CenterContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="CenterContainer/EffectVolume" to="." method="_on_effect_volume_value_changed"]
+[connection signal="toggled" from="CenterContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="CenterContainer/Exit" to="." method="_on_exit_pressed"]
