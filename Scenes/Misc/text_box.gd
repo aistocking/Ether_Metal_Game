@@ -1,3 +1,4 @@
+class_name TextBox
 extends CanvasLayer
 
 @onready var currentText = $MarginContainer/HSplitContainer/Box/MarginContainer/Text

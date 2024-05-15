@@ -1,30 +1,30 @@
 [gd_scene load_steps=11 format=3 uid="uid://d3ltb80osdyjn"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/TextBox.gd" id="1_15bii"]
-[ext_resource type="Texture2D" uid="uid://bg3wpg7wyc54r" path="res://Art/MiscUI/XMugShot.png" id="1_kvo1w"]
+[ext_resource type="Script" path="res://Scenes/Misc/text_box.gd" id="1_fqpfd"]
+[ext_resource type="Texture2D" uid="uid://bg3wpg7wyc54r" path="res://Art/MiscUI/XMugShot.png" id="2_s34sq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdso4"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(0, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aowrn"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(78, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n00c7"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(156, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tnlbb"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(234, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lfhsd"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(312, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13jcy"]
-atlas = ExtResource("1_kvo1w")
+atlas = ExtResource("2_s34sq")
 region = Rect2(390, 0, 78, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_12fdu"]
@@ -105,7 +105,7 @@ border_width_right = 5
 border_width_bottom = 5
 
 [node name="TextBox" type="CanvasLayer"]
-script = ExtResource("1_15bii")
+script = ExtResource("1_fqpfd")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 12
