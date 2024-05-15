@@ -223,7 +223,7 @@ func upgradeHealth():
 		SFXPlayer.play()
 		await get_tree().create_timer(0.6).timeout
 		get_tree().paused = false
-		Global.MusicPlayer.volume_db = Global.MusicVolume
+		Global.MusicPlayer.volume_db = Global.music_volume
 		UIControl.upgradeHealth()
 		MaxHealth += 2
 		restoreHealth(2)

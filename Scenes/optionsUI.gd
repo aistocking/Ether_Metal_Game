@@ -4,7 +4,7 @@ extends Control
 func _ready():
 	$"CenterContainer/Music Vloume".grab_focus()
 	Global.changeMusic("res://Sound/Music/03_Title.mp3")
-	$"CenterContainer/Music Vloume".value = Global.MusicVolume
+	$"CenterContainer/Music Vloume".value = Global.music_volume
 	$"CenterContainer/SFX Volume".value = Global.get_effect_volume()
 
 
@@ -13,8 +13,8 @@ func _on_exit_pressed():
 
 
 func _on_music_vloume_value_changed(value):
-	Global.MusicVolume = value
-	Global.MusicPlayer.volume_db = Global.MusicVolume
+	Global.music_volume = value
+	Global.MusicPlayer.volume_db = Global.music_volume
 
 
 func _on_sfx_volume_value_changed(value):
