@@ -6,6 +6,6 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
-	if body.has_method("upgradeEnergy"):
-		body.upgradeEnergy()
+	if body.has_method("upgrade_energy"):
+		body.upgrade_energy()
 	queue_free()

@@ -5,10 +5,10 @@ var player: CharacterBody2D
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
-	player.PlayerAnimations.play("Idle")
-	player.resetDashProperties()
+	player.player_animations.play("Idle")
+	player.reset_dash_properties()
 	player.speed = 300
-	player.CoyoteTimer.stop()
+	player.coyote_timer.stop()
 
 func handle_input(event) -> void:
 	if(player.player_input == false):

@@ -7,7 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
-	player.PlayerAnimations.play("Falling")
+	player.player_animations.play("Falling")
 	if player.is_dashing:
 		player.speed = 450
 	else:
@@ -19,7 +19,7 @@ func handle_input(event):
 	if event.is_action_pressed("Dash") && player.spent_dash == false:
 		state_machine.transition_to("Dash")
 	
-	if event.is_action_pressed("Jump") && !player.CoyoteTimer.is_stopped():
+	if event.is_action_pressed("Jump") && !player.coyote_timer.is_stopped():
 		state_machine.transition_to("Jump")
 
 func physics_update(delta: float) -> void:
@@ -29,10 +29,10 @@ func physics_update(delta: float) -> void:
 	if player.is_dashing:
 		player.ghostEffect()
 	
-	if player.LeftRayCast.is_colliding() && Input.is_action_pressed("Left"):
+	if player.left_ray_cast.is_colliding() && Input.is_action_pressed("Left"):
 		state_machine.transition_to("Sliding")
 	
-	if player.RightRayCast.is_colliding() && Input.is_action_pressed("Right"):
+	if player.right_ray_cast.is_colliding() && Input.is_action_pressed("Right"):
 		state_machine.transition_to("Sliding")
 	
 	player.velocity.y += gravity * delta

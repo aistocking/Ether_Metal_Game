@@ -5,11 +5,11 @@ var player: CharacterBody2D
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
-	player.PlayerAnimations.play("Run_Start")
-	player.PlayerAnimations.queue("Run_Loop")
-	player.resetDashProperties()
+	player.player_animations.play("Run_Start")
+	player.player_animations.queue("Run_Loop")
+	player.reset_dash_properties()
 	player.speed = 300
-	player.CoyoteTimer.stop()
+	player.coyote_timer.stop()
 
 func handle_input(event) -> void:
 	if(player.player_input == false):
@@ -23,7 +23,7 @@ func handle_input(event) -> void:
 
 func physics_update(_delta: float) -> void:
 	if !player.is_on_floor():
-		player.CoyoteTimer.start(.08)
+		player.coyote_timer.start(.08)
 		state_machine.transition_to("Falling")
 	
 	

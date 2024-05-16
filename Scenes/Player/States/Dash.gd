@@ -14,14 +14,14 @@ func enter(msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
 	player.speed = 600
-	player.PlayerAnimations.play("Dash_Start")
-	player.PlayerAnimations.queue("Dash_Loop")
-	player.setDashProperties()
+	player.player_animations.play("Dash_Start")
+	player.player_animations.queue("Dash_Loop")
+	player.set_dash_properties()
 	direction = 0
 	timer.one_shot = true
 	timer.start(0.4)
-	player.SFXPlayer.set_stream(player.DashSFX)
-	player.SFXPlayer.play()
+	player.effect_audio_player.set_stream(player.DASH_AUDIO)
+	player.effect_audio_player.play()
 	if(!player.is_on_floor()):
 		IsAirdash = true
 		player.spent_dash = true
@@ -64,7 +64,7 @@ func physics_update(_delta: float) -> void:
 
 #This is to check if the Player dashes off a ledge and to discontinue that dash
 	if (!IsAirdash && !player.is_on_floor()):
-		player.CoyoteTimer.start(.07)
+		player.coyote_timer.start(.07)
 		state_machine.transition_to("Falling")
 	
 	player.move_and_slide()

@@ -7,13 +7,13 @@ signal transitioned(state_name)
 @export var debugLabelPath := NodePath()
 
 @onready var state: State = get_node(initial_state)
-@onready var DebugStateLabel: = get_node(debugLabelPath)
+@onready var debug_state_label: = get_node(debugLabelPath)
 
 func _ready() -> void:
 	await owner.ready
 	
-	if DebugStateLabel != null:
-		DebugStateLabel.setText(state.name)
+	if debug_state_label != null:
+		debug_state_label.setText(state.name)
 	
 	for child in get_children():
 		child.state_machine = self
@@ -38,8 +38,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
 	
-	if DebugStateLabel != null:
-		DebugStateLabel.setText(state.name)
+	if debug_state_label != null:
+		debug_state_label.setText(state.name)
 
 func _takeDamage() -> void:
 	state.takeDamage()

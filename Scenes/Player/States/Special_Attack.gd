@@ -22,23 +22,23 @@ func enter(_msg := {}) -> void:
 		IsOffensive = _msg.IsOffensive
 	if Input.is_action_pressed("Left Button") && IsOffensive:
 		player.velocity.x = player.facing_direction * -200
-		player.PlayerAnimations.play("Plasma_Shot")
-		player.plasmaShot()
+		player.player_animations.play("Plasma_Shot")
+		player.plasma_shot()
 		CurrentSpecial = SPECIALS.PLASMA
 	if Input.is_action_pressed("Right Button") && IsOffensive:
-		player.PlayerAnimations.play("Plasma_Shot")
+		player.player_animations.play("Plasma_Shot")
 		player.barrage()
 		CurrentSpecial = SPECIALS.BARRAGE
 	if Input.is_action_pressed("Bottom Button") && !IsOffensive:
 		player.velocity.x = player.facing_direction * -200
 		player.velocity.y = -150
-		player.PlayerAnimations.play("Disengage")
+		player.player_animations.play("Disengage")
 		player.disengage()
 		CurrentSpecial = SPECIALS.DISENGAGE
 	if Input.is_action_pressed("Top Button") && IsOffensive:
 		tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
 		tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
-		player.PlayerAnimations.play("Upper")
+		player.player_animations.play("Upper")
 		CurrentSpecial = SPECIALS.UPPER
 	if CurrentSpecial == SPECIALS.NONE:
 		state_machine.transition_to("Idle")
@@ -50,7 +50,7 @@ func physics_update(delta: float) -> void:
 		SPECIALS.PLASMA:
 			if !player.is_on_floor():
 				state_machine.transition_to("Falling")
-			player.createDust()
+			player.create_dust()
 			player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 			player.move_and_slide()
 		SPECIALS.DISENGAGE:

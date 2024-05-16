@@ -8,6 +8,6 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
-	if body.has_method("restoreHealth"):
-		body.restoreHealth(2)
+	if body.has_method("restore_health"):
+		body.restore_health(2)
 	queue_free()

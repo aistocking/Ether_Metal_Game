@@ -42,8 +42,8 @@ func decreasePellet():
 	CurrentPellet.value = 0
 	changePellet()
 
-func upgradeHealth():
+func upgrade_health():
 	HealthBar.texture_over.region.position.x -= 12
 
-func upgradeEnergy():
+func upgrade_energy():
 	ChargeBar.texture.region.position.x -= 12

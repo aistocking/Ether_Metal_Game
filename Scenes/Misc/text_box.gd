@@ -16,7 +16,7 @@ var text2 : String = "......god X7 was bad."
 
 
 func _ready():
-	Player.changePlayerControl(false)
+	Player.change_player_control(false)
 	playText()
 
 func _process(delta):
@@ -55,5 +55,5 @@ func skipText():
 	readRate = 1
 
 func endDialogue():
-	Player.changePlayerControl(true)
+	Player.change_player_control(true)
 	queue_free()

@@ -9,15 +9,15 @@ var walljumpdirection: int = 0
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity.y = player.JUMP_VELOCITY
-	player.PlayerAnimations.play("Jump")
-	player.SFXPlayer.set_stream(player.JumpSFX)
-	player.SFXPlayer.play()
-	player.CoyoteTimer.stop()
+	player.player_animations.play("Jump")
+	player.effect_audio_player.set_stream(player.JUMP_AUDIO)
+	player.effect_audio_player.play()
+	player.coyote_timer.stop()
 	if _msg.has("walljumpdirection"):
 		walljumpdirection = _msg.walljumpdirection
 		player.velocity.x = walljumpdirection * 150
 	if Input.is_action_pressed("Dash"):
-		player.setDashProperties()
+		player.set_dash_properties()
 	if player.is_dashing:
 		player.speed = 450
 	else:

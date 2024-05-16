@@ -10,11 +10,11 @@ var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /8
 func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2.ZERO
-	player.PlayerAnimations.play("Wall_Slide")
-	player.resetDashProperties()
-	if player.LeftRayCast.is_colliding():
+	player.player_animations.play("Wall_Slide")
+	player.reset_dash_properties()
+	if player.left_ray_cast.is_colliding():
 		direction = player.RIGHT
-	elif player.RightRayCast.is_colliding():
+	elif player.right_ray_cast.is_colliding():
 		direction = player.LEFT
 	player.change_facing_direction(direction)
 	
@@ -25,28 +25,28 @@ func handle_input(event) -> void:
 		state_machine.transition_to("Jump", { "walljumpdirection": direction })
 	
 	#Check to see if the player is still "holding" onto the wall
-	if event.is_action_released("Left") && player.LeftRayCast.is_colliding():
+	if event.is_action_released("Left") && player.left_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
 	
-	if event.is_action_released("Right") && player.RightRayCast.is_colliding():
+	if event.is_action_released("Right") && player.right_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
 	
 	#These are technically unnecessary since the player would have to let go of the wall direction first
-	if event.is_action_pressed("Left") && player.RightRayCast.is_colliding():
+	if event.is_action_pressed("Left") && player.right_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
 	
-	if event.is_action_pressed("Right") && player.LeftRayCast.is_colliding():
+	if event.is_action_pressed("Right") && player.left_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
 
 
 func physics_update(delta: float) -> void:
-	if !player.LeftRayCast.is_colliding() && !player.RightRayCast.is_colliding():
+	if !player.left_ray_cast.is_colliding() && !player.right_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
 		
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")
 	
-	player.createDust()
+	player.create_dust()
 
 	player.velocity.y = gravity
 	
