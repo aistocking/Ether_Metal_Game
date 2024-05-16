@@ -1,3 +1,4 @@
+class_name Shot
 extends Area2D
 
 var Direction

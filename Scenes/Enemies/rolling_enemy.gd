@@ -4,8 +4,8 @@ extends CharacterBody2D
 const Speed = 50.0
 var BounceVelocity = -100.0
 var Direction : int = -1
-var Health : int = 5
-var Damage : int = 2
+var _health : int = 5
+var _damage : int = 2
 @onready var Sprite = $AnimatedSprite2D
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -35,8 +35,8 @@ func die():
 	queue_free()
 
 func takeDamage(damage):
-	Health -= damage
-	if Health <= 0:
+	_health -= damage
+	if _health <= 0:
 		die()
 	hitFlash()
 
@@ -47,4 +47,4 @@ func hitFlash():
 
 func _on_hit_box_body_entered(body):
 	if(body.has_method("takeDamage")):
-		body.takeDamage(Damage)
+		body.takeDamage(_damage)

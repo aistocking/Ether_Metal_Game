@@ -24,17 +24,17 @@ func enter(msg := {}) -> void:
 	player.SFXPlayer.play()
 	if(!player.is_on_floor()):
 		IsAirdash = true
-		player.SpentDash = true
+		player.spent_dash = true
 		player.velocity.y = 0
 	else:
 		IsAirdash = false
 	if (msg.has("direction")):
 		direction = msg.direction
 	else:
-		direction = player.FacingDirection
+		direction = player.facing_direction
 
 func handle_input(event):
-	if(player.PlayerInput == false):
+	if(player.player_input == false):
 		return
 	if event.is_action_pressed("Left") && direction > 0:
 		state_machine.transition_to("Run")

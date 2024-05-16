@@ -1,3 +1,4 @@
+class_name Hud
 extends CanvasLayer
 
 var Player
@@ -16,12 +17,12 @@ var CurrentPellet
 
 func _ready():
 	Player = get_tree().get_first_node_in_group("Player")
-	HealthBar.value = Player.Health
+	HealthBar.value = Player.health
 	CurrentPellet = ChargePellet1
 
 
 func changePellet():
-	match Player.ChargeLevel:
+	match Player.charge_level:
 		0:
 			CurrentPellet = ChargePellet1
 		1:

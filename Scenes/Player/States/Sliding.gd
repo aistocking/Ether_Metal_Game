@@ -16,10 +16,10 @@ func enter(_msg := {}) -> void:
 		direction = player.RIGHT
 	elif player.RightRayCast.is_colliding():
 		direction = player.LEFT
-	player.changeFacingDirection(direction)
+	player.change_facing_direction(direction)
 	
 func handle_input(event) -> void:
-	if(player.PlayerInput == false):
+	if(player.player_input == false):
 		return
 	if event.is_action_pressed("Jump"):
 		state_machine.transition_to("Jump", { "walljumpdirection": direction })

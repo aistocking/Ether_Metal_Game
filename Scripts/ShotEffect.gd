@@ -1,3 +1,4 @@
+class_name ShotEffect
 extends AnimatedSprite2D
 
 

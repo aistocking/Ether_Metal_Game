@@ -1,3 +1,4 @@
+class_name PlasmaShot
 extends Area2D
 
 var Direction

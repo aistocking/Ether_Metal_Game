@@ -1,3 +1,4 @@
+class_name DustParticle
 extends AnimatedSprite2D
 
 

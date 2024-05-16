@@ -4,7 +4,7 @@ const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 const EnemyShot = preload("res://Scenes/Enemies/enemy_shot.tscn")
 
 var health : int = 5
-var FacingDirection : int = -1
+var facing_direction : int = -1
 
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Sprite = $Sprite2D
@@ -24,7 +24,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if(currentState == STATE.WALK):
-		position.x +=  FacingDirection * 2
+		position.x +=  facing_direction * 2
 	
 
 func stateChange(state):
@@ -80,7 +80,7 @@ func hitFlash():
 	Sprite.material.set_shader_parameter("active", false)
 
 func turnAround():
-	FacingDirection = FacingDirection * -1
+	facing_direction = facing_direction * -1
 	Sprite.flip_h = !Sprite.flip_h
 	VisionCone.scale.x = VisionCone.scale.x * -1
 	if(currentState == STATE.IDLE):
@@ -92,7 +92,7 @@ func shoot():
 	var ShotInstance = EnemyShot.instantiate()
 	get_parent().add_child(ShotInstance)
 	ShotInstance.position = global_position
-	ShotInstance.getDirection(Vector2(FacingDirection, 0))
+	ShotInstance.getDirection(Vector2(facing_direction, 0))
 	WaitTimer.start(0.15)
 
 #func _on_area_entered(area):

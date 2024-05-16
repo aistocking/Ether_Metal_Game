@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var Health:int = 5
-var Damage:int = 1
+var _health: int = 5
+var _damage: int = 1
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 
 var Player
@@ -16,8 +16,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func takeDamage(damage):
-	Health -= damage
-	if Health <= 0:
+	_health -= damage
+	if _health <= 0:
 		die()
 	hitFlash()
 
@@ -35,4 +35,4 @@ func die():
 
 func _on_area_2d_body_entered(body):
 	if(body.has_method("takeDamage")):
-		body.takeDamage(Damage)
+		body.takeDamage(_damage)

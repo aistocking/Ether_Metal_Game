@@ -8,15 +8,15 @@ func enter(_msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
 	player.PlayerAnimations.play("Falling")
-	if player.IsDashing:
+	if player.is_dashing:
 		player.speed = 450
 	else:
 		player.speed = 300
 
 func handle_input(event):
-	if(player.PlayerInput == false):
+	if(player.player_input == false):
 		return
-	if event.is_action_pressed("Dash") && player.SpentDash == false:
+	if event.is_action_pressed("Dash") && player.spent_dash == false:
 		state_machine.transition_to("Dash")
 	
 	if event.is_action_pressed("Jump") && !player.CoyoteTimer.is_stopped():
@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 	if (player.is_on_floor()):
 		state_machine.transition_to("Idle")
 		
-	if player.IsDashing:
+	if player.is_dashing:
 		player.ghostEffect()
 	
 	if player.LeftRayCast.is_colliding() && Input.is_action_pressed("Left"):

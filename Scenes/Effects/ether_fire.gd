@@ -1,4 +1,6 @@
+class_name EtherFire
 extends AnimatedSprite2D
+
 
 var damage = 15
 

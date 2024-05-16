@@ -12,13 +12,13 @@ func enter(_msg := {}) -> void:
 	player.CoyoteTimer.stop()
 
 func handle_input(event) -> void:
-	if(player.PlayerInput == false):
+	if(player.player_input == false):
 		return
 	if event.is_action_pressed("Jump"):
 		state_machine.transition_to("Jump")
 	
 	if event.is_action_pressed("Dash"):
-		var direction = player.FacingDirection
+		var direction = player.facing_direction
 		state_machine.transition_to("Dash", { "direction": direction })
 
 func physics_update(_delta: float) -> void:
@@ -31,7 +31,7 @@ func physics_update(_delta: float) -> void:
 		Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	)
 	
-	if is_equal_approx(input_direction_x, 0.0) || player.PlayerInput == false:
+	if is_equal_approx(input_direction_x, 0.0) || player.player_input == false:
 		state_machine.transition_to("Idle")
 	
 	player.handle_horizontal()

@@ -1,3 +1,4 @@
+class_name GhostFade
 extends Sprite2D
 
 

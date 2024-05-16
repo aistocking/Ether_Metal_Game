@@ -20,7 +20,7 @@ func enter(_msg := {}) -> void:
 	player.changePlayerControl(false)
 
 func physics_update(delta: float) -> void:
-	player.velocity.x += (player.FacingDirection * -70) * delta
+	player.velocity.x += (player.facing_direction * -70) * delta
 	player.velocity.y += gravity * delta
 	
 	player.move_and_slide()

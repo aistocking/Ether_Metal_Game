@@ -21,7 +21,7 @@ func enter(_msg := {}) -> void:
 	if _msg.has("IsOffensive"):
 		IsOffensive = _msg.IsOffensive
 	if Input.is_action_pressed("Left Button") && IsOffensive:
-		player.velocity.x = player.FacingDirection * -200
+		player.velocity.x = player.facing_direction * -200
 		player.PlayerAnimations.play("Plasma_Shot")
 		player.plasmaShot()
 		CurrentSpecial = SPECIALS.PLASMA
@@ -30,13 +30,13 @@ func enter(_msg := {}) -> void:
 		player.barrage()
 		CurrentSpecial = SPECIALS.BARRAGE
 	if Input.is_action_pressed("Bottom Button") && !IsOffensive:
-		player.velocity.x = player.FacingDirection * -200
+		player.velocity.x = player.facing_direction * -200
 		player.velocity.y = -150
 		player.PlayerAnimations.play("Disengage")
 		player.disengage()
 		CurrentSpecial = SPECIALS.DISENGAGE
 	if Input.is_action_pressed("Top Button") && IsOffensive:
-		tweenX.tween_property(player, "velocity:x", player.FacingDirection * 300, .2).set_trans(Tween.TRANS_CUBIC)
+		tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
 		tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
 		player.PlayerAnimations.play("Upper")
 		CurrentSpecial = SPECIALS.UPPER
