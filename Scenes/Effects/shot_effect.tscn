@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dc3e5fmqoff5q"]
 
 [ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/Effects/1st_Level_Buster_Shot.png" id="1_0r77d"]
-[ext_resource type="Script" path="res://Scripts/ShotEffect.gd" id="2_ieqn2"]
+[ext_resource type="Script" path="res://Scenes/Effects/shot_effect.gd" id="2_3j382"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp332"]
 atlas = ExtResource("1_0r77d")
@@ -52,6 +52,6 @@ sprite_frames = SubResource("SpriteFrames_nfir3")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
-script = ExtResource("2_ieqn2")
+script = ExtResource("2_3j382")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

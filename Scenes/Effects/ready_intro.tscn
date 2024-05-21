@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuglmxecfmixf" path="res://Art/Effects/Ready_White.png" id="2_c4shc"]
 [ext_resource type="AudioStream" uid="uid://dywcx1eshyf2y" path="res://Sound/AnnouncerReady.wav" id="3_85sjr"]
 [ext_resource type="PackedScene" uid="uid://bejr1h8g3e6nr" path="res://Scenes/Effects/ready_intro_ghosts.tscn" id="4_0ci6e"]
-[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="6_7cp2n"]
+[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="6_gvvig"]
 
 [sub_resource type="Animation" id="Animation_lh8uf"]
 length = 0.001
@@ -196,4 +196,4 @@ texture = ExtResource("2_c4shc")
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_85sjr")
 volume_db = -14.0
-script = ExtResource("6_7cp2n")
+script = ExtResource("6_gvvig")

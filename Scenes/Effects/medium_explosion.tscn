@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://kmkh78w82juu"]
 
 [ext_resource type="Texture2D" uid="uid://csfqy1thviyhc" path="res://Art/Effects/Explosion.png" id="1_gg0k8"]
-[ext_resource type="Script" path="res://Scripts/medium_explosion.gd" id="2_o6jaf"]
-[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="3_ehlaj"]
+[ext_resource type="Script" path="res://Scenes/Effects/medium_explosion.gd" id="2_33v2p"]
+[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_m1eb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3d4i"]
 atlas = ExtResource("1_gg0k8")
@@ -143,10 +143,10 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kqxum")
 animation = &"explode"
 autoplay = "explode"
-script = ExtResource("2_o6jaf")
+script = ExtResource("2_33v2p")
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -14.054
-script = ExtResource("3_ehlaj")
+script = ExtResource("3_m1eb4")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -17,7 +17,7 @@ config/icon="res://project_icon.png"
 
 [autoload]
 
-BgmPlayer="*res://Scenes/Misc/BGM_player.tscn"
+BgmPlayer="*res://Scenes/Misc/background_audio_player.tscn"
 Global="*res://Scenes/Misc/global.tscn"
 
 [debug]

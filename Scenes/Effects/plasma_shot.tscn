@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bi42pcg0ckual" path="res://Art/Effects/Charge_Shot.png" id="1_xmcpi"]
 [ext_resource type="Script" path="res://Scenes/Effects/plasma_shot.gd" id="2_ewlw1"]
-[ext_resource type="Script" path="res://Scenes/Misc/EffectAudioPlayer.gd" id="3_f4bp2"]
+[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_ughn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
 size = Vector2(40, 28)
@@ -54,7 +54,7 @@ frame_progress = 0.309436
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -15.928
-script = ExtResource("3_f4bp2")
+script = ExtResource("3_ughn4")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.3

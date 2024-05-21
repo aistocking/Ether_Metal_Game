@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://mr6u6pex72ps"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_shot.gd" id="1_8m3v6"]
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_shot.gd" id="1_3beld"]
 [ext_resource type="Texture2D" uid="uid://dm3w6s1xlp41a" path="res://Art/Effects/Enemy_Bullet.png" id="2_njy8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riinp"]
@@ -45,7 +45,7 @@ animations = [{
 [node name="Enemy Shot" type="Area2D"]
 collision_layer = 8
 collision_mask = 17
-script = ExtResource("1_8m3v6")
+script = ExtResource("1_3beld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_riinp")
