@@ -1,101 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3ltb80osdyjn"]
+[gd_scene load_steps=4 format=3 uid="uid://d3ltb80osdyjn"]
 
 [ext_resource type="Script" path="res://Scenes/Misc/text_box.gd" id="1_fqpfd"]
-[ext_resource type="Texture2D" uid="uid://bg3wpg7wyc54r" path="res://Art/MiscUI/XMugShot.png" id="2_s34sq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tdso4"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(0, 0, 78, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aowrn"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(78, 0, 78, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n00c7"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(156, 0, 78, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnlbb"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(234, 0, 78, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfhsd"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(312, 0, 78, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13jcy"]
-atlas = ExtResource("2_s34sq")
-region = Rect2(390, 0, 78, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_12fdu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdso4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aowrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n00c7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aowrn")
-}],
-"loop": true,
-"name": &"rest",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tnlbb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfhsd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13jcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfhsd")
-}],
-"loop": true,
-"name": &"talking",
-"speed": 12.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://b1ty3v3rgl1tk" path="res://Scenes/Misc/dialog/empty.tres" id="2_wuwow"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsry"]
 bg_color = Color(0, 0, 0, 1)
@@ -131,12 +37,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="LeftPortrait" type="AnimatedSprite2D" parent="MarginContainer/HSplitContainer/LeftContainer"]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(90, 75)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_12fdu")
-animation = &"rest"
-autoplay = "rest"
+sprite_frames = ExtResource("2_wuwow")
+animation = &"idle"
 
 [node name="Box" type="Panel" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -171,10 +77,9 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 
 [node name="RightPortrait" type="AnimatedSprite2D" parent="MarginContainer/HSplitContainer/RightContainer"]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(90, 75)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_12fdu")
-animation = &"rest"
-autoplay = "rest"
-frame_progress = 0.901724
+sprite_frames = ExtResource("2_wuwow")
+animation = &"idle"
