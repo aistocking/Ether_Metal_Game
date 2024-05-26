@@ -4,7 +4,9 @@ extends CanvasLayer
 
 signal advanced
 
+@onready var _left_container = %LeftContainer
 @onready var _left_portrait: AnimatedSprite2D = %LeftPortrait
+@onready var _right_container = %RightContainer
 @onready var _right_portrait: AnimatedSprite2D = %RightPortrait
 @onready var _current_text: Label = %DialogLabel
 @onready var _player: PlayerCharacter = get_tree().get_first_node_in_group("Player")
@@ -12,12 +14,13 @@ signal advanced
 var _tween: Tween
 var _read_rate: float = 0
 
+var _main_character: Character = load("res://Scenes/Player/main_character.tres")
+var _zero_character: Character = load("res://Scenes/Player/zero_character.tres")
 
 
 func _ready() -> void:
 	# TODO: Move this into an exported property.
 	# TODO: How do I tie the dialog (script) to the resources?
-	var _main_character: Character = load("res://Scenes/Player/main_character.tres")
 	_player.change_player_control(false)
 	_left_display(_main_character)
 	_say("Hmmm... Sometimes godot is confusing")
@@ -28,6 +31,12 @@ func _ready() -> void:
 	_say("I've had enough fighting!")
 	await advanced
 	_say("......god X7 was bad.")
+	await advanced
+	_right_display(_zero_character)
+	_say("Suprised?")
+	await advanced
+	_right_mood("talking")
+	_say("Muahahahaha")
 	await advanced
 	_end_dialog()
 
@@ -52,6 +61,8 @@ func _say(text: String) -> void:
 
 
 func _left_display(character: Character = null, mood: String = "idle") -> void:
+	_right_container.hide()
+	_left_container.show()
 	_left_portrait.sprite_frames = character.portrait
 	_left_mood(mood)
 
@@ -59,6 +70,18 @@ func _left_display(character: Character = null, mood: String = "idle") -> void:
 func _left_mood(mood: String = "idle") -> void:
 	_left_portrait.animation = mood
 	_left_portrait.play()
+
+
+func _right_display(character: Character = null, mood: String = "idle") -> void:
+	_left_container.hide()
+	_right_container.show()
+	_right_portrait.sprite_frames = character.portrait
+	_right_mood(mood)
+
+
+func _right_mood(mood: String = "idle") -> void:
+	_right_portrait.animation = mood
+	_right_portrait.play()
 
 
 func _display_full_text() -> void:
