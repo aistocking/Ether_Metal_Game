@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0ej70a5ti7hh"]
+
+[ext_resource type="Texture2D" uid="uid://btnrskjagrsvy" path="res://Art/MiscUI/Cutscenes/IntroRightShoulderActive.png" id="1_7o5lv"]
+[ext_resource type="Texture2D" uid="uid://b0yrlqgtxkghg" path="res://Art/MiscUI/Cutscenes/IntroChestrActive.png" id="2_40vdl"]
+[ext_resource type="Texture2D" uid="uid://cxgr6w46h47b0" path="res://Art/MiscUI/Cutscenes/IntroHeadActive.png" id="3_4syjl"]
+[ext_resource type="Texture2D" uid="uid://di1iem4gb6sfn" path="res://Art/MiscUI/Cutscenes/IntroLeftShoulderActive.png" id="4_y1ajp"]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+
+[node name="Node2D" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="RightShoulder" type="Sprite2D" parent="Node2D"]
+position = Vector2(-75, 84)
+texture = ExtResource("1_7o5lv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 91)
+texture = ExtResource("2_40vdl")
+
+[node name="head" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+texture = ExtResource("3_4syjl")
+
+[node name="LeftShoulder" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(102, 83)
+texture = ExtResource("4_y1ajp")
