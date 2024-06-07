@@ -50,6 +50,10 @@ folder_colors={
 "res://Scenes/Stages/": "green"
 }
 
+[gui]
+
+theme/custom_font="res://Art/Early GameBoy.ttf"
+
 [input]
 
 ui_accept={

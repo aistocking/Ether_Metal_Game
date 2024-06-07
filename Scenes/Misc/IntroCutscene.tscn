@@ -42,11 +42,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("FullBody/Active/HeadEyesOpen2:visible")
+tracks/2/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1, 3.385, 3.395),
+"times": PackedFloat32Array(1, 4.24, 4.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
@@ -54,11 +54,11 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("FullBody/Active/HeadEyesOpen1:visible")
+tracks/3/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1, 3.345, 3.355),
+"times": PackedFloat32Array(1, 4.2, 4.21),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
@@ -70,7 +70,7 @@ tracks/4/path = NodePath("flash:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(4.4725, 4.7925),
+"times": PackedFloat32Array(4.64, 4.96),
 "transitions": PackedFloat32Array(5.27803, 1),
 "update": 0,
 "values": [Vector2(400, 0), Vector2(400, 224)]
@@ -82,7 +82,7 @@ tracks/5/path = NodePath("flash:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(4.4725, 4.7925),
+"times": PackedFloat32Array(4.64, 4.96),
 "transitions": PackedFloat32Array(5.27803, 1),
 "update": 0,
 "values": [Vector2(0, 112), Vector2(0, 0)]
@@ -100,6 +100,54 @@ tracks/6/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FullBody/Active/Chest:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.68, 2.83, 2.93),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 91), Vector2(0, 90), Vector2(0, 88)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FullBody/Active/HeadContainer:position")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.85, 3.02, 3.14, 3.22),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3, -1), Vector2(-1, -5), Vector2(2, -5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FullBody/Active/LeftShoulder:position")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.76, 2.88, 2.97, 3.04, 3.12, 3.17),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(102, 91), Vector2(102, 90), Vector2(100, 86), Vector2(102, 84), Vector2(105, 83), Vector2(106, 82)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FullBody/Active/RightShoulder:position")
+tracks/10/interp = 0
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2.76, 2.88, 2.97, 3.04, 3.12, 3.17),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-75, 91), Vector2(-75, 90), Vector2(-77, 86), Vector2(-75, 84), Vector2(-72, 83), Vector2(-71, 82)]
 }
 
 [sub_resource type="Animation" id="Animation_qvvhq"]
@@ -131,7 +179,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("FullBody/Active/HeadEyesOpen2:visible")
+tracks/2/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -143,7 +191,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("FullBody/Active/HeadEyesOpen1:visible")
+tracks/3/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -175,6 +223,54 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 112)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FullBody/Active/Chest:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 91)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FullBody/Active/HeadContainer:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FullBody/Active/LeftShoulder:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(102, 83)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FullBody/Active/RightShoulder:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-75, 84)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pwmvh"]
@@ -212,6 +308,7 @@ position = Vector2(195, 98)
 [node name="Active" type="Node2D" parent="FullBody"]
 visible = false
 texture_filter = 1
+position = Vector2(0, 4)
 
 [node name="RightShoulder" type="Sprite2D" parent="FullBody/Active"]
 position = Vector2(-75, 84)
@@ -221,16 +318,18 @@ texture = ExtResource("1_7o5lv")
 position = Vector2(0, 91)
 texture = ExtResource("2_40vdl")
 
-[node name="Head" type="Sprite2D" parent="FullBody/Active"]
+[node name="HeadContainer" type="Node2D" parent="FullBody/Active"]
+
+[node name="Head" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 texture_filter = 1
 texture = ExtResource("3_4syjl")
 
-[node name="HeadEyesOpen1" type="Sprite2D" parent="FullBody/Active"]
+[node name="HeadEyesOpen1" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 visible = false
 texture_filter = 1
 texture = ExtResource("4_h0qky")
 
-[node name="HeadEyesOpen2" type="Sprite2D" parent="FullBody/Active"]
+[node name="HeadEyesOpen2" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 visible = false
 texture_filter = 1
 texture = ExtResource("5_1xewp")
@@ -242,9 +341,10 @@ texture = ExtResource("4_y1ajp")
 
 [node name="Inactive" type="Node2D" parent="FullBody"]
 texture_filter = 1
+position = Vector2(0, 4)
 
 [node name="RightShoulder" type="Sprite2D" parent="FullBody/Inactive"]
-position = Vector2(-75, 84)
+position = Vector2(-75, 91)
 texture = ExtResource("7_82shp")
 
 [node name="Chest" type="Sprite2D" parent="FullBody/Inactive"]
@@ -257,7 +357,7 @@ texture = ExtResource("9_yh21i")
 
 [node name="LeftShoulder" type="Sprite2D" parent="FullBody/Inactive"]
 texture_filter = 1
-position = Vector2(102, 83)
+position = Vector2(102, 91)
 texture = ExtResource("10_w01r1")
 
 [node name="Camera2D" type="Camera2D" parent="."]

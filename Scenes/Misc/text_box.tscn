@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ltb80osdyjn"]
+[gd_scene load_steps=5 format=3 uid="uid://d3ltb80osdyjn"]
 
 [ext_resource type="Script" path="res://Scenes/Misc/text_box.gd" id="1_fqpfd"]
 [ext_resource type="SpriteFrames" uid="uid://b1ty3v3rgl1tk" path="res://Scenes/Misc/dialog/empty.tres" id="2_wuwow"]
+[ext_resource type="FontFile" uid="uid://cn2hufxsapyb4" path="res://Art/Early GameBoy.ttf" id="3_bj7lx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsry"]
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [node name="TextBox" type="CanvasLayer"]
 script = ExtResource("1_fqpfd")
@@ -18,22 +19,23 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -191.0
+offset_top = -210.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Text"
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="LeftContainer" type="Control" parent="MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(180, 150)
+custom_minimum_size = Vector2(76, 76)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -41,8 +43,7 @@ size_flags_vertical = 4
 [node name="LeftPortrait" type="AnimatedSprite2D" parent="MarginContainer/HSplitContainer/LeftContainer"]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(90, 75)
-scale = Vector2(2, 2)
+position = Vector2(38, 38)
 sprite_frames = ExtResource("2_wuwow")
 animation = &"idle"
 
@@ -58,23 +59,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
 [node name="DialogLabel" type="Label" parent="MarginContainer/HSplitContainer/Box/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("3_bj7lx")
+theme_override_font_sizes/font_size = 8
 text = "Text etxt text text.
 hippity hoppity gloop glomp"
+text_overrun_behavior = 3
 
 [node name="RightContainer" type="Control" parent="MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(180, 150)
+custom_minimum_size = Vector2(76, 76)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -82,7 +85,6 @@ size_flags_vertical = 4
 [node name="RightPortrait" type="AnimatedSprite2D" parent="MarginContainer/HSplitContainer/RightContainer"]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(90, 75)
-scale = Vector2(2, 2)
+position = Vector2(38, 38)
 sprite_frames = ExtResource("2_wuwow")
 animation = &"idle"

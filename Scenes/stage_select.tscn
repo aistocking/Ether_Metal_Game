@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://istvwwfmi6md"]
+[gd_scene load_steps=3 format=3 uid="uid://istvwwfmi6md"]
 
 [ext_resource type="Script" path="res://Scenes/stage_select.gd" id="1_4myet"]
+[ext_resource type="FontFile" uid="uid://cn2hufxsapyb4" path="res://Art/Early GameBoy.ttf" id="2_mstln"]
 
 [node name="StageSelect" type="Control"]
 layout_mode = 3
@@ -45,19 +46,26 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "General Test"
+theme_override_fonts/font = ExtResource("2_mstln")
+theme_override_font_sizes/font_size = 8
+text = "General
+Test"
 
 [node name="Stage2" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "TileSet Test"
+theme_override_fonts/font = ExtResource("2_mstln")
+theme_override_font_sizes/font_size = 8
+text = "TileSet
+Test"
 
 [node name="Button3" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
+text = "filler tx"
 
 [node name="Button4" type="Button" parent="MarginContainer/AspectRatioContainer/GridContainer"]
 layout_mode = 2
