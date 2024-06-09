@@ -5,7 +5,6 @@ extends Control
 func _ready() -> void:
 	$CenterContainer/Start.grab_focus()
 	Global.change_music("res://Sound/Music/03_Title.mp3")
-	add_child(load("res://Scenes/Misc/IntroCutscene.tscn").instantiate())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

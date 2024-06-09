@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0ej70a5ti7hh"]
+[gd_scene load_steps=15 format=3 uid="uid://b0ej70a5ti7hh"]
 
-[ext_resource type="Texture2D" uid="uid://btnrskjagrsvy" path="res://Art/MiscUI/Cutscenes/IntroRightShoulderActive.png" id="1_7o5lv"]
-[ext_resource type="Texture2D" uid="uid://b0yrlqgtxkghg" path="res://Art/MiscUI/Cutscenes/IntroChestrActive.png" id="2_40vdl"]
-[ext_resource type="Texture2D" uid="uid://cxgr6w46h47b0" path="res://Art/MiscUI/Cutscenes/IntroHeadActive.png" id="3_4syjl"]
-[ext_resource type="Texture2D" uid="uid://d0mclquuc5w4c" path="res://Art/MiscUI/Cutscenes/IntroHeadActiveEyeOpen1.png" id="4_h0qky"]
-[ext_resource type="Texture2D" uid="uid://di1iem4gb6sfn" path="res://Art/MiscUI/Cutscenes/IntroLeftShoulderActive.png" id="4_y1ajp"]
-[ext_resource type="Texture2D" uid="uid://drv4j3slp1a13" path="res://Art/MiscUI/Cutscenes/IntroHeadActiveEyeOpen2.png" id="5_1xewp"]
-[ext_resource type="Texture2D" uid="uid://docu74hq7aca6" path="res://Art/MiscUI/Cutscenes/IntroRightShoulderDeactive.png" id="7_82shp"]
-[ext_resource type="Texture2D" uid="uid://ckv4xxx1m8sv6" path="res://Art/MiscUI/Cutscenes/IntroChestrDeactive.png" id="8_m48er"]
-[ext_resource type="Texture2D" uid="uid://4vafjefbryy0" path="res://Art/MiscUI/Cutscenes/IntroHeadDeactive.png" id="9_yh21i"]
-[ext_resource type="Texture2D" uid="uid://b6rpmdq8btsum" path="res://Art/MiscUI/Cutscenes/IntroLeftShoulderDeactive.png" id="10_w01r1"]
+[ext_resource type="Script" path="res://Scenes/Misc/intro_cutscene.gd" id="1_xux3p"]
+[ext_resource type="Texture2D" uid="uid://btnrskjagrsvy" path="res://Art/MiscUI/Cutscenes/IntroRightShoulderActive.png" id="2_4advp"]
+[ext_resource type="Texture2D" uid="uid://b0yrlqgtxkghg" path="res://Art/MiscUI/Cutscenes/IntroChestrActive.png" id="3_u504w"]
+[ext_resource type="Texture2D" uid="uid://cxgr6w46h47b0" path="res://Art/MiscUI/Cutscenes/IntroHeadActive.png" id="4_2b08s"]
+[ext_resource type="Texture2D" uid="uid://d0mclquuc5w4c" path="res://Art/MiscUI/Cutscenes/IntroHeadActiveEyeOpen1.png" id="5_haxby"]
+[ext_resource type="Texture2D" uid="uid://drv4j3slp1a13" path="res://Art/MiscUI/Cutscenes/IntroHeadActiveEyeOpen2.png" id="6_6poh8"]
+[ext_resource type="Texture2D" uid="uid://di1iem4gb6sfn" path="res://Art/MiscUI/Cutscenes/IntroLeftShoulderActive.png" id="7_5d7a3"]
+[ext_resource type="Texture2D" uid="uid://docu74hq7aca6" path="res://Art/MiscUI/Cutscenes/IntroRightShoulderDeactive.png" id="8_hb6jf"]
+[ext_resource type="Texture2D" uid="uid://ckv4xxx1m8sv6" path="res://Art/MiscUI/Cutscenes/IntroChestrDeactive.png" id="9_sh5ix"]
+[ext_resource type="Texture2D" uid="uid://4vafjefbryy0" path="res://Art/MiscUI/Cutscenes/IntroHeadDeactive.png" id="10_i18ll"]
+[ext_resource type="Texture2D" uid="uid://b6rpmdq8btsum" path="res://Art/MiscUI/Cutscenes/IntroLeftShoulderDeactive.png" id="11_ag0wh"]
 
 [sub_resource type="Animation" id="Animation_nswib"]
 resource_name = "Intro"
@@ -87,63 +88,49 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0, 112), Vector2(0, 0)]
 }
-tracks/6/type = "method"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
+tracks/6/path = NodePath("FullBody/Active/Chest:position")
+tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("FullBody/Active/Chest:position")
-tracks/7/interp = 0
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(2.68, 2.83, 2.93),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 91), Vector2(0, 90), Vector2(0, 88)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("FullBody/Active/HeadContainer:position")
-tracks/8/interp = 0
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FullBody/Active/HeadContainer:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(2.85, 3.02, 3.14, 3.22),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-3, -1), Vector2(-1, -5), Vector2(2, -5)]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("FullBody/Active/LeftShoulder:position")
-tracks/9/interp = 0
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FullBody/Active/LeftShoulder:position")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(2.76, 2.88, 2.97, 3.04, 3.12, 3.17),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(102, 91), Vector2(102, 90), Vector2(100, 86), Vector2(102, 84), Vector2(105, 83), Vector2(106, 82)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("FullBody/Active/RightShoulder:position")
-tracks/10/interp = 0
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FullBody/Active/RightShoulder:position")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(2.76, 2.88, 2.97, 3.04, 3.12, 3.17),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
@@ -286,8 +273,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xux3p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_pwmvh")
 }
@@ -312,32 +301,32 @@ position = Vector2(0, 4)
 
 [node name="RightShoulder" type="Sprite2D" parent="FullBody/Active"]
 position = Vector2(-75, 84)
-texture = ExtResource("1_7o5lv")
+texture = ExtResource("2_4advp")
 
 [node name="Chest" type="Sprite2D" parent="FullBody/Active"]
 position = Vector2(0, 91)
-texture = ExtResource("2_40vdl")
+texture = ExtResource("3_u504w")
 
 [node name="HeadContainer" type="Node2D" parent="FullBody/Active"]
 
 [node name="Head" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 texture_filter = 1
-texture = ExtResource("3_4syjl")
+texture = ExtResource("4_2b08s")
 
 [node name="HeadEyesOpen1" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 visible = false
 texture_filter = 1
-texture = ExtResource("4_h0qky")
+texture = ExtResource("5_haxby")
 
 [node name="HeadEyesOpen2" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
 visible = false
 texture_filter = 1
-texture = ExtResource("5_1xewp")
+texture = ExtResource("6_6poh8")
 
 [node name="LeftShoulder" type="Sprite2D" parent="FullBody/Active"]
 texture_filter = 1
 position = Vector2(102, 83)
-texture = ExtResource("4_y1ajp")
+texture = ExtResource("7_5d7a3")
 
 [node name="Inactive" type="Node2D" parent="FullBody"]
 texture_filter = 1
@@ -345,20 +334,20 @@ position = Vector2(0, 4)
 
 [node name="RightShoulder" type="Sprite2D" parent="FullBody/Inactive"]
 position = Vector2(-75, 91)
-texture = ExtResource("7_82shp")
+texture = ExtResource("8_hb6jf")
 
 [node name="Chest" type="Sprite2D" parent="FullBody/Inactive"]
 position = Vector2(0, 91)
-texture = ExtResource("8_m48er")
+texture = ExtResource("9_sh5ix")
 
 [node name="Head" type="Sprite2D" parent="FullBody/Inactive"]
 texture_filter = 1
-texture = ExtResource("9_yh21i")
+texture = ExtResource("10_i18ll")
 
 [node name="LeftShoulder" type="Sprite2D" parent="FullBody/Inactive"]
 texture_filter = 1
 position = Vector2(102, 91)
-texture = ExtResource("10_w01r1")
+texture = ExtResource("11_ag0wh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(200, 112)
