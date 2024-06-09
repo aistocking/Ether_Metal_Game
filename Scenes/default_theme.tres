@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dehq3vqcc3a54"]
+
+[ext_resource type="FontFile" uid="uid://cn2hufxsapyb4" path="res://Art/Early GameBoy.ttf" id="1_1nmpr"]
+[ext_resource type="Texture2D" uid="uid://dbbn5d8jw5n3e" path="res://Art/MiscUI/checkbox_checked.png" id="1_d6t5l"]
+[ext_resource type="Texture2D" uid="uid://d2khboadksrvk" path="res://Art/MiscUI/checkbox_unchecked.png" id="2_b38d8"]
+[ext_resource type="Texture2D" uid="uid://c8ui4qybvx108" path="res://Art/MiscUI/grabber.png" id="4_dsd5l"]
+[ext_resource type="Texture2D" uid="uid://cwldvapl0i23j" path="res://Art/MiscUI/slider.png" id="5_600vv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kum4t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vsnkx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyqy6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecr6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1r853"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxoj8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ixxv7"]
+texture = ExtResource("5_600vv")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+
+[resource]
+Button/font_sizes/font_size = 16
+CheckBox/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+CheckBox/icons/checked = ExtResource("1_d6t5l")
+CheckBox/icons/unchecked = ExtResource("2_b38d8")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_kum4t")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_vsnkx")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_gyqy6")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_ecr6v")
+Control/fonts/font = ExtResource("1_1nmpr")
+HSlider/icons/grabber = ExtResource("4_dsd5l")
+HSlider/icons/grabber_highlight = ExtResource("4_dsd5l")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_1r853")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_yxoj8")
+HSlider/styles/slider = SubResource("StyleBoxTexture_ixxv7")
+HeaderOption/base_type = &"Label"
+HeaderOption/font_sizes/font_size = 24
+HeaderWindow/base_type = &"Label"
+HeaderWindow/font_sizes/font_size = 62

@@ -52,7 +52,7 @@ folder_colors={
 
 [gui]
 
-theme/custom_font="res://Art/Early GameBoy.ttf"
+theme/custom="res://Scenes/default_theme.tres"
 
 [input]
 

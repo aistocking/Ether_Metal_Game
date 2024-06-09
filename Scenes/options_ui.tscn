@@ -35,7 +35,7 @@ scale = Vector2(0.5, 0.5)
 [node name="Options" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 61
+theme_type_variation = &"HeaderWindow"
 text = "Options"
 
 [node name="Spacer1" type="Control" parent="CenterContainer"]
@@ -46,7 +46,7 @@ size_flags_vertical = 3
 [node name="MusicVolumeText" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
+theme_type_variation = &"HeaderOption"
 text = "Music Volume"
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer"]
@@ -59,7 +59,7 @@ max_value = 10.0
 [node name="EffectVolumeText" type="Label" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
+theme_type_variation = &"HeaderOption"
 text = "SFX Volume
 "
 
