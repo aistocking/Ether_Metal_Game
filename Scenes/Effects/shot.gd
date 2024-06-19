@@ -27,7 +27,7 @@ func _on_area_entered(area):
 	if(area.has_method("takeDamage")):
 		SFXPlayer.play()
 		area.takeDamage(Damage)
-		$Sprites.queue_free()
+		$Sprites.visible = false
 	else:
 		queue_free()
 
