@@ -9,7 +9,7 @@ var speed := 300.0
 const JUMP_VELOCITY := -400.0
 var player_input := false
 var spent_dash := false
-var facing_direction: int = -1
+var facing_direction: int = 1
 var _is_shooting := false
 var is_dashing := false
 
@@ -59,7 +59,6 @@ const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_sho
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var CurrentPlayerSprite: Sprite2D
 @onready var player_animations: AnimationPlayer = $AnimationPlayer
 @onready var debug_state_label: Label = $CurrentStateDebug
 
@@ -250,17 +249,8 @@ func _flip_position_markers() -> void:
 
 
 func _flip_player_sprite() -> void:
-	$DashSprite.flip_h = !$DashSprite.flip_h
-	$IdleJumpRunSprite.flip_h = !$IdleJumpRunSprite.flip_h
-	$EntranceExitSprite.flip_h = !$EntranceExitSprite.flip_h
-	$ShootSprite.flip_h = !$ShootSprite.flip_h
-	$DamageSprite.flip_h = !$DamageSprite.flip_h
-	$WallClingSprite.flip_h = !$WallClingSprite.flip_h
-	$UpperSprite.flip_h = !$UpperSprite.flip_h
+	$PlayerSprite.flip_h = !$PlayerSprite.flip_h
 
-
-func setCurrentSprite(path: NodePath) -> void:
-	CurrentPlayerSprite = get_node(path)
 
 
 func ghostEffect() -> void:
@@ -268,11 +258,11 @@ func ghostEffect() -> void:
 	if _ghost_counter > 2:
 		var GhostInstance: GhostFade = GHOST_FADE_SCENE.instantiate()
 		get_parent().add_child(GhostInstance)
-		GhostInstance.set_texture(CurrentPlayerSprite.texture)
-		GhostInstance.hframes = CurrentPlayerSprite.hframes
-		GhostInstance.vframes = CurrentPlayerSprite.vframes
-		GhostInstance.frame = CurrentPlayerSprite.frame
-		GhostInstance.flip_h = CurrentPlayerSprite.flip_h
+		GhostInstance.set_texture($PlayerSprite.texture)
+		GhostInstance.hframes = $PlayerSprite.hframes
+		GhostInstance.vframes = $PlayerSprite.vframes
+		GhostInstance.frame = $PlayerSprite.frame
+		GhostInstance.flip_h = $PlayerSprite.flip_h
 		GhostInstance.position = global_position
 		_ghost_counter = 0
 
