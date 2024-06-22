@@ -4,20 +4,16 @@ extends Node
 signal transitioned(state_name)
 
 @export var initial_state := NodePath()
-@export var debugLabelPath := NodePath()
 
 @onready var state: State = get_node(initial_state)
-@onready var debug_state_label: = get_node(debugLabelPath)
 
 func _ready() -> void:
 	await owner.ready
 	
-	if debug_state_label != null:
-		debug_state_label.setText(state.name)
-	
 	for child in get_children():
 		child.state_machine = self
 	state.enter()
+	emit_signal("transitioned", state.name)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
@@ -37,9 +33,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state = get_node(target_state_name)
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
-	
-	if debug_state_label != null:
-		debug_state_label.setText(state.name)
 
 func _takeDamage() -> void:
 	state.takeDamage()

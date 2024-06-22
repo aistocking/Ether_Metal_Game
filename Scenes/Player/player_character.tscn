@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="4_msi58"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="5_sdmnc"]
-[ext_resource type="Script" path="res://Scenes/Player/current_state_debug.gd" id="8_u0rhq"]
+[ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="8_u0rhq"]
 [ext_resource type="Script" path="res://Scenes/Player/player_state_machine.gd" id="9_c2ogj"]
 [ext_resource type="PackedScene" uid="uid://c1pstklyl2kp1" path="res://Scenes/Effects/death_particles.tscn" id="10_iq7bk"]
 [ext_resource type="Script" path="res://Scenes/Player/States/idle.gd" id="10_ycp14"]
@@ -403,13 +403,6 @@ collision_mask = 16
 
 [node name="Death Particles" parent="." instance=ExtResource("10_iq7bk")]
 
-[node name="CurrentStateDebug" type="Label" parent="."]
-offset_left = -21.0
-offset_top = -39.0
-offset_right = 19.0
-offset_bottom = -16.0
-script = ExtResource("8_u0rhq")
-
 [node name="BusterPosition" type="Marker2D" parent="."]
 position = Vector2(21, -2)
 
@@ -427,10 +420,18 @@ hframes = 4
 vframes = 9
 frame = 1
 
+[node name="DebugStateMachineLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -21.0
+offset_top = -39.0
+offset_right = 19.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+script = ExtResource("8_u0rhq")
+state_machine = NodePath("../PlayerStateMachine")
+
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("9_c2ogj")
 initial_state = NodePath("Entrance")
-debugLabelPath = NodePath("../CurrentStateDebug")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_ycp14")
