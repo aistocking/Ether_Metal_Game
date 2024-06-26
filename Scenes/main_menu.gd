@@ -22,3 +22,18 @@ func _on_quit_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/options_ui.tscn")
+
+
+func _on_start_focus_entered():
+	$PlayerSprite.position = Vector2(139, 155)
+	$EffectAudioPlayer.play()
+
+
+func _on_options_focus_entered():
+	$PlayerSprite.position = Vector2(139, 174)
+	$EffectAudioPlayer.play()
+
+
+func _on_quit_focus_entered():
+	$PlayerSprite.position = Vector2(139, 193)
+	$EffectAudioPlayer.play()
