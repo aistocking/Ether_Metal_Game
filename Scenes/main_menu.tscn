@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl24fje6uuif8"]
+[gd_scene load_steps=18 format=3 uid="uid://dl24fje6uuif8"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_dpnep"]
 [ext_resource type="Texture2D" uid="uid://c0i0uu05gyy6f" path="res://Art/MiscUI/TitleGraphics.png" id="2_3n42y"]
@@ -9,35 +9,74 @@
 [ext_resource type="Texture2D" uid="uid://cvwl3guklmvsk" path="res://Art/MiscUI/MM_Exit_Button_Inactive.png" id="7_hqapa"]
 [ext_resource type="Texture2D" uid="uid://btgt7h4nxbwgp" path="res://Art/MiscUI/MM_Exit_Button_Active.png" id="8_3yp0w"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="9_1ggfw"]
+[ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="10_6n0lc"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Misc/effect_audio_player.tscn" id="10_wdok1"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="11_frkx1"]
 
-[sub_resource type="Animation" id="Animation_gd4wt"]
-resource_name = "FadeOut"
-length = 0.2
+[sub_resource type="Animation" id="Animation_q3xcm"]
+resource_name = "LilyShot"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WhiteFlash:self_modulate")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 23, 24, 1]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WhiteFlash:visible")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"shot_finished"],
+"method": &"emit_signal"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite/ChargeShot:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprite/ChargeShot:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1.86607, 1),
+"update": 0,
+"values": [Vector2(20, -4), Vector2(300, -4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EffectAudioPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6t08i"]
@@ -45,7 +84,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WhiteFlash:self_modulate")
+tracks/0/path = NodePath("FadeColor:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WhiteFlash:visible")
+tracks/1/path = NodePath("FadeColor:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -78,26 +117,117 @@ tracks/2/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprite/ChargeShot:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprite/ChargeShot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.77, -3.38)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EffectAudioPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="Animation" id="Animation_q3xcm"]
-resource_name = "LilyShot"
-length = 0.5
+[sub_resource type="Animation" id="Animation_gd4wt"]
+resource_name = "FadeIn"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("FadeColor:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeColor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1, 23, 24, 1]
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cvbo3"]
+resource_name = "FadeOut"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeColor:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"fade_finished"],
+"method": &"emit_signal"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FadeColor:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fb42"]
 _data = {
-"FadeOut": SubResource("Animation_gd4wt"),
+"FadeIn": SubResource("Animation_gd4wt"),
+"FadeOut": SubResource("Animation_cvbo3"),
 "LilyShot": SubResource("Animation_q3xcm"),
 "RESET": SubResource("Animation_6t08i")
 }
@@ -195,16 +325,7 @@ size_flags_vertical = 3
 libraries = {
 "": SubResource("AnimationLibrary_1fb42")
 }
-autoplay = "FadeOut"
-
-[node name="WhiteFlash" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+autoplay = "FadeIn"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(139, 193)
@@ -212,6 +333,23 @@ texture = ExtResource("9_1ggfw")
 hframes = 4
 vframes = 9
 frame = 1
+
+[node name="ChargeShot" type="AnimatedSprite2D" parent="PlayerSprite"]
+visible = false
+position = Vector2(15.77, -3.38)
+sprite_frames = ExtResource("10_6n0lc")
+autoplay = "default"
+frame = 2
+frame_progress = 0.519659
+
+[node name="FadeColor" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("10_wdok1")]
 stream = ExtResource("11_frkx1")
