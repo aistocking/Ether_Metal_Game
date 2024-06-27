@@ -185,12 +185,12 @@ script = ExtResource("1_y1nqs")
 
 [node name="black" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(385.043, 46.4038)
+position = Vector2(-161, 88)
 texture = ExtResource("1_rlyn6")
 
 [node name="white" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-384.784, -51.7166)
+position = Vector2(161, -88)
 texture = ExtResource("2_c4shc")
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
