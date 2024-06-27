@@ -1,40 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlbn6aiglmufi"]
+[gd_scene load_steps=5 format=3 uid="uid://dlbn6aiglmufi"]
 
-[ext_resource type="Texture2D" uid="uid://bi42pcg0ckual" path="res://Art/Effects/Charge_Shot.png" id="1_xmcpi"]
 [ext_resource type="Script" path="res://Scenes/Effects/plasma_shot.gd" id="2_ewlw1"]
+[ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="2_mq5uu"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_ughn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
 size = Vector2(40, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h52rs"]
-atlas = ExtResource("1_xmcpi")
-region = Rect2(0, 0, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fr3gi"]
-atlas = ExtResource("1_xmcpi")
-region = Rect2(64, 0, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_llx0p"]
-atlas = ExtResource("1_xmcpi")
-region = Rect2(128, 0, 64, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p22gy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h52rs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fr3gi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_llx0p")
-}],
-"loop": true,
-"name": &"default",
-"speed": 16.0
-}]
 
 [node name="PlasmaShot" type="Area2D"]
 collision_layer = 2
@@ -47,7 +18,7 @@ shape = SubResource("RectangleShape2D_owdon")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_p22gy")
+sprite_frames = ExtResource("2_mq5uu")
 autoplay = "default"
 frame = 1
 frame_progress = 0.309436

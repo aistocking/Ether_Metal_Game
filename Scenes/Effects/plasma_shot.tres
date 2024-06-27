@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ubwwm1gge5e"]
+
+[ext_resource type="Texture2D" uid="uid://bi42pcg0ckual" path="res://Art/Effects/Charge_Shot.png" id="1_35np3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h52rs"]
+atlas = ExtResource("1_35np3")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr3gi"]
+atlas = ExtResource("1_35np3")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llx0p"]
+atlas = ExtResource("1_35np3")
+region = Rect2(128, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h52rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr3gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llx0p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
