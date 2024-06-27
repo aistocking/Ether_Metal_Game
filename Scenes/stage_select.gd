@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$MarginContainer/AspectRatioContainer/GridContainer/Stage1.grab_focus()
+	$MarginContainer/AspectRatioContainer/GridContainer/Perun.grab_focus()
 	Global.change_music("res://Sound/Music/05_Stage Select.mp3")
 
 
@@ -12,9 +12,61 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_stage1_pressed() -> void:
+func _on_perun_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Stages/Alpha/stage_alpha.tscn")
 
 
-func _on_stage_2_pressed() -> void:
+func _on_volos_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Stages/Beta/stage_beta.tscn")
+
+
+
+
+func _on_perun_focus_entered() -> void:
+	$Cursor.position = Vector2(64, 45)
+	$EffectAudioPlayer.play()
+
+
+func _on_volos_focus_entered() -> void:
+	$Cursor.position = Vector2(128, 45)
+	$EffectAudioPlayer.play()
+
+
+func _on_player_options_focus_entered() -> void:
+	$Cursor.position = Vector2(200, 45)
+	$EffectAudioPlayer.play()
+
+
+func _on_yaryla_focus_entered() -> void:
+	$Cursor.position = Vector2(272, 45)
+	$EffectAudioPlayer.play()
+
+
+func _on_marena_focus_entered() -> void:
+	$Cursor.position = Vector2(336, 45)
+	$EffectAudioPlayer.play()
+
+
+func _on_mokosh_focus_entered() -> void:
+	$Cursor.position = Vector2(64, 173)
+	$EffectAudioPlayer.play()
+
+
+func _on_svetovit_focus_entered() -> void:
+	$Cursor.position = Vector2(128, 173)
+	$EffectAudioPlayer.play()
+
+
+func _on_intro_stage_focus_entered() -> void:
+	$Cursor.position = Vector2(200, 173)
+	$EffectAudioPlayer.play()
+
+
+func _on_svarog_focus_entered() -> void:
+	$Cursor.position = Vector2(272, 173)
+	$EffectAudioPlayer.play()
+
+
+func _on_belobog_focus_entered() -> void:
+	$Cursor.position = Vector2(336, 173)
+	$EffectAudioPlayer.play()
