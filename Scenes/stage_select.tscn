@@ -66,95 +66,123 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0862745, 0.145098, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 0
+offset_right = 399.0
+offset_bottom = 223.0
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
+[node name="Perun" type="TextureButton" parent="."]
 layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/AspectRatioContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 65
-columns = 5
-
-[node name="Perun" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
-layout_mode = 2
+offset_left = 36.0
+offset_top = 18.0
+offset_right = 92.0
+offset_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("2_pt0y4")
 
-[node name="Volos" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Volos" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 100.0
+offset_top = 18.0
+offset_right = 156.0
+offset_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("3_kc3m6")
 
-[node name="PlayerOptions" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="PlayerOptions" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 172.0
+offset_top = 18.0
+offset_right = 228.0
+offset_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("4_m2ka4")
 
-[node name="Yaryla" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Yaryla" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 244.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("5_c6ni1")
 
-[node name="Marena" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Marena" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 308.0
+offset_top = 18.0
+offset_right = 364.0
+offset_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("6_bpd5c")
 
-[node name="Mokosh" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Mokosh" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 36.0
+offset_top = 146.0
+offset_right = 92.0
+offset_bottom = 202.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("7_jdsie")
 
-[node name="Svetovit" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Svetovit" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 156.0
+offset_bottom = 202.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("8_yoxr7")
 
-[node name="IntroStage" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="IntroStage" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 172.0
+offset_top = 146.0
+offset_right = 228.0
+offset_bottom = 202.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("9_62bvl")
 
-[node name="Svarog" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Svarog" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 244.0
+offset_top = 146.0
+offset_right = 300.0
+offset_bottom = 202.0
 texture_normal = ExtResource("10_83xpm")
 
-[node name="Belobog" type="TextureButton" parent="MarginContainer/AspectRatioContainer/GridContainer"]
+[node name="Belobog" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 308.0
+offset_top = 146.0
+offset_right = 364.0
+offset_bottom = 202.0
 texture_normal = ExtResource("11_77e20")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+offset_left = 22.0
+offset_top = 13.5
+offset_right = 378.0
+offset_bottom = 210.5
 texture = ExtResource("12_4cdq1")
 
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
-position = Vector2(336, 173)
+position = Vector2(336, 174)
 sprite_frames = SubResource("SpriteFrames_oslhr")
 autoplay = "default"
 frame = 2
@@ -163,15 +191,15 @@ frame_progress = 0.262852
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("14_e8j44")]
 stream = ExtResource("15_yr606")
 
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Perun" to="." method="_on_perun_focus_entered"]
-[connection signal="pressed" from="MarginContainer/AspectRatioContainer/GridContainer/Perun" to="." method="_on_stage1_pressed"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Volos" to="." method="_on_volos_focus_entered"]
-[connection signal="pressed" from="MarginContainer/AspectRatioContainer/GridContainer/Volos" to="." method="_on_stage_2_pressed"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/PlayerOptions" to="." method="_on_player_options_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Yaryla" to="." method="_on_yaryla_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Marena" to="." method="_on_marena_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Mokosh" to="." method="_on_mokosh_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Svetovit" to="." method="_on_svetovit_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/IntroStage" to="." method="_on_intro_stage_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Svarog" to="." method="_on_svarog_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/AspectRatioContainer/GridContainer/Belobog" to="." method="_on_belobog_focus_entered"]
+[connection signal="focus_entered" from="Perun" to="." method="_on_perun_focus_entered"]
+[connection signal="pressed" from="Perun" to="." method="_on_perun_pressed"]
+[connection signal="focus_entered" from="Volos" to="." method="_on_volos_focus_entered"]
+[connection signal="pressed" from="Volos" to="." method="_on_volos_pressed"]
+[connection signal="focus_entered" from="PlayerOptions" to="." method="_on_player_options_focus_entered"]
+[connection signal="focus_entered" from="Yaryla" to="." method="_on_yaryla_focus_entered"]
+[connection signal="focus_entered" from="Marena" to="." method="_on_marena_focus_entered"]
+[connection signal="focus_entered" from="Mokosh" to="." method="_on_mokosh_focus_entered"]
+[connection signal="focus_entered" from="Svetovit" to="." method="_on_svetovit_focus_entered"]
+[connection signal="focus_entered" from="IntroStage" to="." method="_on_intro_stage_focus_entered"]
+[connection signal="focus_entered" from="Svarog" to="." method="_on_svarog_focus_entered"]
+[connection signal="focus_entered" from="Belobog" to="." method="_on_belobog_focus_entered"]

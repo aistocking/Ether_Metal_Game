@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$MarginContainer/AspectRatioContainer/GridContainer/Perun.grab_focus()
+	$Perun.grab_focus()
 	Global.change_music("res://Sound/Music/05_Stage Select.mp3")
 
 
@@ -48,25 +48,25 @@ func _on_marena_focus_entered() -> void:
 
 
 func _on_mokosh_focus_entered() -> void:
-	$Cursor.position = Vector2(64, 173)
+	$Cursor.position = Vector2(64, 174)
 	$EffectAudioPlayer.play()
 
 
 func _on_svetovit_focus_entered() -> void:
-	$Cursor.position = Vector2(128, 173)
+	$Cursor.position = Vector2(128, 174)
 	$EffectAudioPlayer.play()
 
 
 func _on_intro_stage_focus_entered() -> void:
-	$Cursor.position = Vector2(200, 173)
+	$Cursor.position = Vector2(200, 174)
 	$EffectAudioPlayer.play()
 
 
 func _on_svarog_focus_entered() -> void:
-	$Cursor.position = Vector2(272, 173)
+	$Cursor.position = Vector2(272, 174)
 	$EffectAudioPlayer.play()
 
 
 func _on_belobog_focus_entered() -> void:
-	$Cursor.position = Vector2(336, 173)
+	$Cursor.position = Vector2(336, 174)
 	$EffectAudioPlayer.play()
