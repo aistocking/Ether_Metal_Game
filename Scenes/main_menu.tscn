@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [23, 24, 1]
+"values": [25, 24, 1]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -331,7 +331,7 @@ autoplay = "FadeIn"
 position = Vector2(139, 193)
 texture = ExtResource("9_1ggfw")
 hframes = 4
-vframes = 9
+vframes = 10
 frame = 1
 
 [node name="ChargeShot" type="AnimatedSprite2D" parent="PlayerSprite"]

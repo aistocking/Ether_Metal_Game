@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=40 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="4_msi58"]
@@ -220,6 +220,22 @@ tracks/0/keys = {
 "values": [5]
 }
 
+[sub_resource type="Animation" id="Animation_673aj"]
+resource_name = "Parry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [35, 36]
+}
+
 [sub_resource type="Animation" id="Animation_ojqax"]
 resource_name = "Plasma_Shot"
 length = 0.4
@@ -349,6 +365,7 @@ _data = {
 "Idle": SubResource("Animation_jlkc0"),
 "Jump": SubResource("Animation_pyjbh"),
 "Land": SubResource("Animation_xpg37"),
+"Parry": SubResource("Animation_673aj"),
 "Plasma_Shot": SubResource("Animation_ojqax"),
 "RESET": SubResource("Animation_ydw3r"),
 "Run_Loop": SubResource("Animation_x3up6"),
@@ -417,7 +434,7 @@ script = ExtResource("4_msi58")
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("5_sdmnc")
 hframes = 4
-vframes = 9
+vframes = 10
 frame = 1
 
 [node name="DebugStateMachineLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]

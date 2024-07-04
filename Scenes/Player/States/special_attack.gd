@@ -20,26 +20,7 @@ func enter(_msg := {}) -> void:
 	tweenY = get_tree().create_tween()
 	if _msg.has("IsOffensive"):
 		IsOffensive = _msg.IsOffensive
-	if Input.is_action_pressed("Left Button") && IsOffensive:
-		player.velocity.x = player.facing_direction * -200
-		player.player_animations.play("Plasma_Shot")
-		player.plasma_shot()
-		CurrentSpecial = SPECIALS.PLASMA
-	if Input.is_action_pressed("Right Button") && IsOffensive:
-		player.player_animations.play("Plasma_Shot")
-		player.barrage()
-		CurrentSpecial = SPECIALS.BARRAGE
-	if Input.is_action_pressed("Bottom Button") && !IsOffensive:
-		player.velocity.x = player.facing_direction * -200
-		player.velocity.y = -150
-		player.player_animations.play("Disengage")
-		player.disengage()
-		CurrentSpecial = SPECIALS.DISENGAGE
-	if Input.is_action_pressed("Top Button") && IsOffensive:
-		tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
-		tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
-		player.player_animations.play("Upper")
-		CurrentSpecial = SPECIALS.UPPER
+	designate_attack()
 	if CurrentSpecial == SPECIALS.NONE:
 		state_machine.transition_to("Idle")
 	
@@ -66,6 +47,35 @@ func physics_update(delta: float) -> void:
 			player.move_and_slide()
 	
 
+func designate_attack() -> void:
+	if IsOffensive == true:
+		if Input.is_action_pressed("Left Button"):
+			player.velocity.x = player.facing_direction * -200
+			player.player_animations.play("Plasma_Shot")
+			player.plasma_shot()
+			CurrentSpecial = SPECIALS.PLASMA
+		if Input.is_action_pressed("Right Button"):
+			player.player_animations.play("Plasma_Shot")
+			player.barrage()
+			CurrentSpecial = SPECIALS.BARRAGE
+		if Input.is_action_pressed("Top Button"):
+			tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
+			tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
+			player.player_animations.play("Upper")
+			player.upper()
+			CurrentSpecial = SPECIALS.UPPER
+	else:
+		if Input.is_action_pressed("Bottom Button"):
+			player.velocity.x = player.facing_direction * -200
+			player.velocity.y = -150
+			player.player_animations.play("Disengage")
+			player.disengage()
+			CurrentSpecial = SPECIALS.DISENGAGE
+		if Input.is_action_pressed("Left Button"):
+			player.player_animations.play("Parry")
+			player.parry()
+			CurrentSpecial = SPECIALS.PARRY
+
 
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
@@ -75,3 +85,5 @@ func _on_animation_player_animation_finished(anim_name):
 			state_machine.transition_to("Falling")
 		"Upper":
 			state_machine.transition_to("Falling")
+		"Parry":
+			state_machine.transition_to("Idle")

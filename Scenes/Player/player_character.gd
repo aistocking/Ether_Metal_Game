@@ -48,6 +48,7 @@ var _dust_counter: int = 0
 const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
+const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
 
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
@@ -158,6 +159,12 @@ func barrage() -> void:
 
 func dive() -> void:
 	pass
+
+func parry() -> void:
+	_remove_charge_level()
+	var instance: ParryBurst = _PARRY_SCENE.instantiate()
+	add_child(instance)
+	instance.position = _buster_position.position
 
 
 func _handle_charging() -> void:
