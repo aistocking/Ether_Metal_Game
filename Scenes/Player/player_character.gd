@@ -49,6 +49,7 @@ const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn"
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
 const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
+const _FLASH_SCENE: PackedScene = preload("res://Scenes/Effects/flash_burst.tscn")
 
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
@@ -108,6 +109,8 @@ func _basic_shot() -> void:
 	shot_effect.position = _buster_position.position
 
 
+
+#Offensive specials
 func plasma_shot() -> void:
 	_remove_charge_level()
 	effect_audio_player.set_stream(CHARGE_SHOT_AUDIO)
@@ -119,7 +122,41 @@ func plasma_shot() -> void:
 	get_parent().add_child(instance)
 	instance.position = _buster_position.global_position
 
+func upper(time: float) -> void:
+	_remove_charge_level()
+	var instance: EtherFire = _UPPER_SCENE.instantiate()
+	instance.time = time
+	add_child(instance)
+	instance.position = _buster_position.position
+	instance.position.x = facing_direction * -11
+	instance.position.y -= 21
 
+func barrage() -> void:
+	_remove_charge_level()
+	var x: Array[int] = [2, 1, -2, -1]
+	for i in 4:
+		var chaser: Chasers = _BARRAGE_SCENE.instantiate()
+		chaser.getDirection(Vector2(facing_direction * x[i], -1))
+		get_parent().add_child(chaser)
+		chaser.position = _buster_position.global_position - Vector2(0, 10)
+
+func dive() -> void:
+	_remove_charge_level()
+
+func punch() -> void:
+	_remove_charge_level()
+
+func blade() -> void:
+	_remove_charge_level()
+
+func breaker() -> void:
+	_remove_charge_level()
+
+func whirlwind() -> void:
+	_remove_charge_level()
+
+
+#Defensive specials
 func disengage() -> void:
 	_remove_charge_level()
 	var y: Array[int] = [15, 0, 15]
@@ -136,35 +173,31 @@ func disengage() -> void:
 		bomb.velocity.x += facing_direction * vx[i]
 		bomb.velocity.y += vy[i]
 
-
-func upper(time: float) -> void:
-	_remove_charge_level()
-	var instance: EtherFire = _UPPER_SCENE.instantiate()
-	instance.time = time
-	add_child(instance)
-	instance.position = _buster_position.position
-	instance.position.x = facing_direction * -11
-	instance.position.y -= 21
-
-
-func barrage() -> void:
-	_remove_charge_level()
-	var x: Array[int] = [2, 1, -2, -1]
-	for i in 4:
-		var chaser: Chasers = _BARRAGE_SCENE.instantiate()
-		chaser.getDirection(Vector2(facing_direction * x[i], -1))
-		get_parent().add_child(chaser)
-		chaser.position = _buster_position.global_position - Vector2(0, 10)
-
-
-func dive() -> void:
-	pass
-
 func parry() -> void:
 	_remove_charge_level()
 	var instance: ParryBurst = _PARRY_SCENE.instantiate()
 	add_child(instance)
 	instance.position = _buster_position.position
+
+func flash() -> void:
+	_remove_charge_level()
+	var instance: FlashBurst = _FLASH_SCENE.instantiate()
+	add_child(instance)
+
+func blink() -> void:
+	_remove_charge_level()
+
+func orbital_bit() -> void:
+	_remove_charge_level()
+
+func chain_grab() -> void:
+	_remove_charge_level()
+
+func mine_thrower() -> void:
+	_remove_charge_level()
+
+func recoil() -> void:
+	_remove_charge_level()
 
 
 func _handle_charging() -> void:

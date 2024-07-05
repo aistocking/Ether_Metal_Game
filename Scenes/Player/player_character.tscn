@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=41 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="4_msi58"]
@@ -350,6 +350,22 @@ tracks/0/keys = {
 "values": [33]
 }
 
+[sub_resource type="Animation" id="Animation_mjnkt"]
+resource_name = "Flash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
 _data = {
 "Damaged_Loop": SubResource("Animation_2ci3x"),
@@ -362,6 +378,7 @@ _data = {
 "Dive": SubResource("Animation_7rt8t"),
 "Entrance": SubResource("Animation_yri23"),
 "Falling": SubResource("Animation_1xpcr"),
+"Flash": SubResource("Animation_mjnkt"),
 "Idle": SubResource("Animation_jlkc0"),
 "Jump": SubResource("Animation_pyjbh"),
 "Land": SubResource("Animation_xpg37"),

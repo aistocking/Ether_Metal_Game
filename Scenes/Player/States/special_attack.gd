@@ -75,6 +75,10 @@ func designate_attack() -> void:
 			player.player_animations.play("Parry")
 			player.parry()
 			CurrentSpecial = SPECIALS.PARRY
+		if Input.is_action_pressed("Top Button"):
+			player.player_animations.play("Flash")
+			player.flash()
+			CurrentSpecial = SPECIALS.FLASH
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -86,4 +90,6 @@ func _on_animation_player_animation_finished(anim_name):
 		"Upper":
 			state_machine.transition_to("Falling")
 		"Parry":
+			state_machine.transition_to("Idle")
+		"Flash":
 			state_machine.transition_to("Idle")
