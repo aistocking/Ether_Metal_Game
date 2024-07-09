@@ -79,6 +79,8 @@ func designate_attack() -> void:
 			player.player_animations.play("Flash")
 			player.flash()
 			CurrentSpecial = SPECIALS.FLASH
+		if Input.is_action_pressed("Right Button"):
+			player.orbital_bit()
 
 
 func _on_animation_player_animation_finished(anim_name):

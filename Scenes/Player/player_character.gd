@@ -50,6 +50,7 @@ const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn"
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
 const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
 const _FLASH_SCENE: PackedScene = preload("res://Scenes/Effects/flash_burst.tscn")
+const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Effects/orbital_bit.tscn")
 
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
@@ -189,6 +190,8 @@ func blink() -> void:
 
 func orbital_bit() -> void:
 	_remove_charge_level()
+	var instance: OrbitalBit = _ORBITAL_BIT_SCENE.instantiate()
+	add_child(instance)
 
 func chain_grab() -> void:
 	_remove_charge_level()
