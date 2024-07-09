@@ -21,18 +21,21 @@ func lily_shot_animation() -> void:
 	$AnimationPlayer.play("FadeOut")
 
 func _on_start_pressed() -> void:
+	$CenterContainer/Start.release_focus()
 	lily_shot_animation()
 	await fade_finished
 	get_tree().change_scene_to_file("res://Scenes/stage_select.tscn")
 
 
 func _on_quit_pressed() -> void:
+	$CenterContainer/Quit.release_focus()
 	lily_shot_animation()
 	await fade_finished
 	get_tree().quit()
 
 
 func _on_options_pressed() -> void:
+	$CenterContainer/Options.release_focus()
 	lily_shot_animation()
 	await fade_finished
 	get_tree().change_scene_to_file("res://Scenes/options_ui.tscn")
