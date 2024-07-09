@@ -2,7 +2,7 @@ class_name Shot
 extends Area2D
 
 var Direction
-var Speed = 10
+var Speed = 7
 var Damage = 1
 
 @onready var SFXPlayer = $SFXPlayer

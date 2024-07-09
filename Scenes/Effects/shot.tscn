@@ -1,53 +1,67 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqlrhrg6x76ql"]
+[gd_scene load_steps=13 format=3 uid="uid://cqlrhrg6x76ql"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/shot.gd" id="1_5l87p"]
-[ext_resource type="Texture2D" uid="uid://cch8rb5emflat" path="res://Art/Effects/1st_Level_Buster_Shot.png" id="2_t3jou"]
+[ext_resource type="Texture2D" uid="uid://c4njjlnmm8y1q" path="res://Art/Effects/BasicShot.png" id="2_k0reg"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_ehu3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8no8"]
 size = Vector2(14, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pogsp"]
-atlas = ExtResource("2_t3jou")
-region = Rect2(100, 0, 20, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_akekx"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(0, 0, 10, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_770c8"]
-atlas = ExtResource("2_t3jou")
-region = Rect2(120, 0, 20, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb67w"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(10, 0, 10, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8epof"]
-atlas = ExtResource("2_t3jou")
-region = Rect2(140, 0, 20, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8luy0"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(20, 0, 10, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gwusx"]
-atlas = ExtResource("2_t3jou")
-region = Rect2(160, 0, 20, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltcoq"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(30, 0, 10, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oj185"]
-atlas = ExtResource("2_t3jou")
-region = Rect2(180, 0, 20, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyerx"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(40, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyrpe"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(50, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ld8e"]
+atlas = ExtResource("2_k0reg")
+region = Rect2(60, 0, 10, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqu2g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pogsp")
+"texture": SubResource("AtlasTexture_akekx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_770c8")
+"texture": SubResource("AtlasTexture_nb67w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8epof")
+"texture": SubResource("AtlasTexture_8luy0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gwusx")
+"texture": SubResource("AtlasTexture_ltcoq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oj185")
+"texture": SubResource("AtlasTexture_uyerx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyrpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ld8e")
 }],
 "loop": true,
 "name": &"basic_shot",
-"speed": 12.0
+"speed": 16.0
 }]
 
 [node name="Shot" type="Area2D" groups=["PlayerProjectiles"]]
@@ -63,6 +77,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vqu2g")
 animation = &"basic_shot"
 autoplay = "basic_shot"
+frame_progress = 0.570764
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.6
