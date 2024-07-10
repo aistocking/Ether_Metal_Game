@@ -3,55 +3,53 @@
 [ext_resource type="Texture2D" uid="uid://b5mq0kqibul75" path="res://Art/Effects/BasicShotBackBlast.png" id="1_x4ly6"]
 [ext_resource type="Script" path="res://Scenes/Effects/shot_effect.gd" id="2_3j382"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g63bq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wt0e"]
 atlas = ExtResource("1_x4ly6")
-region = Rect2(0, 0, 7, 9)
+region = Rect2(0, 0, 10, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gbtbk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_824sv"]
 atlas = ExtResource("1_x4ly6")
-region = Rect2(7, 0, 7, 9)
+region = Rect2(10, 0, 10, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1v2m3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5uw7"]
 atlas = ExtResource("1_x4ly6")
-region = Rect2(14, 0, 7, 9)
+region = Rect2(20, 0, 10, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vy16o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bjud"]
 atlas = ExtResource("1_x4ly6")
-region = Rect2(21, 0, 7, 9)
+region = Rect2(30, 0, 10, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wad45"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sswfn"]
 atlas = ExtResource("1_x4ly6")
-region = Rect2(28, 0, 7, 9)
+region = Rect2(40, 0, 10, 11)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nfir3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g63bq")
+"texture": SubResource("AtlasTexture_8wt0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gbtbk")
+"texture": SubResource("AtlasTexture_824sv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1v2m3")
+"texture": SubResource("AtlasTexture_j5uw7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vy16o")
+"texture": SubResource("AtlasTexture_6bjud")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wad45")
+"texture": SubResource("AtlasTexture_sswfn")
 }],
 "loop": false,
 "name": &"default",
-"speed": 16.0
+"speed": 14.0
 }]
 
 [node name="ShotEffect" type="AnimatedSprite2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nfir3")
 autoplay = "default"
-frame = 4
-frame_progress = 1.0
 script = ExtResource("2_3j382")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
