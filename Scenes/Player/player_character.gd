@@ -45,16 +45,20 @@ const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn
 @onready var _dust_position: Marker2D = $DustPosition
 var _dust_counter: int = 0
 
-const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
+#Offensive special attacks
+const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
+const _PUNCH_SCENE: PackedScene = preload("res://Scenes/Effects/megaton_punch.tscn")
+
+#Defensive special attacks
+const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
 const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
 const _FLASH_SCENE: PackedScene = preload("res://Scenes/Effects/flash_burst.tscn")
 const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Effects/orbital_bit.tscn")
 
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
-const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
 
 @onready var _buster_position: Marker2D = $BusterPosition
 @onready var _shot_timer: Timer = $ShotTimer
@@ -83,6 +87,14 @@ func _input(event: InputEvent) -> void:
 				pass
 			else:
 				_basic_shot()
+	if event.is_action_pressed("Offensive Trigger"):
+		$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
+		$PlayerSprite.material.set("shader_parameter/width", 1)
+	if event.is_action_pressed("Defensive Trigger"):
+		$PlayerSprite.material.set("shader_parameter/color", Vector4(0, 0, 255, 255))
+		$PlayerSprite.material.set("shader_parameter/width", 1)
+	if event.is_action_released("Defensive Trigger") or event.is_action_released("Offensive Trigger"):
+		$PlayerSprite.material.set("shader_parameter/width", 0)
 
 
 func _physics_process(_delta: float) -> void:
@@ -146,6 +158,9 @@ func dive() -> void:
 
 func punch() -> void:
 	_remove_charge_level()
+	var instance: MegatonPunch = _PUNCH_SCENE.instantiate()
+	add_child(instance)
+	instance.position = _buster_position.position
 
 func blade() -> void:
 	_remove_charge_level()
