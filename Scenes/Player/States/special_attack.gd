@@ -3,11 +3,13 @@ extends State
 
 var player: CharacterBody2D
 
-enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
+enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, PUNCH, BLINK, FLASH, PARRY, DISENGAGE, NONE}
 
 var CurrentSpecial: SPECIALS
 
 var IsOffensive: bool
+
+var direction: int
 
 var tweenX
 var tweenY
@@ -18,6 +20,10 @@ func enter(_msg := {}) -> void:
 	CurrentSpecial = SPECIALS.NONE
 	tweenX = get_tree().create_tween()
 	tweenY = get_tree().create_tween()
+	if _msg.has("direction"):
+		direction = _msg.direction
+	else:
+		direction = player.facing_direction
 	if _msg.has("IsOffensive"):
 		IsOffensive = _msg.IsOffensive
 	designate_attack()
@@ -45,10 +51,17 @@ func physics_update(delta: float) -> void:
 				var tempVec = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 				player.velocity.y = tempVec.y
 			player.move_and_slide()
+		SPECIALS.PUNCH:
+			player.velocity.x = player.speed * direction
+			player.move_and_slide()
 	
 
 func designate_attack() -> void:
 	if IsOffensive == true:
+		if Input.is_action_pressed("Bottom Button"):
+			player.player_animations.play("Punch")
+			player.punch()
+			CurrentSpecial = SPECIALS.PUNCH
 		if Input.is_action_pressed("Left Button"):
 			player.velocity.x = player.facing_direction * -200
 			player.player_animations.play("Plasma_Shot")
@@ -62,7 +75,7 @@ func designate_attack() -> void:
 			tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
 			tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
 			player.player_animations.play("Upper")
-			player.upper()
+			player.upper(1)
 			CurrentSpecial = SPECIALS.UPPER
 	else:
 		if Input.is_action_pressed("Bottom Button"):
@@ -87,9 +100,11 @@ func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
 		"Plasma_Shot":
 			state_machine.transition_to("Idle")
-		"Disengage":
-			state_machine.transition_to("Falling")
 		"Upper":
+			state_machine.transition_to("Falling")
+		"Punch":
+			state_machine.transition_to("Idle")
+		"Disengage":
 			state_machine.transition_to("Falling")
 		"Parry":
 			state_machine.transition_to("Idle")

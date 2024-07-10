@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://brqduigq0ldw5"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/megaton_punch.gd" id="1_hp7y3"]
+[ext_resource type="Texture2D" uid="uid://w83h3dt3jw1" path="res://Art/Effects/MegatonPunch.png" id="1_rvxum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5svo"]
+size = Vector2(26, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33yo0"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(0, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg7gc"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(26, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ew33"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(52, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sbkd"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(78, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcskj"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(104, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6p6d"]
+atlas = ExtResource("1_rvxum")
+region = Rect2(130, 0, 26, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbgno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33yo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg7gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ew33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sbkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ew33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sbkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ew33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sbkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcskj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6p6d")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="MegatonPunch" type="Area2D"]
+script = ExtResource("1_hp7y3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_y5svo")
+
+[node name="PunchSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_lbgno")
+autoplay = "default"
+
+[connection signal="animation_finished" from="PunchSprite" to="." method="_on_punch_sprite_animation_finished"]
