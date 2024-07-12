@@ -3,7 +3,7 @@ extends State
 
 var player: CharacterBody2D
 
-enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, PUNCH, BLINK, FLASH, PARRY, DISENGAGE, NONE}
+enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, PUNCH, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
 
 var CurrentSpecial: SPECIALS
 
@@ -59,9 +59,12 @@ func physics_update(delta: float) -> void:
 func designate_attack() -> void:
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):
-			player.player_animations.play("Punch")
-			player.punch()
-			CurrentSpecial = SPECIALS.PUNCH
+			#player.player_animations.play("Punch")
+			#player.punch()
+			#CurrentSpecial = SPECIALS.PUNCH
+			player.player_animations.play("Parry")
+			player.blade()
+			CurrentSpecial = SPECIALS.BLADE
 		if Input.is_action_pressed("Left Button"):
 			player.velocity.x = player.facing_direction * -200
 			player.player_animations.play("Plasma_Shot")
