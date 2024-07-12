@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=44 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
+[ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
 [ext_resource type="Material" uid="uid://ddxdry6i1fggp" path="res://Scenes/Player/outline_shader.tres" id="4_fqjb8"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="4_msi58"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="5_sdmnc"]
@@ -270,6 +271,23 @@ tracks/0/keys = {
 "values": [23, 24]
 }
 
+[sub_resource type="Animation" id="Animation_836ij"]
+resource_name = "Punch"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 26, 27, 28, 29, 30, 31, 27, 26]
+}
+
 [sub_resource type="Animation" id="Animation_ydw3r"]
 length = 0.001
 tracks/0/type = "value"
@@ -367,23 +385,6 @@ tracks/0/keys = {
 "values": [33]
 }
 
-[sub_resource type="Animation" id="Animation_836ij"]
-resource_name = "Punch"
-length = 0.7
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [5, 26, 27, 28, 29, 30, 31, 27, 26]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
 _data = {
 "Damaged_Loop": SubResource("Animation_2ci3x"),
@@ -455,6 +456,8 @@ target_position = Vector2(-17, 0)
 collision_mask = 16
 
 [node name="Death Particles" parent="." instance=ExtResource("10_iq7bk")]
+
+[node name="Charge Particles" parent="." instance=ExtResource("3_yaeha")]
 
 [node name="BusterPosition" type="Marker2D" parent="."]
 position = Vector2(21, -2)

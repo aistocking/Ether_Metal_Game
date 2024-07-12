@@ -5,7 +5,7 @@ extends CharacterBody2D
 const RIGHT: int = 1
 const LEFT: int = -1
 
-var speed := 300.0
+var speed := 200.0
 const JUMP_VELOCITY := -400.0
 var player_input := false
 var spent_dash := false
@@ -50,6 +50,7 @@ const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_sho
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
 const _PUNCH_SCENE: PackedScene = preload("res://Scenes/Effects/megaton_punch.tscn")
+const _BLADE_SCENE: PackedScene = preload("res://Scenes/Effects/blade_beam.tscn")
 
 #Defensive special attacks
 const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
@@ -90,11 +91,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Offensive Trigger"):
 		$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
 		$PlayerSprite.material.set("shader_parameter/width", 1)
+		$"Charge Particles".modulate = Color("#ff0000")
+		$"Charge Particles".emitting = true
 	if event.is_action_pressed("Defensive Trigger"):
 		$PlayerSprite.material.set("shader_parameter/color", Vector4(0, 0, 255, 255))
 		$PlayerSprite.material.set("shader_parameter/width", 1)
+		$"Charge Particles".modulate = Color("#0000ff")
+		$"Charge Particles".emitting = true
 	if event.is_action_released("Defensive Trigger") or event.is_action_released("Offensive Trigger"):
 		$PlayerSprite.material.set("shader_parameter/width", 0)
+		$"Charge Particles".emitting = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -164,6 +170,10 @@ func punch() -> void:
 
 func blade() -> void:
 	_remove_charge_level()
+	var instance: BladeBeam = _BLADE_SCENE.instantiate()
+	get_parent().add_child(instance)
+	instance.global_position = _buster_position.global_position
+	instance.set_direction(facing_direction)
 
 func breaker() -> void:
 	_remove_charge_level()
