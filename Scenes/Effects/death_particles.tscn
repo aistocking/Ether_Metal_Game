@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1pstklyl2kp1"]
+[gd_scene load_steps=4 format=3 uid="uid://c1pstklyl2kp1"]
 
-[ext_resource type="Texture2D" uid="uid://c5t5qmfo2p70u" path="res://Art/Effects/Death_Blobs_0.png" id="1_hk51m"]
-[ext_resource type="Texture2D" uid="uid://4i6egisaddhs" path="res://Art/Effects/Death_Blobs_1.png" id="2_p8qf4"]
-[ext_resource type="Texture2D" uid="uid://cfk4ovxvv5rjr" path="res://Art/Effects/Death_Blobs_2.png" id="3_tly7h"]
-[ext_resource type="Texture2D" uid="uid://7e434bge21nw" path="res://Art/Effects/Death_Blobs_3.png" id="4_o65iy"]
-[ext_resource type="Texture2D" uid="uid://bymk0v7alyduf" path="res://Art/Effects/Death_Blobs_4.png" id="5_rmsj6"]
+[ext_resource type="Texture2D" uid="uid://eawnhbn7ah6b" path="res://Art/Effects/Death_Blobs.png" id="1_8uyqh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_srtn3"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1xwom"]
 particle_flag_disable_z = true
@@ -19,25 +21,14 @@ radial_velocity_max = 269.67
 gravity = Vector3(0, 0, 0)
 radial_accel_min = 75.28
 radial_accel_max = 75.28
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_1x25w"]
-frames = 5
-speed_scale = 1.4
-frame_0/texture = ExtResource("1_hk51m")
-frame_0/duration = 0.1
-frame_1/texture = ExtResource("2_p8qf4")
-frame_1/duration = 0.1
-frame_2/texture = ExtResource("3_tly7h")
-frame_2/duration = 0.1
-frame_3/texture = ExtResource("4_o65iy")
-frame_3/duration = 0.1
-frame_4/texture = ExtResource("5_rmsj6")
-frame_4/duration = 0.1
+anim_speed_min = 3.0
+anim_speed_max = 4.0
 
 [node name="Death Particles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_srtn3")
 emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_1xwom")
-texture = SubResource("AnimatedTexture_1x25w")
+texture = ExtResource("1_8uyqh")
 one_shot = true
 fixed_fps = 60
