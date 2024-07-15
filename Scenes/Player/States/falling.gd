@@ -4,14 +4,15 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var prev_speed
+
 func enter(_msg := {}) -> void:
 	player = owner
+	prev_speed = player.speed
 	player.velocity = Vector2(0, 0)
 	player.player_animations.play("Falling")
 	if player.is_dashing:
-		player.speed = 450
-	else:
-		player.speed = 300
+		player.speed = player.speed * 2
 
 func handle_input(event):
 	if(player.player_input == false):
@@ -39,3 +40,5 @@ func physics_update(delta: float) -> void:
 	player.handle_horizontal()
 	player.move_and_slide()
 	
+func exit() -> void:
+	player.speed = prev_speed

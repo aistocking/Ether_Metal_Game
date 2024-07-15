@@ -4,16 +4,19 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var direction = 0
+var direction: int = 0
+
+var prev_speed: int
 
 var IsAirdash : bool
 
-@onready var timer = $Timer
+@onready var timer: Timer = $Timer
 
 func enter(msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
-	player.speed = 600
+	prev_speed = player.speed
+	player.speed = player.speed * 2
 	player.player_animations.play("Dash_Start")
 	player.player_animations.queue("Dash_Loop")
 	player.set_dash_properties()
@@ -54,7 +57,7 @@ func handle_input(event):
 
 
 func exit() -> void:
-	player.speed = 300
+	player.speed = prev_speed
 	timer.stop()
 	
 func physics_update(_delta: float) -> void:
