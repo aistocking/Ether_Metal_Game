@@ -511,6 +511,8 @@ one_shot = true
 [node name="Special Attack" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("15_7l818")
 
+[node name="CancelTimer" type="Timer" parent="PlayerStateMachine/Special Attack"]
+
 [node name="Sliding" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("16_01rhr")
 
