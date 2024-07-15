@@ -37,6 +37,11 @@ size_flags_vertical = 3
 text = "Resume
 "
 
+[node name="Change Specials" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Change Specials"
+
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -56,6 +61,95 @@ text = "Quit to Desktop"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="Specials" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -79.0
+offset_right = 160.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="DefenseSpecials" type="GridContainer" parent="Specials"]
+custom_minimum_size = Vector2(36.305, 0)
+layout_direction = 2
+layout_mode = 2
+columns = 3
+
+[node name="Control" type="Control" parent="Specials/DefenseSpecials"]
+layout_mode = 2
+
+[node name="Top" type="Button" parent="Specials/DefenseSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Specials/DefenseSpecials"]
+layout_mode = 2
+
+[node name="Left" type="Button" parent="Specials/DefenseSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="Specials/DefenseSpecials"]
+layout_mode = 2
+
+[node name="Right" type="Button" parent="Specials/DefenseSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control4" type="Control" parent="Specials/DefenseSpecials"]
+layout_mode = 2
+
+[node name="Bottom" type="Button" parent="Specials/DefenseSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Specials"]
+layout_mode = 2
+text = "back"
+
+[node name="OffensiveSpecials" type="GridContainer" parent="Specials"]
+layout_mode = 2
+columns = 3
+
+[node name="Control5" type="Control" parent="Specials/OffensiveSpecials"]
+layout_mode = 2
+
+[node name="Top" type="Button" parent="Specials/OffensiveSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control6" type="Control" parent="Specials/OffensiveSpecials"]
+layout_mode = 2
+
+[node name="Left" type="Button" parent="Specials/OffensiveSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control7" type="Control" parent="Specials/OffensiveSpecials"]
+layout_mode = 2
+
+[node name="Right" type="Button" parent="Specials/OffensiveSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Control8" type="Control" parent="Specials/OffensiveSpecials"]
+layout_mode = 2
+
+[node name="Bottom" type="Button" parent="Specials/OffensiveSpecials"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Change Specials" to="." method="_on_change_specials_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitStage" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/QuitToDesktop" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Specials/BackButton" to="." method="_on_back_button_pressed"]
