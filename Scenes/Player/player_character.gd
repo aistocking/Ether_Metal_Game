@@ -4,8 +4,9 @@ extends CharacterBody2D
 
 const RIGHT: int = 1
 const LEFT: int = -1
+const DEFAULT_SPEED: float = 150.0
 
-var speed := 200.0
+var speed := DEFAULT_SPEED
 const JUMP_VELOCITY := -400.0
 var player_input := false
 var spent_dash := false

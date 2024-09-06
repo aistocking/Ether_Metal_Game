@@ -8,7 +8,7 @@ func enter(_msg := {}) -> void:
 	player.player_animations.play("Run_Start")
 	player.player_animations.queue("Run_Loop")
 	player.reset_dash_properties()
-	player.speed = 300
+	player.speed = player.DEFAULT_SPEED
 	player.coyote_timer.stop()
 
 func handle_input(event) -> void:
