@@ -16,4 +16,4 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var DialogueBoxInst = DialogueBoxResource.instantiate()
 	add_child(DialogueBoxInst)
-	$Area2D.queue_free()
+	$CutsceneTrigger.queue_free()
