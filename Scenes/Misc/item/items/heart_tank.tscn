@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dyhhn3flnctub"]
+[gd_scene load_steps=22 format=3 uid="uid://dyhhn3flnctub"]
 
+[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_0ky4q"]
 [ext_resource type="Texture2D" uid="uid://ciacl4q7scsiu" path="res://Art/MiscUI/HeartTank.png" id="1_am05w"]
-[ext_resource type="Script" path="res://Scenes/Misc/heart_tank.gd" id="2_uxgbg"]
+[ext_resource type="Script" path="res://Scenes/Misc/item/action/max_health_pickup_action.gd" id="4_6vtri"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkojq"]
 atlas = ExtResource("1_am05w")
@@ -126,18 +127,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mskp"]
 size = Vector2(18, 18)
 
-[node name="HeartTank" type="AnimatedSprite2D"]
+[node name="Item" type="Area2D"]
+script = ExtResource("1_0ky4q")
+
+[node name="HeartTank" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_g8775")
 autoplay = "default"
 frame = 9
 frame_progress = 0.211846
-script = ExtResource("2_uxgbg")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3mskp")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="MaxHealthPickupAction" type="Node" parent="."]
+script = ExtResource("4_6vtri")

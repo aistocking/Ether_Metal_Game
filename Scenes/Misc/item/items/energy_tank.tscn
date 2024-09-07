@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkiyhlrmwu41f"]
+[gd_scene load_steps=18 format=3 uid="uid://dkiyhlrmwu41f"]
 
 [ext_resource type="Texture2D" uid="uid://cejm2j4b326yq" path="res://Art/MiscUI/EnergyTank.png" id="1_e7wn8"]
-[ext_resource type="Script" path="res://Scenes/Misc/energy_tank.gd" id="2_wtn4h"]
+[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_xpwek"]
+[ext_resource type="Script" path="res://Scenes/Misc/item/action/max_energy_pickup_action.gd" id="3_nqd3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv8ce"]
 atlas = ExtResource("1_e7wn8")
@@ -98,17 +99,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mskp"]
 size = Vector2(18, 32)
 
-[node name="EnergyTank" type="AnimatedSprite2D"]
+[node name="Item" type="Area2D"]
+script = ExtResource("1_xpwek")
+
+[node name="EnergyTank" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rn3ee")
 autoplay = "default"
 frame_progress = 0.412441
-script = ExtResource("2_wtn4h")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3mskp")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="MaxEnergyPickupAction" type="Node" parent="."]
+script = ExtResource("3_nqd3o")

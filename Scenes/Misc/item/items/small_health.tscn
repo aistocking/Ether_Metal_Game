@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://brtxa5gm21b0"]
+[gd_scene load_steps=9 format=3 uid="uid://brtxa5gm21b0"]
 
 [ext_resource type="Texture2D" uid="uid://bvsicr4dif2wn" path="res://Art/MiscUI/SmallHealthUp.png" id="1_0ntod"]
-[ext_resource type="Script" path="res://Scenes/Misc/small_health.gd" id="2_hc33a"]
+[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_hbhc2"]
+[ext_resource type="Script" path="res://Scenes/Misc/item/action/health_pickup_action.gd" id="4_lycs8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7c211"]
 atlas = ExtResource("1_0ntod")
@@ -35,17 +36,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mskp"]
 size = Vector2(18, 10)
 
-[node name="SmallHealth" type="AnimatedSprite2D"]
+[node name="Item" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_hbhc2")
+
+[node name="SmallHealth" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3evfw")
 autoplay = "default"
 frame_progress = 0.76868
-script = ExtResource("2_hc33a")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3mskp")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="HealthPickupAction" type="Node" parent="."]
+script = ExtResource("4_lycs8")
+health = null
