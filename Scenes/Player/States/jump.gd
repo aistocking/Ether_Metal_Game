@@ -19,9 +19,9 @@ func enter(_msg := {}) -> void:
 	if Input.is_action_pressed("Dash"):
 		player.set_dash_properties()
 	if player.is_dashing:
-		player.speed = 450
+		player.speed = player.DEFAULT_SPEED * 1.5
 	else:
-		player.speed = 300
+		player.speed = player.DEFAULT_SPEED
 
 func handle_input(event) -> void:
 	if(player.player_input == false):

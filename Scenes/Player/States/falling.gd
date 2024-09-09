@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2(0, 0)
 	player.player_animations.play("Falling")
 	if player.is_dashing:
-		player.speed = player.speed * 2
+		player.speed = player.DEFAULT_SPEED * 2
 
 func handle_input(event):
 	if(player.player_input == false):
@@ -41,4 +41,4 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 	
 func exit() -> void:
-	player.speed = prev_speed
+	player.speed = player.DEFAULT_SPEED
