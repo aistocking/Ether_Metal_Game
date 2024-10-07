@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b0dj0m5hj0hxl"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://b0dj0m5hj0hxl"]
 
 [ext_resource type="Texture2D" uid="uid://bya3rbn1wymhp" path="res://Art/Stages/TileSets/Stage_Foundry_Tiles_00.png" id="1_s0l42"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_866d0"]
+tile_data = PackedInt32Array(0, 196608, 268435456, 65536, 0, 0, 131072, 196608, 805306368, 1, 196608, 536870912, 65537, 0, 1610612737, 131073, 196608, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5ihe"]
 texture = ExtResource("1_s0l42")
@@ -51,3 +54,4 @@ texture = ExtResource("1_s0l42")
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_k5ihe")
+pattern_0 = SubResource("TileMapPattern_866d0")
