@@ -64,7 +64,7 @@ func physics_update(delta: float) -> void:
 				player.velocity.y = tempVec.y
 			player.move_and_slide()
 		SPECIALS.PUNCH:
-			player.velocity.x = player.speed * direction
+			player.velocity.x = player.DASHING_SPEED * direction
 			player.create_dust()
 			player.move_and_slide()
 	

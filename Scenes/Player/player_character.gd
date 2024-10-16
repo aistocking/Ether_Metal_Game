@@ -5,6 +5,7 @@ extends CharacterBody2D
 const RIGHT: int = 1
 const LEFT: int = -1
 const DEFAULT_SPEED: float = 150.0
+const DASHING_SPEED: float = DEFAULT_SPEED * 1.75
 
 var speed := DEFAULT_SPEED
 const JUMP_VELOCITY := -400.0
@@ -25,9 +26,11 @@ var health: int = 16
 @onready var _player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var _hud: Hud = get_tree().get_first_node_in_group("UI Elements")
 
+#For the dashing ghost effect
 const GHOST_FADE_SCENE: PackedScene = preload("res://Scenes/Effects/ghost_fade.tscn")
 var _ghost_counter: int = 0
 
+#Sound FX
 const SHOT_AUDIO: AudioStream = preload("res://Sound/BusterShot.wav")
 const CHARGE_SHOT_AUDIO: AudioStream = preload("res://Sound/BusterChargeShot.wav")
 const JUMP_AUDIO: AudioStream = preload("res://Sound/XJump.wav")
@@ -36,34 +39,39 @@ const DAMAGED_AUDIO: AudioStream = preload("res://Sound/XHit.wav")
 const DEATH_AUDIO: AudioStream = preload("res://Sound/XDeath.wav")
 const PICKUP_TANK_AUDIO: AudioStream = preload("res://Sound/Heart Powerup.wav")
 
+#Subsystems to limit certain mechanics
 @onready var invincibility_timer: Timer = $InvulnTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var right_ray_cast: RayCast2D = $RightRCast
 @onready var left_ray_cast: RayCast2D = $LeftRCast
 @onready var _death_particles: GPUParticles2D = $"Death Particles"
 
+#Dust scenes & systems when dashing, wall clinging, etc
 const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
 @onready var _dust_position: Marker2D = $DustPosition
 var _dust_counter: int = 0
 
-#Offensive special attacks
+#Offensive special attack scenes
 const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
 const _PUNCH_SCENE: PackedScene = preload("res://Scenes/Effects/megaton_punch.tscn")
 const _BLADE_SCENE: PackedScene = preload("res://Scenes/Effects/blade_beam.tscn")
 
-#Defensive special attacks
+#Defensive special attack scenes
 const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
 const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
 const _FLASH_SCENE: PackedScene = preload("res://Scenes/Effects/flash_burst.tscn")
 const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Effects/orbital_bit.tscn")
 
+#Basic shot scenes & systems
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
-
 @onready var _buster_position: Marker2D = $BusterPosition
 @onready var _shot_timer: Timer = $ShotTimer
+
+#Intro scene for teleportation FX
+const _TELEPORT_SCENE: PackedScene = preload("res://Scenes/Effects/intro_teleport.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -73,22 +81,15 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
-	pass
+	var TeleportInstance = _TELEPORT_SCENE.instantiate()
+	get_parent().add_child.call_deferred(TeleportInstance)
+	TeleportInstance.global_position = global_position + Vector2(0,5)
 
 
 func _input(event: InputEvent) -> void:
 	if player_input == false:
 		return
 	
-	#Basic attack
-	if event.is_action_pressed("Shot"):
-		#If more than 3 shots exist or one of the triggers is held, ignore shot button presses
-			if get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3:
-				pass
-			elif Input.is_action_pressed("Defensive Trigger") || Input.is_action_pressed("Offensive Trigger"):
-				pass
-			else:
-				_basic_shot()
 	if event.is_action_pressed("Offensive Trigger"):
 		$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
 		$PlayerSprite.material.set("shader_parameter/width", 1)
@@ -112,7 +113,9 @@ func change_player_control(boolean: bool) -> void:
 	player_input = boolean
 
 
-func _basic_shot() -> void:
+func _basic_shot() -> bool:
+	if get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3:
+		return false
 	effect_audio_player.set_stream(SHOT_AUDIO)
 	effect_audio_player.play()
 	_is_shooting = true
@@ -127,6 +130,7 @@ func _basic_shot() -> void:
 	add_child(shot_effect)
 	shot.position = _buster_position.global_position
 	shot_effect.position = _buster_position.position
+	return true
 
 
 
@@ -292,10 +296,9 @@ func upgrade_energy() -> void:
 		pass
 
 
-func set_dash_properties() -> void:
+func set_dash_properties(spent: bool) -> void:
 	is_dashing = true
-	if(!is_on_floor()):
-		spent_dash = true
+	spent_dash = spent
 
 
 func reset_dash_properties() -> void:

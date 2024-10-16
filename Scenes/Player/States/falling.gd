@@ -8,11 +8,10 @@ var prev_speed
 
 func enter(_msg := {}) -> void:
 	player = owner
-	prev_speed = player.speed
 	player.velocity = Vector2(0, 0)
 	player.player_animations.play("Falling")
 	if player.is_dashing:
-		player.speed = player.DEFAULT_SPEED * 2
+		player.speed = player.DASHING_SPEED
 
 func handle_input(event):
 	if(player.player_input == false):
@@ -22,6 +21,9 @@ func handle_input(event):
 	
 	if event.is_action_pressed("Jump") && !player.coyote_timer.is_stopped():
 		state_machine.transition_to("Jump")
+	
+	if event.is_action_pressed("Shot"):
+		player._basic_shot()
 
 func physics_update(delta: float) -> void:
 	if (player.is_on_floor()):
@@ -37,6 +39,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Sliding")
 	
 	player.velocity.y += gravity * delta
+	player.velocity.y = clamp(player.velocity.y, -100, 800)
 	player.handle_horizontal()
 	player.move_and_slide()
 	

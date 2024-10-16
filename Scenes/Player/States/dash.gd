@@ -6,7 +6,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: int = 0
 
-var prev_speed: int
 
 var IsAirdash : bool
 
@@ -15,22 +14,20 @@ var IsAirdash : bool
 func enter(msg := {}) -> void:
 	player = owner
 	player.velocity = Vector2(0, 0)
-	prev_speed = player.speed
-	player.speed = player.speed * 2
 	player.player_animations.play("Dash_Start")
 	player.player_animations.queue("Dash_Loop")
-	player.set_dash_properties()
 	direction = 0
 	timer.one_shot = true
 	timer.start(0.4)
 	player.effect_audio_player.set_stream(player.DASH_AUDIO)
 	player.effect_audio_player.play()
 	if(!player.is_on_floor()):
+		player.set_dash_properties(true)
 		IsAirdash = true
-		player.spent_dash = true
 		player.velocity.y = 0
 	else:
 		IsAirdash = false
+		player.set_dash_properties(false)
 	if (msg.has("direction")):
 		direction = msg.direction
 	else:
@@ -54,16 +51,17 @@ func handle_input(event):
 	if event.is_action_pressed("Jump") && !IsAirdash:
 		state_machine.transition_to("Jump")
 	
+	if event.is_action_pressed("Shot"):
+		player._basic_shot()
 
 
 func exit() -> void:
-	player.speed = prev_speed
 	timer.stop()
 	
 func physics_update(_delta: float) -> void:
 	player.ghostEffect()
 
-	player.velocity.x = player.speed * direction
+	player.velocity.x = player.DASHING_SPEED * direction
 
 #This is to check if the Player dashes off a ledge and to discontinue that dash
 	if (!IsAirdash && !player.is_on_floor()):

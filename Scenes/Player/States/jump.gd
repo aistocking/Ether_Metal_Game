@@ -17,9 +17,8 @@ func enter(_msg := {}) -> void:
 		walljumpdirection = _msg.walljumpdirection
 		player.velocity.x = walljumpdirection * 150
 	if Input.is_action_pressed("Dash"):
-		player.set_dash_properties()
-	if player.is_dashing:
-		player.speed = player.DEFAULT_SPEED * 1.5
+		player.set_dash_properties(true)
+		player.speed = player.DASHING_SPEED
 	else:
 		player.speed = player.DEFAULT_SPEED
 
@@ -29,8 +28,11 @@ func handle_input(event) -> void:
 	if event.is_action_released("Jump"):
 		state_machine.transition_to("Falling")
 	
-	if event.is_action_pressed("Dash") && !player.is_dashing:
+	if event.is_action_pressed("Dash") && player.spent_dash == false:
 		state_machine.transition_to("Dash")
+	
+	if event.is_action_pressed("Shot"):
+		player._basic_shot()
 
 func physics_update(delta: float) -> void:
 	if player.is_dashing:

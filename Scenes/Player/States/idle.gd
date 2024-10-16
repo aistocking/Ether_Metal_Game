@@ -7,7 +7,7 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.player_animations.play("Idle")
 	player.reset_dash_properties()
-	player.speed = 300
+	player.speed = player.DEFAULT_SPEED
 	player.coyote_timer.stop()
 
 func handle_input(event) -> void:
@@ -28,6 +28,11 @@ func handle_input(event) -> void:
 		if event.is_action_pressed("Dash"):
 			var direction = player.facing_direction
 			state_machine.transition_to("Dash", { "direction": direction })
+	
+		if event.is_action_pressed("Shot"):
+			if player._basic_shot() == true:
+				player.player_animations.play("IdleShot")
+			
 
 func physics_update(delta: float) -> void:
 	if !player.is_on_floor():
@@ -39,3 +44,8 @@ func physics_update(delta: float) -> void:
 		return
 	elif (left or right) and not (left and right):
 		state_machine.transition_to("Run")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "IdleShot":
+		player.player_animations.play("Idle")

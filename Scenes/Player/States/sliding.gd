@@ -37,6 +37,9 @@ func handle_input(event) -> void:
 	
 	if event.is_action_pressed("Right") && player.left_ray_cast.is_colliding():
 		state_machine.transition_to("Falling")
+	
+	if event.is_action_pressed("Shot"):
+		player._basic_shot()
 
 
 func physics_update(delta: float) -> void:

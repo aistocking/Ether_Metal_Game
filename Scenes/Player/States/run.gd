@@ -20,6 +20,9 @@ func handle_input(event) -> void:
 	if event.is_action_pressed("Dash"):
 		var direction = player.facing_direction
 		state_machine.transition_to("Dash", { "direction": direction })
+	
+	if event.is_action_pressed("Shot"):
+		player._basic_shot()
 
 func physics_update(_delta: float) -> void:
 	if !player.is_on_floor():
