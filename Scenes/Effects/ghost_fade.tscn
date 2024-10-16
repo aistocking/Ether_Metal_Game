@@ -7,6 +7,6 @@
 shader = ExtResource("1_bjitf")
 
 [node name="GhostFade" type="Sprite2D"]
-z_index = -1
+z_index = 9
 material = SubResource("ShaderMaterial_h2a4r")
 script = ExtResource("2_t8juv")
