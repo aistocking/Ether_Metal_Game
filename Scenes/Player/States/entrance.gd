@@ -24,7 +24,8 @@ func physics_update(delta: float) -> void:
 func introDone():
 	ReadyComplete = true
 
-func _on_animation_player_animation_finished(anim_name):
+
+func _on_player_anims_animation_finished(anim_name):
 	if anim_name == "Entrance":
 		player.change_player_control(true)
 		state_machine.transition_to("Idle")

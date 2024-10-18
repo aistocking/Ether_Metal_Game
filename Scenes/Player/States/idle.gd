@@ -46,6 +46,6 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Run")
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_player_anims_animation_finished(anim_name):
 	if anim_name == "IdleShot":
 		player.player_animations.play("Idle")
