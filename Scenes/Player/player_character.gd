@@ -76,7 +76,7 @@ const _TELEPORT_SCENE: PackedScene = preload("res://Scenes/Effects/intro_telepor
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var player_animations: AnimationPlayer = $AnimationPlayer
+@onready var player_animations: AnimationPlayer = $PlayerAnims
 @onready var debug_state_label: Label = $CurrentStateDebug
 
 
@@ -90,19 +90,22 @@ func _input(event: InputEvent) -> void:
 	if player_input == false:
 		return
 	
-	if event.is_action_pressed("Offensive Trigger"):
-		$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
-		$PlayerSprite.material.set("shader_parameter/width", 1)
-		$"Charge Particles".modulate = Color("#ff0000")
-		$"Charge Particles".emitting = true
-	if event.is_action_pressed("Defensive Trigger"):
-		$PlayerSprite.material.set("shader_parameter/color", Vector4(0, 0, 255, 255))
-		$PlayerSprite.material.set("shader_parameter/width", 1)
-		$"Charge Particles".modulate = Color("#0000ff")
-		$"Charge Particles".emitting = true
+	#Handles the emittion of charge particles and shader visibility based on the combination of triggers pressed
 	if event.is_action_released("Defensive Trigger") or event.is_action_released("Offensive Trigger"):
-		$PlayerSprite.material.set("shader_parameter/width", 0)
-		$"Charge Particles".emitting = false
+		if Input.is_action_pressed("Defensive Trigger"):
+			_set_charge_fx("Defense")
+		elif Input.is_action_pressed("Offensive Trigger"):
+			_set_charge_fx("Offense")
+		else:
+			_set_charge_fx("Cancel")
+	if event.is_action_pressed("Offensive Trigger") or event.is_action_pressed("Defensive Trigger"):
+		$"Charge Particles".emitting = true
+		if Input.is_action_pressed("Offensive Trigger"):
+			_set_charge_fx("Offense")
+		if Input.is_action_pressed("Defensive Trigger"):
+			_set_charge_fx("Defense")
+		if Input.is_action_pressed("Defensive Trigger") and Input.is_action_pressed("Offensive Trigger"):
+			_set_charge_fx("Ultimate")
 
 
 func _physics_process(_delta: float) -> void:
@@ -363,6 +366,24 @@ func handle_horizontal() -> void:
 		change_facing_direction(LEFT)
 	
 	velocity.x = speed * input_direction_x
+
+func _set_charge_fx(type: String):
+	if type == "Cancel":
+		$PlayerSprite.material.set("shader_parameter/width", 0)
+		$"Charge Particles".emitting = false
+		return
+	$PlayerSprite.material.set("shader_parameter/width", 1)
+	$"Charge Particles".emitting = true
+	match type:
+		"Offense":
+			$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
+			$"Charge Particles".modulate = Color("#ff0000")
+		"Defense":
+			$PlayerSprite.material.set("shader_parameter/color", Vector4(0, 0, 255, 255))
+			$"Charge Particles".modulate = Color("#0000ff")
+		"Ultimate":
+			$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 255, 255))
+			$"Charge Particles".modulate = Color("#ff00ff")
 
 
 func _on_hurtbox_body_entered(body: Node) -> void:

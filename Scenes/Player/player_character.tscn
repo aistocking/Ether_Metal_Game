@@ -472,7 +472,7 @@ collision_mask = 16
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_8v5uu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="PlayerAnims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_xj4p7")
 }
@@ -571,9 +571,9 @@ one_shot = true
 script = ExtResource("22_ta164")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="PlayerStateMachine/Idle" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="PlayerStateMachine/Special Attack" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="PlayerStateMachine/Entrance" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Idle" method="_on_player_anims_animation_finished"]
+[connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Special Attack" method="_on_player_anims_animation_finished"]
+[connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Entrance" method="_on_player_anims_animation_finished"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Damaged/Timer" to="PlayerStateMachine/Damaged" method="_on_timer_timeout"]
