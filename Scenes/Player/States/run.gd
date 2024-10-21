@@ -14,15 +14,24 @@ func enter(_msg := {}) -> void:
 func handle_input(event) -> void:
 	if(player.player_input == false):
 		return
-	if event.is_action_pressed("Jump"):
-		state_machine.transition_to("Jump")
+	if Input.is_action_pressed("Offensive Trigger") || Input.is_action_pressed("Defensive Trigger"):
+		if Input.is_action_pressed("Offensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": true })
 	
-	if event.is_action_pressed("Dash"):
-		var direction = player.facing_direction
-		state_machine.transition_to("Dash", { "direction": direction })
+		if Input.is_action_pressed("Defensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": false })
+	else:
+		if event.is_action_pressed("Jump"):
+			state_machine.transition_to("Jump")
 	
-	if event.is_action_pressed("Shot"):
-		player._basic_shot()
+		if event.is_action_pressed("Dash"):
+			var direction = player.facing_direction
+			state_machine.transition_to("Dash", { "direction": direction })
+	
+		if event.is_action_pressed("Shot"):
+			player._basic_shot()
 
 func physics_update(_delta: float) -> void:
 	if !player.is_on_floor():

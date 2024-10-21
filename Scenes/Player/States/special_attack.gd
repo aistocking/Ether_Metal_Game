@@ -34,12 +34,14 @@ func enter(_msg := {}) -> void:
 	
 
 func handle_input(event):
-	if(player.player_input == false or !cancel_timer.is_stopped()):
-		return
-	if event.is_action_pressed("Dash"):
-		state_machine.transition_to("Dash")
-	if event.is_action_pressed("Jump"):
-		state_machine.transition_to("Jump")
+	if cancel_timer.is_stopped():
+		if event.is_action_pressed("Dash"):
+			if Input.is_action_pressed("Left"):
+				state_machine.transition_to("Dash", { "direction": player.LEFT })
+			if Input.is_action_pressed("Right"):
+				state_machine.transition_to("Dash", { "direction": player.RIGHT })
+		if event.is_action_pressed("Jump"):
+			state_machine.transition_to("Jump")
 
 func physics_update(delta: float) -> void:
 	#Branch to either on ground behaviour or in air behaviour
@@ -47,23 +49,25 @@ func physics_update(delta: float) -> void:
 	if IsInAir:
 		match CurrentSpecial:
 			SPECIALS.PLASMA:
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 				player.velocity.y += gravity * delta
-				player.velocity.y = clamp(player.velocity.y, -50, 50)
+				player.velocity.y = clamp(player.velocity.y, -25, 25)
 				player.move_and_slide()
 			SPECIALS.DISENGAGE:
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 1200 * delta)
+				#player.velocity = player.velocity.move_toward(Vector2.ZERO, 1200 * delta)
 				player.velocity.y += gravity * delta
 				player.move_and_slide()
 			SPECIALS.UPPER:
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 				player.move_and_slide()
 			SPECIALS.PUNCH:
 				player.velocity.x = player.DASHING_SPEED * direction
 				player.move_and_slide()
 			SPECIALS.PARRY:
 				player.velocity.y += gravity * delta
-				player.velocity.y = clamp(player.velocity.y, -50, 50)
+				player.velocity.y = clamp(player.velocity.y, -25, 25)
+				player.move_and_slide()
+			SPECIALS.BLADE:
+				player.velocity.y += gravity * delta
+				player.velocity.y = clamp(player.velocity.y, -25, 25)
 				player.move_and_slide()
 	#On ground behaviour
 	else:
@@ -72,19 +76,20 @@ func physics_update(delta: float) -> void:
 				if !player.is_on_floor():
 					state_machine.transition_to("Falling")
 				player.create_dust()
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 				player.move_and_slide()
 			SPECIALS.DISENGAGE:
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 1200 * delta)
 				player.velocity.y += gravity * delta
 				player.move_and_slide()
 			SPECIALS.UPPER:
-				player.velocity = player.velocity.move_toward(Vector2.ZERO, 400 * delta)
 				player.move_and_slide()
 			SPECIALS.PUNCH:
 				player.velocity.x = player.DASHING_SPEED * direction
 				player.create_dust()
 				player.move_and_slide()
+			SPECIALS.PARRY:
+				pass
+			SPECIALS.BLADE:
+				pass
 	
 
 func designate_attack() -> void:
@@ -92,7 +97,7 @@ func designate_attack() -> void:
 		if Input.is_action_pressed("Bottom Button"):
 			_punch()
 		if Input.is_action_pressed("Right Button"):
-			pass
+			_blade()
 		if Input.is_action_pressed("Top Button"):
 			_upper()
 		if Input.is_action_pressed("Left Button"):
@@ -109,7 +114,12 @@ func designate_attack() -> void:
 
 func _plasma() -> void:
 	player.velocity.x = player.facing_direction * -200
-	player.player_animations.play("Plasma_Shot")
+	var tweenX = get_tree().create_tween()
+	tweenX.tween_property(player, "velocity:x", 0, .4).set_trans(Tween.TRANS_CUBIC)
+	if IsInAir == true:
+		player.player_animations.play("Plasma_Shot_Air")
+	else:
+		player.player_animations.play("Plasma_Shot")
 	player.plasma_shot()
 	CurrentSpecial = SPECIALS.PLASMA
 	cancel_timer.start(0.1)
@@ -132,21 +142,26 @@ func _barrage() -> void:
 	cancel_timer.start(0.1)
 
 func _upper() -> void:
+	player.velocity.y = -400
+	player.velocity.x = player.facing_direction * 300
 	var tweenX = get_tree().create_tween()
 	var tweenY = get_tree().create_tween()
-	tweenX.tween_property(player, "velocity:x", player.facing_direction * 300, .2).set_trans(Tween.TRANS_CUBIC)
-	tweenY.tween_property(player, "velocity:y", -200, .4).set_trans(Tween.TRANS_CUBIC)
+	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
+	tweenY.tween_property(player, "velocity:y", 0, .6).set_trans(Tween.TRANS_CUBIC)
 	player.player_animations.play("Upper")
-	player.upper(1)
+	player.upper(.5)
 	CurrentSpecial = SPECIALS.UPPER
 	cancel_timer.start(0.1)
 
 func _disengage() -> void:
 	player.velocity.x = player.facing_direction * -300
 	player.velocity.y = -200
+	var tweenX = get_tree().create_tween()
+	tweenX.tween_property(player, "velocity:x", 0, .5).set_trans(Tween.TRANS_CUBIC)
 	player.player_animations.play("Disengage")
 	player.disengage()
 	CurrentSpecial = SPECIALS.DISENGAGE
+	cancel_timer.start(0.1)
 
 func _parry() -> void:
 	player.player_animations.play("Parry")
@@ -167,7 +182,7 @@ func _on_player_anims_animation_finished(anim_name):
 	#In air beviour
 	if IsInAir:
 		match anim_name:
-			"Plasma_Shot":
+			"Plasma_Shot_Air":
 				state_machine.transition_to("Falling")
 			"Upper":
 				state_machine.transition_to("Falling")

@@ -16,14 +16,27 @@ func enter(_msg := {}) -> void:
 func handle_input(event):
 	if(player.player_input == false):
 		return
-	if event.is_action_pressed("Dash") && player.spent_dash == false:
-		state_machine.transition_to("Dash")
+	if Input.is_action_pressed("Offensive Trigger") || Input.is_action_pressed("Defensive Trigger"):
+		if Input.is_action_pressed("Offensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": true })
 	
-	if event.is_action_pressed("Jump") && !player.coyote_timer.is_stopped():
-		state_machine.transition_to("Jump")
+		if Input.is_action_pressed("Defensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": false })
+	else:
+		if event.is_action_pressed("Dash") && player.spent_dash == false:
+			if Input.is_action_pressed("Left"):
+				state_machine.transition_to("Dash", { "direction": player.LEFT })
+			if Input.is_action_pressed("Right"):
+				state_machine.transition_to("Dash", { "direction": player.RIGHT })
 	
-	if event.is_action_pressed("Shot"):
-		player._basic_shot()
+		if event.is_action_pressed("Jump") && !player.coyote_timer.is_stopped():
+			state_machine.transition_to("Jump")
+	
+		if event.is_action_pressed("Shot"):
+			player.player_animations.play("Plasma_Shot_Air", -1, 1.6)
+			player._basic_shot()
 
 func physics_update(delta: float) -> void:
 	if (player.is_on_floor()):

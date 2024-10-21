@@ -13,7 +13,7 @@ var tween
 func _ready():
 	SFXPlayer.set_stream(HitSFX)
 	tween = get_tree().create_tween()
-	tween.tween_property(self, "Speed", 12, .7)
+	tween.tween_property(self, "Speed", 12, .4)
 
 func _physics_process(_delta):
 	position += Direction * Speed

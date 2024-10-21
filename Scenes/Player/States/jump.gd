@@ -27,12 +27,21 @@ func handle_input(event) -> void:
 		return
 	if event.is_action_released("Jump"):
 		state_machine.transition_to("Falling")
+	if Input.is_action_pressed("Offensive Trigger") || Input.is_action_pressed("Defensive Trigger"):
+		if Input.is_action_pressed("Offensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": true })
 	
-	if event.is_action_pressed("Dash") && player.spent_dash == false:
-		state_machine.transition_to("Dash")
+		if Input.is_action_pressed("Defensive Trigger"):
+			if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
+				state_machine.transition_to("Special Attack", { "IsOffensive": false })
+	else:
+		if event.is_action_pressed("Dash") && player.spent_dash == false:
+			state_machine.transition_to("Dash")
 	
-	if event.is_action_pressed("Shot"):
-		player._basic_shot()
+		if event.is_action_pressed("Shot"):
+			player.player_animations.play("Plasma_Shot_Air", -1, 1.6)
+			player._basic_shot()
 
 func physics_update(delta: float) -> void:
 	if player.is_dashing:
