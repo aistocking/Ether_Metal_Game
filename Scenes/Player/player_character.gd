@@ -81,9 +81,18 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
+	Global.debug_mode()
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
 	TeleportInstance.global_position = global_position + Vector2(0,5)
+	for i in Global._acquired_tanks:
+		if i == true:
+			_max_health += 2
+	for i in Global._acquired_charge_capacitors:
+		if i == true:
+			_max_charge_level += 1
+	health = _max_health
+	
 
 
 func _input(event: InputEvent) -> void:

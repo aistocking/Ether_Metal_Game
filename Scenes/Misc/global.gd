@@ -21,6 +21,12 @@ signal effect_volume_changed
 func _ready() -> void:
 	MusicPlayer.volume_db = music_volume
 
+func debug_mode() -> void:
+	for i in _acquired_tanks:
+		i = true
+	for i in _acquired_charge_capacitors:
+		i = true
+
 func change_music(path: String) -> void:
 	MusicPlayer.volume_db = music_volume
 	MusicPlayer.stop()

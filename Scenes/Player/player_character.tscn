@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=46 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
@@ -79,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [28, 29, 30, 31]
+"values": [29, 30, 31, 32]
 }
 
 [sub_resource type="Animation" id="Animation_j77q0"]
@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [26, 27]
+"values": [27, 28]
 }
 
 [sub_resource type="Animation" id="Animation_cendp"]
@@ -279,7 +279,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [35, 36]
+"values": [36, 37]
 }
 
 [sub_resource type="Animation" id="Animation_ojqax"]
@@ -380,28 +380,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mfwir"]
 resource_name = "Upper"
+length = 0.5
 step = 0.025
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.275),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.525],
-"method": &"upper"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -425,6 +412,23 @@ tracks/0/keys = {
 "values": [34]
 }
 
+[sub_resource type="Animation" id="Animation_b3fig"]
+resource_name = "Plasma_Shot_Air"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
 _data = {
 "Damaged_Loop": SubResource("Animation_2ci3x"),
@@ -444,6 +448,7 @@ _data = {
 "Land": SubResource("Animation_xpg37"),
 "Parry": SubResource("Animation_673aj"),
 "Plasma_Shot": SubResource("Animation_ojqax"),
+"Plasma_Shot_Air": SubResource("Animation_b3fig"),
 "Punch": SubResource("Animation_836ij"),
 "RESET": SubResource("Animation_ydw3r"),
 "Run_Loop": SubResource("Animation_x3up6"),
