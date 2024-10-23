@@ -73,6 +73,9 @@ const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effec
 #Intro scene for teleportation FX
 const _TELEPORT_SCENE: PackedScene = preload("res://Scenes/Effects/intro_teleport.tscn")
 
+#Camera reference for changing the bounds of camera movement
+var _camera: Camera2D
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -82,6 +85,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
 	Global.debug_mode()
+	_camera = get_tree().get_first_node_in_group("Camera")
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
 	TeleportInstance.global_position = global_position + Vector2(0,5)

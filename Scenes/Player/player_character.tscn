@@ -20,10 +20,10 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/die.gd" id="22_ta164"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
-size = Vector2(28, 35)
+size = Vector2(25, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v5uu"]
-size = Vector2(32, 39)
+size = Vector2(27, 37)
 
 [sub_resource type="Animation" id="Animation_2ci3x"]
 resource_name = "Damaged_Loop"
@@ -299,6 +299,23 @@ tracks/0/keys = {
 "values": [23, 24]
 }
 
+[sub_resource type="Animation" id="Animation_b3fig"]
+resource_name = "Plasma_Shot_Air"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
 [sub_resource type="Animation" id="Animation_836ij"]
 resource_name = "Punch"
 length = 0.7
@@ -412,23 +429,6 @@ tracks/0/keys = {
 "values": [34]
 }
 
-[sub_resource type="Animation" id="Animation_b3fig"]
-resource_name = "Plasma_Shot_Air"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [25]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
 _data = {
 "Damaged_Loop": SubResource("Animation_2ci3x"),
@@ -466,7 +466,7 @@ floor_snap_length = 15.0
 script = ExtResource("1_otumk")
 
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_70gom")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -474,7 +474,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="HurtCollision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 1.5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_8v5uu")
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
@@ -494,11 +494,11 @@ wait_time = 0.15
 one_shot = true
 
 [node name="RightRCast" type="RayCast2D" parent="."]
-target_position = Vector2(17, 0)
+target_position = Vector2(15, 0)
 collision_mask = 16
 
 [node name="LeftRCast" type="RayCast2D" parent="."]
-target_position = Vector2(-17, 0)
+target_position = Vector2(-14, 0)
 collision_mask = 16
 
 [node name="Death Particles" parent="." instance=ExtResource("10_iq7bk")]
