@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://db4lf6nbwbtfc"]
+[gd_scene load_steps=18 format=4 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_d3haq"]
@@ -15,6 +15,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7rt"]
 size = Vector2(180, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rhfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2qc8"]
 size = Vector2(36, 50)
@@ -116,6 +118,15 @@ position = Vector2(-96, -176)
 [node name="TopRightPosition" parent="StageTriggers/CameraBounds2" index="3"]
 position = Vector2(752, -367)
 
+[node name="CameraBounds3" parent="StageTriggers" instance=ExtResource("6_rkblo")]
+transition_time = 2.0
+
+[node name="StartTrigger" parent="StageTriggers/CameraBounds3" index="0"]
+position = Vector2(766.73, -262.76)
+
+[node name="CollisionShape2D" parent="StageTriggers/CameraBounds3/StartTrigger" index="0"]
+shape = SubResource("RectangleShape2D_5rhfe")
+
 [node name="CutsceneTrigger" type="Area2D" parent="StageTriggers"]
 position = Vector2(-115.896, -56.655)
 
@@ -179,3 +190,4 @@ position = Vector2(744, -264)
 
 [editable path="StageTriggers/CameraBounds1"]
 [editable path="StageTriggers/CameraBounds2"]
+[editable path="StageTriggers/CameraBounds3"]

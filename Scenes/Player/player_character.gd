@@ -86,16 +86,18 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready() -> void:
 	Global.debug_mode()
 	_camera = get_tree().get_first_node_in_group("Camera")
-	var TeleportInstance = _TELEPORT_SCENE.instantiate()
-	get_parent().add_child.call_deferred(TeleportInstance)
-	TeleportInstance.global_position = global_position + Vector2(0,5)
 	for i in Global._acquired_tanks:
 		if i == true:
 			_max_health += 2
+			_hud.upgrade_health()
 	for i in Global._acquired_charge_capacitors:
 		if i == true:
 			_max_charge_level += 1
+			_hud.upgrade_energy()
 	health = _max_health
+	var TeleportInstance = _TELEPORT_SCENE.instantiate()
+	get_parent().add_child.call_deferred(TeleportInstance)
+	TeleportInstance.global_position = global_position + Vector2(0,5)
 	
 
 
@@ -294,7 +296,7 @@ func upgrade_health() -> void:
 		get_tree().paused = true
 		effect_audio_player.set_stream(PICKUP_TANK_AUDIO)
 		effect_audio_player.play()
-		await get_tree().create_timer(0.6).timeout
+		await effect_audio_player.finished
 		get_tree().paused = false
 		Global.MusicPlayer.volume_db = Global.music_volume
 		_hud.upgrade_health()

@@ -1,24 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnijpswm7s6en"]
+[gd_scene load_steps=10 format=3 uid="uid://dnijpswm7s6en"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Objects/transition_door.gd" id="1_hl1cw"]
 [ext_resource type="Texture2D" uid="uid://c52fc2hj3dj63" path="res://Art/Stages/Objects/Transition_Door.png" id="1_mf8xa"]
-
-[sub_resource type="Animation" id="Animation_rbtrs"]
-resource_name = "Lock"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
 
 [sub_resource type="Animation" id="Animation_758f6"]
 resource_name = "Open"
@@ -27,10 +10,22 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("FirstDoor:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -42,7 +37,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("FirstDoor:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -51,14 +46,43 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondDoor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
 
-[sub_resource type="Animation" id="Animation_71iqa"]
-resource_name = "Twist"
+[sub_resource type="Animation" id="Animation_rbtrs"]
+resource_name = "Unseal"
+length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("FirstDoor:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_71iqa"]
+resource_name = "Lock"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SecondDoor:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,31 +94,50 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58i6m"]
 _data = {
-"Lock": SubResource("Animation_rbtrs"),
+"Lock": SubResource("Animation_71iqa"),
 "Open": SubResource("Animation_758f6"),
 "RESET": SubResource("Animation_pphxa"),
-"Twist": SubResource("Animation_71iqa")
+"Unseal": SubResource("Animation_rbtrs")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vk0m"]
 size = Vector2(20, 48)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnng1"]
+size = Vector2(16, 48)
+
 [node name="TransitionDoor" type="Node2D"]
 script = ExtResource("1_hl1cw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="FirstDoor" type="Sprite2D" parent="."]
 texture = ExtResource("1_mf8xa")
 hframes = 9
 vframes = 3
+
+[node name="SecondDoor" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+texture = ExtResource("1_mf8xa")
+hframes = 9
+vframes = 3
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_58i6m")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TransitionTrigger" type="Area2D" parent="."]
+collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTrigger"]
 shape = SubResource("RectangleShape2D_7vk0m")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="BlockingCollision" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockingCollision"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_xnng1")
+disabled = true
+
+[connection signal="body_entered" from="TransitionTrigger" to="." method="_on_transition_trigger_body_entered"]
