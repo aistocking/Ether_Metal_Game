@@ -20,6 +20,7 @@ func _on_transition_trigger_body_entered(body):
 		await $AnimationPlayer.animation_finished
 		$AnimationPlayer.play("Open", -1, -1.5, true)
 		await $AnimationPlayer.animation_finished
+		$TransitionTrigger/CollisionShape2D.disabled = true
 		$BlockingCollision/CollisionShape2D.disabled = false
 		$AnimationPlayer.play("Lock")
 		await $AnimationPlayer.animation_finished
