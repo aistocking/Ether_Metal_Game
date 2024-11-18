@@ -127,6 +127,15 @@ position = Vector2(766.73, -262.76)
 [node name="CollisionShape2D" parent="StageTriggers/CameraBounds3/StartTrigger" index="0"]
 shape = SubResource("RectangleShape2D_5rhfe")
 
+[node name="EndTrigger" parent="StageTriggers/CameraBounds3" index="1"]
+position = Vector2(951, -266)
+
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds3" index="2"]
+position = Vector2(753, -220)
+
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds3" index="3"]
+position = Vector2(1152, -416)
+
 [node name="CutsceneTrigger" type="Area2D" parent="StageTriggers"]
 position = Vector2(-115.896, -56.655)
 
