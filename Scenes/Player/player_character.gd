@@ -97,7 +97,7 @@ func _ready() -> void:
 	health = _max_health
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
-	TeleportInstance.global_position = global_position + Vector2(0,5)
+	TeleportInstance.global_position = global_position
 	
 
 

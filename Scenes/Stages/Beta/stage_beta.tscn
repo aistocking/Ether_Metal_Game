@@ -109,6 +109,9 @@ position = Vector2(591, -206)
 [node name="StartTrigger" parent="StageTriggers/CameraBounds2" index="0"]
 position = Vector2(376, -208)
 
+[node name="CollisionShape2D" parent="StageTriggers/CameraBounds2/StartTrigger" index="0"]
+position = Vector2(-23.5, -1)
+
 [node name="EndTrigger" parent="StageTriggers/CameraBounds2" index="1"]
 position = Vector2(-35, -296)
 

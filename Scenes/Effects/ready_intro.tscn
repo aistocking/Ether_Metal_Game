@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b82fv4j54eyej"]
+[gd_scene load_steps=12 format=3 uid="uid://b82fv4j54eyej"]
 
 [ext_resource type="Texture2D" uid="uid://keh5m5vvx535" path="res://Art/Effects/Ready_Black.png" id="1_rlyn6"]
 [ext_resource type="Script" path="res://Scenes/Effects/ready_intro.gd" id="1_y1nqs"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dywcx1eshyf2y" path="res://Sound/AnnouncerReady.wav" id="3_85sjr"]
 [ext_resource type="PackedScene" uid="uid://bejr1h8g3e6nr" path="res://Scenes/Effects/ready_intro_ghosts.tscn" id="4_0ci6e"]
 [ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="6_gvvig"]
+[ext_resource type="Texture2D" uid="uid://d0y5g6a3qg8ql" path="res://Art/Effects/READY_v2.png" id="7_ij0vb"]
 
 [sub_resource type="Animation" id="Animation_lh8uf"]
 length = 0.001
@@ -81,9 +82,33 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NewIntro:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("NewIntro:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_5uula"]
-resource_name = "intro"
+resource_name = "intro_old"
 length = 3.4
 step = 0.025
 tracks/0/type = "bezier"
@@ -273,10 +298,68 @@ tracks/14/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_m7fwf"]
+resource_name = "intro"
+length = 2.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewIntro:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewIntro:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReadyIntro")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"IntroFinished"],
+"method": &"emit_signal"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_basdf"]
 _data = {
 "RESET": SubResource("Animation_lh8uf"),
-"intro": SubResource("Animation_5uula")
+"intro": SubResource("Animation_m7fwf"),
+"intro_old": SubResource("Animation_5uula")
 }
 
 [node name="ReadyIntroControl" type="Control"]
@@ -322,3 +405,8 @@ texture = ExtResource("2_c4shc")
 stream = ExtResource("3_85sjr")
 volume_db = -14.0
 script = ExtResource("6_gvvig")
+
+[node name="NewIntro" type="Sprite2D" parent="."]
+texture = ExtResource("7_ij0vb")
+hframes = 3
+vframes = 3
