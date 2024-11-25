@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2t0rtnx8e44b"]
+[gd_scene load_steps=4 format=3 uid="uid://c2t0rtnx8e44b"]
 
 [ext_resource type="Texture2D" uid="uid://ck0xltiv813ol" path="res://Art/Stages/Objects/Armour_Pod.png" id="1_gvikr"]
+[ext_resource type="Script" path="res://Scenes/Stages/Objects/armour_pod.gd" id="1_tkhe1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7waex"]
 size = Vector2(32, 61)
 
 [node name="ArmourPod" type="Node2D"]
+script = ExtResource("1_tkhe1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
@@ -17,3 +19,5 @@ shape = SubResource("RectangleShape2D_7waex")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gvikr")
 hframes = 3
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

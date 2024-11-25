@@ -76,6 +76,16 @@ const _TELEPORT_SCENE: PackedScene = preload("res://Scenes/Effects/intro_telepor
 #Camera reference for changing the bounds of camera movement
 var _camera: Camera2D
 
+#Full body sprite references
+@onready var _player_full_sprite: Node2D = $PlayerSprite
+@onready var _player_head_sprite : Sprite2D = $PlayerSprite/Head
+@onready var _player_body_sprite : Sprite2D = $PlayerSprite/Body
+@onready var _player_bg_leg_sprite : Sprite2D = $PlayerSprite/BGLeg
+@onready var _player_fg_leg_sprite : Sprite2D = $PlayerSprite/FGLeg
+@onready var _player_bg_arm_sprite : Sprite2D = $PlayerSprite/BGArm
+@onready var _player_fg_arm_sprite : Sprite2D = $PlayerSprite/FGArm
+@onready var _player_fx_sprite : Sprite2D = $PlayerSprite/FX
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -86,6 +96,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready() -> void:
 	Global.debug_mode()
 	_camera = get_tree().get_first_node_in_group("Camera")
+	set_armour_peices()
 	for i in Global._acquired_tanks:
 		if i == true:
 			_max_health += 2
@@ -98,6 +109,7 @@ func _ready() -> void:
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
 	TeleportInstance.global_position = global_position
+
 	
 
 
@@ -277,7 +289,12 @@ func takeDamage(damage: int) -> void:
 			_death_particles.emitting = true
 			effect_audio_player.set_stream(DEATH_AUDIO)
 			effect_audio_player.play()
+			_hud.AnimPlayer.play("Whiteout")
+			Engine.time_scale = 0.5
 			_player_state_machine._die()
+			await effect_audio_player.finished
+			Engine.time_scale = 1
+			get_tree().change_scene_to_file("res://Scenes/Stages/Beta/stage_beta.tscn")
 		else:
 			_player_state_machine._takeDamage()
 
@@ -339,7 +356,13 @@ func _flip_position_markers() -> void:
 
 
 func _flip_player_sprite() -> void:
-	$PlayerSprite.flip_h = !$PlayerSprite.flip_h
+	_player_head_sprite.flip_h = !_player_head_sprite.flip_h
+	_player_body_sprite.flip_h = !_player_body_sprite.flip_h
+	_player_bg_leg_sprite.flip_h = !_player_bg_leg_sprite.flip_h
+	_player_fg_leg_sprite.flip_h = !_player_fg_leg_sprite.flip_h
+	_player_bg_arm_sprite.flip_h = !_player_bg_arm_sprite.flip_h
+	_player_fg_arm_sprite.flip_h = !_player_fg_arm_sprite.flip_h
+	_player_fx_sprite.flip_h = !_player_fx_sprite.flip_h
 
 
 
@@ -348,12 +371,13 @@ func ghostEffect() -> void:
 	if _ghost_counter > 2:
 		var GhostInstance: GhostFade = GHOST_FADE_SCENE.instantiate()
 		get_parent().add_child(GhostInstance)
-		GhostInstance.set_texture($PlayerSprite.texture)
-		GhostInstance.hframes = $PlayerSprite.hframes
-		GhostInstance.vframes = $PlayerSprite.vframes
-		GhostInstance.frame = $PlayerSprite.frame
-		GhostInstance.flip_h = $PlayerSprite.flip_h
-		GhostInstance.position = global_position
+		#NEEDS REDONE
+		#GhostInstance.set_texture($PlayerSprite.texture)
+		#GhostInstance.hframes = $PlayerSprite.hframes
+		#GhostInstance.vframes = $PlayerSprite.vframes
+		#GhostInstance.frame = $PlayerSprite.frame
+		#GhostInstance.flip_h = $PlayerSprite.flip_h
+		#GhostInstance.position = global_position
 		_ghost_counter = 0
 
 
@@ -364,6 +388,18 @@ func create_dust() -> void:
 		get_parent().add_child(DustInstance)
 		DustInstance.position = _dust_position.global_position
 		_dust_counter = 0
+
+func set_armour_peices() -> void:
+	if Global._acquired_armors[Global.Armors.Head]:
+		_player_head_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_Head.png")
+	if Global._acquired_armors[Global.Armors.Chest]:
+		_player_body_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_Body.png")
+	if Global._acquired_armors[Global.Armors.Arms]:
+		_player_fg_arm_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_FG_Arm.png")
+		_player_bg_arm_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_BG_Arm.png")
+	if Global._acquired_armors[Global.Armors.Legs]:
+		_player_fg_leg_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_FG_Leg.png")
+		_player_bg_leg_sprite.texture = preload("res://Art/Player/PlayerSprite_Armour_BG_Leg.png")
 
 
 func _on_shot_timer_timeout() -> void:

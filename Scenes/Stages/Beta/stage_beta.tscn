@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://db4lf6nbwbtfc"]
+[gd_scene load_steps=19 format=4 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_d3haq"]
@@ -9,14 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_v5bpl"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="6_i1ylh"]
 [ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Misc/camera_bounds.tscn" id="6_rkblo"]
-[ext_resource type="PackedScene" uid="uid://bor21t7xaioed" path="res://Scenes/Enemies/rolling_enemy.tscn" id="7_rbfhj"]
 [ext_resource type="PackedScene" uid="uid://dnijpswm7s6en" path="res://Scenes/Stages/Objects/transition_door.tscn" id="11_k0dhf"]
 [ext_resource type="TileSet" uid="uid://b0dj0m5hj0hxl" path="res://Scenes/Stages/Beta/FoundryTiles00.tres" id="11_ri3q5"]
+[ext_resource type="PackedScene" uid="uid://c2t0rtnx8e44b" path="res://Scenes/Stages/Objects/armour_pod.tscn" id="12_vjg4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7rt"]
 size = Vector2(180, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rhfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aseck"]
+size = Vector2(24, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2qc8"]
 size = Vector2(36, 50)
@@ -110,7 +113,7 @@ position = Vector2(591, -206)
 position = Vector2(376, -208)
 
 [node name="CollisionShape2D" parent="StageTriggers/CameraBounds2/StartTrigger" index="0"]
-position = Vector2(-23.5, -1)
+position = Vector2(0, 1)
 
 [node name="EndTrigger" parent="StageTriggers/CameraBounds2" index="1"]
 position = Vector2(-35, -296)
@@ -139,6 +142,23 @@ position = Vector2(753, -220)
 [node name="TopRightPosition" parent="StageTriggers/CameraBounds3" index="3"]
 position = Vector2(1152, -416)
 
+[node name="CameraBounds4" parent="StageTriggers" instance=ExtResource("6_rkblo")]
+
+[node name="StartTrigger" parent="StageTriggers/CameraBounds4" index="0"]
+position = Vector2(-90, -298)
+
+[node name="CollisionShape2D" parent="StageTriggers/CameraBounds4/StartTrigger" index="0"]
+shape = SubResource("RectangleShape2D_aseck")
+
+[node name="EndTrigger" parent="StageTriggers/CameraBounds4" index="1"]
+position = Vector2(-355, 0)
+
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds4" index="2"]
+position = Vector2(-351, -255)
+
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds4" index="3"]
+position = Vector2(-49, -420)
+
 [node name="CutsceneTrigger" type="Area2D" parent="StageTriggers"]
 position = Vector2(-115.896, -56.655)
 
@@ -166,9 +186,6 @@ shape = SubResource("RectangleShape2D_c813p")
 [node name="PlayerCharacter" parent="." instance=ExtResource("6_i1ylh")]
 position = Vector2(-38, -5)
 
-[node name="RollingEnemy" parent="." instance=ExtResource("7_rbfhj")]
-position = Vector2(-505, -371)
-
 [node name="Path2D" type="Path2D" parent="."]
 visible = false
 curve = SubResource("Curve2D_fr06d")
@@ -186,6 +203,7 @@ tile_map_data = PackedByteArray("AAATAAUAAAAEAAMAAAAUAAUAAAAEAAMAAAAVAAUAAAAEAAM
 tile_set = ExtResource("11_ri3q5")
 
 [node name="FalsePipes&Floors" type="TileMapLayer" parent="."]
+z_index = 10
 tile_map_data = PackedByteArray("AAD8/+z/AAABAAAAAFD8/+3/AAABAAAAAFD8/+7/AAABAAAAAFD4/+z/AAABAAAAAFD4/+3/AAABAAAAAFD4/+7/AAABAAAAAFD5/+z/AAABAAAAAFD5/+3/AAABAAAAAFD5/+7/AAABAAAAAFD6/+z/AAABAAAAAFD6/+3/AAABAAAAAFD6/+7/AAABAAAAAFD7/+z/AAABAAAAAFD7/+3/AAABAAAAAFD7/+7/AAABAAAAAFD2/+z/AAABAAAAAFD2/+3/AAABAAAAAFD2/+7/AAABAAAAAFD3/+z/AAABAAAAAFD3/+3/AAABAAAAAFD3/+7/AAABAAAAAFA=")
 tile_set = ExtResource("11_ri3q5")
 collision_enabled = false
@@ -196,6 +214,9 @@ navigation_enabled = false
 [node name="TransitionDoor" parent="." instance=ExtResource("11_k0dhf")]
 position = Vector2(744, -264)
 
+[node name="ArmourPod" parent="." instance=ExtResource("12_vjg4t")]
+position = Vector2(-311, -303)
+
 [connection signal="body_entered" from="StageTriggers/CutsceneTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger1" to="." method="_on_bg_trigger_1_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger2" to="." method="_on_bg_trigger_2_body_entered"]
@@ -203,3 +224,4 @@ position = Vector2(744, -264)
 [editable path="StageTriggers/CameraBounds1"]
 [editable path="StageTriggers/CameraBounds2"]
 [editable path="StageTriggers/CameraBounds3"]
+[editable path="StageTriggers/CameraBounds4"]
