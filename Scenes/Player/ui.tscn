@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=14 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
@@ -20,6 +20,67 @@ region = Rect2(96, 0, 12, 83)
 [sub_resource type="AtlasTexture" id="AtlasTexture_riocf"]
 atlas = ExtResource("6_c4pgy")
 region = Rect2(48, 0, 12, 85)
+
+[sub_resource type="Animation" id="Animation_juq0u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WholeScreen/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WholeScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d2wun"]
+resource_name = "Whiteout"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WholeScreen/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WholeScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxe1"]
+_data = {
+"RESET": SubResource("Animation_juq0u"),
+"Whiteout": SubResource("Animation_d2wun")
+}
 
 [node name="UI" type="CanvasLayer" groups=["UI Elements"]]
 script = ExtResource("1_echso")
@@ -169,3 +230,18 @@ offset_bottom = -26.0
 grow_vertical = 2
 texture = SubResource("AtlasTexture_riocf")
 stretch_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="WholeScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vrxe1")
+}

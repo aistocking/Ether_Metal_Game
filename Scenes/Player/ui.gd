@@ -13,6 +13,8 @@ var Player
 @onready var ChargePellet5 = $WholeScreen/ChargePellet5
 @onready var ChargePellet6 = $WholeScreen/ChargePellet6
 
+@onready var AnimPlayer = $AnimationPlayer
+
 var CurrentPellet
 
 func _ready():
