@@ -9,6 +9,7 @@ size = Vector2(172, 20)
 size = Vector2(20, 40)
 
 [node name="CameraBounds" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_bmqie")
 
 [node name="StartTrigger" type="Area2D" parent="."]
