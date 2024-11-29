@@ -23,5 +23,7 @@ func _on_trigger_body_entered(body):
 
 func _on_cutscene_trigger_body_entered(body):
 	var DialogueBoxInst = DialogueBoxResource.instantiate()
+	DialogueBoxInst.previous_music = Global.get_current_music()
+	DialogueBoxInst.new_music = "res://Sound/Music/21. Dr. Light.mp3"
 	add_child(DialogueBoxInst)
 	$CutsceneTrigger.queue_free()
