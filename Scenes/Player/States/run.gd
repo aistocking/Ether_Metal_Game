@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	player.speed = player.DEFAULT_SPEED
 	player.coyote_timer.stop()
 
-func handle_input(event) -> void:
+func handle_input(event: InputEvent) -> void:
 	if(player.player_input == false):
 		return
 	if Input.is_action_pressed("Offensive Trigger") || Input.is_action_pressed("Defensive Trigger"):
@@ -31,7 +31,7 @@ func handle_input(event) -> void:
 			state_machine.transition_to("Jump")
 	
 		if event.is_action_pressed("Dash"):
-			var direction = player.facing_direction
+			var direction: int = player.facing_direction
 			shootTimer.stop()
 			state_machine.transition_to("Dash", { "direction": direction })
 	
@@ -60,8 +60,8 @@ func physics_update(_delta: float) -> void:
 	player.handle_horizontal()
 	player.move_and_slide()
 
-func switchAnimation(back2run: bool):
-	var temp = player.player_animations.current_animation_position
+func switchAnimation(back2run: bool) -> void:
+	var temp: float = player.player_animations.current_animation_position
 	if back2run:
 		player.player_animations.play("Run_Loop")
 	else:
@@ -69,5 +69,5 @@ func switchAnimation(back2run: bool):
 	player.player_animations.advance(temp)
 
 
-func _on_run_shoot_timer_timeout():
+func _on_run_shoot_timer_timeout() -> void:
 	switchAnimation(true)

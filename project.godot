@@ -47,6 +47,7 @@ folder_colors={
 "res://Art/Player/": "blue",
 "res://Scenes/Effects/": "yellow",
 "res://Scenes/Enemies/": "red",
+"res://Scenes/Misc/": "purple",
 "res://Scenes/Player/": "blue",
 "res://Scenes/Stages/": "green"
 }
@@ -160,6 +161,8 @@ Down={
 2d_physics/layer_4="Enemy Bullets"
 2d_physics/layer_5="Environment"
 2d_physics/layer_6="Pickups"
+2d_physics/layer_7="Environment Triggers"
+2d_physics/layer_8="Hazards"
 
 [rendering]
 
