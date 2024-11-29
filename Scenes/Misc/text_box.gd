@@ -11,6 +11,8 @@ signal advanced
 @onready var _current_text: Label = %DialogLabel
 @onready var _player: PlayerCharacter = get_tree().get_first_node_in_group("Player")
 
+@onready var _audio_player: EffectAudioPlayer = $EffectAudioPlayer
+
 var _tween: Tween
 var _read_rate: float = 0
 
@@ -18,25 +20,28 @@ var _main_character: Character = load("res://Scenes/Player/main_character.tres")
 var _zero_character: Character = load("res://Scenes/Player/zero_character.tres")
 
 
+
 func _ready() -> void:
 	# TODO: Move this into an exported property.
 	# TODO: How do I tie the dialog (script) to the resources?
+	_audio_player.stream = load("res://Sound/TextLetterFast.wav")
 	_player.change_player_control(false)
 	_left_display(_main_character)
-	_say("Hmmm... Sometimes godot is confusing")
+	_left_mood("talking")
+	_say("Armour?")
 	await advanced
 	_left_mood("talking")
-	_say("Why must reploids fight one another?")
+	_say("Uhm, akshually its spelled armor")
 	await advanced
-	_say("I've had enough fighting!")
-	await advanced
-	_say("......god X7 was bad.")
+	_left_mood("talking")
+	_say("you're not a british")
 	await advanced
 	_right_display(_zero_character)
-	_say("Suprised?")
+	_right_mood("talking")
+	_say("This for your arms by the way.")
 	await advanced
 	_right_mood("talking")
-	_say("Muahahahaha")
+	_say("Now git")
 	await advanced
 	_end_dialog()
 
@@ -57,6 +62,8 @@ func _say(text: String) -> void:
 	_current_text.visible_ratio = 0
 	_current_text.text = text
 	_tween = self.create_tween()
+	_tween.connect("finished", _on_tween_finished)
+	_audio_player.play()
 	_tween.tween_property(_current_text, "visible_ratio", 1, 1)
 
 
@@ -86,9 +93,15 @@ func _right_mood(mood: String = "idle") -> void:
 
 func _display_full_text() -> void:
 	_tween.kill()
+	_on_tween_finished()
 	_current_text.visible_ratio = 1
 
 
 func _end_dialog() -> void:
 	_player.change_player_control(true)
 	queue_free()
+
+func _on_tween_finished() -> void:
+	_right_mood("idle")
+	_left_mood("idle")
+	_audio_player.stop()
