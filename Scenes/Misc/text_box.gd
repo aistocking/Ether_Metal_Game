@@ -19,11 +19,15 @@ var _read_rate: float = 0
 var _main_character: Character = load("res://Scenes/Player/main_character.tres")
 var _zero_character: Character = load("res://Scenes/Player/zero_character.tres")
 
+var previous_music: String
+var new_music: String
+
 
 
 func _ready() -> void:
 	# TODO: Move this into an exported property.
 	# TODO: How do I tie the dialog (script) to the resources?
+	Global.change_music(new_music)
 	_audio_player.stream = load("res://Sound/TextLetterFast.wav")
 	_player.change_player_control(false)
 	_left_display(_main_character)
@@ -99,6 +103,7 @@ func _display_full_text() -> void:
 
 func _end_dialog() -> void:
 	_player.change_player_control(true)
+	Global.change_music(previous_music)
 	queue_free()
 
 func _on_tween_finished() -> void:
