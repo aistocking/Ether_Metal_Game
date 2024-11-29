@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6pn3v7e6fe24"]
+
+[ext_resource type="Script" path="res://Scenes/Stages/Objects/moving_platform.gd" id="1_7r4u0"]
+[ext_resource type="Texture2D" uid="uid://cowdhrufsgxx3" path="res://Art/Stages/Objects/Moving_Platform.png" id="2_yjqjm"]
+[ext_resource type="Texture2D" uid="uid://dk72l8ee3x3xd" path="res://Art/Stages/Objects/Platform_Fire.png" id="3_rfi5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhipr"]
+size = Vector2(56, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr2d1"]
+atlas = ExtResource("3_rfi5k")
+region = Rect2(0, 0, 33, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryn52"]
+atlas = ExtResource("3_rfi5k")
+region = Rect2(33, 0, 33, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62i8p"]
+atlas = ExtResource("3_rfi5k")
+region = Rect2(0, 22, 33, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6ln"]
+atlas = ExtResource("3_rfi5k")
+region = Rect2(33, 22, 33, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i710w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr2d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryn52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62i8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6ln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_7r4u0")
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_uhipr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_yjqjm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_i710w")
+autoplay = "default"
+frame = 2
+frame_progress = 0.606378
+
+[node name="StartMarker" type="Marker2D" parent="."]
+
+[node name="EndMarker" type="Marker2D" parent="."]
