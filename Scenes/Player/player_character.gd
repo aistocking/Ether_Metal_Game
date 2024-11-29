@@ -99,8 +99,9 @@ func _ready() -> void:
 	set_armour_peices()
 	for i in Global._acquired_tanks:
 		if i == true:
-			_max_health += 2
 			_hud.upgrade_health()
+			_max_health += 2
+			restore_health(2)
 	for i in Global._acquired_charge_capacitors:
 		if i == true:
 			_max_charge_level += 1
@@ -436,6 +437,11 @@ func _set_charge_fx(type: String):
 			$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 255, 255))
 			$"Charge Particles".modulate = Color("#ff00ff")
 
+func enterCutsceneState() -> void:
+	_player_state_machine._enterCutscene()
+
+func exitCutsceneState() -> void:
+	_player_state_machine._exitCutscene()
 
 func _on_hurtbox_body_entered(body: Node) -> void:
 	if body.is_in_group("Hazards"):

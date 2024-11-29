@@ -24,3 +24,8 @@ func takeDamage() -> void:
 func die() -> void:
 	state_machine.transition_to("Die")
 
+func enterCutscene() -> void:
+	state_machine.transition_to("Cutscene")
+
+func exitCutscene() -> void:
+	state_machine.transition_to("Idle")

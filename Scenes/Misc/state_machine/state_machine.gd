@@ -40,3 +40,8 @@ func _takeDamage() -> void:
 func _die() -> void:
 	_state.die()
 
+func _enterCutscene() -> void:
+	_state.enterCutscene()
+
+func _exitCutscene() -> void:
+	_state.exitCutscene()

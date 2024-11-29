@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=54 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/entrance.gd" id="17_776qv"]
 [ext_resource type="Script" path="res://Scenes/Player/States/damaged.gd" id="19_p8egc"]
 [ext_resource type="Script" path="res://Scenes/Player/States/die.gd" id="22_ta164"]
+[ext_resource type="Script" path="res://Scenes/Player/cutscene.gd" id="25_pgdpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(25, 35)
@@ -2121,8 +2122,9 @@ _data = {
 }
 
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
+process_mode = 3
 texture_filter = 1
-collision_mask = 28
+collision_mask = 124
 floor_constant_speed = true
 floor_max_angle = 0.872665
 floor_snap_length = 15.0
@@ -2134,7 +2136,7 @@ shape = SubResource("RectangleShape2D_70gom")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 128
 
 [node name="HurtCollision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0.5, 1.5)
@@ -2274,6 +2276,9 @@ one_shot = true
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("22_ta164")
+
+[node name="Cutscene" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("25_pgdpy")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Idle" method="_on_player_anims_animation_finished"]
