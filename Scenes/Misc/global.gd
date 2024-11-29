@@ -2,6 +2,7 @@ extends Node
 
 @onready var MusicPlayer: AudioStreamPlayer = get_node("/root/BgmPlayer")
 
+
 enum Bosses { Boss1, Boss2, Boss3, Boss4, Boss5, Boss6, Boss7, Boss8 }
 var _defeated_bosses: Array[bool] = [false, false, false, false, false, false, false, false]
 enum Armors { Head, Chest, Arms, Legs }
@@ -16,6 +17,10 @@ var _acquired_ether_tanks: Array[bool] = [false, false]
 var music_volume := -20.0
 var _effect_volume := -20.0
 
+var _current_music: String
+
+signal cutscene_start
+signal cutscene_stop
 signal effect_volume_changed
 
 func _ready() -> void:
@@ -31,7 +36,11 @@ func change_music(path: String) -> void:
 	MusicPlayer.volume_db = music_volume
 	MusicPlayer.stop()
 	MusicPlayer.set_stream(load(path))
+	_current_music = path
 	MusicPlayer.play()
+
+func get_current_music() -> String:
+	return _current_music
 
 func get_effect_volume() -> float:
 	return _effect_volume
