@@ -7,3 +7,7 @@ func _ready():
 
 func _on_volume_changed():
 	volume_db = Global.get_effect_volume()
+
+func play_sound(effect: AudioStream) -> void:
+	set_stream(effect)
+	play()

@@ -677,6 +677,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [3, 4, 5, 6, 7, 8, 11, 12, 13]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1xpcr"]
 resource_name = "Falling"

@@ -31,12 +31,13 @@ const GHOST_FADE_SCENE: PackedScene = preload("res://Scenes/Effects/ghost_fade.t
 var _ghost_counter: int = 0
 
 #Sound FX
+const INTRO_STOMP: AudioStream = preload("res://Sound/Intro_Stomp.wav")
 const SHOT_AUDIO: AudioStream = preload("res://Sound/BusterShot.wav")
 const CHARGE_SHOT_AUDIO: AudioStream = preload("res://Sound/BusterChargeShot.wav")
 const JUMP_AUDIO: AudioStream = preload("res://Sound/XJump.wav")
-const DASH_AUDIO: AudioStream = preload("res://Sound/XDash.wav")
+const DASH_AUDIO: AudioStream = preload("res://Sound/Dash.wav")
 const DAMAGED_AUDIO: AudioStream = preload("res://Sound/XHit.wav")
-const DEATH_AUDIO: AudioStream = preload("res://Sound/XDeath.wav")
+const DEATH_AUDIO: AudioStream = preload("res://Sound/Die.wav")
 const PICKUP_TANK_AUDIO: AudioStream = preload("res://Sound/Heart Powerup.wav")
 
 #Subsystems to limit certain mechanics
@@ -95,6 +96,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
 	Global.debug_mode()
+	effect_audio_player.set_stream(INTRO_STOMP)
 	_camera = get_tree().get_first_node_in_group("Camera")
 	set_armour_peices()
 	for i in Global._acquired_tanks:
@@ -168,8 +170,7 @@ func _basic_shot() -> bool:
 #Offensive specials
 func plasma_shot() -> void:
 	_remove_charge_level()
-	effect_audio_player.set_stream(CHARGE_SHOT_AUDIO)
-	effect_audio_player.play()
+	effect_audio_player.play_sound(CHARGE_SHOT_AUDIO)
 	var instance: PlasmaShot = _CHARGE_SHOT_SCENE.instantiate()
 	instance.getDirection(Vector2(facing_direction, 0))
 	if facing_direction == LEFT:
@@ -288,8 +289,7 @@ func takeDamage(damage: int) -> void:
 		_hud.HealthBar.value = health
 		if health <= 0:
 			_death_particles.emitting = true
-			effect_audio_player.set_stream(DEATH_AUDIO)
-			effect_audio_player.play()
+			effect_audio_player.play_sound(DEATH_AUDIO)
 			_hud.AnimPlayer.play("Whiteout")
 			Engine.time_scale = 0.5
 			_player_state_machine._die()
@@ -316,7 +316,7 @@ func upgrade_health() -> void:
 		effect_audio_player.play()
 		await effect_audio_player.finished
 		get_tree().paused = false
-		Global.MusicPlayer.volume_db = Global.music_volume
+		Global.MusicPlayer.volume_db = Global.get_current_volume()
 		_hud.upgrade_health()
 		_max_health += 2
 		restore_health(2)
@@ -340,6 +340,10 @@ func set_dash_properties(spent: bool) -> void:
 func reset_dash_properties() -> void:
 	is_dashing = false
 	spent_dash = false
+
+func toggle_collision() -> void:
+	$PhysicalCollision.disabled = !$PhysicalCollision.disabled
+	$Hurtbox/HurtCollision.disabled = !$Hurtbox/HurtCollision.disabled
 
 
 func change_facing_direction(direction: int) -> void:
