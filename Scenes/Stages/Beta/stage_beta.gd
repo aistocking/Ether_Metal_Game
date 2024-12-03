@@ -9,8 +9,10 @@ var _bg_gate2 := false
 @onready var bg_trigger1 := $StageTriggers/BGTrigger1
 @onready var bg_trigger2 := $StageTriggers/BGTrigger2
 
+@onready var OPENING_SONG: AudioStream = preload("res://Sound/Music/06_Opening Stage X.mp3")
+
 func _ready() -> void:
-	Global.change_music("res://Sound/Music/06_Opening Stage X.mp3")
+	Global.change_music(OPENING_SONG)
 	RenderingServer.set_default_clear_color(Color(0,0,0))
 
 

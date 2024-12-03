@@ -42,7 +42,7 @@ func change_special_buttons(is_defense:bool, button:String, special:String) -> v
 
 
 func toggle_pause() -> void:
-	Global.MusicPlayer.volume_db = Global.music_volume
+	Global.MusicPlayer.volume_db = Global.get_music_volume()
 	visible = not visible
 	get_tree().paused = visible
 	if visible:

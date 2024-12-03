@@ -12,6 +12,7 @@ signal advanced
 @onready var _player: PlayerCharacter = get_tree().get_first_node_in_group("Player")
 
 @onready var _audio_player: EffectAudioPlayer = $EffectAudioPlayer
+@onready var TEXT_AUDIO_EFFECTS: AudioStream = preload("res://Sound/TextLetterFast.wav")
 
 var _tween: Tween
 var _read_rate: float = 0
@@ -19,26 +20,25 @@ var _read_rate: float = 0
 var _main_character: Character = load("res://Scenes/Player/main_character.tres")
 var _zero_character: Character = load("res://Scenes/Player/zero_character.tres")
 
-var previous_music: String
-var new_music: String
+var previous_music: AudioStream = Global.get_current_music()
+var new_music: AudioStream
+var _continue_from: float = Global.MusicPlayer.get_playback_position()
 
 
 
 func _ready() -> void:
 	# TODO: Move this into an exported property.
 	# TODO: How do I tie the dialog (script) to the resources?
+	
 	Global.change_music(new_music)
-	_audio_player.stream = load("res://Sound/TextLetterFast.wav")
+	_audio_player.play_sound(TEXT_AUDIO_EFFECTS)
 	_player.change_player_control(false)
 	_left_display(_main_character)
 	_left_mood("talking")
 	_say("Armour?")
 	await advanced
 	_left_mood("talking")
-	_say("Uhm, akshually its spelled armor")
-	await advanced
-	_left_mood("talking")
-	_say("you're not a british")
+	_say("What form of power is this?")
 	await advanced
 	_right_display(_zero_character)
 	_right_mood("talking")
@@ -103,7 +103,7 @@ func _display_full_text() -> void:
 
 func _end_dialog() -> void:
 	_player.change_player_control(true)
-	Global.change_music(previous_music)
+	Global.change_music(previous_music, _continue_from)
 	queue_free()
 
 func _on_tween_finished() -> void:

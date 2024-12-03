@@ -14,17 +14,18 @@ var _acquired_charge_capacitors: Array[bool] = [false, false, false, false]
 enum EtherTanks { ETank1, ETank2 }
 var _acquired_ether_tanks: Array[bool] = [false, false]
 
-var music_volume := -20.0
+var _music_volume := -20.0
 var _effect_volume := -20.0
 
-var _current_music: String
+var _current_music: AudioStream
 
 signal cutscene_start
 signal cutscene_stop
 signal effect_volume_changed
+signal music_volume_changed
 
 func _ready() -> void:
-	MusicPlayer.volume_db = music_volume
+	MusicPlayer.volume_db = _music_volume
 
 func debug_mode() -> void:
 	for i in _acquired_tanks:
@@ -32,22 +33,30 @@ func debug_mode() -> void:
 	for i in _acquired_charge_capacitors:
 		i = true
 
-func change_music(path: String) -> void:
-	MusicPlayer.volume_db = music_volume
+func change_music(song: AudioStream, time: float = 0.0) -> void:
+	MusicPlayer.volume_db = _music_volume
 	MusicPlayer.stop()
-	MusicPlayer.set_stream(load(path))
-	_current_music = path
-	MusicPlayer.play()
+	MusicPlayer.set_stream(song)
+	_current_music = song
+	MusicPlayer.play(time)
 
-func get_current_music() -> String:
+func get_current_music() -> AudioStream:
 	return _current_music
 
 func get_effect_volume() -> float:
 	return _effect_volume
 
+func get_music_volume() -> float:
+	return _music_volume
+
 func set_effect_volume(volume: float) -> void:
 	_effect_volume = volume
 	effect_volume_changed.emit()
+
+func set_music_volume(volume: float) -> void:
+	_music_volume = volume
+	MusicPlayer.volume_db = volume
+	music_volume_changed.emit()
 
 func defeat_boss(boss: Bosses) -> void:
 	if _defeated_bosses[boss] == true:
