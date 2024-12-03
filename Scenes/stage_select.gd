@@ -1,10 +1,11 @@
 extends Control
 
+var _music: AudioStream = preload("res://Sound/Music/05_Stage Select.mp3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Perun.grab_focus()
-	Global.change_music("res://Sound/Music/05_Stage Select.mp3")
+	Global.change_music(_music)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
