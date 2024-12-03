@@ -44,6 +44,7 @@ func physics_update(delta: float) -> void:
 		return
 	elif (left or right) and not (left and right):
 		state_machine.transition_to("Run")
+	player.move_and_slide()
 
 
 func _on_player_anims_animation_finished(anim_name):
