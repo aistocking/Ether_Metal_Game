@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnijpswm7s6en"]
+[gd_scene load_steps=12 format=3 uid="uid://dnijpswm7s6en"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Objects/transition_door.gd" id="1_hl1cw"]
 [ext_resource type="Texture2D" uid="uid://c52fc2hj3dj63" path="res://Art/Stages/Objects/Transition_Door.png" id="1_mf8xa"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Misc/effect_audio_player.tscn" id="3_ypnch"]
+[ext_resource type="AudioStream" uid="uid://bp7o1x2lsnx8h" path="res://Sound/Door Open.wav" id="4_q3v5x"]
 
 [sub_resource type="Animation" id="Animation_71iqa"]
 resource_name = "Lock"
@@ -106,9 +108,6 @@ size = Vector2(20, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xnng1"]
 size = Vector2(16, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vx6"]
-size = Vector2(12, 40)
-
 [node name="TransitionDoor" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_hl1cw")
@@ -144,13 +143,11 @@ position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_xnng1")
 disabled = true
 
-[node name="StoppingTrigger" type="Area2D" parent="."]
-position = Vector2(55, 0)
-collision_layer = 0
+[node name="EffectAudioPlayer" parent="." instance=ExtResource("3_ypnch")]
+stream = ExtResource("4_q3v5x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StoppingTrigger"]
-position = Vector2(4, 0)
-shape = SubResource("RectangleShape2D_u8vx6")
+[node name="BottomLeftCameraBound" type="Marker2D" parent="."]
+
+[node name="TopRightCameraBound" type="Marker2D" parent="."]
 
 [connection signal="body_entered" from="TransitionTrigger" to="." method="_on_transition_trigger_body_entered"]
-[connection signal="body_entered" from="StoppingTrigger" to="." method="_on_stopping_trigger_body_entered"]
