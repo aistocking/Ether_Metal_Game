@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Misc/camera_bounds.gd" id="1_bmqie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bddtt"]
-size = Vector2(172, 20)
+size = Vector2(124, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihlj4"]
 size = Vector2(20, 40)
