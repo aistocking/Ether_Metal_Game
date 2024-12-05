@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc3e5fmqoff5q"]
+[gd_scene load_steps=7 format=3 uid="uid://dc3e5fmqoff5q"]
 
 [ext_resource type="Texture2D" uid="uid://b5mq0kqibul75" path="res://Art/Effects/BasicShotBackBlast.png" id="1_x4ly6"]
 [ext_resource type="Script" path="res://Scenes/Effects/shot_effect.gd" id="2_3j382"]
@@ -15,14 +15,6 @@ region = Rect2(10, 0, 10, 11)
 atlas = ExtResource("1_x4ly6")
 region = Rect2(20, 0, 10, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bjud"]
-atlas = ExtResource("1_x4ly6")
-region = Rect2(30, 0, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sswfn"]
-atlas = ExtResource("1_x4ly6")
-region = Rect2(40, 0, 10, 11)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_nfir3"]
 animations = [{
 "frames": [{
@@ -36,10 +28,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_j5uw7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6bjud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sswfn")
+"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -47,7 +36,9 @@ animations = [{
 }]
 
 [node name="ShotEffect" type="AnimatedSprite2D"]
+z_index = 11
 texture_filter = 1
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_nfir3")
 autoplay = "default"
 script = ExtResource("2_3j382")

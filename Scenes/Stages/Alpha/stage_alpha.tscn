@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_h4dba"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="5_kwypl"]
 [ext_resource type="PackedScene" uid="uid://6mvh68uo4uwc" path="res://Scenes/Enemies/medium_enemy.tscn" id="6_8v7hk"]
-[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/aerial_drone_enemy.tscn" id="7_0hng8"]
+[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/base_enemy.tscn" id="7_0hng8"]
 [ext_resource type="PackedScene" uid="uid://dyhhn3flnctub" path="res://Scenes/Misc/item/items/heart_tank.tscn" id="8_1b1nh"]
 [ext_resource type="PackedScene" uid="uid://dkiyhlrmwu41f" path="res://Scenes/Misc/item/items/energy_tank.tscn" id="9_4txhr"]
 [ext_resource type="PackedScene" uid="uid://brtxa5gm21b0" path="res://Scenes/Misc/item/items/small_health.tscn" id="10_rcuv7"]

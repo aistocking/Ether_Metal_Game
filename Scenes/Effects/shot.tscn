@@ -47,7 +47,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"basic_shot",
-"speed": 14.0
+"speed": 12.0
 }]
 
 [node name="Shot" type="Area2D" groups=["PlayerProjectiles"]]
@@ -75,6 +75,5 @@ volume_db = -14.991
 script = ExtResource("3_ehu3n")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="SFXPlayer" to="." method="_on_sfx_player_finished"]
