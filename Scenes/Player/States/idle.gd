@@ -31,6 +31,7 @@ func handle_input(event) -> void:
 	
 		if event.is_action_pressed("Shot"):
 			if player._basic_shot() == true:
+				player.player_animations.stop()
 				player.player_animations.play("IdleShot")
 			
 
