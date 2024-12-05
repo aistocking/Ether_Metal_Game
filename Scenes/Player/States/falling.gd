@@ -12,6 +12,8 @@ func enter(_msg := {}) -> void:
 	player.player_animations.play("Falling")
 	if player.is_dashing:
 		player.speed = player.DASHING_SPEED
+	else:
+		player.speed = player.DEFAULT_SPEED
 
 func handle_input(event):
 	if(player.player_input == false):
