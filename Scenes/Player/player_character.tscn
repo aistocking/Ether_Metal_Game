@@ -599,7 +599,7 @@ tracks/1/path = NodePath("PlayerSprite/BGLeg:frame")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -611,7 +611,7 @@ tracks/2/path = NodePath("PlayerSprite/BGArm:frame")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -623,7 +623,7 @@ tracks/3/path = NodePath("PlayerSprite/Body:frame")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -635,7 +635,7 @@ tracks/4/path = NodePath("PlayerSprite/Head:frame")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -647,7 +647,7 @@ tracks/5/path = NodePath("PlayerSprite/FGLeg:frame")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -659,7 +659,7 @@ tracks/6/path = NodePath("PlayerSprite/FGArm:frame")
 tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 3.2, 3.3, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 3.2, 3.3, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 9, 10, 11, 12, 13]
@@ -671,7 +671,7 @@ tracks/7/path = NodePath("PlayerSprite/FX:frame")
 tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 2.7, 2.8, 2.9, 3, 3.1, 3.4, 3.5, 3.6),
+"times": PackedFloat32Array(0, 2.7, 2.8, 2.9, 3, 3.1, 3.5, 3.6, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [3, 4, 5, 6, 7, 8, 11, 12, 13]
@@ -683,7 +683,7 @@ tracks/8/path = NodePath("AudioStreamPlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(3.3),
+"times": PackedFloat32Array(3.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -2149,7 +2149,7 @@ _data = {
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
 process_mode = 3
 texture_filter = 1
-collision_mask = 124
+collision_mask = 120
 floor_constant_speed = true
 floor_max_angle = 0.872665
 floor_snap_length = 15.0

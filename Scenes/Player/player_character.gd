@@ -422,21 +422,16 @@ func handle_horizontal() -> void:
 
 func _set_charge_fx(type: String):
 	if type == "Cancel":
-		$PlayerSprite.material.set("shader_parameter/width", 0)
 		$"Charge Particles".emitting = false
 		return
-	$PlayerSprite.material.set("shader_parameter/width", 1)
 	$"Charge Particles".emitting = true
 	match type:
 		"Offense":
-			$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 0, 255))
-			$"Charge Particles".modulate = Color("#ff0000")
+			pass
 		"Defense":
-			$PlayerSprite.material.set("shader_parameter/color", Vector4(0, 0, 255, 255))
-			$"Charge Particles".modulate = Color("#0000ff")
+			pass
 		"Ultimate":
-			$PlayerSprite.material.set("shader_parameter/color", Vector4(255, 0, 255, 255))
-			$"Charge Particles".modulate = Color("#ff00ff")
+			pass
 
 func enterCutsceneState() -> void:
 	_player_state_machine._enterCutscene()
