@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dusmkdis6va78"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
+[ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
+[ext_resource type="Texture2D" uid="uid://bloeur5xju4np" path="res://Art/MiscUI/EnergyPellet.png" id="2_4ynt4"]
+[ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc2lx"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_aad6u")
+
+[node name="PhysicalCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jc2lx")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("1_r2idr")
+texture = ExtResource("2_4ynt4")
+
+[node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+
+[node name="HurtBox" parent="." instance=ExtResource("3_juej3")]
+
+[editable path="HurtBox"]
