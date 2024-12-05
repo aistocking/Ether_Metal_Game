@@ -3,10 +3,24 @@
 [ext_resource type="Shader" path="res://Shaders/ghost_fade.gdshader" id="1_bjitf"]
 [ext_resource type="Script" path="res://Scenes/Effects/ghost_fade.gd" id="2_t8juv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2a4r"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubqm3"]
 shader = ExtResource("1_bjitf")
 
-[node name="GhostFade" type="Sprite2D"]
+[node name="GhostFade" type="Node2D"]
 z_index = 9
-material = SubResource("ShaderMaterial_h2a4r")
 script = ExtResource("2_t8juv")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_ubqm3")
+
+[node name="BGArm" type="Sprite2D" parent="CanvasGroup"]
+
+[node name="BGLeg" type="Sprite2D" parent="CanvasGroup"]
+
+[node name="Body" type="Sprite2D" parent="CanvasGroup"]
+
+[node name="Head" type="Sprite2D" parent="CanvasGroup"]
+
+[node name="FGLeg" type="Sprite2D" parent="CanvasGroup"]
+
+[node name="FGArm" type="Sprite2D" parent="CanvasGroup"]

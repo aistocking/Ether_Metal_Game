@@ -1,17 +1,16 @@
 shader_type canvas_item;
+render_mode unshaded;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
 void fragment() {
-	vec4 spriteTex = texture(TEXTURE, UV);
-	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(0,0,1), 1);
+	vec4 spriteTex = textureLod(screen_texture, SCREEN_UV, 0.0);
+
+	if (spriteTex.a > 0.0001) {
+		spriteTex.rgb /= spriteTex.a;
+	}
+	COLOR *= spriteTex;
+	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(0.3,.8,1), 1);
 	COLOR.rgb = blueSpriteTex;
-	// Called for every pixel the material is visible on.
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}

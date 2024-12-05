@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://blvr8jbwxpd2n"]
+
+[ext_resource type="Shader" path="res://Shaders/ghost_fade.gdshader" id="1_dgkqj"]
+
+[resource]
+shader = ExtResource("1_dgkqj")

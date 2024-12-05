@@ -78,7 +78,7 @@ const _TELEPORT_SCENE: PackedScene = preload("res://Scenes/Effects/intro_telepor
 var _camera: Camera2D
 
 #Full body sprite references
-@onready var _player_full_sprite: Node2D = $PlayerSprite
+@onready var player_full_sprite: CanvasGroup = $PlayerSprite
 @onready var _player_head_sprite : Sprite2D = $PlayerSprite/Head
 @onready var _player_body_sprite : Sprite2D = $PlayerSprite/Body
 @onready var _player_bg_leg_sprite : Sprite2D = $PlayerSprite/BGLeg
@@ -377,12 +377,9 @@ func ghostEffect() -> void:
 		var GhostInstance: GhostFade = GHOST_FADE_SCENE.instantiate()
 		get_parent().add_child(GhostInstance)
 		#NEEDS REDONE
-		#GhostInstance.set_texture($PlayerSprite.texture)
-		#GhostInstance.hframes = $PlayerSprite.hframes
-		#GhostInstance.vframes = $PlayerSprite.vframes
-		#GhostInstance.frame = $PlayerSprite.frame
-		#GhostInstance.flip_h = $PlayerSprite.flip_h
-		#GhostInstance.position = global_position
+		GhostInstance.set_sprite_nodes(_player_bg_arm_sprite, _player_bg_leg_sprite,_player_body_sprite, 
+		_player_head_sprite, _player_fg_arm_sprite, _player_fg_leg_sprite)
+		GhostInstance.position = global_position
 		_ghost_counter = 0
 
 
