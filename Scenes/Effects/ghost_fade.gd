@@ -19,41 +19,13 @@ func _ready():
 func _process(_delta):
 	pass
 
-func set_sprite_nodes(bgArm, bgLeg, body, head, fgLeg, fgArm) -> void:
-	_player_bg_arm_sprite.texture = bgArm.texture
-	_player_bg_leg_sprite.texture = bgLeg.texture
-	_player_body_sprite.texture = body.texture
-	_player_head_sprite.texture = head.texture
-	_player_fg_leg_sprite.texture = fgLeg.texture
-	_player_fg_arm_sprite.texture = fgArm.texture
-
-	_player_bg_arm_sprite.hframes = fgArm.hframes
-	_player_bg_leg_sprite.hframes = fgArm.hframes
-	_player_body_sprite.hframes = fgArm.hframes
-	_player_head_sprite.hframes = fgArm.hframes
-	_player_fg_leg_sprite.hframes = fgArm.hframes
-	_player_fg_arm_sprite.hframes = fgArm.hframes
-
-	_player_bg_arm_sprite.vframes = fgArm.vframes
-	_player_bg_leg_sprite.vframes = fgArm.vframes
-	_player_body_sprite.vframes = fgArm.vframes
-	_player_head_sprite.vframes = fgArm.vframes
-	_player_fg_leg_sprite.vframes = fgArm.vframes
-	_player_fg_arm_sprite.vframes = fgArm.vframes
-
-	_player_bg_arm_sprite.frame = fgArm.frame
-	_player_bg_leg_sprite.frame = fgArm.frame
-	_player_body_sprite.frame = fgArm.frame
-	_player_head_sprite.frame = fgArm.frame
-	_player_fg_leg_sprite.frame = fgArm.frame
-	_player_fg_arm_sprite.frame = fgArm.frame
-
-	_player_bg_arm_sprite.flip_h = fgArm.flip_h
-	_player_bg_leg_sprite.flip_h = fgArm.flip_h
-	_player_body_sprite.flip_h = fgArm.flip_h
-	_player_head_sprite.flip_h = fgArm.flip_h
-	_player_fg_leg_sprite.flip_h = fgArm.flip_h
-	_player_fg_arm_sprite.flip_h = fgArm.flip_h
+func set_sprite_nodes(bgArm: Sprite2D, bgLeg: Sprite2D, body: Sprite2D, head: Sprite2D, fgLeg: Sprite2D, fgArm: Sprite2D) -> void:
+	player_sprite.add_child(bgArm.duplicate(8))
+	player_sprite.add_child(bgLeg.duplicate(8))
+	player_sprite.add_child(body.duplicate(8))
+	player_sprite.add_child(head.duplicate(8))
+	player_sprite.add_child(fgLeg.duplicate(8))
+	player_sprite.add_child(fgArm.duplicate(8))
 
 func on_tween_finished():
 	queue_free()
