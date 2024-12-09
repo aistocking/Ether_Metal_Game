@@ -15,16 +15,18 @@ func _ready():
 	$Sprites.frame = randi_range(0,4)
 	_hit_box.set_damage_and_direction(_damage, _stun_damage, _direction)
 	create_tween().tween_property(self, "_speed", 10, 0.5)
+	_set_flip()
 
 func _physics_process(_delta):
 	position += _direction * _speed
 
-func getDirection(vec: Vector2):
+func set_direction(vec: Vector2):
 	_direction = vec
 
-func flip(val):
-	$Sprites.flip_h = val
-	_collision_point.position.x = _collision_point.position.x * -1
+func _set_flip() -> void:
+	if _direction.x < 0:
+		$Sprites.flip_h = !$Sprites.flip_h
+		_collision_point.position.x *= -1
 
 func _on_timer_timeout():
 	queue_free()

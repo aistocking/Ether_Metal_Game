@@ -174,9 +174,7 @@ func plasma_shot() -> void:
 	_remove_charge_level()
 	effect_audio_player.play_sound(CHARGE_SHOT_AUDIO)
 	var instance: PlasmaShot = _CHARGE_SHOT_SCENE.instantiate()
-	instance.getDirection(Vector2(facing_direction, 0))
-	if facing_direction == LEFT:
-		instance.flip(true)
+	instance.set_direction(Vector2(facing_direction, 0))
 	get_parent().add_child(instance)
 	instance.position = _buster_position.global_position
 
