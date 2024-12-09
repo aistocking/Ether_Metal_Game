@@ -1,20 +1,29 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlbn6aiglmufi"]
 
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2x7ef"]
 [ext_resource type="Script" path="res://Scenes/Effects/plasma_shot.gd" id="2_ewlw1"]
 [ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="2_mq5uu"]
-[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_ughn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
-size = Vector2(40, 28)
+size = Vector2(28, 22)
 
-[node name="PlasmaShot" type="Area2D"]
-collision_layer = 2
-collision_mask = 20
+[node name="PlasmaShot" type="Node2D"]
 script = ExtResource("2_ewlw1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, 0)
+[node name="HitBox" parent="." instance=ExtResource("2_2x7ef")]
+collision_mask = 4
+
+[node name="HitCollision" parent="HitBox" index="0"]
+position = Vector2(4, 0)
+
+[node name="Physical" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="PhysicalCollision" type="CollisionShape2D" parent="Physical"]
+position = Vector2(11.19, 0)
 shape = SubResource("RectangleShape2D_owdon")
+debug_color = Color(0.322515, 0.624569, 7.70092e-07, 0.42)
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -23,16 +32,16 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.309436
 
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -15.928
-script = ExtResource("3_ughn4")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.3
 one_shot = true
 autostart = true
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="finished" from="SFXPlayer" to="." method="_on_sfx_player_finished"]
+[node name="CollisionPoint" type="Marker2D" parent="."]
+position = Vector2(24, 0)
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="Physical" to="." method="_on_physical_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="HitBox"]

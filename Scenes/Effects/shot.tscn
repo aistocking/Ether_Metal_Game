@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Effects/shot.gd" id="1_5l87p"]
 [ext_resource type="Texture2D" uid="uid://c4njjlnmm8y1q" path="res://Art/Effects/BasicShot.png" id="2_k0reg"]
-[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_ehu3n"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8no8"]
-size = Vector2(8, 6)
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_hle2d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svrs1"]
 atlas = ExtResource("2_k0reg")
@@ -50,14 +47,11 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Shot" type="Area2D" groups=["PlayerProjectiles"]]
-collision_layer = 2
-collision_mask = 20
-script = ExtResource("1_5l87p")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkmeu"]
+size = Vector2(5, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_y8no8")
+[node name="Shot" type="Node2D" groups=["PlayerProjectiles"]]
+script = ExtResource("1_5l87p")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -70,10 +64,29 @@ wait_time = 0.6
 one_shot = true
 autostart = true
 
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -14.991
-script = ExtResource("3_ehu3n")
+[node name="HitBox" parent="." instance=ExtResource("3_hle2d")]
+collision_layer = 2
+collision_mask = 4
+_damage = 1
+_stun_damage = 5
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitCollision" parent="HitBox" index="0"]
+position = Vector2(0.5, 0)
+
+[node name="Physical" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="PhysicalCollision" type="CollisionShape2D" parent="Physical"]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_xkmeu")
+debug_color = Color(0, 0.647179, 0.218115, 0.42)
+
+[node name="CollisionPoint" type="Marker2D" parent="."]
+position = Vector2(4, 0)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="finished" from="SFXPlayer" to="." method="_on_sfx_player_finished"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="Physical" to="." method="_on_physical_body_entered"]
+
+[editable path="HitBox"]

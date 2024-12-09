@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg8bjbluftn52"]
+
+[ext_resource type="Texture2D" uid="uid://cs0d8lctho8vt" path="res://Art/Effects/Large_Hit_FX.png" id="1_qba4h"]
+[ext_resource type="Script" path="res://Scenes/Effects/shot_effect.gd" id="2_fb6td"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjo6t"]
+atlas = ExtResource("1_qba4h")
+region = Rect2(0, 0, 21, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4hn0"]
+atlas = ExtResource("1_qba4h")
+region = Rect2(21, 0, 21, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ue6k"]
+atlas = ExtResource("1_qba4h")
+region = Rect2(42, 0, 21, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfir3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjo6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4hn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ue6k")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="ShotEffect" type="AnimatedSprite2D"]
+z_index = 11
+texture_filter = 1
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_nfir3")
+autoplay = "default"
+script = ExtResource("2_fb6td")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

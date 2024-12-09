@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://qrjstnncgv7w"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/base_projectile.gd" id="1_2jnix"]
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_wom85"]
+
+[node name="BaseShot" type="Node2D"]
+script = ExtResource("1_2jnix")
+
+[node name="HitBox" parent="." instance=ExtResource("2_wom85")]
