@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0re85y4deh4o"]
+
+[ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_n7rns"]
+
+[node name="EnemySprite" type="Sprite2D"]
+material = ExtResource("1_n7rns")
