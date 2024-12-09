@@ -5,3 +5,5 @@
 [resource]
 shader = ExtResource("1_baqa0")
 shader_parameter/active = false
+shader_parameter/stun = false
+shader_parameter/mix_factor = 1.0

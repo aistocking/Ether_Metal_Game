@@ -5,13 +5,19 @@ void vertex() {
 }
 
 uniform bool active = false;
+uniform bool stun = false;
+uniform float mix_factor = 0.5;
 
 void fragment() {
 	vec4 previous_color = texture(TEXTURE, UV);
 	vec4 white_color = vec4(1.0, 1.0, 1.0, previous_color.a);
 	vec4 new_color = previous_color;
 	if (active == true) {
-		new_color = white_color;
+		if (stun == true) {
+			new_color = mix(new_color, white_color, mix_factor);
+		} else {
+			new_color = white_color;
+		}
 	}
 	COLOR = new_color;
 }
