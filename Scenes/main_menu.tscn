@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://btgt7h4nxbwgp" path="res://Art/MiscUI/MM_Exit_Button_Active.png" id="8_3yp0w"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="9_1ggfw"]
 [ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="10_6n0lc"]
-[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Misc/effect_audio_player.tscn" id="10_wdok1"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="10_wdok1"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="11_frkx1"]
 
 [sub_resource type="Animation" id="Animation_gd4wt"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Stages/Objects/transition_door.gd" id="1_hl1cw"]
 [ext_resource type="Texture2D" uid="uid://c52fc2hj3dj63" path="res://Art/Stages/Objects/Transition_Door.png" id="1_mf8xa"]
-[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Misc/effect_audio_player.tscn" id="3_ypnch"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="3_ypnch"]
 [ext_resource type="AudioStream" uid="uid://bp7o1x2lsnx8h" path="res://Sound/Door Open.wav" id="4_q3v5x"]
 
 [sub_resource type="Animation" id="Animation_71iqa"]

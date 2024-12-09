@@ -294,7 +294,7 @@ position = Vector2(167, 0)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("15_ocnfj")]
-position = Vector2(107, -6)
+position = Vector2(107, -1)
 
 [connection signal="body_entered" from="StageTriggers/CutsceneTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger2" to="." method="_on_bg_trigger_2_body_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://csfqy1thviyhc" path="res://Art/Effects/Explosion.png" id="1_gg0k8"]
 [ext_resource type="Script" path="res://Scenes/Effects/medium_explosion.gd" id="2_33v2p"]
-[ext_resource type="Script" path="res://Scenes/Misc/effect_audio_player.gd" id="3_m1eb4"]
+[ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="3_m1eb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3d4i"]
 atlas = ExtResource("1_gg0k8")

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dpa5fd5j3i0r5" path="res://Art/MiscUI/StageSelect/StageSelectBelobog.png" id="11_77e20"]
 [ext_resource type="Texture2D" uid="uid://dywnjtl6h686s" path="res://Art/MiscUI/StageSelect/StageSelectBorders.png" id="12_4cdq1"]
 [ext_resource type="Texture2D" uid="uid://c0gect3q0f6gl" path="res://Art/MiscUI/StageSelect/StageSelectCursor.png" id="13_lm1gl"]
-[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Misc/effect_audio_player.tscn" id="14_e8j44"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="14_e8j44"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="15_yr606"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02etb"]
