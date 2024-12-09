@@ -22,6 +22,8 @@ var _max_charge_level: int = 2
 var _max_health: int = 16
 var health: int = 16
 
+var _charge_tween: Tween
+
 @onready var effect_audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var _player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var _hud: Hud = get_tree().get_first_node_in_group("UI Elements")
@@ -423,15 +425,23 @@ func handle_horizontal() -> void:
 func _set_charge_fx(type: String):
 	if type == "Cancel":
 		$"Charge Particles".emitting = false
+		player_full_sprite.material.set_shader_parameter("charging", false)
+		if _charge_tween != null:
+			_charge_tween.kill()
 		return
 	$"Charge Particles".emitting = true
+	_charge_tween = create_tween()
+	_charge_tween.set_loops()
+	_charge_tween.tween_method(func(value): player_full_sprite.material.set_shader_parameter("mix_factor", value), 0.1, 0.4, 0.1)
+	_charge_tween.chain().tween_method(func(value): player_full_sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.1, 0.1)
+	player_full_sprite.material.set_shader_parameter("charging", true)
 	match type:
 		"Offense":
-			pass
+			player_full_sprite.material.set_shader_parameter("charge_color", Color(1, 0, 0))
 		"Defense":
-			pass
+			player_full_sprite.material.set_shader_parameter("charge_color", Color(0, 0, 1))
 		"Ultimate":
-			pass
+			player_full_sprite.material.set_shader_parameter("charge_color", Color(1, 0, 1))
 
 func enterCutsceneState() -> void:
 	_player_state_machine._enterCutscene()
