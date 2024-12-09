@@ -9,7 +9,8 @@ var direction: int = 0
 
 var IsAirdash : bool
 
-@onready var timer: Timer = $Timer
+@onready var _dash_timer: Timer = $Timer
+@onready var _shoot_timer: Timer = $ShotTimer
 
 func enter(msg := {}) -> void:
 	player = owner
@@ -17,8 +18,8 @@ func enter(msg := {}) -> void:
 	player.player_animations.play("Dash_Start")
 	player.player_animations.queue("Dash_Loop")
 	direction = 0
-	timer.one_shot = true
-	timer.start(0.4)
+	_dash_timer.one_shot = true
+	_dash_timer.start(0.4)
 	player.effect_audio_player.set_stream(player.DASH_AUDIO)
 	player.effect_audio_player.play()
 	if(!player.is_on_floor()):
@@ -53,10 +54,14 @@ func handle_input(event):
 	
 	if event.is_action_pressed("Shot"):
 		player._basic_shot()
+		if _shoot_timer.is_stopped():
+			switchAnimation(false)
+		_shoot_timer.start(0.4)
 
 
 func exit() -> void:
-	timer.stop()
+	_dash_timer.stop()
+	_shoot_timer.stop()
 	
 func physics_update(_delta: float) -> void:
 	player.ghostEffect()
@@ -70,9 +75,17 @@ func physics_update(_delta: float) -> void:
 	
 	player.move_and_slide()
 
+func switchAnimation(back2dash: bool) -> void:
+	var temp: float = player.player_animations.current_animation_position
+	if back2dash:
+		player.player_animations.play("Dash_Loop")
+	else:
+		player.player_animations.play("Dash_Shoot")
+	player.player_animations.advance(temp)
+
 # Make sure you stop the timer otherwise this can fire even outside of the state
 func _on_timer_timeout():
-	timer.stop()
+	_dash_timer.stop()
 	if IsAirdash:
 		state_machine.transition_to("Falling")
 	else:
@@ -80,3 +93,8 @@ func _on_timer_timeout():
 			state_machine.transition_to("Run")
 		else:
 			state_machine.transition_to("Idle")
+
+
+func _on_shot_timer_timeout():
+	_shoot_timer.stop()
+	switchAnimation(true)
