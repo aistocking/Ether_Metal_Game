@@ -24,6 +24,8 @@ var health: int = 16
 
 var _charge_tween: Tween
 
+signal stomp (strength: float, time: float)
+
 @onready var effect_audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var _player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var _hud: Hud = get_tree().get_first_node_in_group("UI Elements")
@@ -115,8 +117,6 @@ func _ready() -> void:
 	get_parent().add_child.call_deferred(TeleportInstance)
 	TeleportInstance.global_position = global_position
 
-	
-
 
 func _input(event: InputEvent) -> void:
 	if player_input == false:
@@ -172,6 +172,7 @@ func _basic_shot() -> bool:
 #Offensive specials
 func plasma_shot() -> void:
 	_remove_charge_level()
+	_camera.apply_shake(1.5, 0.1)
 	effect_audio_player.play_sound(CHARGE_SHOT_AUDIO)
 	var instance: PlasmaShot = _CHARGE_SHOT_SCENE.instantiate()
 	instance.set_direction(Vector2(facing_direction, 0))

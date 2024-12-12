@@ -3,14 +3,28 @@ extends Camera2D
 var _player: PlayerCharacter
 var origin
 
+var _rng = RandomNumberGenerator.new()
+
+var _shake_strength: float = 0.0
+
 func _ready():
 	origin = global_position
 	_player = get_tree().get_first_node_in_group("Player")
+	_player.connect("stomp", apply_shake)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	position = _player.position
+	
+	if _shake_strength > 0.0:
+		offset = _random_offset()
+
+
+func apply_shake(strength: float, time: float) -> void:
+	_shake_strength = strength
+	create_tween().tween_property(self, "_shake_strength", 0.0, time)
+
+func _random_offset() -> Vector2:
+	return Vector2(_rng.randf_range(-_shake_strength, _shake_strength), _rng.randf_range(-_shake_strength, _shake_strength))
 
 #With the proper 2D position markers from camera_bounds scene, hand over the global_position of each along with a transition time
 #Then transition from the old limits to the new ones with the transition time

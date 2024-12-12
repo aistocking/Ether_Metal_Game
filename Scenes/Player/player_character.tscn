@@ -805,6 +805,20 @@ tracks/8/keys = {
 "method": &"play"
 }]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"stomp", 5.0, 0.3],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1xpcr"]
 resource_name = "Falling"
@@ -2471,6 +2485,7 @@ one_shot = true
 script = ExtResource("15_7l818")
 
 [node name="CancelTimer" type="Timer" parent="PlayerStateMachine/Special Attack"]
+one_shot = true
 
 [node name="Sliding" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("16_01rhr")
