@@ -1,2 +1,2 @@
-# MMX_Like
-An exercise in creating a game to mimic the Megaman X style and feel
+# Ether_Metal
+What started as a small project purely to mimic a game like MegaMan X in the Godot Engine for practice is now its own idea and identity.
