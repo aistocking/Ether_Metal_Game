@@ -6,19 +6,25 @@ var DialogueBoxResource: Resource = preload("res://Scenes/Misc/text_box.tscn")
 var _bg_gate1 := false
 var _bg_gate2 := false
 
-@onready var bg_trigger1 := $StageTriggers/BGTrigger1
 @onready var bg_trigger2 := $StageTriggers/BGTrigger2
 
 @onready var OPENING_SONG: AudioStream = preload("res://Sound/Music/06_Opening Stage X.mp3")
+@onready var _enemy: PackedScene = preload("res://Scenes/Enemies/base_enemy.tscn")
 
 func _ready() -> void:
 	Global.change_music(OPENING_SONG)
 	RenderingServer.set_default_clear_color(Color(0,0,0))
+	_spawn_enemy()
 
 
 func _process(delta: float) -> void:
 	pass
 
+func _spawn_enemy() -> void:
+	await get_tree().create_timer(1).timeout
+	var instance = _enemy.instantiate()
+	$Enemies/EnemyRespawnPoint.add_child(instance)
+	instance.connect("died", _spawn_enemy)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var DialogueBoxInst = DialogueBoxResource.instantiate()
