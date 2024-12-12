@@ -5,6 +5,8 @@ var _direction: Vector2
 var _speed: float = 1
 var _damage: int = 8
 var _stun_damage: int = 5
+var _power: float = 300
+var _hit_direction: Vector2
 
 @onready var _hit_box: HitBox = $HitBox
 @onready var _collision_point: Marker2D = $CollisionPoint
@@ -13,7 +15,9 @@ const _hit_fx: PackedScene = preload("res://Scenes/Effects/large_shot_effect.tsc
 
 func _ready():
 	$Sprites.frame = randi_range(0,4)
-	_hit_box.set_damage_and_direction(_damage, _stun_damage, _direction)
+	_hit_direction.x = _direction.x
+	_hit_direction.y = -0.5
+	_hit_box.set_variables(_damage, _stun_damage, _hit_direction, _power)
 	create_tween().tween_property(self, "_speed", 10, 0.5)
 	_set_flip()
 

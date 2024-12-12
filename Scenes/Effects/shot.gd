@@ -5,6 +5,7 @@ var _direction: Vector2
 var _speed: float = 7
 var _damage: int = 1
 var _stun_damage: int = 4
+var _power: float = 25
 
 @onready var _hit_box: HitBox = $HitBox
 @onready var _collision_point: Vector2 = $CollisionPoint.position
@@ -13,7 +14,7 @@ const _hit_fx: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
 
 func _ready():
 	$Sprites.frame = randi_range(0,4)
-	_hit_box.set_damage_and_direction(_damage, _stun_damage, _direction)
+	_hit_box.set_variables(_damage, _stun_damage, _direction, _power)
 
 func _physics_process(_delta):
 	position += _direction * _speed
@@ -30,13 +31,8 @@ func _on_timer_timeout():
 
 func _collission():
 	_spawn_hit_effect()
-	_hit()
 	queue_free()
 
-func _hit() -> void:
-	$Sprites.queue_free()
-	$HitBox/HitCollision.disabled = true
-	_speed = 0
 
 func _spawn_hit_effect() -> void:
 	var hitFX = _hit_fx.instantiate()

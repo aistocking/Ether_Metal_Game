@@ -142,12 +142,12 @@ func _barrage() -> void:
 	cancel_timer.start(0.1)
 
 func _upper() -> void:
-	player.velocity.y = -400
+	player.velocity.y = -700
 	player.velocity.x = player.facing_direction * 300
 	var tweenX = get_tree().create_tween()
 	var tweenY = get_tree().create_tween()
-	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
-	tweenY.tween_property(player, "velocity:y", 0, .6).set_trans(Tween.TRANS_CUBIC)
+	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_EXPO)
+	tweenY.tween_property(player, "velocity:y", 0, .5).set_trans(Tween.TRANS_EXPO)
 	player.player_animations.play("Upper")
 	player.upper(.5)
 	CurrentSpecial = SPECIALS.UPPER
