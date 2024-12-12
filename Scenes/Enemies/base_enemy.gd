@@ -5,6 +5,7 @@ var _stun_health: int = 0
 var _damage: int = 1
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 var _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
+var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 var _player
@@ -20,6 +21,8 @@ var _tween: Tween
 
 var tempStunState: bool = false
 
+signal died
+
 func _ready():
 	_player = get_tree().get_first_node_in_group("Player")
 	_health_component.connect("health_change", _update_health)
@@ -31,8 +34,13 @@ func _ready():
 	$AspectRatioContainer/Health.value = _health
 	$AspectRatioContainer/StunHealth.value = _stun_health
 	_state_label.text = "normal"
+	_reset_sprite_flash()
 
 func _physics_process(delta):
+	#if !is_on_floor():
+	#	velocity.y += _gravity * delta
+	#else:
+	#	velocity.y = 0
 	move_and_slide()
 
 
@@ -41,7 +49,6 @@ func _hit_flash():
 	_flash_timer.start(0.1)
 
 func _hit_push(direction: Vector2, power: int) -> void:
-	power *= 10
 	var push_vector = direction * power
 	velocity = push_vector
 	create_tween().tween_property(self, "velocity", Vector2.ZERO, 0.3)
@@ -53,13 +60,13 @@ func _on_flash_timer_timeout():
 	if tempStunState == false:
 		_reset_sprite_flash()
 
-func _update_health(h: int, s: int) -> void:
-	if _health != h:
+func _update_health(health: int, stun: int) -> void:
+	if _health != health:
 		_hit_flash()
-	_health = h
-	_stun_health = s
-	$AspectRatioContainer/Health.value = h
-	$AspectRatioContainer/StunHealth.value = s
+	_health = health
+	_stun_health = stun
+	$AspectRatioContainer/Health.value = _health
+	$AspectRatioContainer/StunHealth.value = _stun_health
 	_effect_audio_player.play_sound(_hit_SFX)
 	
 
@@ -78,15 +85,15 @@ func _restore_state(direction: Vector2, power: int) -> void:
 	tempStunState = false
 	if power != 0:
 		_hit_push(direction, power)
-	_sprite.material.set_shader_parameter("stun", false)
 	_state_label.text = "normal"
 	_tween.kill()
 	_reset_sprite_flash()
 
 func die():
+	emit_signal("died")
 	var ExplosionInstance = ExplosionEffect.instantiate()
 	get_parent().add_child(ExplosionInstance)
-	ExplosionInstance.position = global_position
+	ExplosionInstance.global_position = global_position
 	queue_free()
 
 
