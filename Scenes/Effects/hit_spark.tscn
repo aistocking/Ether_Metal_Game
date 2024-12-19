@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bxdty8m8n6p2m"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/hit_spark.gd" id="1_e4q36"]
+[ext_resource type="Texture2D" uid="uid://r10jadtyte07" path="res://Art/Effects/Hit_FX.png" id="2_mevga"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw88v"]
+atlas = ExtResource("2_mevga")
+region = Rect2(0, 6, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j50d"]
+atlas = ExtResource("2_mevga")
+region = Rect2(12, 6, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e2g5"]
+atlas = ExtResource("2_mevga")
+region = Rect2(0, 9, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc6e8"]
+atlas = ExtResource("2_mevga")
+region = Rect2(12, 9, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxnd1"]
+atlas = ExtResource("2_mevga")
+region = Rect2(0, 0, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj2ox"]
+atlas = ExtResource("2_mevga")
+region = Rect2(12, 0, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpw3p"]
+atlas = ExtResource("2_mevga")
+region = Rect2(0, 3, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0yd5"]
+atlas = ExtResource("2_mevga")
+region = Rect2(12, 3, 12, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h24gn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw88v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j50d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e2g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc6e8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxnd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj2ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpw3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0yd5")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"fat",
+"speed": 16.0
+}]
+
+[node name="HitSpark" type="Node2D"]
+script = ExtResource("1_e4q36")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h24gn")
+autoplay = "default"
