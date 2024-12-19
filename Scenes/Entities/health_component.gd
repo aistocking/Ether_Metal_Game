@@ -9,7 +9,6 @@ extends Node
 @export var _hurt_box: HurtBox
 
 signal die
-signal restore_stun (direction: Vector2, power: int)
 signal stun_break
 signal health_change (health: int, stun_health: int)
 signal stun_health_change
@@ -21,15 +20,10 @@ func _ready():
 	_stun_health = _max_stun_health
 	emit_signal("health_change", _health, _stun_health)
 
-func _reset_stun_health() -> void:
-	_stun_health = _max_stun_health
-
 func _take_damage(health_damage: int, stun_damage: int, direction: Vector2, power: float) -> void:
 	if _stun_health <= 0:
 		health_damage *= 2
 		stun_damage = 0
-		emit_signal("restore_stun", direction, power)
-		_reset_stun_health()
 	_health -= health_damage
 	_stun_health -= stun_damage
 	if health_damage > 0 or stun_damage > 0:
@@ -38,3 +32,6 @@ func _take_damage(health_damage: int, stun_damage: int, direction: Vector2, powe
 			emit_signal("die")
 		if _stun_health <= 0:
 			emit_signal("stun_break")
+
+func reset_stun_health() -> void:
+	_stun_health = _max_stun_health
