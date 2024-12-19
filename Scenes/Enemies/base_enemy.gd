@@ -11,12 +11,12 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _player
 
 @onready var _flash_timer: Timer = $FlashTimer
-@onready var _stun_timer: Timer = $StunTimer
 @onready var _sprite = $Sprite
 @onready var _hurt_box: HurtBox = $HurtBox
 @onready var _health_component: HealthComponent = $HealthComponent
 @onready var _state_label: Label = $Label
 @onready var _effect_audio_player: EffectAudioPlayer = $EffectAudioPlayer
+@onready var _state_machine: EnemyStateMachine = $EnemyStateMachine
 var _tween: Tween
 
 var tempStunState: bool = false
@@ -28,7 +28,7 @@ func _ready():
 	_health_component.connect("health_change", _update_health)
 	_health_component.connect("die", die)
 	_health_component.connect("stun_break", _stun_break)
-	_health_component.connect("restore_stun", _restore_state)
+	$EnemyStateMachine/EnemyStun.connect("stun_recover", _restore_stun)
 	$AspectRatioContainer/Health.max_value = _health_component._max_health
 	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
 	$AspectRatioContainer/Health.value = _health
@@ -71,8 +71,6 @@ func _update_health(health: int, stun: int) -> void:
 	
 
 func _stun_break() -> void:
-	_stun_timer.start(5.0)
-	tempStunState = true
 	_state_label.text = "stun"
 	_sprite.material.set_shader_parameter("active", true)
 	_sprite.material.set_shader_parameter("stun", true)
@@ -80,11 +78,10 @@ func _stun_break() -> void:
 	_tween.set_loops()
 	_tween.tween_method(func(value): _sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.8, 1)
 	_tween.chain().tween_method(func(value): _sprite.material.set_shader_parameter("mix_factor", value), 0.8, 0.4, 1)
+	_state_machine.transition_to("EnemyStun")
 
-func _restore_state(direction: Vector2, power: int) -> void:
-	tempStunState = false
-	if power != 0:
-		_hit_push(direction, power)
+func _restore_stun() -> void:
+	_health_component.reset_stun_health()
 	_state_label.text = "normal"
 	_tween.kill()
 	_reset_sprite_flash()
@@ -95,8 +92,3 @@ func die():
 	get_parent().add_child(ExplosionInstance)
 	ExplosionInstance.global_position = global_position
 	queue_free()
-
-
-func _on_stun_timer_timeout():
-	_restore_state(Vector2.ZERO, 0)
-	_health_component._reset_stun_health()
