@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 const RIGHT: int = 1
 const LEFT: int = -1
-const DEFAULT_SPEED: float = 150.0
+const DEFAULT_SPEED: float = 160.0
 const DASHING_SPEED: float = DEFAULT_SPEED * 1.75
 
 var speed := DEFAULT_SPEED
@@ -53,7 +53,7 @@ const PICKUP_TANK_AUDIO: AudioStream = preload("res://Sound/Heart Powerup.wav")
 
 #Dust scenes & systems when dashing, wall clinging, etc
 const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
-@onready var _dust_position: Marker2D = $DustPosition
+@onready var _dust_position: Marker2D = $SpawnMarkers/DustPosition
 var _dust_counter: int = 0
 
 #Offensive special attack scenes
@@ -72,7 +72,7 @@ const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Effects/orbital_bi
 #Basic shot scenes & systems
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
-@onready var _buster_position: Marker2D = $BusterPosition
+@onready var _buster_position: Marker2D = $SpawnMarkers/BusterPosition
 @onready var _shot_timer: Timer = $ShotTimer
 
 #Intro scene for teleportation FX
@@ -97,21 +97,17 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player_animations: AnimationPlayer = $PlayerAnims
 @onready var debug_state_label: Label = $CurrentStateDebug
 
+signal health_changed (value: int)
+signal die
 
 func _ready() -> void:
-	Global.debug_mode()
 	effect_audio_player.set_stream(INTRO_STOMP)
 	_camera = get_tree().get_first_node_in_group("Camera")
 	set_armour_peices()
-	for i in Global._acquired_tanks:
-		if i == true:
-			_hud.upgrade_health()
-			_max_health += 2
-			restore_health(2)
-	for i in Global._acquired_charge_capacitors:
-		if i == true:
-			_max_charge_level += 1
-			_hud.upgrade_energy()
+	
+	_max_charge_level = Global.get_charge_capacitor_number() + 2
+	_max_health = 16 + (Global.get_heart_tank_number() * 2)
+	
 	health = _max_health
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
@@ -141,6 +137,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	position.x = round(position.x)
+	position.y = round(position.y)
 	_handle_charging()
 
 
@@ -165,6 +163,8 @@ func _basic_shot() -> bool:
 	add_child(shot_effect)
 	shot.position = _buster_position.global_position
 	shot_effect.position = _buster_position.position
+	if facing_direction == LEFT:
+		shot_effect.position.x *= -1
 	return true
 
 
@@ -271,32 +271,28 @@ func _handle_charging() -> void:
 		pass
 	else:
 		_charge_counter += 1
-		_hud.CurrentPellet.value = _charge_counter
-		if(_charge_counter > 200):
+		_hud._current_pellet.value = _charge_counter / 16
+		if(_charge_counter > 256):
 			charge_level += 1
-			_hud.changePellet()
+			_hud.change_pellet()
 			_charge_counter = 0
 
 
 func _remove_charge_level() -> void:
 	charge_level -= 1
-	_hud.decreasePellet()
-	_hud.CurrentPellet.value = _charge_counter
+	_hud.decrease_pellet()
+	_hud._current_pellet.value = _charge_counter
 
 
 func takeDamage(damage: int) -> void:
 	if invincibility_timer.is_stopped():
 		health -= damage
-		_hud.HealthBar.value = health
+		emit_signal("health_changed", health)
 		if health <= 0:
 			_death_particles.emitting = true
 			effect_audio_player.play_sound(DEATH_AUDIO)
-			_hud.AnimPlayer.play("Whiteout")
-			Engine.time_scale = 0.5
+			emit_signal("die")
 			_player_state_machine._die()
-			await effect_audio_player.finished
-			Engine.time_scale = 1
-			get_tree().change_scene_to_file("res://Scenes/Stages/Beta/stage_beta.tscn")
 		else:
 			_player_state_machine._takeDamage()
 
@@ -357,8 +353,7 @@ func change_facing_direction(direction: int) -> void:
 
 
 func _flip_position_markers() -> void:
-	_buster_position.position.x = _buster_position.position.x * -1
-	_dust_position.position.x = _dust_position.position.x * -1
+	$SpawnMarkers.scale.x *= -1
 
 
 func _flip_player_sprite() -> void:
