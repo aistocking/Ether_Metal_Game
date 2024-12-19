@@ -1,25 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=13 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
-[ext_resource type="Texture2D" uid="uid://boblfeqllus2l" path="res://Art/MiscUI/HealthBarBG.png" id="3_i7cal"]
-[ext_resource type="Texture2D" uid="uid://r6d4y22fbrra" path="res://Art/MiscUI/HealthBar.png" id="4_417n4"]
-[ext_resource type="Texture2D" uid="uid://dqj7qylhe6gt2" path="res://Art/MiscUI/HealthPellet.png" id="5_74xd3"]
-[ext_resource type="Texture2D" uid="uid://ptcroiems3kk" path="res://Art/MiscUI/EnergyBar.png" id="6_c4pgy"]
-[ext_resource type="Texture2D" uid="uid://bloeur5xju4np" path="res://Art/MiscUI/EnergyPellet.png" id="6_txg3r"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw28h"]
-atlas = ExtResource("3_i7cal")
-region = Rect2(48, 0, 6, 80)
-margin = Rect2(3, 3, 0, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crgou"]
-atlas = ExtResource("4_417n4")
-region = Rect2(96, 0, 12, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_riocf"]
-atlas = ExtResource("6_c4pgy")
-region = Rect2(48, 0, 12, 85)
+[ext_resource type="Texture2D" uid="uid://xuofhrtq65nm" path="res://Art/MiscUI/Hud_Gem.png" id="8_d2h46"]
+[ext_resource type="Texture2D" uid="uid://cps65sw656odu" path="res://Art/MiscUI/Hud_Charge_Bar_Insides.png" id="9_fx4ob"]
+[ext_resource type="Texture2D" uid="uid://3uh7f8cf67ga" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet.png" id="10_yidrv"]
+[ext_resource type="Texture2D" uid="uid://chgiseah4lbl6" path="res://Art/MiscUI/Hud_Charge_Bar_Top_Layer.png" id="11_1mytq"]
+[ext_resource type="Texture2D" uid="uid://ctgsw0nxfbwx2" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet_Endcap.png" id="12_j8ewg"]
+[ext_resource type="Texture2D" uid="uid://d1aqotassip3b" path="res://Art/MiscUI/Hud_Health_Bar.png" id="13_1dkpj"]
+[ext_resource type="Texture2D" uid="uid://c4q7jr8l0356y" path="res://Art/MiscUI/Hud_Health_Energy.png" id="14_1xsce"]
 
 [sub_resource type="Animation" id="Animation_juq0u"]
 length = 0.001
@@ -50,6 +39,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_d2wun"]
 resource_name = "Whiteout"
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -70,10 +60,10 @@ tracks/1/path = NodePath("WholeScreen/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.9, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxe1"]
@@ -107,129 +97,242 @@ offset_bottom = 3.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HealthBar" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
+[node name="LowerColorBar" type="ColorRect" parent="WholeScreen"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = -1
+anchor_top = 0.862
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.91199
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.14902, 0.14902, 0.137255, 1)
+
+[node name="HudGem" type="Sprite2D" parent="WholeScreen"]
+position = Vector2(13, 211)
+texture = ExtResource("8_d2h46")
+hframes = 2
+
+[node name="ChargeBar" type="Node2D" parent="WholeScreen"]
+position = Vector2(100, 210.58)
+
+[node name="1stPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/1stPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/1stPellet"]
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -110.0
-offset_right = 16.0
-offset_bottom = -30.0
+offset_left = -6.5
+offset_top = -8.0
+offset_right = 6.5
+offset_bottom = 8.0
+grow_horizontal = 2
 grow_vertical = 2
-max_value = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("10_yidrv")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/1stPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+
+[node name="2ndPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+position = Vector2(13, 0)
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/2ndPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+frame = 1
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/2ndPellet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("12_j8ewg")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/2ndPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+frame = 2
+
+[node name="3rdPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+visible = false
+position = Vector2(26, 0)
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/3rdPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+frame = 1
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/3rdPellet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("12_j8ewg")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/3rdPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+frame = 2
+
+[node name="4thPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+visible = false
+position = Vector2(39, 0)
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/4thPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+frame = 1
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/4thPellet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("12_j8ewg")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/4thPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+frame = 2
+
+[node name="5thPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+visible = false
+position = Vector2(52, 0)
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/5thPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+frame = 1
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/5thPellet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("12_j8ewg")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/5thPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+frame = 2
+
+[node name="6thPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
+visible = false
+position = Vector2(65, 0)
+
+[node name="Backing" type="Sprite2D" parent="WholeScreen/ChargeBar/6thPellet"]
+texture = ExtResource("9_fx4ob")
+hframes = 2
+frame = 1
+
+[node name="Pellet" type="TextureProgressBar" parent="WholeScreen/ChargeBar/6thPellet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 16.0
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("12_j8ewg")
+
+[node name="Front" type="Sprite2D" parent="WholeScreen/ChargeBar/6thPellet"]
+texture = ExtResource("11_1mytq")
+hframes = 3
+frame = 2
+
+[node name="HealthBar" type="Node2D" parent="WholeScreen"]
+position = Vector2(58, 211)
+
+[node name="Container" type="Sprite2D" parent="WholeScreen/HealthBar"]
+texture = ExtResource("13_1dkpj")
+hframes = 2
+vframes = 5
+
+[node name="1stHealthBar" type="TextureProgressBar" parent="WholeScreen/HealthBar"]
+offset_left = -24.0
+offset_top = -6.0
+offset_right = 24.0
+offset_bottom = -1.0
+max_value = 16.0
 value = 16.0
-fill_mode = 3
-texture_under = SubResource("AtlasTexture_aw28h")
-texture_over = SubResource("AtlasTexture_crgou")
-texture_progress = ExtResource("5_74xd3")
-texture_progress_offset = Vector2(3, 3)
+texture_progress = ExtResource("14_1xsce")
 
-[node name="ChargePellet1" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -43.0
-offset_right = 25.0
-offset_bottom = -30.0
-grow_vertical = 2
-max_value = 200.0
-value = 80.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargePellet2" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -56.0
-offset_right = 25.0
-offset_bottom = -43.0
-grow_vertical = 2
-max_value = 200.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargePellet3" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -69.0
-offset_right = 25.0
-offset_bottom = -56.0
-grow_vertical = 2
-max_value = 200.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargePellet4" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -82.0
-offset_right = 25.0
-offset_bottom = -69.0
-grow_vertical = 2
-max_value = 200.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargePellet5" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -95.0
-offset_right = 25.0
-offset_bottom = -82.0
-grow_vertical = 2
-max_value = 200.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargePellet6" type="TextureProgressBar" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -108.0
-offset_right = 25.0
-offset_bottom = -95.0
-grow_vertical = 2
-max_value = 200.0
-fill_mode = 3
-texture_progress = ExtResource("6_txg3r")
-
-[node name="ChargeBar" type="TextureRect" parent="WholeScreen"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -111.0
-offset_right = 28.0
-offset_bottom = -26.0
-grow_vertical = 2
-texture = SubResource("AtlasTexture_riocf")
-stretch_mode = 2
+[node name="2ndHealthBar" type="TextureProgressBar" parent="WholeScreen/HealthBar"]
+offset_left = -24.0
+offset_top = 1.0
+offset_right = 24.0
+offset_bottom = 6.0
+max_value = 16.0
+texture_progress = ExtResource("14_1xsce")
 
 [node name="ColorRect" type="ColorRect" parent="WholeScreen"]
 visible = false

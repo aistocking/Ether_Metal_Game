@@ -1,51 +1,117 @@
 class_name Hud
 extends CanvasLayer
 
-var Player
+var _player: PlayerCharacter
 
-@onready var ChargeBar = $WholeScreen/ChargeBar
-@onready var HealthBar = $WholeScreen/HealthBar
+@onready var health_bar_container: Sprite2D = $WholeScreen/HealthBar/Container
+@onready var first_health_bar: TextureProgressBar = $"WholeScreen/HealthBar/1stHealthBar"
+@onready var second_health_bar: TextureProgressBar = $"WholeScreen/HealthBar/2ndHealthBar"
 
-@onready var ChargePellet1 = $WholeScreen/ChargePellet1
-@onready var ChargePellet2 = $WholeScreen/ChargePellet2
-@onready var ChargePellet3 = $WholeScreen/ChargePellet3
-@onready var ChargePellet4 = $WholeScreen/ChargePellet4
-@onready var ChargePellet5 = $WholeScreen/ChargePellet5
-@onready var ChargePellet6 = $WholeScreen/ChargePellet6
+@onready var ChargePellet1: TextureProgressBar = $"WholeScreen/ChargeBar/1stPellet/Pellet"
+@onready var ChargePellet2: TextureProgressBar = $"WholeScreen/ChargeBar/2ndPellet/Pellet"
+@onready var ChargePellet3: TextureProgressBar = $"WholeScreen/ChargeBar/3rdPellet/Pellet"
+@onready var ChargePellet4: TextureProgressBar = $"WholeScreen/ChargeBar/4thPellet/Pellet"
+@onready var ChargePellet5: TextureProgressBar = $"WholeScreen/ChargeBar/5thPellet/Pellet"
+@onready var ChargePellet6: TextureProgressBar = $"WholeScreen/ChargeBar/6thPellet/Pellet"
 
-@onready var AnimPlayer = $AnimationPlayer
+@onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
 
-var CurrentPellet
+var _current_pellet: TextureProgressBar
+var _current_charge_value: float
 
 func _ready():
-	Player = get_tree().get_first_node_in_group("Player")
-	HealthBar.value = Player.health
-	CurrentPellet = ChargePellet1
+	_player = get_tree().get_first_node_in_group("Player")
+	_player.connect("health_changed", set_health_bar_energy)
+	_player.connect("die", _screen_whiteout)
+	set_health_bar_container()
+	set_charge_bar()
+	_current_pellet = ChargePellet1
 
 
-func changePellet():
-	match Player.charge_level:
+func change_pellet():
+	match _player.charge_level:
 		0:
-			CurrentPellet = ChargePellet1
+			_current_pellet = ChargePellet1
 		1:
-			CurrentPellet = ChargePellet2
+			_current_pellet = ChargePellet2
 		2:
-			CurrentPellet = ChargePellet3
+			_current_pellet = ChargePellet3
 		3:
-			CurrentPellet = ChargePellet4
+			_current_pellet = ChargePellet4
 		4:
-			CurrentPellet = ChargePellet5
+			_current_pellet = ChargePellet5
 		5:
-			CurrentPellet = ChargePellet6
+			_current_pellet = ChargePellet6
 		6:
 			pass
 
-func decreasePellet():
-	CurrentPellet.value = 0
-	changePellet()
+func decrease_pellet():
+	_current_charge_value = _current_pellet.value
+	_current_pellet.value = 0
+	change_pellet()
+	#_current_pellet.value = _current_charge_value
 
-func upgrade_health():
-	HealthBar.texture_over.region.position.x -= 12
+func set_health_bar_container() -> void:
+	health_bar_container.frame = Global.get_heart_tank_number()
 
-func upgrade_energy():
-	ChargeBar.texture.region.position.x -= 12
+func set_health_bar_energy(value: int) -> void:
+	if value > 16:
+		first_health_bar.value = 16
+		second_health_bar.value = value - 16
+	else:
+		first_health_bar.value = value
+		second_health_bar.value = 0
+
+func _screen_whiteout() -> void:
+	AnimPlayer.play("Whiteout")
+	Engine.time_scale = 0.5
+	await AnimPlayer.animation_finished
+	Engine.time_scale = 1
+	Global.reset_stage()
+
+func set_charge_bar() -> void:
+	match Global.get_charge_capacitor_number():
+		0:
+			pass
+		1:
+			$"WholeScreen/ChargeBar/3rdPellet".visible = true
+			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/2ndPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/3rdPellet/Backing".frame = 1
+			$"WholeScreen/ChargeBar/3rdPellet/Front".frame = 2
+		2:
+			$"WholeScreen/ChargeBar/3rdPellet".visible = true
+			$"WholeScreen/ChargeBar/4thPellet".visible = true
+			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/2ndPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/3rdPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/3rdPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/4thPellet/Backing".frame = 1
+			$"WholeScreen/ChargeBar/4thPellet/Front".frame = 2
+		3:
+			$"WholeScreen/ChargeBar/3rdPellet".visible = true
+			$"WholeScreen/ChargeBar/4thPellet".visible = true
+			$"WholeScreen/ChargeBar/5thPellet".visible = true
+			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/2ndPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/3rdPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/3rdPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/4thPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/4thPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/5thPellet/Backing".frame = 1
+			$"WholeScreen/ChargeBar/5thPellet/Front".frame = 2
+		4:
+			$"WholeScreen/ChargeBar/3rdPellet".visible = true
+			$"WholeScreen/ChargeBar/4thPellet".visible = true
+			$"WholeScreen/ChargeBar/5thPellet".visible = true
+			$"WholeScreen/ChargeBar/6thPellet".visible = true
+			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/2ndPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/3rdPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/3rdPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/4thPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/4thPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/5thPellet/Backing".frame = 0
+			$"WholeScreen/ChargeBar/5thPellet/Front".frame = 1
+			$"WholeScreen/ChargeBar/6thPellet/Backing".frame = 1
+			$"WholeScreen/ChargeBar/6thPellet/Front".frame = 2
