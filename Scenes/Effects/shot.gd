@@ -11,6 +11,7 @@ var _power: float = 25
 @onready var _collision_point: Vector2 = $CollisionPoint.position
 
 const _hit_fx: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
+const _hit_sparks: PackedScene = preload("res://Scenes/Effects/hit_fx.tscn")
 
 func _ready():
 	$Sprites.frame = randi_range(0,4)
@@ -43,7 +44,10 @@ func _spawn_hit_effect() -> void:
 
 
 func _on_hit_box_area_entered(hurtbox: HurtBox):
-	_collission()
+	var instance = _hit_sparks.instantiate()
+	instance.position = global_position
+	get_parent().add_child(instance)
+	queue_free()
 
 
 func _on_physical_body_entered(body):

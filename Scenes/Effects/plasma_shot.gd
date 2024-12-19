@@ -15,6 +15,7 @@ const _hit_fx: PackedScene = preload("res://Scenes/Effects/large_shot_effect.tsc
 
 func _ready():
 	$Sprites.frame = randi_range(0,4)
+	$GPUParticles2D.emitting = true
 	_hit_direction.x = _direction.x
 	_hit_direction.y = -0.5
 	_hit_box.set_variables(_damage, _stun_damage, _hit_direction, _power)
@@ -31,20 +32,31 @@ func _set_flip() -> void:
 	if _direction.x < 0:
 		$Sprites.flip_h = !$Sprites.flip_h
 		_collision_point.position.x *= -1
+		$GPUParticles2D.process_material.direction.x *= -1
+		$HitBox/HitCollision.transform.x *= -1
+		$Physical/PhysicalCollision.transform.x *= -1
 
 func _on_timer_timeout():
-	queue_free()
+	_remove()
 
 func _collission():
 	_spawn_hit_effect()
-	queue_free()
+	_remove()
 
 func _spawn_hit_effect() -> void:
 	var hitFX = _hit_fx.instantiate()
-	hitFX.flip_h = !$Sprites.flip_h
+	hitFX.flip_h = $Sprites.flip_h
 	get_parent().add_child(hitFX)
 	hitFX.global_position = _collision_point.global_position
 
+func _remove() -> void:
+	_speed = 0
+	$Sprites.visible = false
+	$GPUParticles2D.emitting = false
+	$HitBox/HitCollision.disabled = true
+	$Physical/PhysicalCollision.disabled = true
+	await get_tree().create_timer(0.3).timeout
+	queue_free()
 
 
 func _on_hit_box_area_entered(hurtbox: HurtBox):
