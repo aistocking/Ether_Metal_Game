@@ -8,7 +8,7 @@ var _defeated_bosses: Array[bool] = [false, false, false, false, false, false, f
 enum Armors { Head, Chest, Arms, Legs }
 var _acquired_armors: Array[bool] = [false, false, false, false]
 enum HeartTanks { Tank1, Tank2, Tank3, Tank4, Tank5, Tank6, Tank7, Tank8 }
-var _acquired_tanks: Array[bool] = [false, false, false, false, false, false, false, false]
+var _acquired_health_tanks: Array[bool] = [false, false, false, false, false, false, false, false]
 enum ChargeCapacitors { Cap1, Cap2, Cap3, Cap4 }
 var _acquired_charge_capacitors: Array[bool] = [false, false, false, false]
 enum EtherTanks { ETank1, ETank2 }
@@ -18,6 +18,7 @@ var _music_volume := -20.0
 var _effect_volume := -20.0
 
 var _current_music: AudioStream
+var _current_stage: String
 
 signal cutscene_start
 signal cutscene_stop
@@ -28,7 +29,7 @@ func _ready() -> void:
 	MusicPlayer.volume_db = _music_volume
 
 func debug_mode() -> void:
-	for i in _acquired_tanks:
+	for i in _acquired_health_tanks:
 		i = true
 	for i in _acquired_charge_capacitors:
 		i = true
@@ -58,6 +59,23 @@ func set_music_volume(volume: float) -> void:
 	MusicPlayer.volume_db = volume
 	music_volume_changed.emit()
 
+func get_heart_tank_number() -> int:
+	var temp: int = 0
+	for i: bool in _acquired_health_tanks:
+		if i == true:
+			temp += 1
+	return temp
+
+func get_charge_capacitor_number() -> int:
+	var temp: int = 0
+	for i: bool in _acquired_charge_capacitors:
+		if i == true:
+			temp += 1
+	return temp
+
+func set_current_stage(scene_path: String) -> void:
+	_current_stage = scene_path
+
 func defeat_boss(boss: Bosses) -> void:
 	if _defeated_bosses[boss] == true:
 		push_error("Ruh roh, boss is already labled defeated")
@@ -71,10 +89,10 @@ func acquire_armor(armor: Armors) -> void:
 		_acquired_armors[armor] = true
 
 func acquire_heart_tank(heart_tank: HeartTanks) -> void:
-	if _acquired_tanks[heart_tank] == true:
+	if _acquired_health_tanks[heart_tank] == true:
 		push_error("Ruh roh, tank is already labled acquired")
 	else:
-		_acquired_tanks[heart_tank] = true
+		_acquired_health_tanks[heart_tank] = true
 
 func acquire_charge_capacitor(cap: ChargeCapacitors) -> void:
 	if _acquired_charge_capacitors[cap] == true:
@@ -87,6 +105,9 @@ func acquire_ether_tank(ether_tank: EtherTanks) -> void:
 		push_error("Ruh roh, tank is already labled acquired")
 	else:
 		_acquired_ether_tanks[ether_tank] = true
+
+func reset_stage() -> void:
+	get_tree().change_scene_to_file(_current_stage)
 
 func save_game() -> void:
 	pass
