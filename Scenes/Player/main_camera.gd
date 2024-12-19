@@ -12,8 +12,10 @@ func _ready():
 	_player = get_tree().get_first_node_in_group("Player")
 	_player.connect("stomp", apply_shake)
 
-func _process(_delta):
+func _physics_process(_delta):
 	position = _player.position
+	position.y -= 15
+	
 	
 	if _shake_strength > 0.0:
 		offset = _random_offset()
