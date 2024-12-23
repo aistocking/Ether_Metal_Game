@@ -10,7 +10,7 @@ var _shake_strength: float = 0.0
 func _ready():
 	origin = global_position
 	_player = get_tree().get_first_node_in_group("Player")
-	_player.connect("stomp", apply_shake)
+	_player.connect("screen_shake", apply_shake)
 
 func _physics_process(_delta):
 	position = _player.position
