@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dusmkdis6va78"]
+[gd_scene load_steps=19 format=3 uid="uid://dusmkdis6va78"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
 [ext_resource type="Texture2D" uid="uid://trut2k521ryw" path="res://Art/Enemies/Gunner.png" id="3_tuco8"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="6_8kifp"]
+[ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="7_i6sjv"]
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_state_machine.gd" id="7_m2w8q"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_idle.gd" id="8_t74am"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_move.gd" id="9_ox7mg"]
@@ -13,6 +14,8 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_die.gd" id="11_8w425"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_stun.gd" id="12_8nq0x"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_recover.gd" id="13_jefyu"]
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_shove.gd" id="15_pt4qx"]
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_bounce.gd" id="16_obhxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc2lx"]
 size = Vector2(23, 36)
@@ -44,6 +47,9 @@ texture = ExtResource("3_tuco8")
 hframes = 5
 vframes = 2
 
+[node name="StunStarsSpawnLocation" type="Marker2D" parent="."]
+position = Vector2(0, -24.34)
+
 [node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
 
 [node name="Anims" type="AnimationPlayer" parent="."]
@@ -60,20 +66,22 @@ one_shot = true
 
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("6_8kifp")]
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -30.225
+offset_top = -41.465
 offset_right = 20.0
-offset_bottom = -10.225
+offset_bottom = -21.465
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 8
 text = "state"
+script = ExtResource("7_i6sjv")
+state_machine = NodePath("../EnemyStateMachine")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 8
@@ -104,6 +112,9 @@ max_value = 50.0
 step = 1.0
 show_percentage = false
 
+[node name="Label" type="Label" parent="AspectRatioContainer"]
+layout_mode = 2
+
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_m2w8q")
 initial_state = NodePath("EnemyIdle")
@@ -129,6 +140,12 @@ one_shot = true
 
 [node name="EnemyRecover" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("13_jefyu")
+
+[node name="EnemyShove" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("15_pt4qx")
+
+[node name="EnemyBounce" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("16_obhxj")
 
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyStun/StunTimer" to="EnemyStateMachine/EnemyStun" method="_on_stun_timer_timeout"]

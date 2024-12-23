@@ -9,12 +9,15 @@ func enter(_msg := {}) -> void:
 	_enemy = owner
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
+	_enemy.sprite.frame = 0
 
 func handle_input(event):
 	pass
 
 func physics_update(delta: float) -> void:
-	pass
-	
+	if !_enemy.is_on_floor():
+		_enemy.velocity.y += gravity * delta
+		_enemy.move_and_slide()
+
 func exit() -> void:
 	pass

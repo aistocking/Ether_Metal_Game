@@ -14,7 +14,10 @@ func handle_input(event):
 	pass
 
 func physics_update(delta: float) -> void:
-	pass
+	_enemy.velocity.y += gravity * delta
+	if _enemy.is_on_floor():
+		state_machine.transition_to("EnemyIdle")
+	_enemy.move_and_slide()
 	
 func exit() -> void:
 	pass
