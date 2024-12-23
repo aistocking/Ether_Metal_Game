@@ -27,6 +27,10 @@ var _tween: Tween
 
 var tempStunState: bool = false
 
+const ENEMY_DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
+@onready var _dust_position: Marker2D = $DustSpawnLocation
+var _dust_counter: int = 0
+
 signal died
 
 func _ready():
@@ -87,6 +91,14 @@ func _restore_stun() -> void:
 	_health_component.reset_stun_health()
 	_tween.kill()
 	_reset_sprite_flash()
+
+func create_dust() -> void:
+	_dust_counter += 1
+	if _dust_counter > 4:
+		var _instance: DustParticle = ENEMY_DUST_SCENE.instantiate()
+		get_parent().add_child(_instance)
+		_instance.global_position = _dust_position.global_position
+		_dust_counter = 0
 
 func die():
 	emit_signal("died")

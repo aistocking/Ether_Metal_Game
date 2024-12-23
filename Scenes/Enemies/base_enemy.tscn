@@ -52,6 +52,9 @@ position = Vector2(0, -24.34)
 
 [node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
 
+[node name="DustSpawnLocation" type="Marker2D" parent="."]
+position = Vector2(0, 18.005)
+
 [node name="Anims" type="AnimationPlayer" parent="."]
 
 [node name="HurtBox" parent="." instance=ExtResource("3_juej3")]

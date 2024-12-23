@@ -27,6 +27,9 @@ func physics_update(delta: float) -> void:
 		_enemy.velocity.y += (gravity * delta) * 0.2
 	else:
 		_enemy.velocity.y = 0
+	if _enemy.is_on_floor():
+		if _enemy.velocity.x > 25 || _enemy.velocity.x < -25:
+			_enemy.create_dust()
 	_enemy.velocity.x = move_toward(_enemy.velocity.x, 0, 1)
 	_enemy.move_and_slide()
 	

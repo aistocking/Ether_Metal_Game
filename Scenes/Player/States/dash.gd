@@ -67,7 +67,8 @@ func physics_update(_delta: float) -> void:
 	player.ghostEffect()
 
 	player.velocity.x = player.DASHING_SPEED * direction
-
+	if player.is_on_floor():
+		player.create_dust()
 #This is to check if the Player dashes off a ledge and to discontinue that dash
 	if (!IsAirdash && !player.is_on_floor()):
 		player.coyote_timer.start(.07)
