@@ -11,6 +11,7 @@ extends Node
 signal die
 signal stun_break
 signal health_change (health: int, stun_health: int)
+signal push (direction: Vector2, power: int)
 signal stun_health_change
 
 # Called when the node enters the scene tree for the first time.
@@ -24,13 +25,14 @@ func _take_damage(health_damage: int, stun_damage: int, direction: Vector2, powe
 	if _stun_health <= 0:
 		health_damage *= 2
 		stun_damage = 0
+		emit_signal("push", direction, power)
 	_health -= health_damage
 	_stun_health -= stun_damage
 	if health_damage > 0 or stun_damage > 0:
 		emit_signal("health_change", _health, _stun_health)
 		if _health <= 0:
 			emit_signal("die")
-		if _stun_health <= 0:
+		if _stun_health <= 0 && stun_damage != 0:
 			emit_signal("stun_break")
 
 func reset_stun_health() -> void:
