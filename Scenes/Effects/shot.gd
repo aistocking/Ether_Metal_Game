@@ -16,39 +16,39 @@ const _hit_sparks: PackedScene = preload("res://Scenes/Effects/hit_fx.tscn")
 func _ready():
 	$Sprites.frame = randi_range(0,4)
 	_hit_box.set_variables(_damage, _stun_damage, _direction, _power)
+	if _direction.x < 0:
+		flip()
 
 func _physics_process(_delta):
 	position += _direction * _speed
 
-func getDirection(vec: Vector2):
+func set_direction(vec: Vector2) -> void:
 	_direction = vec
 
-func flip(val):
-	$Sprites.flip_h = val
+func flip() -> void:
+	$Sprites.flip_h = !$Sprites.flip_h
 	_collision_point.x = _collision_point.x * -1
 
 func _on_timer_timeout():
 	queue_free()
 
-func _collission():
-	_spawn_hit_effect()
-	queue_free()
-
-
-func _spawn_hit_effect() -> void:
+func _spawn_wall_hit_effect() -> void:
 	var hitFX = _hit_fx.instantiate()
 	hitFX.flip_h = !$Sprites.flip_h
-	get_parent().add_child(hitFX)
 	hitFX.global_position = global_position
+	get_parent().add_child(hitFX)
 
-
-
-func _on_hit_box_area_entered(hurtbox: HurtBox):
+func _spawn_enemy_hit_sparks() -> void:
 	var instance = _hit_sparks.instantiate()
 	instance.position = global_position
 	get_parent().add_child(instance)
+
+
+func _on_hit_box_area_entered(hurtbox: HurtBox):
+	_spawn_enemy_hit_sparks()
 	queue_free()
 
 
 func _on_physical_body_entered(body):
-	_collission()
+	_spawn_wall_hit_effect()
+	queue_free()

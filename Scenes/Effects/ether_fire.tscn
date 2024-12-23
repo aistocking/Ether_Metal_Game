@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cvpa5ietp7t58" path="res://Art/Effects/Upper_Fire.png" id="1_o1lfq"]
 [ext_resource type="Script" path="res://Scenes/Effects/ether_fire.gd" id="2_xdqqk"]
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_gl5j4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdo73"]
 atlas = ExtResource("1_o1lfq")
@@ -36,31 +37,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 16.0
+"speed": 14.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hq3x"]
-size = Vector2(34, 46)
 
 [node name="EtherFire" type="AnimatedSprite2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gwtkk")
 autoplay = "default"
-frame_progress = 0.00633276
+frame = 1
+frame_progress = 0.460296
 script = ExtResource("2_xdqqk")
 
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2(9.83, 7.815)
-collision_layer = 2
-collision_mask = 12
+[node name="HitBox" parent="." instance=ExtResource("3_gl5j4")]
+_damage = 6
+_stun_damage = 2
+_direction = Vector2(0, -1)
+_power = 30.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-10, -17.48)
-shape = SubResource("RectangleShape2D_2hq3x")
+[node name="HitCollision" parent="HitBox" index="0"]
+position = Vector2(0, -6)
 
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[editable path="HitBox"]

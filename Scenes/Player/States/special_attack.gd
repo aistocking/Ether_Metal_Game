@@ -5,7 +5,7 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, PUNCH, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
+enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, STINGER, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
 
 var CurrentSpecial: SPECIALS
 
@@ -58,8 +58,8 @@ func physics_update(delta: float) -> void:
 				player.move_and_slide()
 			SPECIALS.UPPER:
 				player.move_and_slide()
-			SPECIALS.PUNCH:
-				player.velocity.x = player.DASHING_SPEED * direction
+			SPECIALS.STINGER:
+				player.velocity.x = player.DASHING_SPEED * direction * 2
 				player.move_and_slide()
 			SPECIALS.PARRY:
 				player.velocity.y += gravity * delta
@@ -82,7 +82,7 @@ func physics_update(delta: float) -> void:
 				player.move_and_slide()
 			SPECIALS.UPPER:
 				player.move_and_slide()
-			SPECIALS.PUNCH:
+			SPECIALS.STINGER:
 				player.velocity.x = player.DASHING_SPEED * direction
 				player.create_dust()
 				player.move_and_slide()
@@ -95,7 +95,7 @@ func physics_update(delta: float) -> void:
 func designate_attack() -> void:
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):
-			_punch()
+			_STINGER()
 		if Input.is_action_pressed("Right Button"):
 			_blade()
 		if Input.is_action_pressed("Top Button"):
@@ -124,10 +124,10 @@ func _plasma() -> void:
 	CurrentSpecial = SPECIALS.PLASMA
 	cancel_timer.start(0.1)
 
-func _punch() -> void:
-	player.player_animations.play("Punch")
-	player.punch()
-	CurrentSpecial = SPECIALS.PUNCH
+func _STINGER() -> void:
+	player.player_animations.play("STINGER")
+	player.STINGER()
+	CurrentSpecial = SPECIALS.STINGER
 
 func _blade() -> void:
 	player.player_animations.play("Parry")
@@ -186,7 +186,7 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Falling")
 			"Upper":
 				state_machine.transition_to("Falling")
-			"Punch":
+			"STINGER":
 				state_machine.transition_to("Falling")
 			"Disengage":
 				state_machine.transition_to("Falling")
@@ -201,7 +201,7 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Idle")
 			"Upper":
 				state_machine.transition_to("Falling")
-			"Punch":
+			"STINGER":
 				state_machine.transition_to("Idle")
 			"Disengage":
 				state_machine.transition_to("Falling")

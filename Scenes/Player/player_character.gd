@@ -24,7 +24,7 @@ var health: int = 16
 
 var _charge_tween: Tween
 
-signal stomp (strength: float, time: float)
+signal screen_shake (strength: float, time: float)
 
 @onready var effect_audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var _player_state_machine: PlayerStateMachine = $PlayerStateMachine
@@ -60,7 +60,6 @@ var _dust_counter: int = 0
 const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
-const _PUNCH_SCENE: PackedScene = preload("res://Scenes/Effects/megaton_punch.tscn")
 const _BLADE_SCENE: PackedScene = preload("res://Scenes/Effects/blade_beam.tscn")
 
 #Defensive special attack scenes
@@ -155,10 +154,7 @@ func _basic_shot() -> bool:
 	_shot_timer.start(0.3)
 	var shot: Shot = _SHOT_SCENE.instantiate()
 	var shot_effect: ShotEffect = _SHOT_EFFECT_SCENE.instantiate()
-	shot.getDirection(Vector2(facing_direction, 0))
-	if facing_direction == LEFT:
-		shot_effect.flip_h = true
-		shot.flip(true)
+	shot.set_direction(Vector2(facing_direction, 0))
 	get_parent().add_child(shot)
 	add_child(shot_effect)
 	shot.position = _buster_position.global_position
@@ -200,11 +196,9 @@ func barrage() -> void:
 func dive() -> void:
 	_remove_charge_level()
 
-func punch() -> void:
+func stinger() -> void:
 	_remove_charge_level()
-	var instance: MegatonPunch = _PUNCH_SCENE.instantiate()
-	add_child(instance)
-	instance.position = _buster_position.position
+	
 
 func blade() -> void:
 	_remove_charge_level()
