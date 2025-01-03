@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3mje2gb8ccm7"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/options_scrolling_bg.gd" id="1_r3lu5"]
+[ext_resource type="PackedScene" uid="uid://cq5tngsakfsah" path="res://Scenes/Misc/options_bg_elements.tscn" id="2_mk4wx"]
+
+[node name="OptionsScrollingBg" type="Control"]
+texture_repeat = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r3lu5")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.215686, 0.396078, 1)
+
+[node name="MiddleAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Group1" type="Node2D" parent="MiddleAnchor"]
+
+[node name="Parallax2D" type="Parallax2D" parent="MiddleAnchor/Group1"]
+repeat_size = Vector2(650, 0)
+autoscroll = Vector2(24, 0)
+repeat_times = 2
+
+[node name="OptionsBGElements" parent="MiddleAnchor/Group1/Parallax2D" instance=ExtResource("2_mk4wx")]
+position = Vector2(-180, -92)
+
+[node name="Parallax2D2" type="Parallax2D" parent="MiddleAnchor/Group1"]
+scroll_offset = Vector2(247, 229)
+repeat_size = Vector2(650, 0)
+autoscroll = Vector2(24, 0)
+repeat_times = 2
+
+[node name="OptionsBGElements" parent="MiddleAnchor/Group1/Parallax2D2" instance=ExtResource("2_mk4wx")]
+position = Vector2(-180, -92)
+
+[node name="Group2" type="Node2D" parent="MiddleAnchor"]
+position = Vector2(157, -458)
+
+[node name="Parallax2D" type="Parallax2D" parent="MiddleAnchor/Group2"]
+repeat_size = Vector2(650, 0)
+autoscroll = Vector2(24, 0)
+repeat_times = 2
+
+[node name="OptionsBGElements" parent="MiddleAnchor/Group2/Parallax2D" instance=ExtResource("2_mk4wx")]
+position = Vector2(-180, -92)
+
+[node name="Parallax2D2" type="Parallax2D" parent="MiddleAnchor/Group2"]
+scroll_offset = Vector2(247, 229)
+repeat_size = Vector2(650, 0)
+autoscroll = Vector2(24, 0)
+repeat_times = 2
+
+[node name="OptionsBGElements" parent="MiddleAnchor/Group2/Parallax2D2" instance=ExtResource("2_mk4wx")]
+position = Vector2(-180, -92)
