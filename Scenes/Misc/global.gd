@@ -18,7 +18,10 @@ var _music_volume := -20.0
 var _effect_volume := -20.0
 
 var _current_music: AudioStream
-var _current_stage: String
+var _previous_scene: String
+var _current_scene: String
+
+var rapid_fire: bool = false
 
 signal cutscene_start
 signal cutscene_stop
@@ -27,6 +30,15 @@ signal music_volume_changed
 
 func _ready() -> void:
 	MusicPlayer.volume_db = _music_volume
+	_current_scene = "res://Scenes/main_menu.tscn"
+
+func change_scene(path: String) -> void:
+	if path == "previous_scene":
+		_current_scene = _previous_scene
+	else:
+		_previous_scene = _current_scene
+		_current_scene = path
+	get_tree().change_scene_to_file(_current_scene)
 
 func debug_mode() -> void:
 	for i in _acquired_health_tanks:
@@ -74,7 +86,7 @@ func get_charge_capacitor_number() -> int:
 	return temp
 
 func set_current_stage(scene_path: String) -> void:
-	_current_stage = scene_path
+	_current_scene = scene_path
 
 func defeat_boss(boss: Bosses) -> void:
 	if _defeated_bosses[boss] == true:
@@ -107,7 +119,7 @@ func acquire_ether_tank(ether_tank: EtherTanks) -> void:
 		_acquired_ether_tanks[ether_tank] = true
 
 func reset_stage() -> void:
-	get_tree().change_scene_to_file(_current_stage)
+	get_tree().change_scene_to_file(_current_scene)
 
 func save_game() -> void:
 	pass
