@@ -1,15 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://dl24fje6uuif8"]
+[gd_scene load_steps=17 format=3 uid="uid://dl24fje6uuif8"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_dpnep"]
 [ext_resource type="Texture2D" uid="uid://c0i0uu05gyy6f" path="res://Art/MiscUI/TitleGraphics.png" id="2_3n42y"]
-[ext_resource type="Texture2D" uid="uid://dtu78h6fni46j" path="res://Art/MiscUI/MM_Start_Button_Inactive.png" id="3_42m8g"]
-[ext_resource type="Texture2D" uid="uid://jahp467tk27m" path="res://Art/MiscUI/MM_Start_Button_Active.png" id="4_kj3ge"]
-[ext_resource type="Texture2D" uid="uid://d0do7ycpmbexe" path="res://Art/MiscUI/MM_Options_Button_Inactive.png" id="5_1kwq2"]
-[ext_resource type="Texture2D" uid="uid://bn7ecxhlmwwxw" path="res://Art/MiscUI/MM_Options_Button_Active.png" id="6_aw5wc"]
-[ext_resource type="Texture2D" uid="uid://cvwl3guklmvsk" path="res://Art/MiscUI/MM_Exit_Button_Inactive.png" id="7_hqapa"]
-[ext_resource type="Texture2D" uid="uid://btgt7h4nxbwgp" path="res://Art/MiscUI/MM_Exit_Button_Active.png" id="8_3yp0w"]
+[ext_resource type="Texture2D" uid="uid://e5ndj133b74x" path="res://Art/MiscUI/Start_Text_Dark.png" id="3_3sq7u"]
+[ext_resource type="Texture2D" uid="uid://b0ytm3mar2osx" path="res://Art/MiscUI/Start_Text.png" id="4_6hkik"]
+[ext_resource type="Texture2D" uid="uid://dxiov5xm7aoyy" path="res://Art/MiscUI/Options_Text_Dark.png" id="5_8w48e"]
+[ext_resource type="Texture2D" uid="uid://uknyeeaimire" path="res://Art/MiscUI/Options_Text.png" id="6_kbc1g"]
+[ext_resource type="Texture2D" uid="uid://llvk1trsb8jn" path="res://Art/MiscUI/Exit_Text_Dark.png" id="7_lq3cg"]
+[ext_resource type="Texture2D" uid="uid://btm8drtdi2xux" path="res://Art/MiscUI/Exit_Text.png" id="8_ioa04"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="9_1ggfw"]
-[ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="10_6n0lc"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="10_wdok1"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="11_frkx1"]
 
@@ -115,34 +114,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerSprite/ChargeShot:visible")
+tracks/2/path = NodePath("EffectAudioPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprite/ChargeShot:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1.86607, 1),
-"update": 0,
-"values": [Vector2(20, -4), Vector2(300, -4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("EffectAudioPlayer:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -190,34 +165,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprite/ChargeShot:visible")
+tracks/3/path = NodePath("EffectAudioPlayer:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprite/ChargeShot:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(15.77, -3.38)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EffectAudioPlayer:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -276,6 +227,7 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(50, 80)
+theme_override_constants/separation = 10
 
 [node name="Control2" type="Control" parent="CenterContainer"]
 layout_mode = 2
@@ -289,9 +241,8 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.3
 focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../Options")
-texture_normal = ExtResource("3_42m8g")
-texture_hover = ExtResource("4_kj3ge")
-texture_focused = ExtResource("4_kj3ge")
+texture_normal = ExtResource("3_3sq7u")
+texture_focused = ExtResource("4_6hkik")
 stretch_mode = 3
 
 [node name="Options" type="TextureButton" parent="CenterContainer"]
@@ -300,9 +251,8 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 0.3
 focus_neighbor_top = NodePath("../Start")
 focus_neighbor_bottom = NodePath("../Quit")
-texture_normal = ExtResource("5_1kwq2")
-texture_hover = ExtResource("6_aw5wc")
-texture_focused = ExtResource("6_aw5wc")
+texture_normal = ExtResource("5_8w48e")
+texture_focused = ExtResource("6_kbc1g")
 stretch_mode = 3
 
 [node name="Quit" type="TextureButton" parent="CenterContainer"]
@@ -311,15 +261,15 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 0.3
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Start")
-texture_normal = ExtResource("7_hqapa")
-texture_hover = ExtResource("8_3yp0w")
-texture_focused = ExtResource("8_3yp0w")
+texture_normal = ExtResource("7_lq3cg")
+texture_focused = ExtResource("8_ioa04")
 stretch_mode = 3
 
 [node name="Control" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -328,19 +278,14 @@ libraries = {
 autoplay = "FadeIn"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(139, 193)
+position = Vector2(139, 155)
 texture = ExtResource("9_1ggfw")
 hframes = 7
 vframes = 8
 frame = 14
 
-[node name="ChargeShot" type="AnimatedSprite2D" parent="PlayerSprite"]
-visible = false
-position = Vector2(15.77, -3.38)
-sprite_frames = ExtResource("10_6n0lc")
-autoplay = "default"
-frame = 2
-frame_progress = 0.519659
+[node name="BusterPosition" type="Marker2D" parent="PlayerSprite"]
+position = Vector2(19, -2)
 
 [node name="FadeColor" type="ColorRect" parent="."]
 visible = false
