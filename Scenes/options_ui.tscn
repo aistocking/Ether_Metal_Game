@@ -1,6 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://hi8ye1uk38ff"]
+[gd_scene load_steps=35 format=3 uid="uid://hi8ye1uk38ff"]
 
 [ext_resource type="Script" path="res://Scenes/options_ui.gd" id="1_d3sea"]
+[ext_resource type="PackedScene" uid="uid://c3mje2gb8ccm7" path="res://Scenes/Misc/options_scrolling_bg.tscn" id="2_1sw43"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="3_2hwjc"]
+[ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="4_0woh6"]
+[ext_resource type="Texture2D" uid="uid://llvk1trsb8jn" path="res://Art/MiscUI/Exit_Text_Dark.png" id="4_57dpi"]
+[ext_resource type="Texture2D" uid="uid://btm8drtdi2xux" path="res://Art/MiscUI/Exit_Text.png" id="5_1sxx8"]
+[ext_resource type="Texture2D" uid="uid://c0dbn1t4t2f5r" path="res://Art/MiscUI/Options_Big_Text.png" id="5_l85b3"]
+[ext_resource type="Texture2D" uid="uid://4bb4gqooyalq" path="res://Art/MiscUI/Scale_Text_Dark.png" id="6_5jpwk"]
+[ext_resource type="Texture2D" uid="uid://cw3r6p0srlh7j" path="res://Art/MiscUI/Scale_Text.png" id="7_2jpoe"]
+[ext_resource type="Texture2D" uid="uid://dsytxrf5whj8a" path="res://Art/MiscUI/Fullscreen_Text_Dark.png" id="8_1mc6p"]
+[ext_resource type="Texture2D" uid="uid://bgoi8k6iyopkq" path="res://Art/MiscUI/Fullscreen_Text.png" id="9_3kqlc"]
+[ext_resource type="Texture2D" uid="uid://do7jmngi18lya" path="res://Art/MiscUI/MusicVolume_Text.png" id="11_hfbxt"]
+[ext_resource type="Texture2D" uid="uid://cgwese0w75ahe" path="res://Art/MiscUI/RapidFire_Text_Dark.png" id="12_27lwt"]
+[ext_resource type="Texture2D" uid="uid://bxvhw3whneogc" path="res://Art/MiscUI/SFXVolume_Text.png" id="13_8srft"]
+[ext_resource type="Texture2D" uid="uid://cb70xeymgsdqc" path="res://Art/MiscUI/RapidFire_Text.png" id="13_63xhr"]
+[ext_resource type="Texture2D" uid="uid://dhgayi40fjdwh" path="res://Art/MiscUI/Controls_Text_Dark.png" id="14_16j7w"]
+[ext_resource type="Texture2D" uid="uid://bl3t4n4auho50" path="res://Art/MiscUI/Controls_Text.png" id="15_je37b"]
+[ext_resource type="Texture2D" uid="uid://duqail7qg3fnp" path="res://Art/MiscUI/Scale_Numbers.png" id="16_gug1b"]
+[ext_resource type="Texture2D" uid="uid://b3ftmyn1jptu0" path="res://Art/MiscUI/Slider_Cursor.png" id="17_t10mi"]
+[ext_resource type="Texture2D" uid="uid://ccckby416k8ts" path="res://Art/MiscUI/Checkbox.png" id="18_4qx46"]
+[ext_resource type="Texture2D" uid="uid://dujyywfer12ij" path="res://Art/MiscUI/Dots_Spacers_Dark.png" id="18_b8y5u"]
+[ext_resource type="StyleBox" uid="uid://22chaobg1jso" path="res://Scenes/sound_scale_element.tres" id="18_ckkoj"]
+[ext_resource type="Texture2D" uid="uid://c7b8y8184k7p5" path="res://Art/MiscUI/Scale_X.png" id="20_fwjsk"]
+[ext_resource type="Texture2D" uid="uid://x1hsffay6x2c" path="res://Art/MiscUI/Customize_Text.png" id="20_y13of"]
+[ext_resource type="Texture2D" uid="uid://ccss1nxt52gbw" path="res://Art/MiscUI/Slider_Dark.png" id="24_3v1im"]
+[ext_resource type="Texture2D" uid="uid://m7d5p1407nya" path="res://Art/MiscUI/Slider_Cursor_Dark.png" id="24_em87v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5k7u"]
+atlas = ExtResource("11_hfbxt")
+region = Rect2(0, 12, 113, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmlih"]
+atlas = ExtResource("13_8srft")
+region = Rect2(0, 12, 93, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck02t"]
+atlas = ExtResource("16_gug1b")
+region = Rect2(0, 12, 8, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gor8"]
+atlas = ExtResource("20_fwjsk")
+region = Rect2(0, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db6m1"]
+atlas = ExtResource("18_4qx46")
+region = Rect2(0, 14, 13, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdcs5"]
+content_margin_left = 0.0
+content_margin_top = 12.0
+content_margin_right = 63.0
+content_margin_bottom = 0.0
+texture = ExtResource("24_3v1im")
+texture_margin_top = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+draw_center = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv2rb"]
+atlas = ExtResource("18_4qx46")
+region = Rect2(0, 14, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x3be"]
+atlas = ExtResource("20_y13of")
+region = Rect2(0, 12, 84, 12)
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -11,7 +75,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d3sea")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="OptionsScrollingBg" parent="." instance=ExtResource("2_1sw43")]
+layout_mode = 1
+
+[node name="EffectAudioPlayer" parent="." instance=ExtResource("3_2hwjc")]
+stream = ExtResource("4_0woh6")
+
+[node name="DarkenBG" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.529412)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,70 +97,219 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1.0
-offset_right = 400.0
-offset_bottom = 221.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 
-[node name="Options" type="Label" parent="CenterContainer"]
+[node name="Spacer3" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_type_variation = &"HeaderWindow"
-text = "Options"
+size_flags_vertical = 3
+
+[node name="OptionsTitle" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_l85b3")
+stretch_mode = 4
 
 [node name="Spacer1" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="MusicVolumeText" type="Label" parent="CenterContainer"]
+[node name="HOptionsContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_type_variation = &"HeaderOption"
-text = "Music Volume"
+theme_override_constants/separation = 12
 
-[node name="MusicVolume" type="HSlider" parent="CenterContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="LeftVBox" type="VBoxContainer" parent="CenterContainer/HOptionsContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-min_value = -40.0
-max_value = 10.0
+size_flags_horizontal = 8
+theme_override_constants/separation = 8
 
-[node name="EffectVolumeText" type="Label" parent="CenterContainer"]
+[node name="ScaleText" type="TextureButton" parent="CenterContainer/HOptionsContainer/LeftVBox"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"HeaderOption"
-text = "SFX Volume
-"
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../../../ExitText")
+focus_neighbor_bottom = NodePath("../FullscreenText")
+texture_normal = ExtResource("6_5jpwk")
+texture_focused = ExtResource("7_2jpoe")
+stretch_mode = 4
 
-[node name="EffectVolume" type="HSlider" parent="CenterContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="FullscreenText" type="TextureButton" parent="CenterContainer/HOptionsContainer/LeftVBox"]
 layout_mode = 2
-size_flags_horizontal = 4
-min_value = -40.0
-max_value = 10.0
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../ScaleText")
+focus_neighbor_bottom = NodePath("../../RightVBox/MusicVolume")
+texture_normal = ExtResource("8_1mc6p")
+texture_focused = ExtResource("9_3kqlc")
+stretch_mode = 4
 
-[node name="Fullscreen" type="CheckBox" parent="CenterContainer"]
+[node name="MusicVolumeText" type="TextureRect" parent="CenterContainer/HOptionsContainer/LeftVBox"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../FullscreenText")
+focus_neighbor_bottom = NodePath("../SFXVolumeText")
+texture = SubResource("AtlasTexture_c5k7u")
+stretch_mode = 4
+
+[node name="SFXVolumeText" type="TextureRect" parent="CenterContainer/HOptionsContainer/LeftVBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../MusicVolumeText")
+focus_neighbor_bottom = NodePath("../RapidFireText")
+texture = SubResource("AtlasTexture_cmlih")
+stretch_mode = 4
+
+[node name="RapidFireText" type="TextureButton" parent="CenterContainer/HOptionsContainer/LeftVBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../../RightVBox/EffectVolume")
+focus_neighbor_bottom = NodePath("../ControlsText")
+texture_normal = ExtResource("12_27lwt")
+texture_focused = ExtResource("13_63xhr")
+stretch_mode = 4
+
+[node name="ControlsText" type="TextureButton" parent="CenterContainer/HOptionsContainer/LeftVBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../RapidFireText")
+focus_neighbor_bottom = NodePath("../../../ExitText")
+texture_normal = ExtResource("14_16j7w")
+texture_focused = ExtResource("15_je37b")
+stretch_mode = 4
+
+[node name="MiddleVBox" type="VBoxContainer" parent="CenterContainer/HOptionsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Dots1" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="Dots2" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="Dots3" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="Dots4" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="Dots5" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="Dots6" type="TextureRect" parent="CenterContainer/HOptionsContainer/MiddleVBox"]
+layout_mode = 2
+texture = ExtResource("18_b8y5u")
+stretch_mode = 4
+
+[node name="RightVBox" type="VBoxContainer" parent="CenterContainer/HOptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HOptionsContainer/RightVBox"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ScaleNumbers" type="TextureRect" parent="CenterContainer/HOptionsContainer/RightVBox/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ck02t")
+stretch_mode = 4
+
+[node name="ScaleNumbers2" type="TextureRect" parent="CenterContainer/HOptionsContainer/RightVBox/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_0gor8")
+stretch_mode = 4
+
+[node name="CheckBox" type="TextureRect" parent="CenterContainer/HOptionsContainer/RightVBox"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_db6m1")
+stretch_mode = 4
+
+[node name="MusicVolume" type="HSlider" parent="CenterContainer/HOptionsContainer/RightVBox"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
-text = "Fullscreen"
+focus_neighbor_top = NodePath("../../LeftVBox/FullscreenText")
+focus_neighbor_bottom = NodePath("../EffectVolume")
+theme_override_icons/grabber = ExtResource("24_em87v")
+theme_override_icons/grabber_highlight = ExtResource("17_t10mi")
+theme_override_styles/slider = SubResource("StyleBoxTexture_vdcs5")
+min_value = -40.0
+max_value = 10.0
 
-[node name="Exit" type="Button" parent="CenterContainer"]
-custom_minimum_size = Vector2(100, 40)
+[node name="EffectVolume" type="HSlider" parent="CenterContainer/HOptionsContainer/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../MusicVolume")
+focus_neighbor_bottom = NodePath("../../LeftVBox/RapidFireText")
+theme_override_icons/grabber = ExtResource("24_em87v")
+theme_override_icons/grabber_highlight = ExtResource("17_t10mi")
+theme_override_styles/slider = ExtResource("18_ckkoj")
+min_value = -40.0
+max_value = 10.0
+
+[node name="RFCheckBox" type="TextureRect" parent="CenterContainer/HOptionsContainer/RightVBox"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vv2rb")
+stretch_mode = 4
+
+[node name="CustomizeText" type="TextureRect" parent="CenterContainer/HOptionsContainer/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_0x3be")
+
+[node name="Spacer4" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.3
-text = "Exit"
+size_flags_vertical = 3
+
+[node name="ExitText" type="TextureButton" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../HOptionsContainer/LeftVBox/ControlsText")
+focus_neighbor_bottom = NodePath("../HOptionsContainer/LeftVBox/ScaleText")
+texture_normal = ExtResource("4_57dpi")
+texture_focused = ExtResource("5_1sxx8")
+stretch_mode = 4
 
 [node name="Spacer2" type="Control" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[connection signal="value_changed" from="CenterContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="CenterContainer/EffectVolume" to="." method="_on_effect_volume_value_changed"]
-[connection signal="toggled" from="CenterContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
-[connection signal="pressed" from="CenterContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/LeftVBox/ScaleText" to="." method="_on_scale_text_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/LeftVBox/ScaleText" to="." method="_on_scale_text_focus_exited"]
+[connection signal="pressed" from="CenterContainer/HOptionsContainer/LeftVBox/ScaleText" to="." method="_on_scale_text_pressed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/LeftVBox/FullscreenText" to="." method="_on_fullscreen_text_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/LeftVBox/FullscreenText" to="." method="_on_fullscreen_text_focus_exited"]
+[connection signal="pressed" from="CenterContainer/HOptionsContainer/LeftVBox/FullscreenText" to="." method="_on_fullscreen_text_pressed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/LeftVBox/RapidFireText" to="." method="_on_rapid_fire_text_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/LeftVBox/RapidFireText" to="." method="_on_rapid_fire_text_focus_exited"]
+[connection signal="pressed" from="CenterContainer/HOptionsContainer/LeftVBox/RapidFireText" to="." method="_on_rapid_fire_text_pressed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/LeftVBox/ControlsText" to="." method="_on_controls_text_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/LeftVBox/ControlsText" to="." method="_on_controls_text_focus_exited"]
+[connection signal="pressed" from="CenterContainer/HOptionsContainer/LeftVBox/ControlsText" to="." method="_on_controls_text_pressed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/RightVBox/MusicVolume" to="." method="_on_music_volume_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/RightVBox/MusicVolume" to="." method="_on_music_volume_focus_exited"]
+[connection signal="value_changed" from="CenterContainer/HOptionsContainer/RightVBox/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="focus_entered" from="CenterContainer/HOptionsContainer/RightVBox/EffectVolume" to="." method="_on_effect_volume_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/HOptionsContainer/RightVBox/EffectVolume" to="." method="_on_effect_volume_focus_exited"]
+[connection signal="value_changed" from="CenterContainer/HOptionsContainer/RightVBox/EffectVolume" to="." method="_on_effect_volume_value_changed"]
+[connection signal="focus_entered" from="CenterContainer/ExitText" to="." method="_on_exit_text_focus_entered"]
+[connection signal="pressed" from="CenterContainer/ExitText" to="." method="_on_exit_text_pressed"]

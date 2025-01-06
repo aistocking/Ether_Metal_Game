@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://22chaobg1jso"]
+
+[ext_resource type="Texture2D" uid="uid://ccss1nxt52gbw" path="res://Art/MiscUI/Slider_Dark.png" id="1_6nn36"]
+
+[resource]
+content_margin_left = 0.0
+content_margin_top = 12.0
+content_margin_right = 63.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_6nn36")
+texture_margin_top = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+draw_center = false
