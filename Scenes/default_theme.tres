@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dbbn5d8jw5n3e" path="res://Art/MiscUI/checkbox_checked.png" id="1_d6t5l"]
 [ext_resource type="Texture2D" uid="uid://d2khboadksrvk" path="res://Art/MiscUI/checkbox_unchecked.png" id="2_b38d8"]
 [ext_resource type="Texture2D" uid="uid://c8ui4qybvx108" path="res://Art/MiscUI/grabber.png" id="4_dsd5l"]
-[ext_resource type="Texture2D" uid="uid://cwldvapl0i23j" path="res://Art/MiscUI/slider.png" id="5_600vv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kum4t"]
 
@@ -18,8 +17,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxoj8"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2kats"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ixxv7"]
-texture = ExtResource("5_600vv")
+texture = SubResource("CompressedTexture2D_2kats")
 texture_margin_left = 16.0
 texture_margin_top = 16.0
 texture_margin_right = 16.0
