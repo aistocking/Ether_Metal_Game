@@ -1,51 +1,108 @@
-[gd_scene load_steps=20 format=3 uid="uid://istvwwfmi6md"]
+[gd_scene load_steps=30 format=3 uid="uid://istvwwfmi6md"]
 
 [ext_resource type="Script" path="res://Scenes/stage_select.gd" id="1_4myet"]
-[ext_resource type="Texture2D" uid="uid://bcqi21a03tnuq" path="res://Art/MiscUI/StageSelect/StageSelectPerun.png" id="2_pt0y4"]
-[ext_resource type="Texture2D" uid="uid://cauc25cl7jd5j" path="res://Art/MiscUI/StageSelect/StageSelectVolos.png" id="3_kc3m6"]
+[ext_resource type="Texture2D" uid="uid://vd3pmivggmxx" path="res://Art/MiscUI/StageSelect/BigMagicCircleRotation.png" id="2_jdmdm"]
 [ext_resource type="Texture2D" uid="uid://cqrxym2uxi0ef" path="res://Art/MiscUI/StageSelect/StageSelectPlayer.png" id="4_m2ka4"]
-[ext_resource type="Texture2D" uid="uid://lcrd6o25mffw" path="res://Art/MiscUI/StageSelect/StageSelectYaryla.png" id="5_c6ni1"]
-[ext_resource type="Texture2D" uid="uid://dkufochgkut14" path="res://Art/MiscUI/StageSelect/StageSelectMarena.png" id="6_bpd5c"]
-[ext_resource type="Texture2D" uid="uid://dtv7a52umrwg0" path="res://Art/MiscUI/StageSelect/StageSelectMokosh.png" id="7_jdsie"]
-[ext_resource type="Texture2D" uid="uid://d4k2ck5ulsl6j" path="res://Art/MiscUI/StageSelect/StageSelectSvetovit.png" id="8_yoxr7"]
 [ext_resource type="Texture2D" uid="uid://bedgfkn33sn3" path="res://Art/MiscUI/StageSelect/StageSelectIntroStage.png" id="9_62bvl"]
+[ext_resource type="Texture2D" uid="uid://c3tmkpxopb458" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder_Dark.png" id="9_h5y54"]
 [ext_resource type="Texture2D" uid="uid://d2ljsw8poyy3i" path="res://Art/MiscUI/StageSelect/StageSelectSvarog.png" id="10_83xpm"]
-[ext_resource type="Texture2D" uid="uid://dpa5fd5j3i0r5" path="res://Art/MiscUI/StageSelect/StageSelectBelobog.png" id="11_77e20"]
+[ext_resource type="Texture2D" uid="uid://j6cqj3ey06fw" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder.png" id="10_dymex"]
 [ext_resource type="Texture2D" uid="uid://dywnjtl6h686s" path="res://Art/MiscUI/StageSelect/StageSelectBorders.png" id="12_4cdq1"]
-[ext_resource type="Texture2D" uid="uid://c0gect3q0f6gl" path="res://Art/MiscUI/StageSelect/StageSelectCursor.png" id="13_lm1gl"]
+[ext_resource type="Texture2D" uid="uid://cpgftoix0ttrx" path="res://Art/MiscUI/StageSelect/Stage_Select_Morana_Dark.png" id="12_vkb85"]
+[ext_resource type="Texture2D" uid="uid://c0c8knki5glsa" path="res://Art/MiscUI/StageSelect/Stage_Select_Inner_Placeholder_Dark.png" id="12_xlbjq"]
+[ext_resource type="Texture2D" uid="uid://db4pe11svndk8" path="res://Art/MiscUI/StageSelect/Stage_Select_Svarog_Dark.png" id="12_ydj0q"]
+[ext_resource type="Texture2D" uid="uid://gjpa3t878ju" path="res://Art/MiscUI/StageSelect/Stage_Select_Inner_Placeholder.png" id="13_ec7nt"]
+[ext_resource type="Texture2D" uid="uid://uf86d3bks7qk" path="res://Art/MiscUI/StageSelect/Stage_Select_Morana.png" id="13_sodvn"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="14_e8j44"]
+[ext_resource type="Texture2D" uid="uid://brthuupojqdal" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Portrait_Frames.png" id="14_t6png"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="15_yr606"]
+[ext_resource type="Texture2D" uid="uid://bbqyta0k2sti0" path="res://Art/MiscUI/StageSelect/Stage_Select_Inner_Portrait_Frames.png" id="16_xcs80"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_02etb"]
-atlas = ExtResource("13_lm1gl")
-region = Rect2(0, 0, 54, 54)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3hg4"]
+atlas = ExtResource("2_jdmdm")
+region = Rect2(0, 0, 370, 88)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_urddu"]
-atlas = ExtResource("13_lm1gl")
-region = Rect2(54, 0, 54, 54)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gss0h"]
+atlas = ExtResource("2_jdmdm")
+region = Rect2(370, 0, 370, 88)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r6k8u"]
-atlas = ExtResource("13_lm1gl")
-region = Rect2(108, 0, 54, 54)
+[sub_resource type="AtlasTexture" id="AtlasTexture_veml7"]
+atlas = ExtResource("2_jdmdm")
+region = Rect2(0, 88, 370, 88)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_oslhr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_an3v1"]
+atlas = ExtResource("2_jdmdm")
+region = Rect2(370, 88, 370, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frv7v"]
+atlas = ExtResource("2_jdmdm")
+region = Rect2(0, 176, 370, 88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yoe4n"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_02etb")
+"texture": SubResource("AtlasTexture_b3hg4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_urddu")
+"texture": SubResource("AtlasTexture_gss0h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r6k8u")
+"texture": SubResource("AtlasTexture_veml7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_urddu")
+"texture": SubResource("AtlasTexture_an3v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frv7v")
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jukdc"]
+atlas = ExtResource("14_t6png")
+region = Rect2(0, 60, 112, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvmar"]
+atlas = ExtResource("14_t6png")
+region = Rect2(0, 0, 112, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkoj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jukdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvmar")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7gct"]
+atlas = ExtResource("16_xcs80")
+region = Rect2(0, 60, 93, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5quoq"]
+atlas = ExtResource("16_xcs80")
+region = Rect2(0, 0, 93, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ueaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7gct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5quoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
 }]
 
 [node name="StageSelect" type="Control"]
@@ -64,32 +121,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0980392, 0.0862745, 0.145098, 1)
+color = Color(0.135517, 0.12094, 0.193906, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(200, 149)
+sprite_frames = SubResource("SpriteFrames_yoe4n")
+autoplay = "default"
+frame = 2
+frame_progress = 0.65073
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 0
 offset_right = 399.0
 offset_bottom = 223.0
-
-[node name="Perun" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 36.0
-offset_top = 18.0
-offset_right = 92.0
-offset_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("2_pt0y4")
-
-[node name="Volos" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 100.0
-offset_top = 18.0
-offset_right = 156.0
-offset_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource("3_kc3m6")
 
 [node name="PlayerOptions" type="TextureButton" parent="."]
 layout_mode = 2
@@ -102,50 +146,6 @@ size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("4_m2ka4")
 
-[node name="Yaryla" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 244.0
-offset_top = 18.0
-offset_right = 300.0
-offset_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-disabled = true
-texture_normal = ExtResource("5_c6ni1")
-
-[node name="Marena" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 308.0
-offset_top = 18.0
-offset_right = 364.0
-offset_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-disabled = true
-texture_normal = ExtResource("6_bpd5c")
-
-[node name="Mokosh" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 36.0
-offset_top = 146.0
-offset_right = 92.0
-offset_bottom = 202.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-disabled = true
-texture_normal = ExtResource("7_jdsie")
-
-[node name="Svetovit" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 100.0
-offset_top = 146.0
-offset_right = 156.0
-offset_bottom = 202.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-disabled = true
-texture_normal = ExtResource("8_yoxr7")
-
 [node name="IntroStage" type="TextureButton" parent="."]
 layout_mode = 2
 offset_left = 172.0
@@ -157,23 +157,8 @@ size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("9_62bvl")
 
-[node name="Svarog" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 244.0
-offset_top = 146.0
-offset_right = 300.0
-offset_bottom = 202.0
-texture_normal = ExtResource("10_83xpm")
-
-[node name="Belobog" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 308.0
-offset_top = 146.0
-offset_right = 364.0
-offset_bottom = 202.0
-texture_normal = ExtResource("11_77e20")
-
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 22.0
 offset_top = 13.5
@@ -181,25 +166,251 @@ offset_right = 378.0
 offset_bottom = 210.5
 texture = ExtResource("12_4cdq1")
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-position = Vector2(336, 174)
-sprite_frames = SubResource("SpriteFrames_oslhr")
-autoplay = "default"
-frame = 2
-frame_progress = 0.262852
-
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("14_e8j44")]
 stream = ExtResource("15_yr606")
 
-[connection signal="focus_entered" from="Perun" to="." method="_on_perun_focus_entered"]
-[connection signal="pressed" from="Perun" to="." method="_on_perun_pressed"]
-[connection signal="focus_entered" from="Volos" to="." method="_on_volos_focus_entered"]
-[connection signal="pressed" from="Volos" to="." method="_on_volos_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 0
+
+[node name="MainContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopStages" type="HBoxContainer" parent="MarginContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = -17
+
+[node name="PGroup" type="Control" parent="MarginContainer/MainContainer/TopStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/TopStages/PGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_qkoj2")
+frame_progress = 0.718591
+flip_v = true
+
+[node name="Perun" type="TextureButton" parent="MarginContainer/MainContainer/TopStages/PGroup"]
+layout_mode = 2
+offset_right = 56.0
+offset_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_right = NodePath("../../MokGroup/Mokosh")
+focus_neighbor_bottom = NodePath("../../../BottomStages/SvaGroup/Svarog")
+texture_normal = ExtResource("9_h5y54")
+texture_focused = ExtResource("10_dymex")
+
+[node name="MokGroup" type="Control" parent="MarginContainer/MainContainer/TopStages"]
+custom_minimum_size = Vector2(113.58, 61)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/TopStages/MokGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_6ueaw")
+flip_v = true
+
+[node name="Mokosh" type="TextureButton" parent="MarginContainer/MainContainer/TopStages/MokGroup"]
+layout_mode = 2
+offset_left = 10.0
+offset_right = 114.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../PGroup/Perun")
+focus_neighbor_right = NodePath("../../SvetGroup/Svetovit")
+focus_neighbor_bottom = NodePath("../../../BottomStages/MorGroup/Marena")
+disabled = true
+texture_normal = ExtResource("12_xlbjq")
+texture_focused = ExtResource("13_ec7nt")
+
+[node name="SvetGroup" type="Control" parent="MarginContainer/MainContainer/TopStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/TopStages/SvetGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_6ueaw")
+flip_h = true
+flip_v = true
+
+[node name="Svetovit" type="TextureButton" parent="MarginContainer/MainContainer/TopStages/SvetGroup"]
+layout_mode = 2
+offset_left = 10.0
+offset_right = 114.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../MokGroup/Mokosh")
+focus_neighbor_right = NodePath("../../VolGroup/Volos")
+focus_neighbor_bottom = NodePath("../../../BottomStages/BelGroup/Belobog")
+disabled = true
+texture_normal = ExtResource("12_xlbjq")
+texture_focused = ExtResource("13_ec7nt")
+flip_h = true
+
+[node name="VolGroup" type="Control" parent="MarginContainer/MainContainer/TopStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/TopStages/VolGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_qkoj2")
+frame_progress = 0.718591
+flip_h = true
+flip_v = true
+
+[node name="Volos" type="TextureButton" parent="MarginContainer/MainContainer/TopStages/VolGroup"]
+layout_mode = 2
+offset_right = 112.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../SvetGroup/Svetovit")
+focus_neighbor_bottom = NodePath("../../../BottomStages/YarGroup/Yaryla")
+texture_normal = ExtResource("9_h5y54")
+texture_focused = ExtResource("10_dymex")
+flip_h = true
+
+[node name="spacer2" type="Control" parent="MarginContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 69.3)
+layout_mode = 2
+
+[node name="BottomStages" type="HBoxContainer" parent="MarginContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = -17
+
+[node name="SvaGroup" type="Control" parent="MarginContainer/MainContainer/BottomStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/BottomStages/SvaGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_qkoj2")
+frame_progress = 0.718591
+
+[node name="Svarog" type="TextureButton" parent="MarginContainer/MainContainer/BottomStages/SvaGroup"]
+z_index = 1
+layout_mode = 2
+offset_right = 104.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+focus_neighbor_top = NodePath("../../../TopStages/PGroup/Perun")
+focus_neighbor_right = NodePath("../../MorGroup/Marena")
+texture_normal = ExtResource("12_ydj0q")
+texture_focused = ExtResource("10_83xpm")
+
+[node name="MorGroup" type="Control" parent="MarginContainer/MainContainer/BottomStages"]
+custom_minimum_size = Vector2(113.58, 61)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/BottomStages/MorGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_6ueaw")
+
+[node name="Marena" type="TextureButton" parent="MarginContainer/MainContainer/BottomStages/MorGroup"]
+layout_mode = 2
+offset_left = 10.0
+offset_right = 103.0
+offset_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../SvaGroup/Svarog")
+focus_neighbor_top = NodePath("../../../TopStages/MokGroup/Mokosh")
+focus_neighbor_right = NodePath("../../BelGroup/Belobog")
+disabled = true
+texture_normal = ExtResource("12_vkb85")
+texture_focused = ExtResource("13_sodvn")
+
+[node name="BelGroup" type="Control" parent="MarginContainer/MainContainer/BottomStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/BottomStages/BelGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_6ueaw")
+flip_h = true
+
+[node name="Belobog" type="TextureButton" parent="MarginContainer/MainContainer/BottomStages/BelGroup"]
+layout_mode = 2
+offset_left = 10.0
+offset_right = 114.0
+offset_bottom = 60.0
+focus_neighbor_left = NodePath("../../MorGroup/Marena")
+focus_neighbor_top = NodePath("../../../TopStages/SvetGroup/Svetovit")
+focus_neighbor_right = NodePath("../../YarGroup/Yaryla")
+texture_normal = ExtResource("12_xlbjq")
+texture_focused = ExtResource("13_ec7nt")
+flip_h = true
+flip_v = true
+
+[node name="YarGroup" type="Control" parent="MarginContainer/MainContainer/BottomStages"]
+custom_minimum_size = Vector2(108, 61)
+layout_mode = 2
+
+[node name="FrameLines" type="AnimatedSprite2D" parent="MarginContainer/MainContainer/BottomStages/YarGroup"]
+z_as_relative = false
+position = Vector2(56, 30)
+sprite_frames = SubResource("SpriteFrames_qkoj2")
+frame_progress = 0.718591
+flip_h = true
+
+[node name="Yaryla" type="TextureButton" parent="MarginContainer/MainContainer/BottomStages/YarGroup"]
+layout_mode = 2
+offset_right = 112.0
+offset_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../BelGroup/Belobog")
+focus_neighbor_top = NodePath("../../../TopStages/VolGroup/Volos")
+disabled = true
+texture_normal = ExtResource("9_h5y54")
+texture_focused = ExtResource("10_dymex")
+flip_h = true
+flip_v = true
+
 [connection signal="focus_entered" from="PlayerOptions" to="." method="_on_player_options_focus_entered"]
-[connection signal="focus_entered" from="Yaryla" to="." method="_on_yaryla_focus_entered"]
-[connection signal="focus_entered" from="Marena" to="." method="_on_marena_focus_entered"]
-[connection signal="focus_entered" from="Mokosh" to="." method="_on_mokosh_focus_entered"]
-[connection signal="focus_entered" from="Svetovit" to="." method="_on_svetovit_focus_entered"]
 [connection signal="focus_entered" from="IntroStage" to="." method="_on_intro_stage_focus_entered"]
-[connection signal="focus_entered" from="Svarog" to="." method="_on_svarog_focus_entered"]
-[connection signal="focus_entered" from="Belobog" to="." method="_on_belobog_focus_entered"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/TopStages/PGroup/Perun" to="." method="_on_perun_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/TopStages/PGroup/Perun" to="." method="_on_perun_focus_exited"]
+[connection signal="pressed" from="MarginContainer/MainContainer/TopStages/PGroup/Perun" to="." method="_on_perun_pressed"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/TopStages/MokGroup/Mokosh" to="." method="_on_mokosh_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/TopStages/MokGroup/Mokosh" to="." method="_on_mokosh_focus_exited"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/TopStages/SvetGroup/Svetovit" to="." method="_on_svetovit_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/TopStages/SvetGroup/Svetovit" to="." method="_on_svetovit_focus_exited"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/TopStages/VolGroup/Volos" to="." method="_on_volos_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/TopStages/VolGroup/Volos" to="." method="_on_volos_focus_exited"]
+[connection signal="pressed" from="MarginContainer/MainContainer/TopStages/VolGroup/Volos" to="." method="_on_volos_pressed"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/SvaGroup/Svarog" to="." method="_on_svarog_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/SvaGroup/Svarog" to="." method="_on_svarog_focus_exited"]
+[connection signal="pressed" from="MarginContainer/MainContainer/BottomStages/SvaGroup/Svarog" to="." method="_on_svarog_pressed"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/MorGroup/Marena" to="." method="_on_marena_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/MorGroup/Marena" to="." method="_on_marena_focus_exited"]
+[connection signal="pressed" from="MarginContainer/MainContainer/BottomStages/MorGroup/Marena" to="." method="_on_marena_pressed"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/BelGroup/Belobog" to="." method="_on_belobog_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/BelGroup/Belobog" to="." method="_on_belobog_focus_exited"]
+[connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_exited"]
