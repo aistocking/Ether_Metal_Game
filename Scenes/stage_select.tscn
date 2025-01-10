@@ -1,13 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://istvwwfmi6md"]
+[gd_scene load_steps=38 format=3 uid="uid://istvwwfmi6md"]
 
 [ext_resource type="Script" path="res://Scenes/stage_select.gd" id="1_4myet"]
 [ext_resource type="Texture2D" uid="uid://vd3pmivggmxx" path="res://Art/MiscUI/StageSelect/BigMagicCircleRotation.png" id="2_jdmdm"]
-[ext_resource type="Texture2D" uid="uid://cqrxym2uxi0ef" path="res://Art/MiscUI/StageSelect/StageSelectPlayer.png" id="4_m2ka4"]
+[ext_resource type="Shader" path="res://Scenes/map_wavy.gdshader" id="6_oai2g"]
+[ext_resource type="Texture2D" uid="uid://lwcwireamgkq" path="res://Art/MiscUI/StageSelect/Stage_Select_Map.png" id="7_emvsv"]
 [ext_resource type="Texture2D" uid="uid://bedgfkn33sn3" path="res://Art/MiscUI/StageSelect/StageSelectIntroStage.png" id="9_62bvl"]
 [ext_resource type="Texture2D" uid="uid://c3tmkpxopb458" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder_Dark.png" id="9_h5y54"]
 [ext_resource type="Texture2D" uid="uid://d2ljsw8poyy3i" path="res://Art/MiscUI/StageSelect/StageSelectSvarog.png" id="10_83xpm"]
 [ext_resource type="Texture2D" uid="uid://j6cqj3ey06fw" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder.png" id="10_dymex"]
-[ext_resource type="Texture2D" uid="uid://dywnjtl6h686s" path="res://Art/MiscUI/StageSelect/StageSelectBorders.png" id="12_4cdq1"]
 [ext_resource type="Texture2D" uid="uid://cpgftoix0ttrx" path="res://Art/MiscUI/StageSelect/Stage_Select_Morana_Dark.png" id="12_vkb85"]
 [ext_resource type="Texture2D" uid="uid://c0c8knki5glsa" path="res://Art/MiscUI/StageSelect/Stage_Select_Inner_Placeholder_Dark.png" id="12_xlbjq"]
 [ext_resource type="Texture2D" uid="uid://db4pe11svndk8" path="res://Art/MiscUI/StageSelect/Stage_Select_Svarog_Dark.png" id="12_ydj0q"]
@@ -17,6 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://brthuupojqdal" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Portrait_Frames.png" id="14_t6png"]
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="15_yr606"]
 [ext_resource type="Texture2D" uid="uid://bbqyta0k2sti0" path="res://Art/MiscUI/StageSelect/Stage_Select_Inner_Portrait_Frames.png" id="16_xcs80"]
+[ext_resource type="Texture2D" uid="uid://cs56jhq855o2p" path="res://Art/MiscUI/StageSelect/Stage_Select_Player_Button_Dark.png" id="17_edcky"]
+[ext_resource type="Texture2D" uid="uid://5otrh6wja2k1" path="res://Art/MiscUI/StageSelect/Stage_Select_Player_Button.png" id="18_cjnun"]
+[ext_resource type="Texture2D" uid="uid://c56oo0caj4cxt" path="res://Art/MiscUI/StageSelect/Stage_Select_Options_Button_Dark.png" id="19_52qjd"]
+[ext_resource type="Texture2D" uid="uid://bgx420i683hdj" path="res://Art/MiscUI/StageSelect/Stage_Select_Options_Button.png" id="20_e7mfy"]
+[ext_resource type="Texture2D" uid="uid://dfhdcj6ljron2" path="res://Art/MiscUI/StageSelect/Stage_Select_Exit_Button_Dark.png" id="21_iygbo"]
+[ext_resource type="Texture2D" uid="uid://bbjnsyvnjfmiy" path="res://Art/MiscUI/StageSelect/Stage_Select_Exit_Button.png" id="22_yycpq"]
+[ext_resource type="SpriteFrames" uid="uid://desbg6iikxxdn" path="res://Scenes/stage_map_marker.tres" id="24_74yax"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3hg4"]
 atlas = ExtResource("2_jdmdm")
@@ -60,6 +67,21 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvjea"]
+shader = ExtResource("6_oai2g")
+shader_parameter/waveAmplitude = 0.015
+shader_parameter/correctVertex = true
+shader_parameter/waveFrequency = 34.719
+shader_parameter/verticalWave = false
+shader_parameter/keepTransparency = true
+shader_parameter/useTime = true
+shader_parameter/waveSpeed = 1.533
+shader_parameter/progress = 0.0
+shader_parameter/firstHalf = 0.5
+shader_parameter/secondHalf = 0.5
+shader_parameter/freezeFirstHalf = true
+shader_parameter/freezeSecondHalf = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jukdc"]
 atlas = ExtResource("14_t6png")
@@ -135,17 +157,6 @@ layout_mode = 0
 offset_right = 399.0
 offset_bottom = 223.0
 
-[node name="PlayerOptions" type="TextureButton" parent="."]
-layout_mode = 2
-offset_left = 172.0
-offset_top = 18.0
-offset_right = 228.0
-offset_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-disabled = true
-texture_normal = ExtResource("4_m2ka4")
-
 [node name="IntroStage" type="TextureButton" parent="."]
 layout_mode = 2
 offset_left = 172.0
@@ -157,17 +168,24 @@ size_flags_vertical = 3
 disabled = true
 texture_normal = ExtResource("9_62bvl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-offset_left = 22.0
-offset_top = 13.5
-offset_right = 378.0
-offset_bottom = 210.5
-texture = ExtResource("12_4cdq1")
-
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("14_e8j44")]
 stream = ExtResource("15_yr606")
+
+[node name="Map" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_uvjea")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -41.0
+offset_right = 131.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_emvsv")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -182,7 +200,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = -10
+theme_override_constants/margin_left = -4
 theme_override_constants/margin_top = 0
 
 [node name="MainContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -210,7 +228,7 @@ offset_bottom = 61.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../MokGroup/Mokosh")
-focus_neighbor_bottom = NodePath("../../../BottomStages/SvaGroup/Svarog")
+focus_neighbor_bottom = NodePath("../../../../../PlayerOptions")
 texture_normal = ExtResource("9_h5y54")
 texture_focused = ExtResource("10_dymex")
 
@@ -291,7 +309,7 @@ texture_focused = ExtResource("10_dymex")
 flip_h = true
 
 [node name="spacer2" type="Control" parent="MarginContainer/MainContainer"]
-custom_minimum_size = Vector2(0, 69.3)
+custom_minimum_size = Vector2(0, 84)
 layout_mode = 2
 
 [node name="BottomStages" type="HBoxContainer" parent="MarginContainer/MainContainer"]
@@ -314,7 +332,7 @@ layout_mode = 2
 offset_right = 104.0
 offset_bottom = 60.0
 size_flags_horizontal = 0
-focus_neighbor_top = NodePath("../../../TopStages/PGroup/Perun")
+focus_neighbor_top = NodePath("../../../../../Exit")
 focus_neighbor_right = NodePath("../../MorGroup/Marena")
 texture_normal = ExtResource("12_ydj0q")
 texture_focused = ExtResource("10_83xpm")
@@ -392,7 +410,85 @@ texture_focused = ExtResource("10_dymex")
 flip_h = true
 flip_v = true
 
-[connection signal="focus_entered" from="PlayerOptions" to="." method="_on_player_options_focus_entered"]
+[node name="PlayerOptions" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 77.0
+offset_right = 53.0
+offset_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../MarginContainer/MainContainer/TopStages/PGroup/Perun")
+focus_neighbor_right = NodePath("../MarginContainer/MainContainer/TopStages/VolGroup/Volos")
+focus_neighbor_bottom = NodePath("../Options")
+disabled = true
+texture_normal = ExtResource("17_edcky")
+texture_focused = ExtResource("18_cjnun")
+
+[node name="Options" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 95.0
+offset_right = 53.0
+offset_bottom = 110.0
+focus_neighbor_top = NodePath("../PlayerOptions")
+focus_neighbor_right = NodePath("../MarginContainer/MainContainer/TopStages/VolGroup/Volos")
+focus_neighbor_bottom = NodePath("../Exit")
+texture_normal = ExtResource("19_52qjd")
+texture_focused = ExtResource("20_e7mfy")
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 113.0
+offset_right = 53.0
+offset_bottom = 128.0
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_right = NodePath("../MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla")
+focus_neighbor_bottom = NodePath("../MarginContainer/MainContainer/BottomStages/SvaGroup/Svarog")
+texture_normal = ExtResource("21_iygbo")
+texture_focused = ExtResource("22_yycpq")
+
+[node name="SvarogMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(309, 96)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="MoranaMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(147, 148)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="BelobogMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(138, 124)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="YarylaMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(263, 111)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="PerunMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(187, 96)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="MokoshMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(211, 137)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="SvetovitMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(302, 135)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="VolosMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(228, 116)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="RolandMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(152, 99)
+sprite_frames = ExtResource("24_74yax")
+
+[node name="ArtemMarker" type="AnimatedSprite2D" parent="."]
+position = Vector2(102, 85)
+sprite_frames = ExtResource("24_74yax")
+
 [connection signal="focus_entered" from="IntroStage" to="." method="_on_intro_stage_focus_entered"]
 [connection signal="focus_entered" from="MarginContainer/MainContainer/TopStages/PGroup/Perun" to="." method="_on_perun_focus_entered"]
 [connection signal="focus_exited" from="MarginContainer/MainContainer/TopStages/PGroup/Perun" to="." method="_on_perun_focus_exited"]
@@ -414,3 +510,4 @@ flip_v = true
 [connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/BelGroup/Belobog" to="." method="_on_belobog_focus_exited"]
 [connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_entered"]
 [connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_exited"]
+[connection signal="focus_entered" from="PlayerOptions" to="." method="_on_player_options_focus_entered"]

@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://desbg6iikxxdn"]
+
+[ext_resource type="Texture2D" uid="uid://cfsbooh0rfmdx" path="res://Art/MiscUI/StageSelect/Stage_Select_Marker.png" id="1_tvo7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dphwd"]
+atlas = ExtResource("1_tvo7m")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rj22"]
+atlas = ExtResource("1_tvo7m")
+region = Rect2(6, 0, 6, 6)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dphwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rj22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
