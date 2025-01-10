@@ -1,6 +1,7 @@
 extends Node
 
 @onready var MusicPlayer: AudioStreamPlayer = get_node("/root/BgmPlayer")
+const _fade_transition: PackedScene = preload("res://Scenes/Entities/transition_fades.tscn")
 
 
 enum Bosses { Boss1, Boss2, Boss3, Boss4, Boss5, Boss6, Boss7, Boss8 }
@@ -38,7 +39,25 @@ func change_scene(path: String) -> void:
 	else:
 		_previous_scene = _current_scene
 		_current_scene = path
+	var _instance = _fade_transition.instantiate()
+	get_parent().add_child(_instance)
+	_instance.play_fade(false)
+	await _instance.fade_finished
 	get_tree().change_scene_to_file(_current_scene)
+	_instance.play_fade(true)
+	await _instance.fade_finished
+	_instance.queue_free()
+
+func manual_fade(fade_in: bool) -> void:
+	var _instance = _fade_transition.instantiate()
+	get_parent().add_child(_instance)
+	if fade_in == true:
+		_instance.play_fade(true)
+	else:
+		_instance.play_fade(false)
+	await _instance.fade_finished
+	emit_signal("cutscene_stop")
+	_instance.queue_free()
 
 func debug_mode() -> void:
 	for i in _acquired_health_tanks:
