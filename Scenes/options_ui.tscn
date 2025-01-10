@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://hi8ye1uk38ff"]
+[gd_scene load_steps=36 format=3 uid="uid://hi8ye1uk38ff"]
 
 [ext_resource type="Script" path="res://Scenes/options_ui.gd" id="1_d3sea"]
 [ext_resource type="PackedScene" uid="uid://c3mje2gb8ccm7" path="res://Scenes/Misc/options_scrolling_bg.tscn" id="2_1sw43"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ygbh01damfuj" path="res://Sound/MMX1 - Cursor Move.wav" id="4_0woh6"]
 [ext_resource type="Texture2D" uid="uid://llvk1trsb8jn" path="res://Art/MiscUI/Exit_Text_Dark.png" id="4_57dpi"]
 [ext_resource type="Texture2D" uid="uid://btm8drtdi2xux" path="res://Art/MiscUI/Exit_Text.png" id="5_1sxx8"]
+[ext_resource type="PackedScene" uid="uid://cbacm7dfbp70q" path="res://Scenes/Misc/resizeable_menu_box.tscn" id="5_7aba7"]
 [ext_resource type="Texture2D" uid="uid://c0dbn1t4t2f5r" path="res://Art/MiscUI/Options_Big_Text.png" id="5_l85b3"]
 [ext_resource type="Texture2D" uid="uid://4bb4gqooyalq" path="res://Art/MiscUI/Scale_Text_Dark.png" id="6_5jpwk"]
 [ext_resource type="Texture2D" uid="uid://cw3r6p0srlh7j" path="res://Art/MiscUI/Scale_Text.png" id="7_2jpoe"]
@@ -76,6 +77,7 @@ grow_vertical = 2
 script = ExtResource("1_d3sea")
 
 [node name="OptionsScrollingBg" parent="." instance=ExtResource("2_1sw43")]
+z_index = -2
 layout_mode = 1
 
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("3_2hwjc")]
@@ -83,6 +85,7 @@ stream = ExtResource("4_0woh6")
 
 [node name="DarkenBG" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.529412)
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,6 +93,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0862745, 0.145098, 1)
+
+[node name="MenuBox" parent="." instance=ExtResource("5_7aba7")]
+layout_mode = 0
+anchors_preset = 0
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -120,7 +127,7 @@ size_flags_vertical = 3
 [node name="HOptionsContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="LeftVBox" type="VBoxContainer" parent="CenterContainer/HOptionsContainer"]
 layout_mode = 2

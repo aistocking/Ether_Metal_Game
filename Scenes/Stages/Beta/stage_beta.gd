@@ -14,7 +14,6 @@ var _bg_gate2 := false
 func _ready() -> void:
 	Global.change_music(OPENING_SONG)
 	Global.debug_mode()
-	Global.set_current_stage("res://Scenes/Stages/Beta/stage_beta.tscn")
 	RenderingServer.set_default_clear_color(Color(0,0,0))
 	_spawn_enemy()
 

@@ -4,6 +4,8 @@ extends Control
 @onready var _effect: Slider = $CenterContainer/HOptionsContainer/RightVBox/EffectVolume
 @onready var _sfx_player: EffectAudioPlayer = $EffectAudioPlayer
 
+var _first_time: bool = true
+
 const OPTIONS_MUSIC: AudioStream = preload("res://Sound/Music/Options_Music.mp3")
 const _cursor_move_sfx: AudioStream = preload("res://Sound/MMX1 - Cursor Move.wav")
 const _cursor_accept_sfx: AudioStream = preload("res://Sound/UIConfirm.wav")
@@ -15,6 +17,7 @@ const _slider_bright: Texture2D = preload("res://Art/MiscUI/Slider.png")
 const _slider_dark: Texture2D = preload("res://Art/MiscUI/Slider_Dark.png")
 
 func _ready() -> void:
+	Global.manual_fade(true)
 	$CenterContainer/HOptionsContainer/LeftVBox/ScaleText.grab_focus()
 	Global.change_music(OPTIONS_MUSIC, 0.0)
 	_music.value = Global.get_music_volume()
@@ -40,7 +43,7 @@ func _on_effect_volume_value_changed(value: float) -> void:
 
 # On pressed functions
 func _on_scale_text_pressed():
-	pass # Replace with function body.
+	pass
 
 func _on_exit_text_pressed():
 	Global.change_scene("previous_scene")
@@ -70,7 +73,10 @@ func _on_scale_text_focus_entered():
 	$CenterContainer/HOptionsContainer/MiddleVBox/Dots1.texture = _dots_bright
 	$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.y = 0
 	$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers2.texture.region.position.y = 0
-	_sfx_player.play_sound(_cursor_move_sfx)
+	if _first_time == true:
+		_first_time = false
+	else:
+		_sfx_player.play_sound(_cursor_move_sfx)
 	
 func _on_fullscreen_text_focus_entered():
 	$CenterContainer/HOptionsContainer/MiddleVBox/Dots2.texture = _dots_bright
