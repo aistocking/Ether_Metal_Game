@@ -1,7 +1,7 @@
 extends Node
 
 @onready var MusicPlayer: AudioStreamPlayer = get_node("/root/BgmPlayer")
-const _fade_transition: PackedScene = preload("res://Scenes/Entities/transition_fades.tscn")
+const _fade_transition: PackedScene = preload("res://Scenes/Misc/transition_fades.tscn")
 
 
 enum Bosses { Boss1, Boss2, Boss3, Boss4, Boss5, Boss6, Boss7, Boss8 }
