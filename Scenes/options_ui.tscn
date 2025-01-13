@@ -95,8 +95,9 @@ grow_vertical = 2
 color = Color(0.0980392, 0.0862745, 0.145098, 1)
 
 [node name="MenuBox" parent="." instance=ExtResource("5_7aba7")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+offset_top = -60.695
+offset_bottom = 79.305
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -225,7 +226,7 @@ stretch_mode = 4
 [node name="RightVBox" type="VBoxContainer" parent="CenterContainer/HOptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/separation = 8
+theme_override_constants/separation = 7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HOptionsContainer/RightVBox"]
 layout_mode = 2

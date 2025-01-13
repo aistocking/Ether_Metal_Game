@@ -22,6 +22,7 @@ func _ready() -> void:
 	Global.change_music(OPTIONS_MUSIC, 0.0)
 	_music.value = Global.get_music_volume()
 	_effect.value = Global.get_effect_volume()
+	_match_scale()
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		$CenterContainer/HOptionsContainer/RightVBox/CheckBox.texture.region.position.x = 0
 	else:
@@ -39,11 +40,29 @@ func _on_music_volume_value_changed(value: float) -> void:
 func _on_effect_volume_value_changed(value: float) -> void:
 	Global.set_effect_volume(value)
 
+func _match_scale() -> void:
+	match get_window().size.x:
+		400:
+			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 0
+		800:
+			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 8
+		1600:
+			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 16
+
+func _increase_scale() -> void:
+	match get_window().size.x:
+		400:
+			get_window().size = Vector2(800, 448)
+		800:
+			get_window().size = Vector2(1600, 896)
+		1600:
+			get_window().size = Vector2(400, 224)
+	_match_scale()
 
 
 # On pressed functions
 func _on_scale_text_pressed():
-	pass
+	_increase_scale()
 
 func _on_exit_text_pressed():
 	Global.change_scene("previous_scene")
