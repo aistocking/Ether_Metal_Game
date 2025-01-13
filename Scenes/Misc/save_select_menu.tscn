@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://cejkvbjfpkv5s"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/save_select_menu.gd" id="1_82yd3"]
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="2_eicky"]
+[ext_resource type="PackedScene" uid="uid://cbacm7dfbp70q" path="res://Scenes/Misc/resizeable_menu_box.tscn" id="2_fmqtt"]
+[ext_resource type="Texture2D" uid="uid://cxbsbs0hqchwy" path="res://Art/MiscUI/Menu_Box_Background_Dark.png" id="3_mhk0w"]
+[ext_resource type="Texture2D" uid="uid://llvk1trsb8jn" path="res://Art/MiscUI/Exit_Text_Dark.png" id="4_ye1xt"]
+[ext_resource type="Texture2D" uid="uid://btm8drtdi2xux" path="res://Art/MiscUI/Exit_Text.png" id="5_8nddl"]
+[ext_resource type="Texture2D" uid="uid://ui5hpju0xy0m" path="res://Art/MiscUI/Delete_Text_Dark.png" id="6_cajy6"]
+[ext_resource type="Texture2D" uid="uid://bu7htfgqos7ii" path="res://Art/MiscUI/Delete_Text_Red.png" id="7_0nrks"]
+[ext_resource type="Texture2D" uid="uid://hvx4u88kmfnp" path="res://Art/MiscUI/Delete_Text.png" id="8_5yt7u"]
+[ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="10_2en0q"]
+
+[node name="SaveSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_82yd3")
+
+[node name="EffectAudioPlayer" parent="." instance=ExtResource("2_eicky")]
+
+[node name="SaveSlot1" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_bottom = NodePath("../SaveSlot2")
+
+[node name="SaveSlot2" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_top = NodePath("../SaveSlot1")
+focus_neighbor_bottom = NodePath("../SaveSlot3")
+
+[node name="SaveSlot3" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_top = NodePath("../SaveSlot2")
+focus_neighbor_bottom = NodePath("../Exit")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0862745, 0.145098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MenuBox1" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_fmqtt")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("3_mhk0w")
+
+[node name="MenuBox2" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_fmqtt")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("3_mhk0w")
+
+[node name="MenuBox3" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_fmqtt")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("3_mhk0w")
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../Delete")
+focus_neighbor_top = NodePath("../SaveSlot3")
+texture_normal = ExtResource("4_ye1xt")
+texture_focused = ExtResource("5_8nddl")
+
+[node name="Delete" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -20.0
+offset_right = -59.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../SaveSlot3")
+focus_neighbor_right = NodePath("../Exit")
+toggle_mode = true
+texture_normal = ExtResource("6_cajy6")
+texture_pressed = ExtResource("7_0nrks")
+texture_focused = ExtResource("8_5yt7u")
+
+[node name="Liliya1" type="Sprite2D" parent="."]
+position = Vector2(48, 38)
+texture = ExtResource("10_2en0q")
+hframes = 7
+vframes = 8
+frame = 3
+
+[node name="Liliya2" type="Sprite2D" parent="."]
+position = Vector2(48, 102)
+texture = ExtResource("10_2en0q")
+hframes = 7
+vframes = 8
+frame = 3
+
+[node name="Liliya3" type="Sprite2D" parent="."]
+position = Vector2(48, 166)
+texture = ExtResource("10_2en0q")
+hframes = 7
+vframes = 8
+frame = 3
+
+[connection signal="focus_entered" from="SaveSlot1" to="." method="_on_save_slot_1_focus_entered"]
+[connection signal="focus_exited" from="SaveSlot1" to="." method="_on_save_slot_1_focus_exited"]
+[connection signal="pressed" from="SaveSlot1" to="." method="_on_save_slot_1_pressed"]
+[connection signal="focus_entered" from="SaveSlot2" to="." method="_on_save_slot_2_focus_entered"]
+[connection signal="focus_exited" from="SaveSlot2" to="." method="_on_save_slot_2_focus_exited"]
+[connection signal="pressed" from="SaveSlot2" to="." method="_on_save_slot_2_pressed"]
+[connection signal="focus_entered" from="SaveSlot3" to="." method="_on_save_slot_3_focus_entered"]
+[connection signal="focus_exited" from="SaveSlot3" to="." method="_on_save_slot_3_focus_exited"]
+[connection signal="pressed" from="SaveSlot3" to="." method="_on_save_slot_3_pressed"]
+[connection signal="focus_entered" from="Exit" to="." method="_on_exit_focus_entered"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="focus_entered" from="Delete" to="." method="_on_delete_focus_entered"]
+[connection signal="pressed" from="Delete" to="." method="_on_delete_pressed"]
