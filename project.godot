@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ether_Metal"
-run/main_scene="res://Scenes/Misc/intro_cutscene.tscn"
+run/main_scene="res://Scenes/Misc/cutscenes/intro_cutscene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://project_icon.png"
 

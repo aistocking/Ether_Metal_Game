@@ -31,7 +31,7 @@ signal music_volume_changed
 
 func _ready() -> void:
 	MusicPlayer.volume_db = _music_volume
-	_current_scene = "res://Scenes/main_menu.tscn"
+	_current_scene = "res://Scenes/Misc/menus/main_menu.tscn"
 
 func change_scene(path: String) -> void:
 	if path == "previous_scene":

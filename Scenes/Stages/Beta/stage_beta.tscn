@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=4 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
-[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/pause_ui.tscn" id="2_d3haq"]
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="2_d3haq"]
 [ext_resource type="Texture2D" uid="uid://b04wncpl7i7a4" path="res://Art/Stages/BGs/Stage_Foundry_Back_00.png" id="2_qitdd"]
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="3_otbpm"]
 [ext_resource type="Texture2D" uid="uid://bbyq33l650jyi" path="res://Art/Stages/BGs/Stage_Foundry_Back_01.png" id="3_w3gsv"]
@@ -156,6 +156,9 @@ instant_start_trigger = true
 
 [node name="StartTrigger" parent="StageTriggers/CameraBounds1" index="0"]
 position = Vector2(-33, -72.58)
+
+[node name="CollisionShape2D" parent="StageTriggers/CameraBounds1/StartTrigger" index="0"]
+position = Vector2(-45, 14.58)
 
 [node name="EndTrigger" parent="StageTriggers/CameraBounds1" index="1"]
 position = Vector2(381, -143.095)

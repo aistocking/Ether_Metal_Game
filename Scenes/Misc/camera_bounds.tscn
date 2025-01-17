@@ -13,11 +13,13 @@ process_mode = 3
 script = ExtResource("1_bmqie")
 
 [node name="StartTrigger" type="Area2D" parent="."]
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrigger"]
 shape = SubResource("RectangleShape2D_bddtt")
 
 [node name="EndTrigger" type="Area2D" parent="."]
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
 shape = SubResource("RectangleShape2D_ihlj4")
