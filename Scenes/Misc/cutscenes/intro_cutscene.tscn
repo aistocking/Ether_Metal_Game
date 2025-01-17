@@ -1,27 +1,362 @@
-[gd_scene load_steps=3 format=3 uid="uid://q1tnh658dyi7"]
+[gd_scene load_steps=15 format=3 uid="uid://b0ej70a5ti7hh"]
 
-[sub_resource type="Animation" id="Animation_kxfud"]
+[ext_resource type="Script" path="res://Scenes/Misc/cutscenes/intro_cutscene.gd" id="1_xux3p"]
+[ext_resource type="Texture2D" uid="uid://btnrskjagrsvy" path="res://Art/MiscUI/Cutscenes/Intro/IntroRightShoulderActive.png" id="2_4advp"]
+[ext_resource type="Texture2D" uid="uid://b0yrlqgtxkghg" path="res://Art/MiscUI/Cutscenes/Intro/IntroChestrActive.png" id="3_u504w"]
+[ext_resource type="Texture2D" uid="uid://cxgr6w46h47b0" path="res://Art/MiscUI/Cutscenes/Intro/IntroHeadActive.png" id="4_2b08s"]
+[ext_resource type="Texture2D" uid="uid://d0mclquuc5w4c" path="res://Art/MiscUI/Cutscenes/Intro/IntroHeadActiveEyeOpen1.png" id="5_haxby"]
+[ext_resource type="Texture2D" uid="uid://drv4j3slp1a13" path="res://Art/MiscUI/Cutscenes/Intro/IntroHeadActiveEyeOpen2.png" id="6_6poh8"]
+[ext_resource type="Texture2D" uid="uid://di1iem4gb6sfn" path="res://Art/MiscUI/Cutscenes/Intro/IntroLeftShoulderActive.png" id="7_5d7a3"]
+[ext_resource type="Texture2D" uid="uid://docu74hq7aca6" path="res://Art/MiscUI/Cutscenes/Intro/IntroRightShoulderDeactive.png" id="8_hb6jf"]
+[ext_resource type="Texture2D" uid="uid://ckv4xxx1m8sv6" path="res://Art/MiscUI/Cutscenes/Intro/IntroChestrDeactive.png" id="9_sh5ix"]
+[ext_resource type="Texture2D" uid="uid://4vafjefbryy0" path="res://Art/MiscUI/Cutscenes/Intro/IntroHeadDeactive.png" id="10_i18ll"]
+[ext_resource type="Texture2D" uid="uid://b6rpmdq8btsum" path="res://Art/MiscUI/Cutscenes/Intro/IntroLeftShoulderDeactive.png" id="11_ag0wh"]
+
+[sub_resource type="Animation" id="Animation_nswib"]
 resource_name = "Intro"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ckjr6"]
-_data = {
-"Intro": SubResource("Animation_kxfud")
+length = 5.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Active:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.04, 1.06, 1.66, 1.68, 1.94, 1.96, 2.12, 2.14, 2.23, 2.25, 2.27, 2.29, 2.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullBody/Inactive:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.04, 1.06, 1.66, 1.68, 1.94, 1.96, 2.12, 2.14, 2.23, 2.25, 2.27, 2.29, 2.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 4.77, 4.78),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 4.73, 4.74),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flash:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.86, 5.18),
+"transitions": PackedFloat32Array(5.27803, 1),
+"update": 0,
+"values": [Vector2(400, 0), Vector2(400, 224)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("flash:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.86, 5.18),
+"transitions": PackedFloat32Array(5.27803, 1),
+"update": 0,
+"values": [Vector2(0, 112), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FullBody/Active/Chest:position")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.89, 3.04, 3.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 91), Vector2(0, 90), Vector2(0, 88)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FullBody/Active/HeadContainer:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.06, 3.23, 3.35, 3.43),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3, -1), Vector2(-1, -5), Vector2(2, -5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FullBody/Active/LeftShoulder:position")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.97, 3.09, 3.18, 3.25, 3.33, 3.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(102, 91), Vector2(102, 90), Vector2(100, 86), Vector2(102, 84), Vector2(105, 83), Vector2(106, 82)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FullBody/Active/RightShoulder:position")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.97, 3.09, 3.18, 3.25, 3.33, 3.38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-75, 91), Vector2(-75, 90), Vector2(-77, 86), Vector2(-75, 84), Vector2(-72, 83), Vector2(-71, 82)]
 }
 
-[node name="IntroCutscene" type="Node2D"]
+[sub_resource type="Animation" id="Animation_qvvhq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Active:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullBody/Inactive:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FullBody/Active/HeadContainer/HeadEyesOpen1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flash:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("flash:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 112)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FullBody/Active/Chest:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 91)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FullBody/Active/HeadContainer:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FullBody/Active/LeftShoulder:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(102, 83)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FullBody/Active/RightShoulder:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-75, 84)]
+}
 
-[node name="MovingElement1" type="Sprite2D" parent="."]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwmvh"]
+_data = {
+"Intro": SubResource("Animation_nswib"),
+"RESET": SubResource("Animation_qvvhq")
+}
 
-[node name="MovingElement2" type="Sprite2D" parent="."]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xux3p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_ckjr6")
+"": SubResource("AnimationLibrary_pwmvh")
 }
+autoplay = "Intro"
 
-[node name="BlackBG" type="ColorRect" parent="."]
-offset_right = 401.0
-offset_bottom = 223.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="FullBody" type="Node2D" parent="."]
+position = Vector2(195, 98)
+
+[node name="Active" type="Node2D" parent="FullBody"]
+visible = false
+texture_filter = 1
+position = Vector2(0, 4)
+
+[node name="RightShoulder" type="Sprite2D" parent="FullBody/Active"]
+position = Vector2(-75, 84)
+texture = ExtResource("2_4advp")
+
+[node name="Chest" type="Sprite2D" parent="FullBody/Active"]
+position = Vector2(0, 91)
+texture = ExtResource("3_u504w")
+
+[node name="HeadContainer" type="Node2D" parent="FullBody/Active"]
+
+[node name="Head" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
+texture_filter = 1
+texture = ExtResource("4_2b08s")
+
+[node name="HeadEyesOpen1" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
+visible = false
+texture_filter = 1
+texture = ExtResource("5_haxby")
+
+[node name="HeadEyesOpen2" type="Sprite2D" parent="FullBody/Active/HeadContainer"]
+visible = false
+texture_filter = 1
+texture = ExtResource("6_6poh8")
+
+[node name="LeftShoulder" type="Sprite2D" parent="FullBody/Active"]
+texture_filter = 1
+position = Vector2(102, 83)
+texture = ExtResource("7_5d7a3")
+
+[node name="Inactive" type="Node2D" parent="FullBody"]
+texture_filter = 1
+position = Vector2(0, 4)
+
+[node name="RightShoulder" type="Sprite2D" parent="FullBody/Inactive"]
+position = Vector2(-75, 91)
+texture = ExtResource("8_hb6jf")
+
+[node name="Chest" type="Sprite2D" parent="FullBody/Inactive"]
+position = Vector2(0, 91)
+texture = ExtResource("9_sh5ix")
+
+[node name="Head" type="Sprite2D" parent="FullBody/Inactive"]
+texture_filter = 1
+texture = ExtResource("10_i18ll")
+
+[node name="LeftShoulder" type="Sprite2D" parent="FullBody/Inactive"]
+texture_filter = 1
+position = Vector2(102, 91)
+texture = ExtResource("11_ag0wh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(200, 112)
+
+[node name="flash" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

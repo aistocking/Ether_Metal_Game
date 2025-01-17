@@ -31,7 +31,7 @@ func _on_start_pressed() -> void:
 	$CenterContainer/Start.release_focus()
 	lily_shot_animation()
 	await shot_finished
-	Global.change_scene("res://Scenes/stage_select.tscn")
+	Global.change_scene("res://Scenes/Misc/menus/save_select_menu.tscn")
 
 
 func _on_quit_pressed() -> void:
@@ -47,7 +47,7 @@ func _on_options_pressed() -> void:
 	$CenterContainer/Options.release_focus()
 	lily_shot_animation()
 	await shot_finished
-	Global.change_scene("res://Scenes/options_ui.tscn")
+	Global.change_scene("res://Scenes/Misc/menus/options_UI.tscn")
 
 
 func _on_start_focus_entered() -> void:

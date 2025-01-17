@@ -3,6 +3,7 @@ extends Control
 const _music: AudioStream = preload("res://Sound/Music/05_Stage Select.mp3")
 const _ui_move_sfx: AudioStream = preload("res://Sound/UIMove.wav")
 
+@onready var _sfx_player: EffectAudioPlayer = $EffectAudioPlayer
 var _first_time: bool = true
 var _tween: Tween
 
@@ -29,6 +30,16 @@ func _on_svarog_pressed():
 func _on_marena_pressed():
 	Global.change_scene("res://Scenes/Stages/Alpha/stage_alpha.tscn")
 
+func _on_player_options_pressed():
+	pass # Replace with function body.
+
+func _on_options_pressed():
+	Global.change_scene("res://Scenes/Misc/menus/options_UI.tscn")
+
+func _on_exit_pressed():
+	Global.change_scene("res://Scenes/Misc/menus/main_menu.tscn")
+
+
 
 
 #On focus entered logic
@@ -36,7 +47,7 @@ func _on_svarog_focus_entered() -> void:
 	if _first_time == true:
 		_first_time = false
 	else:
-		$EffectAudioPlayer.play_sound(_ui_move_sfx)
+		_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/BottomStages/SvaGroup/FrameLines.play()
 	$SvarogMarker.play()
 	_tween = create_tween().set_loops()
@@ -44,7 +55,7 @@ func _on_svarog_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/BottomStages/SvaGroup/Svarog, "position", Vector2(0, 0), 0.6)
 
 func _on_marena_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/BottomStages/MorGroup/FrameLines.play()
 	$MoranaMarker.play()
 	_tween = create_tween().set_loops()
@@ -52,7 +63,7 @@ func _on_marena_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/BottomStages/MorGroup/Marena, "position", Vector2(10, 0), 0.6)
 
 func _on_belobog_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/BottomStages/BelGroup/FrameLines.play()
 	$BelobogMarker.play()
 	_tween = create_tween().set_loops()
@@ -60,7 +71,7 @@ func _on_belobog_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/BottomStages/BelGroup/Belobog, "position", Vector2(10, 0), 0.6)
 
 func _on_yaryla_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/BottomStages/YarGroup/FrameLines.play()
 	$YarylaMarker.play()
 	_tween = create_tween().set_loops()
@@ -68,7 +79,7 @@ func _on_yaryla_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla, "position", Vector2(0, 0), 0.6)
 
 func _on_perun_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/TopStages/PGroup/FrameLines.play()
 	$PerunMarker.play()
 	_tween = create_tween().set_loops()
@@ -76,7 +87,7 @@ func _on_perun_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/TopStages/PGroup/Perun, "position", Vector2(0, 0), 0.6)
 
 func _on_mokosh_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/TopStages/MokGroup/FrameLines.play()
 	$MokoshMarker.play()
 	_tween = create_tween().set_loops()
@@ -84,7 +95,7 @@ func _on_mokosh_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/TopStages/MokGroup/Mokosh, "position", Vector2(10, 0), 0.6)
 
 func _on_svetovit_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/TopStages/SvetGroup/FrameLines.play()
 	$SvetovitMarker.play()
 	_tween = create_tween().set_loops()
@@ -92,7 +103,7 @@ func _on_svetovit_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/TopStages/SvetGroup/Svetovit, "position", Vector2(10, 0), 0.6)
 
 func _on_volos_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 	$MarginContainer/MainContainer/TopStages/VolGroup/FrameLines.play()
 	$VolosMarker.play()
 	_tween = create_tween().set_loops()
@@ -100,10 +111,16 @@ func _on_volos_focus_entered() -> void:
 	_tween.tween_property($MarginContainer/MainContainer/TopStages/VolGroup/Volos, "position", Vector2(0, 0), 0.6)
 
 func _on_player_options_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
+
+func _on_options_focus_entered():
+	_sfx_player.play_sound(_ui_move_sfx)
+
+func _on_exit_focus_entered():
+	_sfx_player.play_sound(_ui_move_sfx)
 
 func _on_intro_stage_focus_entered() -> void:
-	$EffectAudioPlayer.play_sound(_ui_move_sfx)
+	_sfx_player.play_sound(_ui_move_sfx)
 
 
 

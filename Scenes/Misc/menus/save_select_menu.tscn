@@ -1,15 +1,76 @@
-[gd_scene load_steps=11 format=3 uid="uid://cejkvbjfpkv5s"]
+[gd_scene load_steps=14 format=3 uid="uid://cejkvbjfpkv5s"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/save_select_menu.gd" id="1_82yd3"]
+[ext_resource type="Script" path="res://Scenes/Misc/menus/save_select_menu.gd" id="1_82yd3"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="2_eicky"]
-[ext_resource type="PackedScene" uid="uid://cbacm7dfbp70q" path="res://Scenes/Misc/resizeable_menu_box.tscn" id="2_fmqtt"]
+[ext_resource type="PackedScene" uid="uid://cbacm7dfbp70q" path="res://Scenes/Misc/menus/resizeable_menu_box.tscn" id="2_fmqtt"]
 [ext_resource type="Texture2D" uid="uid://cxbsbs0hqchwy" path="res://Art/MiscUI/Menu_Box_Background_Dark.png" id="3_mhk0w"]
 [ext_resource type="Texture2D" uid="uid://llvk1trsb8jn" path="res://Art/MiscUI/Exit_Text_Dark.png" id="4_ye1xt"]
 [ext_resource type="Texture2D" uid="uid://btm8drtdi2xux" path="res://Art/MiscUI/Exit_Text.png" id="5_8nddl"]
 [ext_resource type="Texture2D" uid="uid://ui5hpju0xy0m" path="res://Art/MiscUI/Delete_Text_Dark.png" id="6_cajy6"]
-[ext_resource type="Texture2D" uid="uid://bu7htfgqos7ii" path="res://Art/MiscUI/Delete_Text_Red.png" id="7_0nrks"]
 [ext_resource type="Texture2D" uid="uid://hvx4u88kmfnp" path="res://Art/MiscUI/Delete_Text.png" id="8_5yt7u"]
 [ext_resource type="Texture2D" uid="uid://gmvkwwuh4a77" path="res://Art/Player/PlayerSprite.png" id="10_2en0q"]
+[ext_resource type="Texture2D" uid="uid://7e5ywuo1mb3w" path="res://Art/MiscUI/SaveSlotTempIcons.png" id="10_4l7be"]
+
+[sub_resource type="Animation" id="Animation_7ydmp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Liliya1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlotMask1:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 42)]
+}
+
+[sub_resource type="Animation" id="Animation_6egfs"]
+resource_name = "Slot1_New"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Liliya1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [41, 42, 41, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlotMask1:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 42), Vector2(316, 42)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntar0"]
+_data = {
+"RESET": SubResource("Animation_7ydmp"),
+"Slot1_New": SubResource("Animation_6egfs")
+}
 
 [node name="SaveSelectMenu" type="Control"]
 layout_mode = 3
@@ -21,6 +82,11 @@ grow_vertical = 2
 script = ExtResource("1_82yd3")
 
 [node name="EffectAudioPlayer" parent="." instance=ExtResource("2_eicky")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ntar0")
+}
 
 [node name="SaveSlot1" type="Button" parent="."]
 layout_mode = 0
@@ -117,7 +183,6 @@ focus_neighbor_top = NodePath("../SaveSlot3")
 focus_neighbor_right = NodePath("../Exit")
 toggle_mode = true
 texture_normal = ExtResource("6_cajy6")
-texture_pressed = ExtResource("7_0nrks")
 texture_focused = ExtResource("8_5yt7u")
 
 [node name="Liliya1" type="Sprite2D" parent="."]
@@ -127,6 +192,9 @@ hframes = 7
 vframes = 8
 frame = 3
 
+[node name="BusterPosition" type="Marker2D" parent="Liliya1"]
+position = Vector2(20, -1)
+
 [node name="Liliya2" type="Sprite2D" parent="."]
 position = Vector2(48, 102)
 texture = ExtResource("10_2en0q")
@@ -134,12 +202,30 @@ hframes = 7
 vframes = 8
 frame = 3
 
+[node name="BusterPosition" type="Marker2D" parent="Liliya2"]
+position = Vector2(20, -1)
+
 [node name="Liliya3" type="Sprite2D" parent="."]
 position = Vector2(48, 166)
 texture = ExtResource("10_2en0q")
 hframes = 7
 vframes = 8
 frame = 3
+
+[node name="BusterPosition" type="Marker2D" parent="Liliya3"]
+position = Vector2(20, -1)
+
+[node name="SlotMask1" type="ColorRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 58.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 59.0
+
+[node name="Sprite2D" type="Sprite2D" parent="SlotMask1"]
+position = Vector2(164, 19)
+texture = ExtResource("10_4l7be")
 
 [connection signal="focus_entered" from="SaveSlot1" to="." method="_on_save_slot_1_focus_entered"]
 [connection signal="focus_exited" from="SaveSlot1" to="." method="_on_save_slot_1_focus_exited"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=38 format=3 uid="uid://istvwwfmi6md"]
 
-[ext_resource type="Script" path="res://Scenes/stage_select.gd" id="1_4myet"]
+[ext_resource type="Script" path="res://Scenes/Misc/menus/stage_select.gd" id="1_4myet"]
 [ext_resource type="Texture2D" uid="uid://vd3pmivggmxx" path="res://Art/MiscUI/StageSelect/BigMagicCircleRotation.png" id="2_jdmdm"]
-[ext_resource type="Shader" path="res://Scenes/map_wavy.gdshader" id="6_oai2g"]
+[ext_resource type="Shader" path="res://Scenes/Misc/menus/map_wavy.gdshader" id="6_oai2g"]
 [ext_resource type="Texture2D" uid="uid://lwcwireamgkq" path="res://Art/MiscUI/StageSelect/Stage_Select_Map.png" id="7_emvsv"]
 [ext_resource type="Texture2D" uid="uid://bedgfkn33sn3" path="res://Art/MiscUI/StageSelect/StageSelectIntroStage.png" id="9_62bvl"]
 [ext_resource type="Texture2D" uid="uid://c3tmkpxopb458" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder_Dark.png" id="9_h5y54"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bgx420i683hdj" path="res://Art/MiscUI/StageSelect/Stage_Select_Options_Button.png" id="20_e7mfy"]
 [ext_resource type="Texture2D" uid="uid://dfhdcj6ljron2" path="res://Art/MiscUI/StageSelect/Stage_Select_Exit_Button_Dark.png" id="21_iygbo"]
 [ext_resource type="Texture2D" uid="uid://bbjnsyvnjfmiy" path="res://Art/MiscUI/StageSelect/Stage_Select_Exit_Button.png" id="22_yycpq"]
-[ext_resource type="SpriteFrames" uid="uid://desbg6iikxxdn" path="res://Scenes/stage_map_marker.tres" id="24_74yax"]
+[ext_resource type="SpriteFrames" uid="uid://desbg6iikxxdn" path="res://Scenes/Misc/menus/stage_map_marker.tres" id="24_74yax"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3hg4"]
 atlas = ExtResource("2_jdmdm")
@@ -511,3 +511,8 @@ sprite_frames = ExtResource("24_74yax")
 [connection signal="focus_entered" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_entered"]
 [connection signal="focus_exited" from="MarginContainer/MainContainer/BottomStages/YarGroup/Yaryla" to="." method="_on_yaryla_focus_exited"]
 [connection signal="focus_entered" from="PlayerOptions" to="." method="_on_player_options_focus_entered"]
+[connection signal="pressed" from="PlayerOptions" to="." method="_on_player_options_pressed"]
+[connection signal="focus_entered" from="Options" to="." method="_on_options_focus_entered"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="focus_entered" from="Exit" to="." method="_on_exit_focus_entered"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
