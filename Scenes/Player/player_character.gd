@@ -61,6 +61,10 @@ const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_sho
 const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
 const _BLADE_SCENE: PackedScene = preload("res://Scenes/Effects/blade_beam.tscn")
+const _STINGER_SCENE: PackedScene = preload("res://Scenes/Effects/PlayerAttacks/sp_attack_stinger.tscn")
+
+#Offensive special instances to be used in player states
+var stinger_inst: Stinger
 
 #Defensive special attack scenes
 const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
@@ -175,14 +179,13 @@ func plasma_shot() -> void:
 	get_parent().add_child(instance)
 	instance.position = _buster_position.global_position
 
-func upper(time: float) -> void:
+func upper() -> void:
 	_remove_charge_level()
 	var instance: EtherFire = _UPPER_SCENE.instantiate()
-	instance.time = time
 	add_child(instance)
 	instance.position = _buster_position.position
-	instance.position.x = facing_direction * -11
-	instance.position.y -= 21
+	if facing_direction == LEFT:
+		instance.position.x *= -1
 
 func barrage() -> void:
 	_remove_charge_level()
@@ -198,6 +201,10 @@ func dive() -> void:
 
 func stinger() -> void:
 	_remove_charge_level()
+	stinger_inst = _STINGER_SCENE.instantiate()
+	if facing_direction == LEFT:
+		stinger_inst.face_left()
+	add_child(stinger_inst)
 	
 
 func blade() -> void:

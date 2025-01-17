@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs6lqe1fh5v3b"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/PlayerAttacks/sp_attack_stinger.gd" id="1_24trm"]
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_hopnt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abv7y"]
+size = Vector2(12, 22)
+
+[node name="SpAttackStinger" type="Node2D"]
+script = ExtResource("1_24trm")
+
+[node name="HitBox" parent="." instance=ExtResource("2_hopnt")]
+collision_layer = 2
+collision_mask = 4
+_damage = 6
+_stun_damage = -1
+_power = -1.0
+
+[node name="HitCollision" parent="HitBox" index="0"]
+position = Vector2(14, 0)
+shape = SubResource("RectangleShape2D_abv7y")
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]
+
+[editable path="HitBox"]

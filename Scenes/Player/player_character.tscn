@@ -903,6 +903,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [19]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpawnMarkers/BusterPosition:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -2)]
+}
 
 [sub_resource type="Animation" id="Animation_mjnkt"]
 resource_name = "Flash"
@@ -1082,6 +1094,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [14]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpawnMarkers/BusterPosition:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -2)]
+}
 
 [sub_resource type="Animation" id="Animation_fum2l"]
 resource_name = "IdleShot"
@@ -1187,7 +1211,7 @@ tracks/7/keys = {
 [sub_resource type="Animation" id="Animation_pyjbh"]
 resource_name = "Jump"
 length = 0.3
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1195,7 +1219,7 @@ tracks/0/path = NodePath("PlayerSprite/BGLeg:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -1207,7 +1231,7 @@ tracks/1/path = NodePath("PlayerSprite/BGArm:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -1219,7 +1243,7 @@ tracks/2/path = NodePath("PlayerSprite/Body:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -1231,7 +1255,7 @@ tracks/3/path = NodePath("PlayerSprite/Head:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -1243,7 +1267,7 @@ tracks/4/path = NodePath("PlayerSprite/FGLeg:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -1255,7 +1279,7 @@ tracks/5/path = NodePath("PlayerSprite/FGArm:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [17, 18]
@@ -2411,7 +2435,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, -19)]
+"values": [Vector2(7, -19)]
 }
 
 [sub_resource type="Animation" id="Animation_yjxg3"]
@@ -2778,6 +2802,9 @@ script = ExtResource("15_7l818")
 [node name="CancelTimer" type="Timer" parent="PlayerStateMachine/Special Attack"]
 one_shot = true
 
+[node name="DurationTimer" type="Timer" parent="PlayerStateMachine/Special Attack"]
+one_shot = true
+
 [node name="Sliding" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("16_01rhr")
 
@@ -2804,4 +2831,5 @@ script = ExtResource("25_pgdpy")
 [connection signal="timeout" from="PlayerStateMachine/Run/RunShootTimer" to="PlayerStateMachine/Run" method="_on_run_shoot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/ShotTimer" to="PlayerStateMachine/Dash" method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="PlayerStateMachine/Special Attack/DurationTimer" to="PlayerStateMachine/Special Attack" method="_on_duration_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Damaged/Timer" to="PlayerStateMachine/Damaged" method="_on_timer_timeout"]
