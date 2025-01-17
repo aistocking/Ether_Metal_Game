@@ -15,6 +15,7 @@ var IsInAir: bool
 var direction: int
 
 @onready var cancel_timer: Timer = $CancelTimer
+@onready var _duration_timer: Timer = $DurationTimer
 
 func enter(_msg := {}) -> void:
 	player = owner
@@ -47,28 +48,21 @@ func physics_update(delta: float) -> void:
 	#Branch to either on ground behaviour or in air behaviour
 	#In air behvaiour
 	if IsInAir:
+		player.velocity.y = clamp(player.velocity.y, -25, 25)
 		match CurrentSpecial:
 			SPECIALS.PLASMA:
 				player.velocity.y += gravity * delta
-				player.velocity.y = clamp(player.velocity.y, -25, 25)
-				player.move_and_slide()
 			SPECIALS.DISENGAGE:
 				#player.velocity = player.velocity.move_toward(Vector2.ZERO, 1200 * delta)
 				player.velocity.y += gravity * delta
-				player.move_and_slide()
 			SPECIALS.UPPER:
-				player.move_and_slide()
+				pass
 			SPECIALS.STINGER:
-				player.velocity.x = player.DASHING_SPEED * direction * 2
-				player.move_and_slide()
+				pass
 			SPECIALS.PARRY:
 				player.velocity.y += gravity * delta
-				player.velocity.y = clamp(player.velocity.y, -25, 25)
-				player.move_and_slide()
 			SPECIALS.BLADE:
 				player.velocity.y += gravity * delta
-				player.velocity.y = clamp(player.velocity.y, -25, 25)
-				player.move_and_slide()
 	#On ground behaviour
 	else:
 		match CurrentSpecial:
@@ -76,26 +70,22 @@ func physics_update(delta: float) -> void:
 				if !player.is_on_floor():
 					state_machine.transition_to("Falling")
 				player.create_dust()
-				player.move_and_slide()
 			SPECIALS.DISENGAGE:
 				player.velocity.y += gravity * delta
-				player.move_and_slide()
 			SPECIALS.UPPER:
-				player.move_and_slide()
+				pass
 			SPECIALS.STINGER:
-				player.velocity.x = player.DASHING_SPEED * direction
 				player.create_dust()
-				player.move_and_slide()
 			SPECIALS.PARRY:
 				pass
 			SPECIALS.BLADE:
 				pass
-	
+	player.move_and_slide()
 
 func designate_attack() -> void:
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):
-			_STINGER()
+			_stinger()
 		if Input.is_action_pressed("Right Button"):
 			_blade()
 		if Input.is_action_pressed("Top Button"):
@@ -124,10 +114,19 @@ func _plasma() -> void:
 	CurrentSpecial = SPECIALS.PLASMA
 	cancel_timer.start(0.1)
 
-func _STINGER() -> void:
-	player.player_animations.play("STINGER")
-	player.STINGER()
+func _stinger() -> void:
+	player.player_animations.play("Stinger_Loop")
+	player.velocity.x = player.DASHING_SPEED * direction * 2
+	player.stinger()
+	player.stinger_inst.connect("hit", _stinger_finish)
+	_duration_timer.start(0.4)
+	player.stinger_inst.timer.wait_time = _duration_timer.wait_time
 	CurrentSpecial = SPECIALS.STINGER
+
+func _stinger_finish() -> void:
+	player.player_animations.play("Stinger")
+	var tweenX = get_tree().create_tween()
+	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
 
 func _blade() -> void:
 	player.player_animations.play("Parry")
@@ -142,16 +141,18 @@ func _barrage() -> void:
 	cancel_timer.start(0.1)
 
 func _upper() -> void:
-	player.velocity.y = -500
-	player.velocity.x = player.facing_direction * 300
+	player.velocity.y = -400
+	player.velocity.x = player.facing_direction * 200
 	var tweenX = get_tree().create_tween()
 	var tweenY = get_tree().create_tween()
 	tweenX.tween_property(player, "velocity:x", 0, .3).set_ease(Tween.EASE_OUT)
 	tweenY.tween_property(player, "velocity:y", 0, .5).set_ease(Tween.EASE_OUT)
 	player.player_animations.play("Upper")
-	player.upper(.5)
+	player.player_animations.queue("Upper_Loop")
+	player.upper()
 	CurrentSpecial = SPECIALS.UPPER
 	cancel_timer.start(0.1)
+	_duration_timer.start(0.4)
 
 func _disengage() -> void:
 	player.velocity.x = player.facing_direction * -300
@@ -184,9 +185,7 @@ func _on_player_anims_animation_finished(anim_name):
 		match anim_name:
 			"Plasma_Shot_Air":
 				state_machine.transition_to("Falling")
-			"Upper":
-				state_machine.transition_to("Falling")
-			"STINGER":
+			"Stinger":
 				state_machine.transition_to("Falling")
 			"Disengage":
 				state_machine.transition_to("Falling")
@@ -199,9 +198,7 @@ func _on_player_anims_animation_finished(anim_name):
 		match anim_name:
 			"Plasma_Shot":
 				state_machine.transition_to("Idle")
-			"Upper":
-				state_machine.transition_to("Falling")
-			"STINGER":
+			"Stinger":
 				state_machine.transition_to("Idle")
 			"Disengage":
 				state_machine.transition_to("Falling")
@@ -209,3 +206,10 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Idle")
 			"Flash":
 				state_machine.transition_to("Idle")
+
+
+func _on_duration_timer_timeout():
+	if IsInAir:
+		state_machine.transition_to("Falling")
+	else:
+		state_machine.transition_to("Idle")

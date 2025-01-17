@@ -17,7 +17,6 @@ func _ready():
 	$Sprites.frame = randi_range(0,4)
 	$GPUParticles2D.emitting = true
 	_hit_direction.x = _direction.x
-	_hit_direction.y = -0.5
 	_hit_box.set_variables(_damage, _stun_damage, _hit_direction, _power)
 	create_tween().tween_property(self, "_speed", 10, 0.5)
 	_set_flip()

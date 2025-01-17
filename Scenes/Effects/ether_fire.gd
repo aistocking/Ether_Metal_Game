@@ -2,31 +2,17 @@ class_name EtherFire
 extends AnimatedSprite2D
 
 
-var damage = 15
-
-var time: float
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$DeathTimer.start(time)
+var _damage: int = 4
+var _stun_damage: int = 1
+var _power: float = 200
+var _hit_direction: Vector2 = Vector2(0, -1)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func explode():
-	queue_free()
-
-func _on_hit_box_body_entered(body):
-	if(body.has_method("takeDamage")):
-		body.takeDamage(damage)
-
+func _ready() -> void:
+	$HitBox.set_variables(_damage, _stun_damage, _hit_direction, _power)
 
 func _on_death_timer_timeout():
-	explode()
+		queue_free()
 
-
-func _on_hit_box_area_entered(area):
-	if(area.has_method("takeDamage")):
-		area.takeDamage(damage)
+func _on_reset_hit_box_timeout():
+	$HitBox/HitCollision.disabled = !$HitBox/HitCollision.disabled

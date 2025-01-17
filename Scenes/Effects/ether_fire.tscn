@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blbjx2n5kjy2r"]
+[gd_scene load_steps=10 format=3 uid="uid://blbjx2n5kjy2r"]
 
 [ext_resource type="Texture2D" uid="uid://cvpa5ietp7t58" path="res://Art/Effects/Upper_Fire.png" id="1_o1lfq"]
 [ext_resource type="Script" path="res://Scenes/Effects/ether_fire.gd" id="2_xdqqk"]
@@ -40,7 +40,11 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puyqu"]
+size = Vector2(32, 42)
+
 [node name="EtherFire" type="AnimatedSprite2D"]
+z_index = 15
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gwtkk")
 autoplay = "default"
@@ -49,6 +53,8 @@ frame_progress = 0.460296
 script = ExtResource("2_xdqqk")
 
 [node name="HitBox" parent="." instance=ExtResource("3_gl5j4")]
+collision_layer = 2
+collision_mask = 4
 _damage = 6
 _stun_damage = 2
 _direction = Vector2(0, -1)
@@ -56,5 +62,18 @@ _power = 30.0
 
 [node name="HitCollision" parent="HitBox" index="0"]
 position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_puyqu")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="ResetHitBox" type="Timer" parent="."]
+wait_time = 0.06
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="ResetHitBox" to="." method="_on_reset_hit_box_timeout"]
 
 [editable path="HitBox"]
