@@ -14,10 +14,8 @@ func enter(_msg := {}) -> void:
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
 	_stun_timer.start(5.0)
-	_stun_instance = _enemy._stun_fx.instantiate()
-	_stun_instance.position = _enemy._stun_fx_spawn_marker.position
-	_enemy.add_child(_stun_instance)
 	_enemy.sprite.frame = 9
+	_enemy._create_stun_fx()
 
 func handle_input(event):
 	pass
@@ -25,8 +23,6 @@ func handle_input(event):
 func physics_update(delta: float) -> void:
 	if !_enemy.is_on_floor():
 		_enemy.velocity.y += (gravity * delta) * 0.2
-	else:
-		_enemy.velocity.y = 0
 	if _enemy.is_on_floor():
 		if _enemy.velocity.x > 25 || _enemy.velocity.x < -25:
 			_enemy.create_dust()
@@ -39,7 +35,6 @@ func exit() -> void:
 
 func _on_stun_timer_timeout():
 	emit_signal("stun_recover")
-	_stun_instance.queue_free()
 	if _enemy.is_on_floor():
 		state_machine.transition_to("EnemyIdle")
 	else:

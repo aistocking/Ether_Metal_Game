@@ -28,8 +28,17 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_aad6u")
 
+[node name="RightRayCast" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(-14, 0)
+collision_mask = 20
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(-14, 0)
+collision_mask = 20
+
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_jc2lx")
 debug_color = Color(0, 1, 0, 0.419608)
 
@@ -60,7 +69,7 @@ position = Vector2(0, 18.005)
 [node name="HurtBox" parent="." instance=ExtResource("3_juej3")]
 
 [node name="HurtCollision" parent="HurtBox" index="0"]
-position = Vector2(2, -0.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_8iktg")
 
 [node name="FlashTimer" type="Timer" parent="."]
@@ -150,7 +159,10 @@ script = ExtResource("15_pt4qx")
 [node name="EnemyBounce" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("16_obhxj")
 
+[node name="DurationTimer" type="Timer" parent="EnemyStateMachine/EnemyBounce"]
+
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyStun/StunTimer" to="EnemyStateMachine/EnemyStun" method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="EnemyStateMachine/EnemyBounce/DurationTimer" to="EnemyStateMachine/EnemyBounce" method="_on_duration_timer_timeout"]
 
 [editable path="HurtBox"]
