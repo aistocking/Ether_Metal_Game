@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqlrhrg6x76ql"]
+[gd_scene load_steps=10 format=3 uid="uid://cqlrhrg6x76ql"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/shot.gd" id="1_5l87p"]
 [ext_resource type="Texture2D" uid="uid://c4njjlnmm8y1q" path="res://Art/Effects/BasicShot.png" id="2_k0reg"]
@@ -16,14 +16,6 @@ region = Rect2(10, 0, 10, 6)
 atlas = ExtResource("2_k0reg")
 region = Rect2(20, 0, 10, 6)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcotc"]
-atlas = ExtResource("2_k0reg")
-region = Rect2(30, 0, 10, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfnlc"]
-atlas = ExtResource("2_k0reg")
-region = Rect2(40, 0, 10, 6)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqu2g"]
 animations = [{
 "frames": [{
@@ -35,16 +27,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x4qad")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcotc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfnlc")
 }],
 "loop": true,
 "name": &"basic_shot",
-"speed": 12.0
+"speed": 14.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gkbt"]

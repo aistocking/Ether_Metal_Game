@@ -14,7 +14,7 @@ const _hit_fx: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
 const _hit_sparks: PackedScene = preload("res://Scenes/Effects/hit_fx.tscn")
 
 func _ready():
-	$Sprites.frame = randi_range(0,4)
+	$Sprites.frame = randi_range(0,2)
 	_hit_box.set_variables(_damage, _stun_damage, _direction, _power)
 	if _direction.x < 0:
 		flip()

@@ -1,5 +1,5 @@
 class_name EtherFire
-extends AnimatedSprite2D
+extends Node2D
 
 
 var _damage: int = 4

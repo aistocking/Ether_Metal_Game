@@ -1,55 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://blbjx2n5kjy2r"]
+[gd_scene load_steps=4 format=3 uid="uid://blbjx2n5kjy2r"]
 
-[ext_resource type="Texture2D" uid="uid://cvpa5ietp7t58" path="res://Art/Effects/Upper_Fire.png" id="1_o1lfq"]
 [ext_resource type="Script" path="res://Scenes/Effects/ether_fire.gd" id="2_xdqqk"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_gl5j4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdo73"]
-atlas = ExtResource("1_o1lfq")
-region = Rect2(0, 0, 36, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vv2l2"]
-atlas = ExtResource("1_o1lfq")
-region = Rect2(36, 0, 36, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_02e1v"]
-atlas = ExtResource("1_o1lfq")
-region = Rect2(72, 0, 36, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x244s"]
-atlas = ExtResource("1_o1lfq")
-region = Rect2(144, 0, 36, 63)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gwtkk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bdo73")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vv2l2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_02e1v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x244s")
-}],
-"loop": true,
-"name": &"default",
-"speed": 14.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puyqu"]
 size = Vector2(32, 42)
 
-[node name="EtherFire" type="AnimatedSprite2D"]
+[node name="EtherFire" type="Node2D"]
 z_index = 15
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_gwtkk")
-autoplay = "default"
-frame = 1
-frame_progress = 0.460296
 script = ExtResource("2_xdqqk")
 
 [node name="HitBox" parent="." instance=ExtResource("3_gl5j4")]
@@ -61,7 +20,6 @@ _direction = Vector2(0, -1)
 _power = 30.0
 
 [node name="HitCollision" parent="HitBox" index="0"]
-position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_puyqu")
 
 [node name="DeathTimer" type="Timer" parent="."]

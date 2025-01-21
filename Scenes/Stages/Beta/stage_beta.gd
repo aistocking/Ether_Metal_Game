@@ -8,11 +8,11 @@ var _bg_gate2 := false
 
 @onready var bg_trigger2 := $StageTriggers/BGTrigger2
 
-@onready var OPENING_SONG: AudioStream = preload("res://Sound/Music/06_Opening Stage X.mp3")
+@onready var _stage_bgm: AudioStream = preload("res://Sound/Music/Svarog_Stage_BGM.mp3")
 @onready var _enemy: PackedScene = preload("res://Scenes/Enemies/base_enemy.tscn")
 
 func _ready() -> void:
-	Global.change_music(OPENING_SONG)
+	Global.change_music(_stage_bgm)
 	Global.debug_mode()
 	RenderingServer.set_default_clear_color(Color(0,0,0))
 	_spawn_enemy()
