@@ -12,6 +12,8 @@ var _max_stun_health: int = 10
 var _damage: int = 1
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 var _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
+var _wall_hit_sfx: AudioStream = preload("res://Sound/Intro_Stomp.wav")
+var _big_hit_sfx: AudioStream = preload("res://Sound/Enemy Big Hit.wav")
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_direction = LEFT
 
@@ -60,6 +62,7 @@ func _ready():
 	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
 	$AspectRatioContainer/Health.value = _health
 	$AspectRatioContainer/StunHealth.value = _stun_health
+	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
 
 func _physics_process(delta):
@@ -79,7 +82,9 @@ func _hit_push(direction: Vector2, power: int) -> void:
 		velocity += push_vector
 
 func _reset_sprite_flash() -> void:
-	sprite.material.set_shader_parameter("active", false)
+	if sprite.material.get_shader_parameter("stun") == false:
+		sprite.material.set_shader_parameter("active", false)
+		sprite.material.set_shader_parameter("mix_factor", 1)
 
 func _on_flash_timer_timeout():
 	_reset_sprite_flash()

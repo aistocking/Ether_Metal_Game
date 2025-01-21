@@ -12,6 +12,7 @@ signal stun_recover
 func enter(_msg := {}) -> void:
 	_enemy = owner
 	_player = get_tree().get_first_node_in_group("Player")
+	_enemy._effect_audio_player.play_sound(_enemy._big_hit_sfx)
 	_enemy.sprite.frame = 9
 	if _msg.has("direction"):
 		_direction = _msg.direction
