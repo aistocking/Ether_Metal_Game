@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_gl5j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puyqu"]
-size = Vector2(32, 42)
+size = Vector2(24, 34)
 
 [node name="EtherFire" type="Node2D"]
 z_index = 15

@@ -125,6 +125,7 @@ func _stinger() -> void:
 
 func _stinger_finish() -> void:
 	player.player_animations.play("Stinger")
+	player.velocity.x *= -0.5
 	var tweenX = get_tree().create_tween()
 	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
 

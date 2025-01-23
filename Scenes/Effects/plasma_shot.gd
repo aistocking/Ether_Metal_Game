@@ -58,9 +58,6 @@ func _remove() -> void:
 	queue_free()
 
 
-func _on_hit_box_area_entered(hurtbox: HurtBox):
-	pass
-
 
 func _on_physical_body_entered(body):
 	_collission()
