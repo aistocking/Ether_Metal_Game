@@ -304,7 +304,10 @@ position = Vector2(167, 0)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemyRespawnPoint" type="Marker2D" parent="Enemies"]
-position = Vector2(150, -16)
+position = Vector2(111, -16)
+
+[node name="EnemyRespawnPoint2" type="Marker2D" parent="Enemies"]
+position = Vector2(194, -16)
 
 [connection signal="body_entered" from="StageTriggers/CutsceneTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger2" to="." method="_on_bg_trigger_2_body_entered"]

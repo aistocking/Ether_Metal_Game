@@ -2,6 +2,7 @@ extends Control
 
 const _music: AudioStream = preload("res://Sound/Music/05_Stage Select.mp3")
 const _ui_move_sfx: AudioStream = preload("res://Sound/UIMove.wav")
+const _ui_confirm: AudioStream = preload("res://Sound/UIConfirm.wav")
 
 @onready var _sfx_player: EffectAudioPlayer = $EffectAudioPlayer
 var _first_time: bool = true
@@ -25,18 +26,22 @@ func _on_volos_pressed() -> void:
 	pass
 
 func _on_svarog_pressed():
+	_sfx_player.play_sound(_ui_confirm)
 	Global.change_scene("res://Scenes/Stages/Beta/stage_beta.tscn")
 
 func _on_marena_pressed():
+	_sfx_player.play_sound(_ui_confirm)
 	Global.change_scene("res://Scenes/Stages/Alpha/stage_alpha.tscn")
 
 func _on_player_options_pressed():
 	pass # Replace with function body.
 
 func _on_options_pressed():
+	_sfx_player.play_sound(_ui_confirm)
 	Global.change_scene("res://Scenes/Misc/menus/options_UI.tscn")
 
 func _on_exit_pressed():
+	_sfx_player.play_sound(_ui_confirm)
 	Global.change_scene("res://Scenes/Misc/menus/main_menu.tscn")
 
 

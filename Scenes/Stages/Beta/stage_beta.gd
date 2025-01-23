@@ -23,9 +23,14 @@ func _process(delta: float) -> void:
 
 func _spawn_enemy() -> void:
 	await get_tree().create_timer(1).timeout
-	var instance = _enemy.instantiate()
-	$Enemies/EnemyRespawnPoint.add_child(instance)
-	instance.connect("died", _spawn_enemy)
+	if $Enemies/EnemyRespawnPoint.get_child_count() == 0:
+		var instance1 = _enemy.instantiate()
+		$Enemies/EnemyRespawnPoint.add_child(instance1)
+		instance1.connect("died", _spawn_enemy)
+	if $Enemies/EnemyRespawnPoint2.get_child_count() == 0:
+		var instance2 = _enemy.instantiate()
+		$Enemies/EnemyRespawnPoint2.add_child(instance2)
+		instance2.connect("died", _spawn_enemy)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var DialogueBoxInst = DialogueBoxResource.instantiate()
