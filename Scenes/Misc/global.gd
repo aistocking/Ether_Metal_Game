@@ -5,15 +5,15 @@ const _fade_transition: PackedScene = preload("res://Scenes/Misc/transition_fade
 
 
 enum Bosses { Boss1, Boss2, Boss3, Boss4, Boss5, Boss6, Boss7, Boss8 }
-var _defeated_bosses: Array[bool] = [false, false, false, false, false, false, false, false]
+var _defeated_bosses: Array = [false, false, false, false, false, false, false, false]
 enum Armors { Head, Chest, Arms, Legs }
-var _acquired_armors: Array[bool] = [false, false, false, false]
+var _acquired_armors: Array = [false, false, false, false]
 enum HeartTanks { Tank1, Tank2, Tank3, Tank4, Tank5, Tank6, Tank7, Tank8 }
-var _acquired_health_tanks: Array[bool] = [false, false, false, false, false, false, false, false]
+var _acquired_health_tanks: Array = [false, false, false, false, false, false, false, false]
 enum ChargeCapacitors { Cap1, Cap2, Cap3, Cap4 }
-var _acquired_charge_capacitors: Array[bool] = [false, false, false, false]
+var _acquired_charge_capacitors: Array = [false, false, false, false]
 enum EtherTanks { ETank1, ETank2 }
-var _acquired_ether_tanks: Array[bool] = [false, false]
+var _acquired_ether_tanks: Array = [false, false]
 
 var _music_volume := -20.0
 var _effect_volume := -20.0
@@ -32,6 +32,7 @@ signal music_volume_changed
 func _ready() -> void:
 	MusicPlayer.volume_db = _music_volume
 	_current_scene = "res://Scenes/Misc/menus/main_menu.tscn"
+	debug_mode()
 
 func change_scene(path: String) -> void:
 	if path == "previous_scene":
@@ -60,10 +61,10 @@ func manual_fade(fade_in: bool) -> void:
 	_instance.queue_free()
 
 func debug_mode() -> void:
-	for i in _acquired_health_tanks:
-		i = true
-	for i in _acquired_charge_capacitors:
-		i = true
+	for i in _acquired_health_tanks.size():
+		_acquired_health_tanks[i] = true
+	for i in _acquired_charge_capacitors.size():
+		_acquired_charge_capacitors[i] = true
 
 func change_music(song: AudioStream, time: float = 0.0) -> void:
 	MusicPlayer.volume_db = _music_volume
@@ -106,6 +107,11 @@ func get_charge_capacitor_number() -> int:
 
 func set_current_stage(scene_path: String) -> void:
 	_current_scene = scene_path
+
+func _hit_stun_slowdown(speed: float, time: float) -> void:
+	Engine.time_scale = speed
+	await get_tree().create_timer(time).timeout
+	Engine.time_scale = 1
 
 func defeat_boss(boss: Bosses) -> void:
 	if _defeated_bosses[boss] == true:
