@@ -1,13 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://dusmkdis6va78"]
+[gd_scene load_steps=37 format=3 uid="uid://dusmkdis6va78"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
 [ext_resource type="PackedScene" uid="uid://byuc5bs66nl24" path="res://Scenes/Entities/health_component.tscn" id="2_yv6wp"]
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
 [ext_resource type="Texture2D" uid="uid://trut2k521ryw" path="res://Art/Enemies/Gunner.png" id="3_tuco8"]
+[ext_resource type="Texture2D" uid="uid://bjmiy7hnn30vd" path="res://Art/Effects/Stun_Cracks.png" id="5_2d5lv"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="6_8kifp"]
+[ext_resource type="Texture2D" uid="uid://dncyse1f5l1rr" path="res://Art/Effects/Glass_Shard_Small.png" id="6_33q85"]
 [ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="7_i6sjv"]
+[ext_resource type="Texture2D" uid="uid://bddp5aa44kwa" path="res://Art/Effects/Glass_Shard_Medium.png" id="7_kua0b"]
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_state_machine.gd" id="7_m2w8q"]
+[ext_resource type="Texture2D" uid="uid://du2n8jb1np5pg" path="res://Art/Effects/Stun_Break_Shine.png" id="8_h4tgd"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_idle.gd" id="8_t74am"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_move.gd" id="9_ox7mg"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_attack.gd" id="10_02p52"]
@@ -20,6 +24,108 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc2lx"]
 size = Vector2(23, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d5t4"]
+atlas = ExtResource("5_2d5lv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyrdl"]
+atlas = ExtResource("5_2d5lv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhxdm"]
+atlas = ExtResource("5_2d5lv")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnh7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d5t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyrdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhxdm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tibrm"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_no6tk"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 32.26
+initial_velocity_max = 102.15
+gravity = Vector3(0, 180, 0)
+anim_speed_min = 1.03
+anim_speed_max = 2.58
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5tr71"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8cs2x"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 63.203
+initial_velocity_min = 65.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 180, 0)
+anim_speed_min = 1.03
+anim_speed_max = 2.49
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx1fs"]
+atlas = ExtResource("8_h4tgd")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54eam"]
+atlas = ExtResource("8_h4tgd")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54mh"]
+atlas = ExtResource("8_h4tgd")
+region = Rect2(0, 45, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21wq5"]
+atlas = ExtResource("8_h4tgd")
+region = Rect2(45, 45, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ynqh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx1fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54eam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21wq5")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bmx8"]
+size = Vector2(0, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iktg"]
 size = Vector2(22, 37)
 
@@ -28,72 +134,9 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_aad6u")
 
-[node name="RightRayCast" type="RayCast2D" parent="."]
-enabled = false
-target_position = Vector2(-14, 0)
-collision_mask = 20
-
-[node name="LeftRayCast" type="RayCast2D" parent="."]
-enabled = false
-target_position = Vector2(-14, 0)
-collision_mask = 20
-
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jc2lx")
 debug_color = Color(0, 1, 0, 0.419608)
-
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("_hurt_box") instance=ExtResource("2_yv6wp")]
-_health = 20
-_max_health = 20
-_stun_health = 10
-_max_stun_health = 10
-_hurt_box = NodePath("../HurtBox")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-material = ExtResource("1_r2idr")
-texture = ExtResource("3_tuco8")
-hframes = 5
-vframes = 2
-
-[node name="StunStarsSpawnLocation" type="Marker2D" parent="."]
-position = Vector2(0, -24.34)
-
-[node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
-
-[node name="DustSpawnLocation" type="Marker2D" parent="."]
-position = Vector2(0, 18.005)
-
-[node name="Anims" type="AnimationPlayer" parent="."]
-
-[node name="HurtBox" parent="." instance=ExtResource("3_juej3")]
-
-[node name="HurtCollision" parent="HurtBox" index="0"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_8iktg")
-
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="EffectAudioPlayer" parent="." instance=ExtResource("6_8kifp")]
-
-[node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -41.465
-offset_right = 20.0
-offset_bottom = -21.465
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 8
-text = "state"
-script = ExtResource("7_i6sjv")
-state_machine = NodePath("../EnemyStateMachine")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 8
@@ -126,6 +169,103 @@ show_percentage = false
 
 [node name="Label" type="Label" parent="AspectRatioContainer"]
 layout_mode = 2
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("_hurt_box") instance=ExtResource("2_yv6wp")]
+_health = 20
+_max_health = 20
+_stun_health = 10
+_max_stun_health = 10
+_hurt_box = NodePath("../HurtBox")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("1_r2idr")
+texture = ExtResource("3_tuco8")
+hframes = 5
+vframes = 2
+
+[node name="Cracks" type="AnimatedSprite2D" parent="Sprite"]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_pnh7u")
+frame = 2
+frame_progress = 1.0
+
+[node name="SmallShards" type="GPUParticles2D" parent="Sprite"]
+visible = false
+z_index = 2
+material = SubResource("CanvasItemMaterial_tibrm")
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_no6tk")
+texture = ExtResource("6_33q85")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="MediumShards" type="GPUParticles2D" parent="Sprite"]
+visible = false
+z_index = 2
+material = SubResource("CanvasItemMaterial_5tr71")
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_8cs2x")
+texture = ExtResource("7_kua0b")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="ShineBurst" type="AnimatedSprite2D" parent="Sprite"]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_ynqh1")
+
+[node name="StunStarsSpawnLocation" type="Marker2D" parent="."]
+position = Vector2(0, -24.34)
+
+[node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
+
+[node name="DustSpawnLocation" type="Marker2D" parent="."]
+position = Vector2(0, 18.005)
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+
+[node name="BounceBoxes" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="Collision" type="CollisionShape2D" parent="BounceBoxes"]
+shape = SubResource("RectangleShape2D_5bmx8")
+debug_color = Color(0.864566, 0.0508572, 0, 0.42)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_juej3")]
+
+[node name="HurtCollision" parent="HurtBox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8iktg")
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="EffectAudioPlayer" parent="." instance=ExtResource("6_8kifp")]
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -41.465
+offset_right = 20.0
+offset_bottom = -21.465
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "state"
+script = ExtResource("7_i6sjv")
+state_machine = NodePath("../EnemyStateMachine")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_m2w8q")
@@ -161,6 +301,10 @@ script = ExtResource("16_obhxj")
 
 [node name="DurationTimer" type="Timer" parent="EnemyStateMachine/EnemyBounce"]
 
+[connection signal="animation_finished" from="Sprite/Cracks" to="." method="_on_cracks_animation_finished"]
+[connection signal="finished" from="Sprite/MediumShards" to="." method="_on_medium_shards_finished"]
+[connection signal="area_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_area_entered"]
+[connection signal="body_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_body_entered"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyStun/StunTimer" to="EnemyStateMachine/EnemyStun" method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyBounce/DurationTimer" to="EnemyStateMachine/EnemyBounce" method="_on_duration_timer_timeout"]

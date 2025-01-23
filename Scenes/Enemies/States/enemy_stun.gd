@@ -16,6 +16,7 @@ func enter(_msg := {}) -> void:
 	_stun_timer.start(5.0)
 	_enemy.sprite.frame = 9
 	_enemy._create_stun_fx()
+	Global._hit_stun_slowdown(0.3,0.15)
 
 func handle_input(event):
 	pass
@@ -30,7 +31,7 @@ func physics_update(delta: float) -> void:
 	_enemy.move_and_slide()
 	
 func exit() -> void:
-	pass
+	_stun_timer.stop()
 
 
 func _on_stun_timer_timeout():

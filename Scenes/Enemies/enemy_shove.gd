@@ -12,23 +12,27 @@ signal stun_recover
 func enter(_msg := {}) -> void:
 	_enemy = owner
 	_player = get_tree().get_first_node_in_group("Player")
-	_enemy._effect_audio_player.play_sound(_enemy._big_hit_sfx)
 	_enemy.sprite.frame = 9
 	if _msg.has("direction"):
 		_direction = _msg.direction
 	_enemy.velocity = _direction * _enemy.SHOVE_SPEED
-	_enemy.left_ray_cast.enabled = true
-	_enemy.right_ray_cast.enabled = true
+	_enemy.connect("wall_bounce", change_to_bounce)
+	match _direction:
+		Vector2(-1,0):
+			_enemy.set_wall_bounce_collision("Left")
+		Vector2(1,0):
+			_enemy.set_wall_bounce_collision("Right")
+		Vector2(0,-1):
+			_enemy.set_wall_bounce_collision("Top")
+		Vector2(0,1):
+			_enemy.set_wall_bounce_collision("Bottom")
 
 
-func handle_input(event):
-	pass
+
+func change_to_bounce() -> void:
+	state_machine.transition_to("EnemyBounce", {"impact_direction": _direction})
 
 func physics_update(delta: float) -> void:
-	if _enemy.left_ray_cast.is_colliding():
-		state_machine.transition_to("EnemyBounce", {"impact_direction": -1})
-	if _enemy.right_ray_cast.is_colliding():
-		state_machine.transition_to("EnemyBounce", {"impact_direction": 1})
 	if _direction.x == -1:
 		_enemy.create_shove_trails(true)
 	else:
@@ -36,5 +40,4 @@ func physics_update(delta: float) -> void:
 	_enemy.move_and_slide()
 	
 func exit() -> void:
-	_enemy.left_ray_cast.enabled = false
-	_enemy.right_ray_cast.enabled = false
+	_enemy.set_wall_bounce_collision("Off")

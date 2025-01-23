@@ -11,9 +11,10 @@ var _stun_health: int = 10
 var _max_stun_health: int = 10
 var _damage: int = 1
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
-var _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
-var _wall_hit_sfx: AudioStream = preload("res://Sound/Intro_Stomp.wav")
-var _big_hit_sfx: AudioStream = preload("res://Sound/Enemy Big Hit.wav")
+const _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
+const _wall_hit_sfx: AudioStream = preload("res://Sound/Intro_Stomp.wav")
+const _big_hit_sfx: AudioStream = preload("res://Sound/Enemy Big Hit.wav")
+const _stun_break_sound: AudioStream = preload("res://Sound/StunBreak.wav")
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_direction = LEFT
 
@@ -32,8 +33,7 @@ var _camera: Camera2D
 @onready var _projectile_spawn_marker: Marker2D = $ProjectileSpawnLocation
 @onready var _stun_fx_spawn_marker: Marker2D = $StunStarsSpawnLocation
 @onready var _state_machine: EnemyStateMachine = $EnemyStateMachine
-@onready var right_ray_cast: RayCast2D = $RightRayCast
-@onready var left_ray_cast: RayCast2D = $LeftRayCast
+@onready var _bouncy_collision: CollisionShape2D = $BounceBoxes/Collision
 var _tween: Tween
 
 
@@ -44,6 +44,7 @@ var _dust_counter: int = 0
 var _trail_counter: int = 0
 
 signal died
+signal wall_bounce
 
 func _ready():
 	_player = get_tree().get_first_node_in_group("Player")
@@ -62,6 +63,7 @@ func _ready():
 	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
 	$AspectRatioContainer/Health.value = _health
 	$AspectRatioContainer/StunHealth.value = _stun_health
+	set_wall_bounce_collision("Off")
 	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
 
@@ -95,13 +97,18 @@ func _update_health(health: int, stun: int) -> void:
 	_stun_health = stun
 	$AspectRatioContainer/Health.value = _health
 	$AspectRatioContainer/StunHealth.value = _stun_health
-	_effect_audio_player.play_sound(_hit_SFX)
+	if _stun_health <= 0:
+		_effect_audio_player.play_sound(_big_hit_sfx)
+	else:
+		_effect_audio_player.play_sound(_hit_SFX)
 	
 
 func _stun_break() -> void:
 	_state_machine.transition_to("EnemyStun")
 	sprite.material.set_shader_parameter("active", true)
 	sprite.material.set_shader_parameter("stun", true)
+	$Sprite/Cracks.visible = true
+	$Sprite/Cracks.play()
 	_tween = create_tween()
 	_tween.set_loops()
 	_tween.tween_method(func(value): sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.8, 1)
@@ -116,6 +123,7 @@ func _restore_stun() -> void:
 	_health_component.reset_stun_health()
 	_stun_instance.queue_free()
 	_tween.kill()
+	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
 
 func create_dust() -> void:
@@ -136,9 +144,63 @@ func create_shove_trails(left: bool) -> void:
 		_instance.global_position = global_position
 		_trail_counter = 0
 
+func set_wall_bounce_collision(text: String) -> void:
+	match text:
+		"Top":
+			_bouncy_collision.set_deferred("disabled", false)
+			_bouncy_collision.shape.extents = Vector2(22,4)
+			_bouncy_collision.position = Vector2(0,-21)
+		"Bottom":
+			_bouncy_collision.set_deferred("disabled", false)
+			_bouncy_collision.shape.extents = Vector2(22,4)
+			_bouncy_collision.position = Vector2(0,21)
+		"Right":
+			_bouncy_collision.set_deferred("disabled", false)
+			_bouncy_collision.shape.extents = Vector2(4,15)
+			_bouncy_collision.position = Vector2(15,0)
+		"Left":
+			_bouncy_collision.set_deferred("disabled", false)
+			_bouncy_collision.shape.extents = Vector2(4,15)
+			_bouncy_collision.position = Vector2(-15,0)
+		"Off":
+			_bouncy_collision.set_deferred("disabled", true) 
+			_bouncy_collision.shape.extents = Vector2(0,0)
+			_bouncy_collision.position = Vector2(0,0)
+
 func die():
 	emit_signal("died")
 	var ExplosionInstance = ExplosionEffect.instantiate()
 	get_parent().add_child(ExplosionInstance)
 	ExplosionInstance.global_position = global_position
 	queue_free()
+
+
+func _on_bounce_boxes_body_entered(body):
+	if body == self:
+		return
+	emit_signal("wall_bounce")
+
+
+func _on_bounce_boxes_area_entered(hurtbox: HurtBox):
+	if hurtbox == $HurtBox:
+		return
+	if(hurtbox.has_method("take_damage")):
+		hurtbox.take_damage(5, 35, Vector2(0,0), 0)
+	emit_signal("wall_bounce")
+		
+
+
+func _on_cracks_animation_finished():
+	$Sprite/SmallShards.visible = true
+	$Sprite/MediumShards.visible = true
+	$Sprite/ShineBurst.visible = true
+	$Sprite/Cracks.visible = false
+	$Sprite/ShineBurst.play()
+	_effect_audio_player.play_sound(_stun_break_sound)
+	$Sprite/SmallShards.emitting = true
+	$Sprite/MediumShards.emitting = true
+
+func _on_medium_shards_finished():
+	$Sprite/SmallShards.visible = false
+	$Sprite/MediumShards.visible = false
+	$Sprite/ShineBurst.visible = false
