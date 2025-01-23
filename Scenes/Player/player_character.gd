@@ -112,9 +112,13 @@ func _ready() -> void:
 	_max_health = 16 + (Global.get_heart_tank_number() * 2)
 	
 	health = _max_health
+	charge_level = _max_charge_level
+	_charge_counter = 0
+	
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
 	TeleportInstance.global_position = global_position
+	_hud.set_health_bar_energy(health)
 
 
 func _input(event: InputEvent) -> void:

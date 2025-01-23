@@ -25,7 +25,6 @@ func _ready():
 	_player.connect("die", _screen_whiteout)
 	set_health_bar_container()
 	set_charge_bar()
-	_current_pellet = ChargePellet1
 
 
 func change_pellet():
@@ -49,7 +48,6 @@ func decrease_pellet():
 	_current_charge_value = _current_pellet.value
 	_current_pellet.value = 0
 	change_pellet()
-	#_current_pellet.value = _current_charge_value
 
 func set_health_bar_container() -> void:
 	health_bar_container.frame = Global.get_heart_tank_number()
@@ -72,14 +70,25 @@ func _screen_whiteout() -> void:
 func set_charge_bar() -> void:
 	match Global.get_charge_capacitor_number():
 		0:
-			pass
+			_current_pellet = ChargePellet2
+			$"WholeScreen/ChargeBar/1stPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/2ndPellet/Pellet".value = 16
 		1:
+			_current_pellet = ChargePellet3
+			$"WholeScreen/ChargeBar/1stPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/2ndPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/3rdPellet/Pellet".value = 16
 			$"WholeScreen/ChargeBar/3rdPellet".visible = true
 			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
 			$"WholeScreen/ChargeBar/2ndPellet/Front".frame = 1
 			$"WholeScreen/ChargeBar/3rdPellet/Backing".frame = 1
 			$"WholeScreen/ChargeBar/3rdPellet/Front".frame = 2
 		2:
+			_current_pellet = ChargePellet4
+			$"WholeScreen/ChargeBar/1stPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/2ndPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/3rdPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/4thPellet/Pellet".value = 16
 			$"WholeScreen/ChargeBar/3rdPellet".visible = true
 			$"WholeScreen/ChargeBar/4thPellet".visible = true
 			$"WholeScreen/ChargeBar/2ndPellet/Backing".frame = 0
@@ -89,6 +98,12 @@ func set_charge_bar() -> void:
 			$"WholeScreen/ChargeBar/4thPellet/Backing".frame = 1
 			$"WholeScreen/ChargeBar/4thPellet/Front".frame = 2
 		3:
+			_current_pellet = ChargePellet5
+			$"WholeScreen/ChargeBar/1stPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/2ndPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/3rdPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/4thPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/5thPellet/Pellet".value = 16
 			$"WholeScreen/ChargeBar/3rdPellet".visible = true
 			$"WholeScreen/ChargeBar/4thPellet".visible = true
 			$"WholeScreen/ChargeBar/5thPellet".visible = true
@@ -101,6 +116,13 @@ func set_charge_bar() -> void:
 			$"WholeScreen/ChargeBar/5thPellet/Backing".frame = 1
 			$"WholeScreen/ChargeBar/5thPellet/Front".frame = 2
 		4:
+			_current_pellet = ChargePellet6
+			$"WholeScreen/ChargeBar/1stPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/2ndPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/3rdPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/4thPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/5thPellet/Pellet".value = 16
+			$"WholeScreen/ChargeBar/6thPellet/Pellet".value = 16
 			$"WholeScreen/ChargeBar/3rdPellet".visible = true
 			$"WholeScreen/ChargeBar/4thPellet".visible = true
 			$"WholeScreen/ChargeBar/5thPellet".visible = true
