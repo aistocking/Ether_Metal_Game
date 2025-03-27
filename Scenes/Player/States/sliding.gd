@@ -5,6 +5,8 @@ var player: CharacterBody2D
 
 var direction: int
 
+@onready var peel_timer = $PeelOffTimer
+
 var gravity = (ProjectSettings.get_setting("physics/2d/default_gravity")) /8
 
 func enter(_msg := {}) -> void:
@@ -26,17 +28,17 @@ func handle_input(event) -> void:
 	
 	#Check to see if the player is still "holding" onto the wall
 	if event.is_action_released("Left") && player.left_ray_cast.is_colliding():
-		state_machine.transition_to("Falling")
+		peel_timer.start()
 	
 	if event.is_action_released("Right") && player.right_ray_cast.is_colliding():
-		state_machine.transition_to("Falling")
+		peel_timer.start()
 	
 	#These are technically unnecessary since the player would have to let go of the wall direction first
 	if event.is_action_pressed("Left") && player.right_ray_cast.is_colliding():
-		state_machine.transition_to("Falling")
+		peel_timer.start()
 	
 	if event.is_action_pressed("Right") && player.left_ray_cast.is_colliding():
-		state_machine.transition_to("Falling")
+		peel_timer.start()
 	
 	if event.is_action_pressed("Shot"):
 		player._basic_shot()
@@ -54,3 +56,10 @@ func physics_update(delta: float) -> void:
 	player.velocity.y = gravity
 	
 	player.move_and_slide()
+
+
+func _on_peel_off_timer_timeout():
+	state_machine.transition_to("Falling")
+
+func exit():
+	peel_timer.stop()
