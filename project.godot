@@ -167,6 +167,7 @@ Down={
 2d_physics/layer_6="Pickups"
 2d_physics/layer_7="Environment Triggers"
 2d_physics/layer_8="Hazards"
+2d_physics/layer_9="CanBeParried"
 
 [rendering]
 

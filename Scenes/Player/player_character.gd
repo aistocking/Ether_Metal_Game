@@ -101,6 +101,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var debug_state_label: Label = $CurrentStateDebug
 
 signal health_changed (value: int)
+signal energy_changed
 signal die
 
 func _ready() -> void:
@@ -113,7 +114,8 @@ func _ready() -> void:
 	
 	health = _max_health
 	charge_level = _max_charge_level
-	_charge_counter = 0
+	_charge_counter = _max_charge_level*256
+	_hud.set_charge_bar_energy()
 	
 	var TeleportInstance = _TELEPORT_SCENE.instantiate()
 	get_parent().add_child.call_deferred(TeleportInstance)
@@ -244,9 +246,6 @@ func disengage() -> void:
 
 func parry() -> void:
 	_remove_charge_level()
-	var instance: ParryBurst = _PARRY_SCENE.instantiate()
-	add_child(instance)
-	instance.position = _buster_position.position
 
 func flash() -> void:
 	_remove_charge_level()
@@ -272,24 +271,19 @@ func recoil() -> void:
 
 
 func _handle_charging() -> void:
-	if charge_level == _max_charge_level:
+	if _charge_counter >= _max_charge_level*256:
 		pass
 	else:
 		_charge_counter += 1
-		_hud._current_pellet.value = _charge_counter / 16
-		if(_charge_counter > 256):
-			charge_level += 1
-			_hud.change_pellet()
-			_charge_counter = 0
+		if _charge_counter%16 == 0:
+			emit_signal("energy_changed")
 
 
 func _remove_charge_level() -> void:
-	charge_level -= 1
-	_hud.decrease_pellet()
-	_hud._current_pellet.value = _charge_counter
+	_charge_counter -= 256
 
 
-func takeDamage(damage: int) -> void:
+func take_damage(damage: int) -> void:
 	if invincibility_timer.is_stopped():
 		health -= damage
 		emit_signal("health_changed", health)
@@ -344,31 +338,28 @@ func reset_dash_properties() -> void:
 	spent_dash = false
 
 func toggle_collision() -> void:
-	$PhysicalCollision.disabled = !$PhysicalCollision.disabled
-	$Hurtbox/HurtCollision.disabled = !$Hurtbox/HurtCollision.disabled
+	$PhysicalCollision.set_deferred("disabled", !$PhysicalCollision.disabled)
+	$Hurtbox/HurtCollision.set_deferred("disabled", !$Hurtbox/HurtCollision.disabled)
 
 
 func change_facing_direction(direction: int) -> void:
 	if facing_direction == direction:
-		pass
+		return
 	else:
 		facing_direction = direction
-		_flip_player_sprite()
-		_flip_position_markers()
+		#flip position markers
+		$SpawnMarkers.scale.x *= -1
+		#flip parry box
+		$ParryTransform.scale.x *= -1
+		#flip player sprite objects
+		_player_head_sprite.flip_h = !_player_head_sprite.flip_h
+		_player_body_sprite.flip_h = !_player_body_sprite.flip_h
+		_player_bg_leg_sprite.flip_h = !_player_bg_leg_sprite.flip_h
+		_player_fg_leg_sprite.flip_h = !_player_fg_leg_sprite.flip_h
+		_player_bg_arm_sprite.flip_h = !_player_bg_arm_sprite.flip_h
+		_player_fg_arm_sprite.flip_h = !_player_fg_arm_sprite.flip_h
+		_player_fx_sprite.flip_h = !_player_fx_sprite.flip_h
 
-
-func _flip_position_markers() -> void:
-	$SpawnMarkers.scale.x *= -1
-
-
-func _flip_player_sprite() -> void:
-	_player_head_sprite.flip_h = !_player_head_sprite.flip_h
-	_player_body_sprite.flip_h = !_player_body_sprite.flip_h
-	_player_bg_leg_sprite.flip_h = !_player_bg_leg_sprite.flip_h
-	_player_fg_leg_sprite.flip_h = !_player_fg_leg_sprite.flip_h
-	_player_bg_arm_sprite.flip_h = !_player_bg_arm_sprite.flip_h
-	_player_fg_arm_sprite.flip_h = !_player_fg_arm_sprite.flip_h
-	_player_fx_sprite.flip_h = !_player_fx_sprite.flip_h
 
 
 
@@ -382,7 +373,6 @@ func ghostEffect() -> void:
 		_player_head_sprite, _player_fg_arm_sprite, _player_fg_leg_sprite)
 		GhostInstance.position = global_position
 		_ghost_counter = 0
-
 
 func create_dust() -> void:
 	_dust_counter += 1
@@ -450,9 +440,17 @@ func exitCutsceneState() -> void:
 
 func _on_hurtbox_body_entered(body: Node) -> void:
 	if body.is_in_group("Hazards"):
-		takeDamage(32)
-
+		take_damage(32)
 
 func _on_hit_box_body_entered(body: Node) -> void:
 	if(body.has_method("takeDamage")):
 		body.takeDamage(15)
+		
+func disable_parry_box():
+	$ParryTransform/ParryBox/Collision.set_deferred("disabled", true)
+	
+func _on_parry_box_area_entered(area):
+	$ParryFlash.play()
+	var instance: ParryBurst = _PARRY_SCENE.instantiate()
+	get_parent().add_child(instance)
+	instance.position = global_position - area.global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=64 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c4n3l8a5cy4f8" path="res://Art/Player/PlayerSprite_FX.png" id="12_i5hvy"]
 [ext_resource type="Script" path="res://Scenes/Player/States/jump.gd" id="12_nvavq"]
 [ext_resource type="Script" path="res://Scenes/Player/States/falling.gd" id="13_q85jw"]
+[ext_resource type="Texture2D" uid="uid://d3id5f8ofm1d0" path="res://Art/Effects/Parry_Shine.png" id="13_x6hto"]
 [ext_resource type="Script" path="res://Scenes/Player/States/dash.gd" id="14_sglpw"]
 [ext_resource type="Script" path="res://Scenes/Player/States/special_attack.gd" id="15_7l818"]
 [ext_resource type="Script" path="res://Scenes/Player/States/sliding.gd" id="16_01rhr"]
@@ -31,6 +32,9 @@ size = Vector2(25, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v5uu"]
 size = Vector2(27, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxll0"]
+size = Vector2(22, 36)
 
 [sub_resource type="Animation" id="Animation_2ci3x"]
 resource_name = "Damaged_Loop"
@@ -1299,7 +1303,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_673aj"]
 resource_name = "Parry"
-length = 0.5
+length = 0.7
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1308,10 +1312,10 @@ tracks/0/path = NodePath("PlayerSprite/BGLeg:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1320,10 +1324,10 @@ tracks/1/path = NodePath("PlayerSprite/BGArm:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1332,10 +1336,10 @@ tracks/2/path = NodePath("PlayerSprite/Body:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1344,10 +1348,10 @@ tracks/3/path = NodePath("PlayerSprite/Head:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1356,10 +1360,10 @@ tracks/4/path = NodePath("PlayerSprite/FGLeg:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1368,10 +1372,10 @@ tracks/5/path = NodePath("PlayerSprite/FGArm:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49, 50]
+"values": [71, 72, 73, 74]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1380,10 +1384,22 @@ tracks/6/path = NodePath("PlayerSprite/FX:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [49]
+"values": [71, 72, 73, 74]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ParryTransform/ParryBox/Collision:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ojqax"]
@@ -1774,6 +1790,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(21, -2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ParryTransform/ParryBox/Collision:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_x3up6"]
@@ -2655,6 +2683,38 @@ shader_parameter/charging = false
 shader_parameter/charge_color = null
 shader_parameter/mix_factor = 0.5
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ydut"]
+atlas = ExtResource("13_x6hto")
+region = Rect2(0, 0, 47, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84iyf"]
+atlas = ExtResource("13_x6hto")
+region = Rect2(47, 0, 47, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ueqe"]
+atlas = ExtResource("13_x6hto")
+region = Rect2(94, 0, 47, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_escch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ydut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84iyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ueqe")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
 process_mode = 3
 texture_filter = 1
@@ -2675,6 +2735,18 @@ collision_mask = 128
 [node name="HurtCollision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_8v5uu")
+
+[node name="ParryTransform" type="Node2D" parent="."]
+
+[node name="ParryBox" type="Area2D" parent="ParryTransform"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="Collision" type="CollisionShape2D" parent="ParryTransform/ParryBox"]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_kxll0")
+disabled = true
+debug_color = Color(0.815686, 0.686275, 0, 0.615686)
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2757,6 +2829,12 @@ hframes = 7
 vframes = 11
 frame = 20
 
+[node name="ParryFlash" type="AnimatedSprite2D" parent="."]
+z_index = 11
+position = Vector2(18, 0)
+sprite_frames = SubResource("SpriteFrames_escch")
+frame = 3
+
 [node name="DebugStateMachineLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 visible = false
 offset_left = -21.0
@@ -2808,6 +2886,10 @@ one_shot = true
 [node name="Sliding" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("16_01rhr")
 
+[node name="PeelOffTimer" type="Timer" parent="PlayerStateMachine/Sliding"]
+wait_time = 0.05
+one_shot = true
+
 [node name="Entrance" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("17_776qv")
 
@@ -2824,12 +2906,15 @@ script = ExtResource("22_ta164")
 script = ExtResource("25_pgdpy")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="area_entered" from="ParryTransform/ParryBox" to="." method="_on_parry_box_area_entered"]
 [connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Idle" method="_on_player_anims_animation_finished"]
 [connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Special Attack" method="_on_player_anims_animation_finished"]
 [connection signal="animation_finished" from="PlayerAnims" to="PlayerStateMachine/Entrance" method="_on_player_anims_animation_finished"]
+[connection signal="current_animation_changed" from="PlayerAnims" to="." method="_on_player_anims_current_animation_changed"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Run/RunShootTimer" to="PlayerStateMachine/Run" method="_on_run_shoot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/Timer" to="PlayerStateMachine/Dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dash/ShotTimer" to="PlayerStateMachine/Dash" method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Special Attack/DurationTimer" to="PlayerStateMachine/Special Attack" method="_on_duration_timer_timeout"]
+[connection signal="timeout" from="PlayerStateMachine/Sliding/PeelOffTimer" to="PlayerStateMachine/Sliding" method="_on_peel_off_timer_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Damaged/Timer" to="PlayerStateMachine/Damaged" method="_on_timer_timeout"]

@@ -10,7 +10,7 @@ void fragment() {
 		spriteTex.rgb /= spriteTex.a;
 	}
 	COLOR *= spriteTex;
-	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(0.3,.8,1), 1);
+	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(1,1,1), 0.5);
 	COLOR.rgb = blueSpriteTex;
 }
 

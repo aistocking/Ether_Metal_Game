@@ -17,37 +17,84 @@ var _player: PlayerCharacter
 @onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
 
 var _current_pellet: TextureProgressBar
-var _current_charge_value: float
+var _current_level: int
+var _hud_energy: int
 
 func _ready():
 	_player = get_tree().get_first_node_in_group("Player")
 	_player.connect("health_changed", set_health_bar_energy)
+	_player.connect("energy_changed", set_charge_bar_energy)
 	_player.connect("die", _screen_whiteout)
 	set_health_bar_container()
 	set_charge_bar()
 
 
-func change_pellet():
-	match _player.charge_level:
+func set_charge_bar_energy():
+	if floor(_player._charge_counter / 256) != _current_level:
+		change_pellet(floor(_player._charge_counter / 256))
+	if _current_pellet != null:
+		_current_pellet.value = (_player._charge_counter%256) / 16
+
+func change_pellet(value: int):
+	match value:
 		0:
 			_current_pellet = ChargePellet1
+			_current_level = 0
+			ChargePellet2.value = 0
+			ChargePellet3.value = 0
+			ChargePellet4.value = 0
+			ChargePellet5.value = 0
+			ChargePellet6.value = 0
 		1:
 			_current_pellet = ChargePellet2
+			_current_level = 1
+			ChargePellet1.value = 16
+			ChargePellet3.value = 0
+			ChargePellet4.value = 0
+			ChargePellet5.value = 0
+			ChargePellet6.value = 0
 		2:
 			_current_pellet = ChargePellet3
+			_current_level = 2
+			ChargePellet1.value = 16
+			ChargePellet2.value = 16
+			ChargePellet4.value = 0
+			ChargePellet5.value = 0
+			ChargePellet6.value = 0
 		3:
 			_current_pellet = ChargePellet4
+			_current_level = 3
+			ChargePellet1.value = 16
+			ChargePellet2.value = 16
+			ChargePellet3.value = 16
+			ChargePellet5.value = 0
+			ChargePellet6.value = 0
 		4:
 			_current_pellet = ChargePellet5
+			_current_level = 4
+			ChargePellet1.value = 16
+			ChargePellet2.value = 16
+			ChargePellet3.value = 16
+			ChargePellet4.value = 16
+			ChargePellet6.value = 0
 		5:
 			_current_pellet = ChargePellet6
+			_current_level = 5
+			ChargePellet1.value = 16
+			ChargePellet2.value = 16
+			ChargePellet3.value = 16
+			ChargePellet4.value = 16
+			ChargePellet5.value = 16
 		6:
-			pass
+			_current_pellet = null
+			_current_level = 6
+			ChargePellet1.value = 16
+			ChargePellet2.value = 16
+			ChargePellet3.value = 16
+			ChargePellet4.value = 16
+			ChargePellet5.value = 16
+			ChargePellet6.value = 16
 
-func decrease_pellet():
-	_current_charge_value = _current_pellet.value
-	_current_pellet.value = 0
-	change_pellet()
 
 func set_health_bar_container() -> void:
 	health_bar_container.frame = Global.get_heart_tank_number()
