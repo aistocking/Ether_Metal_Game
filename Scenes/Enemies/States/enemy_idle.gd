@@ -10,6 +10,7 @@ func enter(_msg := {}) -> void:
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
 	_enemy.sprite.frame = 0
+	_enemy.player_detection_shape.set_deferred("disabled", false) 
 
 func handle_input(event):
 	pass

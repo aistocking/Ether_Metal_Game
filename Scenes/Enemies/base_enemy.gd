@@ -9,14 +9,14 @@ var _health: int = 25
 var _max_health: int = 25
 var _stun_health: int = 10
 var _max_stun_health: int = 10
-var _damage: int = 1
+var _damage: int = 3
 const ExplosionEffect = preload("res://Scenes/Effects/medium_explosion.tscn")
 const _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
 const _wall_hit_sfx: AudioStream = preload("res://Sound/Intro_Stomp.wav")
 const _big_hit_sfx: AudioStream = preload("res://Sound/Enemy Big Hit.wav")
 const _stun_break_sound: AudioStream = preload("res://Sound/StunBreak.wav")
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var facing_direction = LEFT
+var facing_direction: int = LEFT
 
 const _stun_fx: PackedScene = preload("res://Scenes/Effects/stun_stars.tscn")
 var _stun_instance
@@ -32,6 +32,9 @@ var _camera: Camera2D
 @onready var _effect_audio_player: EffectAudioPlayer = $EffectAudioPlayer
 @onready var _projectile_spawn_marker: Marker2D = $ProjectileSpawnLocation
 @onready var _stun_fx_spawn_marker: Marker2D = $StunStarsSpawnLocation
+@onready var _anim_player: AnimationPlayer = $Anims
+@onready var player_detection_shape: CollisionShape2D = $PlayerDetection/Collision
+@onready var _physical_hit_box: Area2D = $EnemyHitBox
 @onready var _state_machine: EnemyStateMachine = $EnemyStateMachine
 @onready var _bouncy_collision: CollisionShape2D = $BounceBoxes/Collision
 var _tween: Tween
@@ -45,6 +48,7 @@ var _trail_counter: int = 0
 
 signal died
 signal wall_bounce
+signal attack_finished
 
 func _ready():
 	_player = get_tree().get_first_node_in_group("Player")
@@ -58,6 +62,7 @@ func _ready():
 	_health_component._max_health = _max_health
 	_health_component._stun_health = _stun_health
 	_health_component._max_stun_health = _max_stun_health
+	_physical_hit_box.connect("was_parried", _stun_break)
 	$EnemyStateMachine/EnemyStun.connect("stun_recover", _restore_stun)
 	$AspectRatioContainer/Health.max_value = _health_component._max_health
 	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
@@ -105,10 +110,19 @@ func _update_health(health: int, stun: int) -> void:
 
 func _stun_break() -> void:
 	_state_machine.transition_to("EnemyStun")
+	_stun_break_fx_start()
+	_set_stun_shader()
+
+func _parry_stun_break() -> void:
+	_state_machine.transition_to("EnemyStun", {"parried": true})
+	_stun_break_fx_start()
+	_set_stun_shader()
+
+func _set_stun_shader() -> void:
 	sprite.material.set_shader_parameter("active", true)
 	sprite.material.set_shader_parameter("stun", true)
-	$Sprite/Cracks.visible = true
-	$Sprite/Cracks.play()
+	if _tween != null:
+		_tween.kill()
 	_tween = create_tween()
 	_tween.set_loops()
 	_tween.tween_method(func(value): sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.8, 1)
@@ -125,6 +139,26 @@ func _restore_stun() -> void:
 	_tween.kill()
 	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
+
+func flip() -> void:
+	sprite.flip_h = !sprite.flip_h
+	player_detection_shape.position.x = player_detection_shape.position.x * -1
+	_physical_hit_box.position.x = _physical_hit_box.position.x * -1
+	facing_direction = facing_direction * -1
+
+func dash_attack() -> void:
+	velocity.x = 550 * facing_direction
+	_tween = create_tween()
+	_tween.tween_property(self, "velocity:x", 0, 0.4)
+
+func face_player() -> void:
+	var comparison = global_position.x - _player.global_position.x
+	if comparison < 0:
+		if facing_direction == LEFT:
+			flip()
+	if comparison > 0:
+		if facing_direction == RIGHT:
+			flip()
 
 func create_dust() -> void:
 	_dust_counter += 1
@@ -189,18 +223,36 @@ func _on_bounce_boxes_area_entered(hurtbox: HurtBox):
 	emit_signal("wall_bounce")
 		
 
+func _stun_break_fx_start() -> void:
+	$Sprite/Cracks.visible = true
+	$Sprite/Cracks.play()
 
 func _on_cracks_animation_finished():
-	$Sprite/SmallShards.visible = true
-	$Sprite/MediumShards.visible = true
-	$Sprite/ShineBurst.visible = true
+	$SmallShards.visible = true
+	$MediumShards.visible = true
+	$ShineBurst.visible = true
 	$Sprite/Cracks.visible = false
-	$Sprite/ShineBurst.play()
+	$ShineBurst.play()
 	_effect_audio_player.play_sound(_stun_break_sound)
-	$Sprite/SmallShards.emitting = true
-	$Sprite/MediumShards.emitting = true
+	$SmallShards.emitting = true
+	$MediumShards.emitting = true
 
 func _on_medium_shards_finished():
-	$Sprite/SmallShards.visible = false
-	$Sprite/MediumShards.visible = false
-	$Sprite/ShineBurst.visible = false
+	$SmallShards.visible = false
+	$MediumShards.visible = false
+	$ShineBurst.visible = false
+
+
+func _on_player_detection_body_entered(body):
+	_state_machine.transition_to("EnemyAttack")
+
+
+func _on_anims_animation_finished(anim_name):
+	if anim_name == "Attack1":
+		_tween.kill()
+		emit_signal("attack_finished")
+
+
+func _on_enemy_hit_box_body_entered(body):
+	if(body.has_method("takeDamage")):
+		body.takeDamage(_damage)

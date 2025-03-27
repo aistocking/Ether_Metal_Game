@@ -11,11 +11,16 @@ signal stun_recover
 
 func enter(_msg := {}) -> void:
 	_enemy = owner
+	_enemy._anim_player.play("RESET")
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
+	if _msg.has("parried"):
+		_enemy.velocity.x = 100 * (_enemy.facing_direction * -1)
 	_stun_timer.start(5.0)
-	_enemy.sprite.frame = 9
+	_enemy.sprite.frame = 0
 	_enemy._create_stun_fx()
+	_enemy.player_detection_shape.set_deferred("disabled", true)
+	_enemy._physical_hit_box.set_deferred("disabled", true)
 	Global._hit_stun_slowdown(0.3,0.15)
 
 func handle_input(event):

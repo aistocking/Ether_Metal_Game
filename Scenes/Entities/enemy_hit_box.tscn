@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0job8yom0pgy"]
+
+[ext_resource type="Script" path="res://Scenes/Entities/enemy_hit_box.gd" id="1_d812i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trr7"]
+size = Vector2(17.91, 34)
+
+[node name="EnemyHitBox" type="Area2D"]
+collision_layer = 256
+script = ExtResource("1_d812i")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7trr7")
+disabled = true
+debug_color = Color(0.921569, 0, 0.109804, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

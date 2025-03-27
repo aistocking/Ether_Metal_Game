@@ -1,10 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://dusmkdis6va78"]
+[gd_scene load_steps=50 format=3 uid="uid://dusmkdis6va78"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
 [ext_resource type="PackedScene" uid="uid://byuc5bs66nl24" path="res://Scenes/Entities/health_component.tscn" id="2_yv6wp"]
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
-[ext_resource type="Texture2D" uid="uid://trut2k521ryw" path="res://Art/Enemies/Gunner.png" id="3_tuco8"]
+[ext_resource type="Texture2D" uid="uid://mnjsyo2o5lvk" path="res://Art/Enemies/MeleeEnemy.png" id="4_kj2ch"]
 [ext_resource type="Texture2D" uid="uid://bjmiy7hnn30vd" path="res://Art/Effects/Stun_Cracks.png" id="5_2d5lv"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="6_8kifp"]
 [ext_resource type="Texture2D" uid="uid://dncyse1f5l1rr" path="res://Art/Effects/Glass_Shard_Small.png" id="6_33q85"]
@@ -13,8 +13,10 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_state_machine.gd" id="7_m2w8q"]
 [ext_resource type="Texture2D" uid="uid://du2n8jb1np5pg" path="res://Art/Effects/Stun_Break_Shine.png" id="8_h4tgd"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_idle.gd" id="8_t74am"]
+[ext_resource type="Texture2D" uid="uid://py5xfvclxfqr" path="res://Art/Effects/EnemyAttackIndicator.png" id="9_i4063"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_move.gd" id="9_ox7mg"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_attack.gd" id="10_02p52"]
+[ext_resource type="PackedScene" uid="uid://d0job8yom0pgy" path="res://Scenes/Entities/enemy_hit_box.tscn" id="10_ljnv3"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_die.gd" id="11_8w425"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_stun.gd" id="12_8nq0x"]
 [ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_recover.gd" id="13_jefyu"]
@@ -123,11 +125,157 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmgaf"]
+atlas = ExtResource("9_i4063")
+region = Rect2(0, 0, 39, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fax0"]
+atlas = ExtResource("9_i4063")
+region = Rect2(39, 0, 39, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g73d4"]
+atlas = ExtResource("9_i4063")
+region = Rect2(0, 17, 39, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h608q"]
+atlas = ExtResource("9_i4063")
+region = Rect2(39, 17, 39, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeira"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmgaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fax0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g73d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h608q")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="Animation" id="Animation_6jaer"]
+resource_name = "Attack1"
+length = 1.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyFlashIndicator")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dash_attack"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyHitBox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"toggle_collision"
+}, {
+"args": [],
+"method": &"toggle_collision"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6st1q"]
+resource_name = "Idle"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7ug4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvu4t"]
+_data = {
+"Attack1": SubResource("Animation_6jaer"),
+"Idle": SubResource("Animation_6st1q"),
+"RESET": SubResource("Animation_7ug4t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abci2"]
+size = Vector2(15, 36)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bmx8"]
 size = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iktg"]
 size = Vector2(22, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f277g"]
+size = Vector2(52, 32)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 0
@@ -178,11 +326,11 @@ _max_stun_health = 10
 _hurt_box = NodePath("../HurtBox")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+clip_children = 2
 texture_filter = 1
 material = ExtResource("1_r2idr")
-texture = ExtResource("3_tuco8")
-hframes = 5
-vframes = 2
+texture = ExtResource("4_kj2ch")
+hframes = 8
 
 [node name="Cracks" type="AnimatedSprite2D" parent="Sprite"]
 visible = false
@@ -191,7 +339,16 @@ sprite_frames = SubResource("SpriteFrames_pnh7u")
 frame = 2
 frame_progress = 1.0
 
-[node name="SmallShards" type="GPUParticles2D" parent="Sprite"]
+[node name="HitFlash" type="ColorRect" parent="Sprite"]
+visible = false
+offset_left = -13.0
+offset_top = -20.0
+offset_right = 27.0
+offset_bottom = 20.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SmallShards" type="GPUParticles2D" parent="."]
 visible = false
 z_index = 2
 material = SubResource("CanvasItemMaterial_tibrm")
@@ -203,7 +360,7 @@ lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 
-[node name="MediumShards" type="GPUParticles2D" parent="Sprite"]
+[node name="MediumShards" type="GPUParticles2D" parent="."]
 visible = false
 z_index = 2
 material = SubResource("CanvasItemMaterial_5tr71")
@@ -215,10 +372,16 @@ lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 
-[node name="ShineBurst" type="AnimatedSprite2D" parent="Sprite"]
+[node name="ShineBurst" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 4
 sprite_frames = SubResource("SpriteFrames_ynqh1")
+
+[node name="EnemyFlashIndicator" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -9)
+sprite_frames = SubResource("SpriteFrames_jeira")
+frame = 4
+frame_progress = 1.0
 
 [node name="StunStarsSpawnLocation" type="Marker2D" parent="."]
 position = Vector2(0, -24.34)
@@ -229,6 +392,16 @@ position = Vector2(0, -24.34)
 position = Vector2(0, 18.005)
 
 [node name="Anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dvu4t")
+}
+
+[node name="EnemyHitBox" parent="." instance=ExtResource("10_ljnv3")]
+position = Vector2(-18, 0)
+
+[node name="Collision" parent="EnemyHitBox" index="0"]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_abci2")
 
 [node name="BounceBoxes" type="Area2D" parent="."]
 collision_layer = 2
@@ -243,6 +416,14 @@ debug_color = Color(0.864566, 0.0508572, 0, 0.42)
 [node name="HurtCollision" parent="HurtBox" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_8iktg")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Collision" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-38, 0)
+shape = SubResource("RectangleShape2D_f277g")
+debug_color = Color(0.907288, 0.000120712, 0.740541, 0.42)
 
 [node name="FlashTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -302,11 +483,14 @@ script = ExtResource("16_obhxj")
 [node name="DurationTimer" type="Timer" parent="EnemyStateMachine/EnemyBounce"]
 
 [connection signal="animation_finished" from="Sprite/Cracks" to="." method="_on_cracks_animation_finished"]
-[connection signal="finished" from="Sprite/MediumShards" to="." method="_on_medium_shards_finished"]
+[connection signal="finished" from="MediumShards" to="." method="_on_medium_shards_finished"]
+[connection signal="animation_finished" from="Anims" to="." method="_on_anims_animation_finished"]
 [connection signal="area_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_area_entered"]
 [connection signal="body_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_body_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyStun/StunTimer" to="EnemyStateMachine/EnemyStun" method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyBounce/DurationTimer" to="EnemyStateMachine/EnemyBounce" method="_on_duration_timer_timeout"]
 
+[editable path="EnemyHitBox"]
 [editable path="HurtBox"]
