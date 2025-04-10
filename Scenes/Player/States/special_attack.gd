@@ -32,7 +32,11 @@ func enter(_msg := {}) -> void:
 	designate_attack()
 	if CurrentSpecial == SPECIALS.NONE:
 		state_machine.transition_to("Idle")
-	
+
+func exit():
+	player.disable_parry_box()
+	player.disable_collision(false)
+
 
 func handle_input(event):
 	if cancel_timer.is_stopped():
@@ -94,13 +98,13 @@ func designate_attack() -> void:
 			_plasma()
 	else:
 		if Input.is_action_pressed("Bottom Button"):
-			_disengage()
+			_parry()
 		if Input.is_action_pressed("Right Button"):
 			pass
 		if Input.is_action_pressed("Top Button"):
 			pass
 		if Input.is_action_pressed("Left Button"):
-			_parry()
+			_disengage()
 
 func _plasma() -> void:
 	player.velocity.x = player.facing_direction * -200
@@ -166,7 +170,7 @@ func _disengage() -> void:
 	cancel_timer.start(0.1)
 
 func _parry() -> void:
-	player.player_animations.play("Parry")
+	player.player_animations.play("Parry_Wait")
 	player.parry()
 	CurrentSpecial = SPECIALS.PARRY
 	cancel_timer.start(0.1)
@@ -192,6 +196,8 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Falling")
 			"Parry":
 				state_machine.transition_to("Falling")
+			"Parry_Wait":
+				state_machine.transition_to("Idle")
 			"Flash":
 				state_machine.transition_to("Falling")
 	#On ground behaviour
@@ -204,6 +210,8 @@ func _on_player_anims_animation_finished(anim_name):
 			"Disengage":
 				state_machine.transition_to("Falling")
 			"Parry":
+				state_machine.transition_to("Idle")
+			"Parry_Wait":
 				state_machine.transition_to("Idle")
 			"Flash":
 				state_machine.transition_to("Idle")
