@@ -43,7 +43,10 @@ project/assembly_name="Megaman_X_Game"
 folder_colors={
 "res://Art/Effects/": "yellow",
 "res://Art/Enemies/": "red",
+"res://Art/MiscUI/": "purple",
 "res://Art/Player/": "blue",
+"res://Art/Raw Files/": "pink",
+"res://Art/Stages/": "green",
 "res://Scenes/Effects/": "yellow",
 "res://Scenes/Enemies/": "red",
 "res://Scenes/Entities/": "orange",
@@ -55,6 +58,15 @@ folder_colors={
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+Hazards=""
+ParryBox=""
+Player=""
+"UI Elements"=""
+ReadyAnnounce=""
+Camera=""
 
 [gui]
 
@@ -121,11 +133,13 @@ Down={
 "Offensive Trigger"={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
 ]
 }
 "Defensive Trigger"={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
 ]
 }
 "Top Button"={
@@ -168,6 +182,8 @@ Down={
 2d_physics/layer_7="Environment Triggers"
 2d_physics/layer_8="Hazards"
 2d_physics/layer_9="CanBeParried"
+2d_physics/layer_10="ParryBox"
+2d_physics/layer_13="unclimbable_walls"
 
 [rendering]
 
