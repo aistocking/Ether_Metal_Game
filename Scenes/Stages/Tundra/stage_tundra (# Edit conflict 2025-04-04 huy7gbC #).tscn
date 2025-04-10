@@ -1,0 +1,173 @@
+[gd_scene load_steps=18 format=4 uid="uid://brsl5rqy10vm2"]
+
+[ext_resource type="Script" path="res://Scenes/Stages/Tundra/stage_tundra.gd" id="1_hqtbj"]
+[ext_resource type="Texture2D" uid="uid://d0w2bw32gaooi" path="res://Art/Stages/BGs/Stage_Tundra_Back_00.png" id="1_pu4bj"]
+[ext_resource type="Texture2D" uid="uid://embc6dh80rko" path="res://Art/Stages/TileSets/StageTundraTileSheet.png" id="2_4pnxr"]
+[ext_resource type="Texture2D" uid="uid://66wjtdttibjs" path="res://Art/Stages/BGs/StageTundraBG_Mountains.png" id="3_878s1"]
+[ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="3_iit6k"]
+[ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_2r3rs"]
+[ext_resource type="Texture2D" uid="uid://o34pwp4k67p0" path="res://Art/Stages/BGs/StageTundraBG_Clouds1.png" id="4_c4gku"]
+[ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="4_m271u"]
+[ext_resource type="Texture2D" uid="uid://c4ju1e5avjvwp" path="res://Art/Stages/BGs/StageTundraBG_Clouds3.png" id="4_wnhxg"]
+[ext_resource type="Texture2D" uid="uid://1c6k112i4dhh" path="res://Art/Stages/BGs/StageTundraBG_Clouds2.png" id="5_hoook"]
+[ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Misc/camera_bounds.tscn" id="5_ufde7"]
+[ext_resource type="Texture2D" uid="uid://4rtkwgyja6ts" path="res://Art/Stages/BGs/BG_Objects/Frozen_Lightpost.png" id="6_nq5ka"]
+[ext_resource type="Texture2D" uid="uid://bfkyuvswgpxcr" path="res://Art/Stages/BGs/StageTundraBG_CloudsFG.png" id="8_hl5tf"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_u43l2"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 2, 1, 65536, 0, 65537, 65536, 1, 131073, 65536, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oyvhj"]
+texture = ExtResource("2_4pnxr")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_q8vkw"]
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_oyvhj")
+pattern_0 = SubResource("TileMapPattern_u43l2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ybr4l"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(350, -200, 0)
+emission_shape = 3
+emission_box_extents = Vector3(269, 1, 1)
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 66.35
+initial_velocity_max = 113.74
+gravity = Vector3(0, 16, 0)
+linear_accel_min = -18.95
+linear_accel_max = 9.48
+
+[node name="StageTundra" type="Node2D"]
+script = ExtResource("1_hqtbj")
+
+[node name="BG" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 145)
+repeat_size = Vector2(400, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="BG"]
+position = Vector2(0, -110)
+texture = ExtResource("1_pu4bj")
+
+[node name="Mountains" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(0, 111)
+repeat_size = Vector2(291, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Mountains"]
+texture = ExtResource("3_878s1")
+
+[node name="Back Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(195, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 6
+
+[node name="Sprite2D2" type="Sprite2D" parent="Back Clouds"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(-73, 0)
+texture = ExtResource("4_wnhxg")
+
+[node name="Mid Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(244, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 6
+
+[node name="Sprite2D2" type="Sprite2D" parent="Mid Clouds"]
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(-73, -56)
+texture = ExtResource("4_c4gku")
+
+[node name="Front Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(347, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 5
+
+[node name="Sprite2D2" type="Sprite2D" parent="Front Clouds"]
+modulate = Color(1, 1, 1, 0.678431)
+position = Vector2(97, -56)
+texture = ExtResource("5_hoook")
+
+[node name="BG_Objects" type="Node2D" parent="."]
+position = Vector2(272, -27)
+
+[node name="Lamp_Post_01" type="Sprite2D" parent="BG_Objects"]
+modulate = Color(1, 1, 1, 0.678431)
+position = Vector2(-393, -2)
+texture = ExtResource("6_nq5ka")
+
+[node name="Lamp_Post_02" type="Sprite2D" parent="BG_Objects"]
+modulate = Color(1, 1, 1, 0.678431)
+position = Vector2(0, 3.005)
+texture = ExtResource("6_nq5ka")
+
+[node name="Lamp_Post_03" type="Sprite2D" parent="BG_Objects"]
+modulate = Color(1, 1, 1, 0.678431)
+position = Vector2(426, -96)
+texture = ExtResource("6_nq5ka")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAEAAAD//wIAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAAAAAAAAAAAAAAABAAEAAAAAAAEAAAABAAIAAAAAAAIAAAACAAAAAAABAAAAAAACAAEAAAABAAEAAAACAAIAAAABAAIAAAADAAAAAAAAAAAAAAADAAEAAAAAAAEAAAADAAIAAAAAAAIAAAAEAAAAAAABAAAAAAAEAAEAAAABAAEAAAAEAAIAAAABAAIAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAAAAAIAAAAGAAAAAAABAAAAAAAGAAEAAAABAAEAAAAGAAIAAAABAAIAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAEAAAAHAAIAAAAAAAIAAAAIAAAAAAABAAAAAAAIAAEAAAABAAEAAAAIAAIAAAABAAIAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+/wAAAAABAAAAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAEAAAD7/wIAAAAAAAIAAAD8/wAAAAABAAAAAAD8/wEAAAABAAEAAAD8/wIAAAABAAIAAAD5/wAAAAAAAAAAAAD5/wEAAAAAAAEAAAD5/wIAAAAAAAIAAAD6/wAAAAABAAAAAAD6/wEAAAABAAEAAAD6/wIAAAABAAIAAAD3/wAAAAAAAAAAAAD3/wEAAAAAAAEAAAD3/wIAAAAAAAIAAAD4/wAAAAABAAAAAAD4/wEAAAABAAEAAAD4/wIAAAABAAIAAAD1/wAAAAAAAAAAAAD1/wEAAAAAAAEAAAD1/wIAAAAAAAIAAAD2/wAAAAABAAAAAAD2/wEAAAABAAEAAAD2/wIAAAABAAIAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAIAAAAAAAIAAAAKAAAAAAABAAAAAAAKAAEAAAABAAEAAAAKAAIAAAABAAIAAAALAAAAAAAAAAAAAAALAAEAAAAAAAEAAAALAAIAAAAAAAIAAAAMAAAAAAABAAAAAAAMAAEAAAABAAEAAAAMAAIAAAABAAIAAADz/wAAAAAAAAAAAADz/wEAAAAAAAEAAADz/wIAAAAAAAIAAAD0/wAAAAABAAAAAAD0/wEAAAABAAEAAAD0/wIAAAABAAIAAAANAAAAAAAAAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAIAAAAOAAAAAAABAAAAAAAOAAEAAAABAAEAAAAOAAIAAAABAAIAAADx/wAAAAAAAAAAAADx/wEAAAAAAAEAAADx/wIAAAAAAAIAAADy/wAAAAABAAAAAADy/wEAAAABAAEAAADy/wIAAAABAAIAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAIAAAAQAAAAAAABAAAAAAAQAAEAAAABAAEAAAAQAAIAAAABAAIAAAD0//7/AAAAAAAAAFD0////AAABAAAAAFDz//7/AAAAAAEAAFDz////AAABAAEAAFDy//7/AAAAAAIAAFDy////AAABAAIAAFD0//z/AAAAAAAAAFD0//3/AAABAAAAAFDz//z/AAAAAAEAAFDz//3/AAABAAEAAFDy//z/AAAAAAIAAFDy//3/AAABAAIAAFD0//r/AAAAAAAAAFD0//v/AAABAAAAAFDz//r/AAAAAAEAAFDz//v/AAABAAEAAFDy//r/AAAAAAIAAFDy//v/AAABAAIAAFD0//j/AAAAAAAAAFD0//n/AAABAAAAAFDz//j/AAAAAAEAAFDz//n/AAABAAEAAFDy//j/AAAAAAIAAFDy//n/AAABAAIAAFD0//b/AAAAAAAAAFD0//f/AAABAAAAAFDz//b/AAAAAAEAAFDz//f/AAABAAEAAFDy//b/AAAAAAIAAFDy//f/AAABAAIAAFD0//T/AAAAAAAAAFD0//X/AAABAAAAAFDz//T/AAAAAAEAAFDz//X/AAABAAEAAFDy//T/AAAAAAIAAFDy//X/AAABAAIAAFARAAIAAAAAAAIAAAARAAEAAAAAAAEAAAARAAAAAAAAAAAAAAASAAIAAAABAAIAAAASAAEAAAABAAEAAAASAAAAAAABAAAAAAATAAIAAAAAAAIAAAATAAEAAAAAAAEAAAATAAAAAAAAAAAAAAAUAAIAAAABAAIAAAAUAAEAAAABAAEAAAAUAAAAAAABAAAAAAAVAAIAAAAAAAIAAAAVAAEAAAAAAAEAAAAVAAAAAAAAAAAAAAAWAAIAAAABAAIAAAAWAAEAAAABAAEAAAAWAAAAAAABAAAAAAAXAAIAAAAAAAIAAAAXAAEAAAAAAAEAAAAXAAAAAAAAAAAAAAAYAAIAAAABAAIAAAAYAAEAAAABAAEAAAAYAAAAAAABAAAAAAAZAAIAAAAAAAIAAAAZAAEAAAAAAAEAAAAZAAAAAAAAAAAAAAAaAAIAAAABAAIAAAAaAAEAAAABAAEAAAAaAAAAAAABAAAAAAAbAAIAAAAAAAIAAAAbAAEAAAAAAAEAAAAbAAAAAAAAAAAAAAAcAAIAAAABAAIAAAAcAAEAAAABAAEAAAAcAAAAAAABAAAAAAAdAPr/AAACAAAAABAdAPv/AAACAAEAABAdAPz/AAACAAEAABAdAP3/AAACAAEAABAdAP7/AAACAAEAABAdAP//AAACAAEAABAdAAAAAAABAAAAAAAdAAEAAAAAAAEAAAAdAAIAAAAAAAIAAAAtAPr/AAACAAAAAAAeAPr/AAAAAAAAAAAeAPv/AAAAAAEAAAAeAPz/AAAAAAIAAAAfAPr/AAABAAAAAAAfAPv/AAABAAEAAAAfAPz/AAABAAIAAAAgAPr/AAAAAAAAAAAgAPv/AAAAAAEAAAAgAPz/AAAAAAIAAAAhAPr/AAABAAAAAAAhAPv/AAABAAEAAAAhAPz/AAABAAIAAAAiAPr/AAAAAAAAAAAiAPv/AAAAAAEAAAAiAPz/AAAAAAIAAAAjAPr/AAABAAAAAAAjAPv/AAABAAEAAAAjAPz/AAABAAIAAAAkAPr/AAAAAAAAAAAkAPv/AAAAAAEAAAAkAPz/AAAAAAIAAAAlAPr/AAABAAAAAAAlAPv/AAABAAEAAAAlAPz/AAABAAIAAAAmAPr/AAAAAAAAAAAmAPv/AAAAAAEAAAAmAPz/AAAAAAIAAAAnAPr/AAABAAAAAAAnAPv/AAABAAEAAAAnAPz/AAABAAIAAAAoAPr/AAAAAAAAAAAoAPv/AAAAAAEAAAAoAPz/AAAAAAIAAAApAPr/AAABAAAAAAApAPv/AAABAAEAAAApAPz/AAABAAIAAAAqAPr/AAAAAAAAAAAqAPv/AAAAAAEAAAAqAPz/AAAAAAIAAAArAPr/AAAAAAAAAAArAPv/AAAAAAEAAAArAPz/AAAAAAIAAAAsAPr/AAABAAAAAAAsAPv/AAABAAEAAAAsAPz/AAABAAIAAAAtAPv/AAACAAEAAAAtAPz/AAACAAIAAAA=")
+tile_set = SubResource("TileSet_q8vkw")
+
+[node name="UI" parent="." instance=ExtResource("4_m271u")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_iit6k")]
+position = Vector2(0, -21)
+
+[node name="Main_Camera" parent="." instance=ExtResource("4_2r3rs")]
+
+[node name="WholeScreenParticles" type="Node2D" parent="Main_Camera"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Main_Camera/WholeScreenParticles"]
+emitting = false
+amount = 192
+process_material = SubResource("ParticleProcessMaterial_ybr4l")
+lifetime = 9.0
+preprocess = 8.0
+visibility_rect = Rect2(-800.578, -1734.69, 2228.82, 1736.67)
+
+[node name="CameraBounds" parent="." instance=ExtResource("5_ufde7")]
+
+[node name="BottomLeftPosition" parent="CameraBounds" index="2"]
+position = Vector2(-200, 47)
+
+[node name="TopRightPosition" parent="CameraBounds" index="3"]
+position = Vector2(1200, -262)
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+modulate = Color(1, 1, 1, 0.862745)
+z_index = 1000
+scroll_scale = Vector2(1.2, 1.4)
+scroll_offset = Vector2(65, -64)
+repeat_size = Vector2(189, 0)
+autoscroll = Vector2(6, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+texture = ExtResource("8_hl5tf")
+
+[editable path="CameraBounds"]

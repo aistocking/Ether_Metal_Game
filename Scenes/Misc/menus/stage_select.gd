@@ -31,7 +31,7 @@ func _on_svarog_pressed():
 
 func _on_marena_pressed():
 	_sfx_player.play_sound(_ui_confirm)
-	Global.change_scene("res://Scenes/Stages/Alpha/stage_alpha.tscn")
+	Global.change_scene("res://Scenes/Stages/Tundra/stage_tundra.tscn")
 
 func _on_player_options_pressed():
 	pass # Replace with function body.
