@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=14 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
 [ext_resource type="Texture2D" uid="uid://xuofhrtq65nm" path="res://Art/MiscUI/Hud_Gem.png" id="8_d2h46"]
 [ext_resource type="Texture2D" uid="uid://cps65sw656odu" path="res://Art/MiscUI/Hud_Charge_Bar_Insides.png" id="9_fx4ob"]
+[ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="10_8q51k"]
 [ext_resource type="Texture2D" uid="uid://3uh7f8cf67ga" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet.png" id="10_yidrv"]
 [ext_resource type="Texture2D" uid="uid://chgiseah4lbl6" path="res://Art/MiscUI/Hud_Charge_Bar_Top_Layer.png" id="11_1mytq"]
 [ext_resource type="Texture2D" uid="uid://ctgsw0nxfbwx2" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet_Endcap.png" id="12_j8ewg"]
@@ -348,3 +349,5 @@ color = Color(1, 1, 1, 0)
 libraries = {
 "": SubResource("AnimationLibrary_vrxe1")
 }
+
+[node name="PauseUI" parent="." instance=ExtResource("10_8q51k")]
