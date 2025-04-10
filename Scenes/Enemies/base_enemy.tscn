@@ -398,6 +398,7 @@ libraries = {
 
 [node name="EnemyHitBox" parent="." instance=ExtResource("10_ljnv3")]
 position = Vector2(-18, 0)
+collision_mask = 513
 
 [node name="Collision" parent="EnemyHitBox" index="0"]
 position = Vector2(-2.5, 0)

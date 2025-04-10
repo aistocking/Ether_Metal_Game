@@ -337,9 +337,9 @@ func reset_dash_properties() -> void:
 	is_dashing = false
 	spent_dash = false
 
-func toggle_collision() -> void:
-	$PhysicalCollision.set_deferred("disabled", !$PhysicalCollision.disabled)
-	$Hurtbox/HurtCollision.set_deferred("disabled", !$Hurtbox/HurtCollision.disabled)
+func disable_collision(b: bool = false) -> void:
+	$PhysicalCollision.set_deferred("disabled", b)
+	$Hurtbox/HurtCollision.set_deferred("disabled", b)
 
 
 func change_facing_direction(direction: int) -> void:
@@ -447,10 +447,11 @@ func _on_hit_box_body_entered(body: Node) -> void:
 		body.takeDamage(15)
 		
 func disable_parry_box():
-	$ParryTransform/ParryBox/Collision.set_deferred("disabled", true)
+	$ParryTransform/ParryBox/ParryCollision.set_deferred("disabled", true)
 	
 func _on_parry_box_area_entered(area):
+	player_animations.play("Parry")
 	$ParryFlash.play()
 	var instance: ParryBurst = _PARRY_SCENE.instantiate()
 	get_parent().add_child(instance)
-	instance.position = global_position - area.global_position
+	instance.position = _buster_position.global_position

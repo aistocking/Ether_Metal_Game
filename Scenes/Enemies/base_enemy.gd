@@ -62,7 +62,6 @@ func _ready():
 	_health_component._max_health = _max_health
 	_health_component._stun_health = _stun_health
 	_health_component._max_stun_health = _max_stun_health
-	_physical_hit_box.connect("was_parried", _stun_break)
 	$EnemyStateMachine/EnemyStun.connect("stun_recover", _restore_stun)
 	$AspectRatioContainer/Health.max_value = _health_component._max_health
 	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
@@ -108,13 +107,11 @@ func _update_health(health: int, stun: int) -> void:
 		_effect_audio_player.play_sound(_hit_SFX)
 	
 
-func _stun_break() -> void:
-	_state_machine.transition_to("EnemyStun")
-	_stun_break_fx_start()
-	_set_stun_shader()
-
-func _parry_stun_break() -> void:
-	_state_machine.transition_to("EnemyStun", {"parried": true})
+func _stun_break(b: bool) -> void:
+	if b == true:
+		_state_machine.transition_to("EnemyStun",{"parried": true})
+	else:
+		_state_machine.transition_to("EnemyStun")
 	_stun_break_fx_start()
 	_set_stun_shader()
 
