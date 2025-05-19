@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dogf16vlq6m0y"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Projectiles/en_big_ball.gd" id="1_qbogi"]
+[ext_resource type="Texture2D" uid="uid://cde6y3i6im42p" path="res://Art/Effects/BigBullet.png" id="2_giuc0"]
+[ext_resource type="PackedScene" uid="uid://d0job8yom0pgy" path="res://Scenes/Entities/enemy_hit_box.tscn" id="3_0jub1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0a855"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_banbj"]
+atlas = ExtResource("2_giuc0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykvjd"]
+atlas = ExtResource("2_giuc0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ntla"]
+atlas = ExtResource("2_giuc0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4130"]
+atlas = ExtResource("2_giuc0")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqu2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_banbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykvjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ntla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4130")
+}],
+"loop": true,
+"name": &"basic_shot",
+"speed": 14.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smju2"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg6xw"]
+size = Vector2(12, 12)
+
+[node name="EnemyBigBall" type="RigidBody2D" groups=["PlayerProjectiles"]]
+collision_layer = 258
+collision_mask = 16
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_0a855")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_qbogi")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vqu2g")
+animation = &"basic_shot"
+autoplay = "basic_shot"
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="PhysicalCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_smju2")
+debug_color = Color(0, 0.647179, 0.218115, 0.42)
+
+[node name="EnemyHitBox" parent="." instance=ExtResource("3_0jub1")]
+collision_layer = 264
+
+[node name="Collision" parent="EnemyHitBox" index="0"]
+shape = SubResource("RectangleShape2D_hg6xw")
+disabled = false
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+
+[editable path="EnemyHitBox"]

@@ -1,3 +1,4 @@
+class_name BasicEnemy
 extends CharacterBody2D
 
 const SHOVE_SPEED: float = 500
@@ -32,12 +33,15 @@ var _camera: Camera2D
 @onready var _effect_audio_player: EffectAudioPlayer = $EffectAudioPlayer
 @onready var _projectile_spawn_marker: Marker2D = $ProjectileSpawnLocation
 @onready var _stun_fx_spawn_marker: Marker2D = $StunStarsSpawnLocation
-@onready var _anim_player: AnimationPlayer = $Anims
+@onready var anim_player: AnimationPlayer = $Anims
 @onready var player_detection_shape: CollisionShape2D = $PlayerDetection/Collision
 @onready var _physical_hit_box: Area2D = $EnemyHitBox
 @onready var _state_machine: EnemyStateMachine = $EnemyStateMachine
 @onready var _bouncy_collision: CollisionShape2D = $BounceBoxes/Collision
 var _tween: Tween
+
+#Projectiles
+const _BIG_PROJECTILE_SCENE: PackedScene = preload("res://Scenes/Enemies/Projectiles/en_big_ball.tscn")
 
 
 const ENEMY_DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
@@ -73,7 +77,6 @@ func _ready():
 
 func _physics_process(delta):
 	pass
-
 
 func _hit_flash(health: int, stun_health: int):
 	if health == _health || stun_health == _stun_health:

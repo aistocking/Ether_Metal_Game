@@ -1,0 +1,117 @@
+[gd_scene load_steps=15 format=3 uid="uid://wrccugt3qk28"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/helm_splitter_blast.gd" id="1_jspds"]
+[ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_kcri8"]
+[ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_34x81"]
+[ext_resource type="Texture2D" uid="uid://xbfc01gmscgg" path="res://Art/Effects/Helm_Breaker_Effect.png" id="4_hi6dr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7def"]
+size = Vector2(67, 69)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3to26"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_skxi2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 11.675, 1)
+direction = Vector3(-1, 0, 0)
+initial_velocity_max = 32.26
+gravity = Vector3(0, -40, 0)
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivbl2"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(0, 0, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bchsx"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(64, 0, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21ipa"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(128, 0, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3167"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(0, 68, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tmnn"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(64, 68, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6fxb"]
+atlas = ExtResource("4_hi6dr")
+region = Rect2(128, 68, 64, 68)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdf0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivbl2")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_bchsx")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_21ipa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3167")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tmnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6fxb")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="HelmSplitterBurst" type="Node2D"]
+position = Vector2(0, -33)
+script = ExtResource("1_jspds")
+
+[node name="HitBox" parent="." instance=ExtResource("2_kcri8")]
+collision_mask = 4
+_damage = 20
+_direction = Vector2(0, -1)
+_power = 15.0
+
+[node name="HitCollision" parent="HitBox" index="0"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_n7def")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_3to26")
+position = Vector2(-4.71, 0)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_skxi2")
+texture = ExtResource("3_34x81")
+lifetime = 0.3
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+z_index = 100
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kdf0v")
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.3
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="Sprites" to="." method="_on_sprites_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="HitBox"]

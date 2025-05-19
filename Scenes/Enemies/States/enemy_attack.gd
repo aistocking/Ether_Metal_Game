@@ -12,12 +12,14 @@ func enter(_msg := {}) -> void:
 	_enemy._anim_player.play("Attack1")
 	_enemy.connect("attack_finished", attack_finish)
 	_enemy.player_detection_shape.set_deferred("disabled", true)
-	_enemy._physical_hit_box.disable_collision(false)
+	_enemy._physical_hit_box.set_collision(true)
 
 func physics_update(delta: float) -> void:
 	if _enemy.is_on_floor():
 		if _enemy.velocity.x > 20 || _enemy.velocity.x < -20:
 			_enemy.create_dust()
+	if !_enemy.is_on_floor():
+		_enemy.velocity.y += gravity * delta
 	_enemy.move_and_slide()
 
 func attack_finish() -> void:
@@ -25,4 +27,4 @@ func attack_finish() -> void:
 	state_machine.transition_to("EnemyIdle")
 	
 func exit() -> void:
-	_enemy._physical_hit_box.disable_collision(true)
+	_enemy._physical_hit_box.set_collision(true)

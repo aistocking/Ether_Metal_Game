@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2s6t1rp8pob"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/blade_beam.gd" id="1_mb2uk"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/blade_beam.gd" id="1_mb2uk"]
 [ext_resource type="Texture2D" uid="uid://b2gh5hlj8pod0" path="res://Art/Effects/BladeBeam.png" id="2_0ocvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5svo"]

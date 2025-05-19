@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://caqyhnm05hh2e"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/orbital_bit.gd" id="1_y5lox"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/orbital_bit.gd" id="1_y5lox"]
 [ext_resource type="Texture2D" uid="uid://d38kv6lj8xqyb" path="res://Art/Effects/OrbitalBit.png" id="2_uvs24"]
 
 [node name="OrbitalBit" type="Node2D"]

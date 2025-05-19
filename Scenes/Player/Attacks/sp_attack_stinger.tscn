@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs6lqe1fh5v3b"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/PlayerAttacks/sp_attack_stinger.gd" id="1_24trm"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/sp_attack_stinger.gd" id="1_24trm"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_hopnt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abv7y"]

@@ -8,7 +8,7 @@ const _delete_texture_red_dark: Texture2D = preload("res://Art/MiscUI/Delete_Tex
 const _delete_texture_normal: Texture2D = preload("res://Art/MiscUI/Delete_Text.png")
 const _delete_texture_normal_dark: Texture2D = preload("res://Art/MiscUI/Delete_Text_Dark.png")
 
-const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
+const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/plasma_shot.tscn")
 const _charge_shot_sfx: AudioStream = preload("res://Sound/BusterChargeShot.wav")
 const _ui_move_sfx: AudioStream = preload("res://Sound/UIMove.wav")
 

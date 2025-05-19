@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dedswgfkrlblf"]
+
+[ext_resource type="Script" path="res://Scenes/Stages/Objects/enemy_respawn_point.gd" id="1_hs48x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxkoi"]
+size = Vector2(4, 4)
+
+[node name="EnemyRespawnPoint" type="Area2D"]
+collision_layer = 2048
+collision_mask = 1024
+script = ExtResource("1_hs48x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kxkoi")
+debug_color = Color(0.709655, 0.00281757, 0.950211, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

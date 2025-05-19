@@ -40,7 +40,7 @@ func handle_input(event) -> void:
 			state_machine.transition_to("Dash")
 	
 		if event.is_action_pressed("Shot"):
-			player.player_animations.play("Plasma_Shot_Air", -1, 1.6)
+			player.player_animations.play("Basic_Shot_Air")
 			player._basic_shot()
 
 func physics_update(delta: float) -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqlrhrg6x76ql"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/shot.gd" id="1_5l87p"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/shot.gd" id="1_5l87p"]
 [ext_resource type="Texture2D" uid="uid://c4njjlnmm8y1q" path="res://Art/Effects/BasicShot.png" id="2_k0reg"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_hle2d"]
 

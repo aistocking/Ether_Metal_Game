@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://brqduigq0ldw5"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/megaton_punch.gd" id="1_hp7y3"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/megaton_punch.gd" id="1_hp7y3"]
 [ext_resource type="Texture2D" uid="uid://w83h3dt3jw1" path="res://Art/Effects/MegatonPunch.png" id="1_rvxum"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5svo"]

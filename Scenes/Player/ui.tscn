@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=18 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
 [ext_resource type="Texture2D" uid="uid://xuofhrtq65nm" path="res://Art/MiscUI/Hud_Gem.png" id="8_d2h46"]
 [ext_resource type="Texture2D" uid="uid://cps65sw656odu" path="res://Art/MiscUI/Hud_Charge_Bar_Insides.png" id="9_fx4ob"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="10_8q51k"]
+[ext_resource type="Texture2D" uid="uid://oeek0uhc8dxo" path="res://Art/MiscUI/UI_Pad_Button_Active.png" id="10_70ygl"]
+[ext_resource type="Material" uid="uid://ddxdry6i1fggp" path="res://Scenes/Player/outline_shader.tres" id="10_p4cfi"]
+[ext_resource type="Texture2D" uid="uid://cvtew5gvp3egp" path="res://Art/MiscUI/UI_Pad_Button_Inactive.png" id="10_xf6ea"]
 [ext_resource type="Texture2D" uid="uid://3uh7f8cf67ga" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet.png" id="10_yidrv"]
 [ext_resource type="Texture2D" uid="uid://chgiseah4lbl6" path="res://Art/MiscUI/Hud_Charge_Bar_Top_Layer.png" id="11_1mytq"]
+[ext_resource type="Texture2D" uid="uid://dk4ppja2v34bb" path="res://Art/MiscUI/UI_SP_Attack_Sheet.png" id="11_7n4mv"]
 [ext_resource type="Texture2D" uid="uid://ctgsw0nxfbwx2" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet_Endcap.png" id="12_j8ewg"]
 [ext_resource type="Texture2D" uid="uid://d1aqotassip3b" path="res://Art/MiscUI/Hud_Health_Bar.png" id="13_1dkpj"]
 [ext_resource type="Texture2D" uid="uid://c4q7jr8l0356y" path="res://Art/MiscUI/Hud_Health_Energy.png" id="14_1xsce"]
@@ -110,12 +114,12 @@ grow_vertical = 0
 color = Color(0.14902, 0.14902, 0.137255, 1)
 
 [node name="HudGem" type="Sprite2D" parent="WholeScreen"]
-position = Vector2(13, 211)
+position = Vector2(16, 211)
 texture = ExtResource("8_d2h46")
 hframes = 2
 
 [node name="ChargeBar" type="Node2D" parent="WholeScreen"]
-position = Vector2(100, 210.58)
+position = Vector2(113, 210.58)
 
 [node name="1stPellet" type="Node2D" parent="WholeScreen/ChargeBar"]
 
@@ -311,7 +315,7 @@ hframes = 3
 frame = 2
 
 [node name="HealthBar" type="Node2D" parent="WholeScreen"]
-position = Vector2(58, 211)
+position = Vector2(66, 211)
 
 [node name="Container" type="Sprite2D" parent="WholeScreen/HealthBar"]
 texture = ExtResource("13_1dkpj")
@@ -344,6 +348,139 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
+
+[node name="DefensiveButtons" type="Node2D" parent="WholeScreen"]
+position = Vector2(210, 210)
+
+[node name="TopButton" type="TextureRect" parent="WholeScreen/DefensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -3.0
+offset_top = -11.0
+offset_right = 4.0
+offset_bottom = -3.0
+texture = ExtResource("10_xf6ea")
+stretch_mode = 2
+
+[node name="RightButton" type="TextureRect" parent="WholeScreen/DefensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 5.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="LeftButton" type="TextureRect" parent="WholeScreen/DefensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -10.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = 5.0
+texture = ExtResource("10_xf6ea")
+stretch_mode = 2
+
+[node name="BottomButton" type="TextureRect" parent="WholeScreen/DefensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 4.0
+offset_bottom = 13.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="TopButtonAttack" type="Sprite2D" parent="WholeScreen/DefensiveButtons"]
+position = Vector2(0, -8)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 7
+
+[node name="RightButtonAttack" type="Sprite2D" parent="WholeScreen/DefensiveButtons"]
+position = Vector2(7, 0)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 8
+
+[node name="LeftButtonAttack" type="Sprite2D" parent="WholeScreen/DefensiveButtons"]
+position = Vector2(-7, 0)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 7
+
+[node name="BottomButtonAttack" type="Sprite2D" parent="WholeScreen/DefensiveButtons"]
+position = Vector2(0, 8)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+
+[node name="OffensiveButtons" type="Node2D" parent="WholeScreen"]
+position = Vector2(242, 210)
+
+[node name="TopButton" type="TextureRect" parent="WholeScreen/OffensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -3.0
+offset_top = -11.0
+offset_right = 4.0
+offset_bottom = -3.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="RightButton" type="TextureRect" parent="WholeScreen/OffensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 5.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="LeftButton" type="TextureRect" parent="WholeScreen/OffensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -10.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = 5.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="BottomButton" type="TextureRect" parent="WholeScreen/OffensiveButtons"]
+material = ExtResource("10_p4cfi")
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 4.0
+offset_bottom = 13.0
+texture = ExtResource("10_70ygl")
+stretch_mode = 2
+
+[node name="TopButtonAttack" type="Sprite2D" parent="WholeScreen/OffensiveButtons"]
+position = Vector2(0, -8)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 4
+
+[node name="RightButtonAttack" type="Sprite2D" parent="WholeScreen/OffensiveButtons"]
+position = Vector2(7, 0)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 11
+
+[node name="LeftButtonAttack" type="Sprite2D" parent="WholeScreen/OffensiveButtons"]
+position = Vector2(-7, 0)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 3
+
+[node name="BottomButtonAttack" type="Sprite2D" parent="WholeScreen/OffensiveButtons"]
+position = Vector2(0, 8)
+texture = ExtResource("11_7n4mv")
+hframes = 6
+vframes = 3
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

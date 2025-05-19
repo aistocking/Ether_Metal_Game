@@ -41,22 +41,26 @@ func _on_effect_volume_value_changed(value: float) -> void:
 	Global.set_effect_volume(value)
 
 func _match_scale() -> void:
-	match get_window().size.x:
-		400:
-			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 0
-		800:
-			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 8
-		1600:
-			$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 16
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 24
+	else:
+		match get_window().size.x:
+			480:
+				$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 0
+			960:
+				$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 8
+			1920:
+				$CenterContainer/HOptionsContainer/RightVBox/HBoxContainer/ScaleNumbers.texture.region.position.x = 16
 
 func _increase_scale() -> void:
-	match get_window().size.x:
-		400:
-			get_window().size = Vector2(800, 448)
-		800:
-			get_window().size = Vector2(1600, 896)
-		1600:
-			get_window().size = Vector2(400, 224)
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		match get_window().size.x:
+			480:
+				get_window().size = Vector2(960, 448)
+			960:
+				get_window().size = Vector2(1920, 896)
+			1920:
+				get_window().size = Vector2(480, 224)
 	_match_scale()
 
 
@@ -70,11 +74,12 @@ func _on_exit_text_pressed():
 func _on_fullscreen_text_pressed():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		$CenterContainer/HOptionsContainer/RightVBox/CheckBox.texture.region.position.x = 12
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		$CenterContainer/HOptionsContainer/RightVBox/CheckBox.texture.region.position.x = 0
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
+	_match_scale()
+z
 func _on_controls_text_pressed():
 	pass # Replace with function body.
 

@@ -10,13 +10,12 @@ func _ready() -> void:
 func set_variables(damage: int) -> void:
 	_damage = damage
 
-func disable_collision(b: bool) -> void:
+func set_collision(b: bool) -> void:
 	$Collision.set_deferred("disabled", b)
 
 func parried() -> void:
-	disable_collision(true)
+	set_collision(true)
 	emit_signal("was_parried")
-
 
 func _on_area_entered(area):
 	if area.is_in_group("ParryBox"):

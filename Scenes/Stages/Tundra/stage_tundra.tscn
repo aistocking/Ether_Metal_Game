@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://brsl5rqy10vm2"]
+[gd_scene load_steps=48 format=4 uid="uid://brsl5rqy10vm2"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Tundra/stage_tundra.gd" id="1_hqtbj"]
 [ext_resource type="Texture2D" uid="uid://d0w2bw32gaooi" path="res://Art/Stages/BGs/Stage_Tundra_Back_00.png" id="1_pu4bj"]
@@ -15,9 +15,56 @@
 [ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Misc/camera_bounds.tscn" id="5_ufde7"]
 [ext_resource type="Texture2D" uid="uid://4rtkwgyja6ts" path="res://Art/Stages/BGs/BG_Objects/Frozen_Lightpost.png" id="6_nq5ka"]
 [ext_resource type="Texture2D" uid="uid://c7yuy44l0l60x" path="res://Art/Stages/BGs/BG_Objects/Stage_Tundra_BG_Obj3.png" id="6_nx1my"]
+[ext_resource type="Texture2D" uid="uid://bksdrsiv7o3og" path="res://Art/Stages/BGs/BG_Objects/Tundra_BG_Tower.png" id="6_q3ggt"]
 [ext_resource type="Texture2D" uid="uid://6s30ng2mkl3c" path="res://Art/Stages/BGs/BG_Objects/Stage_Tundra_BG_Obj2.png" id="7_g4sus"]
 [ext_resource type="Texture2D" uid="uid://dwqvgglarg05j" path="res://Art/Stages/BGs/BG_Objects/Stage_Tundra_BG_Obj5.png" id="8_b40uq"]
 [ext_resource type="Texture2D" uid="uid://bfkyuvswgpxcr" path="res://Art/Stages/BGs/StageTundraBG_CloudsFG.png" id="8_hl5tf"]
+[ext_resource type="PackedScene" uid="uid://ddhgqd7utunxr" path="res://Scenes/Enemies/mounted_turret.tscn" id="20_5vs2v"]
+[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/base_enemy.tscn" id="20_u8owc"]
+[ext_resource type="PackedScene" uid="uid://dedswgfkrlblf" path="res://Scenes/Stages/Objects/enemy_respawn_point.tscn" id="21_wvtih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqtnr"]
+atlas = ExtResource("6_q3ggt")
+region = Rect2(0, 0, 23, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gord"]
+atlas = ExtResource("6_q3ggt")
+region = Rect2(23, 0, 23, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fq8w"]
+atlas = ExtResource("6_q3ggt")
+region = Rect2(46, 0, 23, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrwm7"]
+atlas = ExtResource("6_q3ggt")
+region = Rect2(69, 0, 23, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x6kc"]
+atlas = ExtResource("6_q3ggt")
+region = Rect2(92, 0, 23, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwypr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqtnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gord")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fq8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrwm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x6kc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_pc8oy"]
 tile_data = PackedInt32Array(393216, 262144, 268435458, 458752, 262144, 268435459, 327681, 262144, 268435458, 393217, 262144, 268435459, 458753, 0, 3, 262146, 262144, 268435458, 327682, 262144, 268435459, 393218, 0, 3, 458754, 0, 3, 196611, 262144, 268435458, 262147, 262144, 268435459, 327683, 0, 3, 393219, 0, 3, 458755, 0, 3, 131076, 262144, 268435458, 196612, 262144, 268435459, 262148, 0, 3, 327684, 0, 3, 393220, 0, 3, 458756, 0, 3, 65541, 262144, 268435458, 131077, 262144, 268435459, 196613, 0, 3, 262149, 0, 3, 327685, 0, 3, 393221, 0, 3, 458757, 0, 3, 6, 262144, 268435458, 65542, 262144, 268435459, 131078, 0, 3, 196614, 0, 3, 262150, 0, 3, 327686, 0, 3, 393222, 0, 3, 458758, 0, 3, 7, 262144, 268435459, 65543, 0, 3, 131079, 0, 3, 196615, 0, 3, 262151, 0, 3, 327687, 0, 3, 393223, 0, 3, 458759, 0, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 0, 3, 262152, 0, 3, 327688, 0, 3, 393224, 0, 3, 458760, 0, 3)
@@ -204,6 +251,12 @@ repeat_times = 2
 [node name="Sprite2D" type="Sprite2D" parent="BG_Objects2/Snow Floor Group/Snow Floor Obj1"]
 texture = ExtResource("5_chapt")
 
+[node name="LightTower" type="AnimatedSprite2D" parent="BG_Objects2/Snow Floor Group/Snow Floor Obj1"]
+position = Vector2(89, -10)
+sprite_frames = SubResource("SpriteFrames_bwypr")
+autoplay = "default"
+frame_progress = 0.0336027
+
 [node name="Snow Floor Obj2" type="Parallax2D" parent="BG_Objects2/Snow Floor Group"]
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-118, 82)
@@ -312,6 +365,16 @@ lifetime = 9.0
 preprocess = 8.0
 visibility_rect = Rect2(-800.578, -1734.69, 2228.82, 1736.67)
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyRespawnPoint" parent="Enemies" instance=ExtResource("21_wvtih")]
+position = Vector2(1590, 9)
+_enemy = ExtResource("20_5vs2v")
+
+[node name="EnemyRespawnPoint2" parent="Enemies" instance=ExtResource("21_wvtih")]
+position = Vector2(589, -122)
+_enemy = ExtResource("20_u8owc")
+
 [node name="CameraBounds" parent="." instance=ExtResource("5_ufde7")]
 
 [node name="CollisionShape2D" parent="CameraBounds/EndTrigger" index="0"]
@@ -356,6 +419,10 @@ repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
 texture = ExtResource("8_hl5tf")
+
+[node name="MountedTurret" parent="." instance=ExtResource("20_5vs2v")]
+position = Vector2(-157, -136)
+rotation = 1.5708
 
 [editable path="CameraBounds"]
 [editable path="CameraBounds2"]

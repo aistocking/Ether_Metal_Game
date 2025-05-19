@@ -5,12 +5,13 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-enum SPECIALS {DIVE, UPPER, PLASMA, BARRAGE, STINGER, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
+enum SPECIALS {HELMBRKR, UPPER, PLASMA, BARRAGE, STINGER, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
 
 var CurrentSpecial: SPECIALS
 
 var IsOffensive: bool
 var IsInAir: bool
+var CanCancel: bool
 
 var direction: int
 
@@ -19,7 +20,6 @@ var direction: int
 
 func enter(_msg := {}) -> void:
 	player = owner
-	player.velocity = Vector2.ZERO
 	CurrentSpecial = SPECIALS.NONE
 	if _msg.has("direction"):
 		direction = _msg.direction
@@ -29,9 +29,12 @@ func enter(_msg := {}) -> void:
 		IsOffensive = _msg.IsOffensive
 	if !player.is_on_floor():
 		IsInAir = true
+	else:
+		IsInAir = false
 	designate_attack()
 	if CurrentSpecial == SPECIALS.NONE:
 		state_machine.transition_to("Idle")
+	CanCancel = false
 
 func exit():
 	player.disable_parry_box()
@@ -39,7 +42,7 @@ func exit():
 
 
 func handle_input(event):
-	if cancel_timer.is_stopped():
+	if player.can_cancel:
 		if event.is_action_pressed("Dash"):
 			if Input.is_action_pressed("Left"):
 				state_machine.transition_to("Dash", { "direction": player.LEFT })
@@ -52,7 +55,6 @@ func physics_update(delta: float) -> void:
 	#Branch to either on ground behaviour or in air behaviour
 	#In air behvaiour
 	if IsInAir:
-		player.velocity.y = clamp(player.velocity.y, -25, 25)
 		match CurrentSpecial:
 			SPECIALS.PLASMA:
 				player.velocity.y += gravity * delta
@@ -67,6 +69,11 @@ func physics_update(delta: float) -> void:
 				player.velocity.y += gravity * delta
 			SPECIALS.BLADE:
 				player.velocity.y += gravity * delta
+			SPECIALS.HELMBRKR:
+				if player.is_on_floor():
+					player.player_animations.play("Helm_Breaker_Ground")
+					player.player_animations.seek(0.4, true)
+					IsInAir = false
 	#On ground behaviour
 	else:
 		match CurrentSpecial:
@@ -86,12 +93,15 @@ func physics_update(delta: float) -> void:
 				pass
 	player.move_and_slide()
 
+func reset_cancel() -> void:
+	CanCancel = true
+
 func designate_attack() -> void:
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):
 			_stinger()
 		if Input.is_action_pressed("Right Button"):
-			_blade()
+			_helm_breaker()
 		if Input.is_action_pressed("Top Button"):
 			_upper()
 		if Input.is_action_pressed("Left Button"):
@@ -107,57 +117,33 @@ func designate_attack() -> void:
 			_disengage()
 
 func _plasma() -> void:
-	player.velocity.x = player.facing_direction * -200
-	var tweenX = get_tree().create_tween()
-	tweenX.tween_property(player, "velocity:x", 0, .4).set_trans(Tween.TRANS_CUBIC)
 	if IsInAir == true:
 		player.player_animations.play("Plasma_Shot_Air")
 	else:
 		player.player_animations.play("Plasma_Shot")
-	player.plasma_shot()
 	CurrentSpecial = SPECIALS.PLASMA
-	cancel_timer.start(0.1)
 
 func _stinger() -> void:
 	player.player_animations.play("Stinger_Loop")
-	player.velocity.x = player.DASHING_SPEED * direction * 2
-	player.stinger()
-	player.stinger_inst.connect("hit", _stinger_finish)
-	_duration_timer.start(0.4)
-	player.stinger_inst.timer.wait_time = _duration_timer.wait_time
 	CurrentSpecial = SPECIALS.STINGER
-
-func _stinger_finish() -> void:
-	player.player_animations.play("Stinger")
-	player.velocity.x *= -0.5
-	var tweenX = get_tree().create_tween()
-	tweenX.tween_property(player, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
 
 func _blade() -> void:
 	player.player_animations.play("Parry")
 	player.blade()
 	CurrentSpecial = SPECIALS.BLADE
-	cancel_timer.start(0.1)
 
-func _barrage() -> void:
-	player.player_animations.play("Plasma_Shot")
-	player.barrage()
-	CurrentSpecial = SPECIALS.BARRAGE
-	cancel_timer.start(0.1)
+func _helm_breaker() -> void:
+	if IsInAir:
+		player.player_animations.play("Helm_Breaker_Air_Start")
+		player.player_animations.queue("Helm_Breaker_Air_Loop")
+	else:
+		player.player_animations.play("Helm_Breaker_Ground")
+	CurrentSpecial = SPECIALS.HELMBRKR
 
 func _upper() -> void:
-	player.velocity.y = -400
-	player.velocity.x = player.facing_direction * 200
-	var tweenX = get_tree().create_tween()
-	var tweenY = get_tree().create_tween()
-	tweenX.tween_property(player, "velocity:x", 0, .3).set_ease(Tween.EASE_OUT)
-	tweenY.tween_property(player, "velocity:y", 0, .5).set_ease(Tween.EASE_OUT)
 	player.player_animations.play("Upper")
 	player.player_animations.queue("Upper_Loop")
-	player.upper()
 	CurrentSpecial = SPECIALS.UPPER
-	cancel_timer.start(0.1)
-	_duration_timer.start(0.4)
 
 func _disengage() -> void:
 	player.velocity.x = player.facing_direction * -300
@@ -167,13 +153,11 @@ func _disengage() -> void:
 	player.player_animations.play("Disengage")
 	player.disengage()
 	CurrentSpecial = SPECIALS.DISENGAGE
-	cancel_timer.start(0.1)
 
 func _parry() -> void:
 	player.player_animations.play("Parry_Wait")
 	player.parry()
 	CurrentSpecial = SPECIALS.PARRY
-	cancel_timer.start(0.1)
 
 func _flash() -> void:
 	player.player_animations.play("Flash")
@@ -192,6 +176,8 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Falling")
 			"Stinger":
 				state_machine.transition_to("Falling")
+			"Stinger_Loop":
+				state_machine.transition_to("Falling")
 			"Disengage":
 				state_machine.transition_to("Falling")
 			"Parry":
@@ -199,6 +185,10 @@ func _on_player_anims_animation_finished(anim_name):
 			"Parry_Wait":
 				state_machine.transition_to("Idle")
 			"Flash":
+				state_machine.transition_to("Falling")
+			"Helm_Breaker_Ground":
+				state_machine.transition_to("Idle")
+			"Upper_Loop":
 				state_machine.transition_to("Falling")
 	#On ground behaviour
 	else:
@@ -207,18 +197,17 @@ func _on_player_anims_animation_finished(anim_name):
 				state_machine.transition_to("Idle")
 			"Stinger":
 				state_machine.transition_to("Idle")
+			"Stinger_Loop":
+				state_machine.transition_to("Idle")
 			"Disengage":
-				state_machine.transition_to("Falling")
+				state_machine.transition_to("Idle")
 			"Parry":
 				state_machine.transition_to("Idle")
 			"Parry_Wait":
 				state_machine.transition_to("Idle")
 			"Flash":
 				state_machine.transition_to("Idle")
-
-
-func _on_duration_timer_timeout():
-	if IsInAir:
-		state_machine.transition_to("Falling")
-	else:
-		state_machine.transition_to("Idle")
+			"Helm_Breaker_Ground":
+				state_machine.transition_to("Idle")
+			"Upper_Loop":
+				state_machine.transition_to("Falling")

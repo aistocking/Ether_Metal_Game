@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgh08jietb3lj"]
+[gd_scene load_steps=3 format=3 uid="uid://bgh08jietb3lj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/main_camera.gd" id="1_k2rtx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pclmu"]
+size = Vector2(838, 422)
 
 [node name="Main_Camera" type="Camera2D" groups=["Camera"]]
 process_mode = 3
@@ -8,3 +11,11 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 editor_draw_limits = true
 script = ExtResource("1_k2rtx")
+
+[node name="spawn_area" type="Area2D" parent="." groups=["Spawn Area"]]
+collision_layer = 1024
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_area"]
+shape = SubResource("RectangleShape2D_pclmu")
+debug_color = Color(0.584314, 0.545098, 0.462745, 0.156863)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://blbjx2n5kjy2r"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/ether_fire.gd" id="2_xdqqk"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/ether_fire.gd" id="2_xdqqk"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_gl5j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puyqu"]

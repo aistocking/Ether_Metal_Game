@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlbn6aiglmufi"]
 
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2x7ef"]
-[ext_resource type="Script" path="res://Scenes/Effects/plasma_shot.gd" id="2_ewlw1"]
-[ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Effects/plasma_shot.tres" id="2_mq5uu"]
+[ext_resource type="Script" path="res://Scenes/Player/Attacks/plasma_shot.gd" id="2_ewlw1"]
+[ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Player/Attacks/plasma_shot.tres" id="2_mq5uu"]
 [ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_v3s2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]

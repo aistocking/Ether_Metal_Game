@@ -14,6 +14,7 @@ var spent_dash := false
 var facing_direction: int = 1
 var _is_shooting := false
 var is_dashing := false
+var can_cancel := true
 
 var _charge_counter: int = 0
 var charge_level: int = 0
@@ -44,12 +45,13 @@ const DAMAGED_AUDIO: AudioStream = preload("res://Sound/XHit.wav")
 const DEATH_AUDIO: AudioStream = preload("res://Sound/Die.wav")
 const PICKUP_TANK_AUDIO: AudioStream = preload("res://Sound/Heart Powerup.wav")
 
-#Subsystems to limit certain mechanics
+#Subsystems for certain mechanics
 @onready var invincibility_timer: Timer = $InvulnTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var right_ray_cast: RayCast2D = $RightRCast
 @onready var left_ray_cast: RayCast2D = $LeftRCast
 @onready var _death_particles: GPUParticles2D = $"Death Particles"
+@onready var _melee_hit_box: CollisionShape2D = $HitBox/HitCollision
 
 #Dust scenes & systems when dashing, wall clinging, etc
 const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
@@ -57,23 +59,24 @@ const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn
 var _dust_counter: int = 0
 
 #Offensive special attack scenes
-const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/plasma_shot.tscn")
-const _UPPER_SCENE: PackedScene = preload("res://Scenes/Effects/ether_fire.tscn")
+const _CHARGE_SHOT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/plasma_shot.tscn")
+const _UPPER_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/ether_fire.tscn")
 const _BARRAGE_SCENE: PackedScene = preload("res://Scenes/Effects/chasers.tscn")
-const _BLADE_SCENE: PackedScene = preload("res://Scenes/Effects/blade_beam.tscn")
-const _STINGER_SCENE: PackedScene = preload("res://Scenes/Effects/PlayerAttacks/sp_attack_stinger.tscn")
+const _BLADE_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/blade_beam.tscn")
+const _HELM_BREAKER_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/helm_splitter_blast.tscn")
+const _STINGER_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/sp_attack_stinger.tscn")
 
 #Offensive special instances to be used in player states
 var stinger_inst: Stinger
 
 #Defensive special attack scenes
-const _BOMB_SCENE: PackedScene = preload("res://Scenes/Effects/small_bombs.tscn")
-const _PARRY_SCENE: PackedScene = preload("res://Scenes/Effects/parry_burst.tscn")
-const _FLASH_SCENE: PackedScene = preload("res://Scenes/Effects/flash_burst.tscn")
-const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Effects/orbital_bit.tscn")
+const _BOMB_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/small_bombs.tscn")
+const _PARRY_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/parry_burst.tscn")
+const _FLASH_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/flash_burst.tscn")
+const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/orbital_bit.tscn")
 
 #Basic shot scenes & systems
-const _SHOT_SCENE: PackedScene = preload("res://Scenes/Effects/shot.tscn")
+const _SHOT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
 @onready var _buster_position: Marker2D = $SpawnMarkers/BusterPosition
 @onready var _shot_timer: Timer = $ShotTimer
@@ -151,9 +154,20 @@ func _physics_process(_delta: float) -> void:
 	_handle_charging()
 
 
+
+"""
+
+----Sub_System Functions----
+
+"""
 func change_player_control(boolean: bool) -> void:
 	player_input = boolean
 
+func can_player_cancel(boolean: bool) -> void:
+	can_cancel = boolean
+
+func toggle_melee_hitbox(boolean: bool) -> void:
+	_melee_hit_box.set_deferred("disabled", boolean)
 
 func _basic_shot() -> bool:
 	if get_tree().get_nodes_in_group("PlayerProjectiles").size() >= 3:
@@ -175,9 +189,16 @@ func _basic_shot() -> bool:
 
 
 
-#Offensive specials
+"""
+
+----Offensive Specials----
+
+"""
 func plasma_shot() -> void:
 	_remove_charge_level()
+	velocity.x = facing_direction * -200
+	var tweenX = get_tree().create_tween()
+	tweenX.tween_property(self, "velocity:x", 0, .4).set_trans(Tween.TRANS_CUBIC)
 	_camera.apply_shake(1.5, 0.1)
 	effect_audio_player.play_sound(CHARGE_SHOT_AUDIO)
 	var instance: PlasmaShot = _CHARGE_SHOT_SCENE.instantiate()
@@ -187,6 +208,12 @@ func plasma_shot() -> void:
 
 func upper() -> void:
 	_remove_charge_level()
+	velocity.y = -400
+	velocity.x = facing_direction * 200
+	var tweenX = get_tree().create_tween()
+	var tweenY = get_tree().create_tween()
+	tweenX.tween_property(self, "velocity:x", 0, .25).set_ease(Tween.EASE_OUT)
+	tweenY.tween_property(self, "velocity:y", 0, .5).set_ease(Tween.EASE_OUT)
 	var instance: EtherFire = _UPPER_SCENE.instantiate()
 	add_child(instance)
 	instance.position = _buster_position.position
@@ -207,11 +234,18 @@ func dive() -> void:
 
 func stinger() -> void:
 	_remove_charge_level()
+	velocity.x = DASHING_SPEED * facing_direction * 2
 	stinger_inst = _STINGER_SCENE.instantiate()
+	stinger_inst.connect("hit", _stinger_finish)
 	if facing_direction == LEFT:
 		stinger_inst.face_left()
 	add_child(stinger_inst)
 	
+func _stinger_finish() -> void:
+	player_animations.play("Stinger")
+	velocity.x *= -0.5
+	var tweenX = get_tree().create_tween()
+	tweenX.tween_property(self, "velocity:x", 0, .3).set_trans(Tween.TRANS_CUBIC)
 
 func blade() -> void:
 	_remove_charge_level()
@@ -220,14 +254,38 @@ func blade() -> void:
 	instance.global_position = _buster_position.global_position
 	instance.set_direction(facing_direction)
 
-func breaker() -> void:
+func helm_breaker_start() -> void:
 	_remove_charge_level()
+	if !is_on_floor():
+		velocity.y -= 50
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "velocity", Vector2.ZERO, 0.3)
+	
+func helm_breaker_air_loop() -> void:
+	velocity.y += 400
+
+func helm_breaker_blast() -> void:
+	velocity = Vector2.ZERO
+	var instance: HelmSplitter = _HELM_BREAKER_SCENE.instantiate()
+	instance.global_position = _buster_position.global_position
+	instance.global_position.y -= 30
+	get_parent().add_child(instance)
 
 func whirlwind() -> void:
 	_remove_charge_level()
 
+func ryujin_start() -> void:
+	_remove_charge_level()
 
-#Defensive specials
+func ryujin_contact() -> void:
+	velocity = Vector2.ZERO
+
+
+"""
+
+----Defensive Specials----
+
+"""
 func disengage() -> void:
 	_remove_charge_level()
 	var y: Array[int] = [15, 0, 15]
