@@ -15,22 +15,10 @@ func _ready() -> void:
 	Global.change_music(_stage_bgm)
 	Global.debug_mode()
 	RenderingServer.set_default_clear_color(Color(0,0,0))
-	_spawn_enemy()
 
 
 func _process(delta: float) -> void:
 	pass
-
-func _spawn_enemy() -> void:
-	await get_tree().create_timer(1).timeout
-	if $Enemies/EnemyRespawnPoint.get_child_count() == 0:
-		var instance1 = _enemy.instantiate()
-		$Enemies/EnemyRespawnPoint.add_child(instance1)
-		instance1.connect("died", _spawn_enemy)
-	if $Enemies/EnemyRespawnPoint2.get_child_count() == 0:
-		var instance2 = _enemy.instantiate()
-		$Enemies/EnemyRespawnPoint2.add_child(instance2)
-		instance2.connect("died", _spawn_enemy)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var DialogueBoxInst = DialogueBoxResource.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://db4lf6nbwbtfc"]
+[gd_scene load_steps=27 format=4 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="2_d3haq"]
@@ -15,6 +15,8 @@
 [ext_resource type="TileSet" uid="uid://b0dj0m5hj0hxl" path="res://Scenes/Stages/Beta/FoundryTiles00.tres" id="11_ri3q5"]
 [ext_resource type="PackedScene" uid="uid://c2t0rtnx8e44b" path="res://Scenes/Stages/Objects/armour_pod.tscn" id="12_vjg4t"]
 [ext_resource type="PackedScene" uid="uid://c6pn3v7e6fe24" path="res://Scenes/Stages/Objects/moving_platform.tscn" id="14_3vo1y"]
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_spawner.gd" id="16_aaebo"]
+[ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/base_enemy.tscn" id="17_uh1rd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7rt"]
 size = Vector2(180, 20)
@@ -303,11 +305,15 @@ position = Vector2(167, 0)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="EnemyRespawnPoint" type="Marker2D" parent="Enemies"]
-position = Vector2(111, -16)
+[node name="EnemySpawner1" type="Marker2D" parent="Enemies"]
+position = Vector2(103, -2)
+script = ExtResource("16_aaebo")
+enemy = ExtResource("17_uh1rd")
 
-[node name="EnemyRespawnPoint2" type="Marker2D" parent="Enemies"]
-position = Vector2(194, -16)
+[node name="EnemySpawner2" type="Marker2D" parent="Enemies"]
+position = Vector2(196, -2)
+script = ExtResource("16_aaebo")
+enemy = ExtResource("17_uh1rd")
 
 [connection signal="body_entered" from="StageTriggers/CutsceneTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger2" to="." method="_on_bg_trigger_2_body_entered"]
