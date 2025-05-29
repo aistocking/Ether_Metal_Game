@@ -1,0 +1,474 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhob8mvs4qkr4"]
+
+[ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="1_cp1ji"]
+[ext_resource type="Texture2D" uid="uid://bqecow204r0x2" path="res://Art/MiscUI/Boss_Warning_Text.png" id="1_m2juq"]
+[ext_resource type="Script" path="res://Scenes/Misc/cutscenes/warning_cutscene.gd" id="1_yd0i4"]
+[ext_resource type="Texture2D" uid="uid://berv5m75xg3ay" path="res://Art/MiscUI/Boss_Warning_Text_Border.png" id="2_w63nd"]
+[ext_resource type="AudioStream" uid="uid://dae4kdqh3qv2e" path="res://Sound/WarningSiren.wav" id="2_yjwc8"]
+
+[sub_resource type="Animation" id="Animation_w2lo8"]
+resource_name = "Intro"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1),
+"transitions": PackedFloat32Array(0.420448, 1, 1),
+"update": 0,
+"values": [Vector2(-500, 68), Vector2(5, 68), Vector2(5, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333, 0.8, 1),
+"transitions": PackedFloat32Array(0.392292, 2.21914, 1),
+"update": 0,
+"values": [Vector2(1, 0.01), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Footer/Parallax:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667, 1),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [Vector2(1, 0.25), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Header/Parallax:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667, 1),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [Vector2(1, 0.25), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Header/Parallax/HLine1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.233333, 1),
+"transitions": PackedFloat32Array(0.450625, 1),
+"update": 0,
+"values": [Vector2(-73, -75), Vector2(-73, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Header/Parallax/HLine2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.466667, 1.03333),
+"transitions": PackedFloat32Array(0.757858, 1),
+"update": 0,
+"values": [Vector2(-73, -75), Vector2(-73, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Footer/Parallax/FLine1:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.266667, 1),
+"transitions": PackedFloat32Array(0.615572, 1),
+"update": 0,
+"values": [Vector2(-147, 110), Vector2(-147, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Footer/Parallax/FLine2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.4, 1.06667),
+"transitions": PackedFloat32Array(0.615572, 1),
+"update": 0,
+"values": [Vector2(-147, 110), Vector2(-147, 12)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Footer:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(0.366022, 1),
+"update": 0,
+"values": [Vector2(0, 250), Vector2(0, 178)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Header:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(0.366022, 1),
+"update": 0,
+"values": [Vector2(0, -32), Vector2(0, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_0bqg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Header/Parallax:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Footer/Parallax:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Text:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 68)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Text:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Footer/Parallax:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Header/Parallax:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Header/Parallax/HLine1:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, -47)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Header/Parallax/HLine2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, -75)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Footer/Parallax/FLine1:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-147, 110)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Footer/Parallax/FLine2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-147, 12)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Footer:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 250)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Header:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_auxra"]
+resource_name = "Stop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.266667),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Header/Parallax:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Footer/Parallax:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbexd"]
+_data = {
+"Intro": SubResource("Animation_w2lo8"),
+"RESET": SubResource("Animation_0bqg4"),
+"Stop": SubResource("Animation_auxra")
+}
+
+[node name="WarningCutscene" type="CanvasLayer"]
+script = ExtResource("1_yd0i4")
+
+[node name="EffectAudioPlayer" parent="." instance=ExtResource("1_cp1ji")]
+stream = ExtResource("2_yjwc8")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_sbexd")
+}
+autoplay = "Intro"
+
+[node name="Text" type="TextureRect" parent="."]
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 476.0
+offset_bottom = 152.0
+pivot_offset = Vector2(0, 42)
+texture = ExtResource("1_m2juq")
+
+[node name="Header" type="Node2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="Parallax" type="Parallax2D" parent="Header"]
+repeat_size = Vector2(504, 0)
+autoscroll = Vector2(45, 0)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="header1" type="TextureRect" parent="Header/Parallax"]
+offset_right = 139.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header2" type="TextureRect" parent="Header/Parallax"]
+offset_left = 378.0
+offset_right = 517.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header3" type="TextureRect" parent="Header/Parallax"]
+offset_left = 126.0
+offset_right = 265.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header4" type="TextureRect" parent="Header/Parallax"]
+offset_left = 252.0
+offset_right = 391.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="HLine1" type="ColorRect" parent="Header/Parallax"]
+offset_left = 202.0
+offset_right = 841.0
+offset_bottom = 1.0
+color = Color(0.988235, 0.364706, 0.364706, 1)
+
+[node name="HLine2" type="ColorRect" parent="Header/Parallax"]
+offset_left = 202.0
+offset_top = -1.7841
+offset_right = 841.0
+offset_bottom = -0.784096
+color = Color(0.988235, 0.364706, 0.364706, 1)
+
+[node name="Footer" type="Node2D" parent="."]
+position = Vector2(0, 250)
+
+[node name="Parallax" type="Parallax2D" parent="Footer"]
+repeat_size = Vector2(504, 0)
+autoscroll = Vector2(45, 0)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="header1" type="TextureRect" parent="Footer/Parallax"]
+offset_right = 139.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header2" type="TextureRect" parent="Footer/Parallax"]
+offset_left = 378.0
+offset_right = 517.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header3" type="TextureRect" parent="Footer/Parallax"]
+offset_left = 126.0
+offset_right = 265.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="header4" type="TextureRect" parent="Footer/Parallax"]
+offset_left = 252.0
+offset_right = 391.0
+offset_bottom = 13.0
+texture = ExtResource("2_w63nd")
+stretch_mode = 2
+
+[node name="FLine1" type="ColorRect" parent="Footer/Parallax"]
+offset_left = -147.0
+offset_top = 12.0
+offset_right = 492.0
+offset_bottom = 13.0
+color = Color(0.988235, 0.364706, 0.364706, 1)
+
+[node name="FLine2" type="ColorRect" parent="Footer/Parallax"]
+offset_left = -147.0
+offset_top = 14.3268
+offset_right = 492.0
+offset_bottom = 15.3268
+color = Color(0.988235, 0.364706, 0.364706, 1)

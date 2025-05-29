@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="4_m271u"]
 [ext_resource type="Texture2D" uid="uid://c4ju1e5avjvwp" path="res://Art/Stages/BGs/StageTundraBG_Clouds3.png" id="4_wnhxg"]
 [ext_resource type="Texture2D" uid="uid://1c6k112i4dhh" path="res://Art/Stages/BGs/StageTundraBG_Clouds2.png" id="5_hoook"]
-[ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Misc/camera_bounds.tscn" id="5_ufde7"]
+[ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Stages/Objects/camera_bounds.tscn" id="5_ufde7"]
 [ext_resource type="Texture2D" uid="uid://4rtkwgyja6ts" path="res://Art/Stages/BGs/BG_Objects/Frozen_Lightpost.png" id="6_nq5ka"]
 [ext_resource type="Texture2D" uid="uid://bfkyuvswgpxcr" path="res://Art/Stages/BGs/StageTundraBG_CloudsFG.png" id="8_hl5tf"]
 

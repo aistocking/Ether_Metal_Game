@@ -66,6 +66,9 @@ func debug_mode() -> void:
 	for i in _acquired_charge_capacitors.size():
 		_acquired_charge_capacitors[i] = true
 
+func stop_music() -> void:
+	MusicPlayer.stop()
+
 func change_music(song: AudioStream, time: float = 0.0) -> void:
 	MusicPlayer.volume_db = _music_volume
 	MusicPlayer.stop()

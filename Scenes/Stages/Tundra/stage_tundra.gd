@@ -9,6 +9,7 @@ func _ready():
 	_camera.change_camera_limits($CameraBounds/BottomLeftPosition.global_position, $CameraBounds/TopRightPosition.global_position, 0, false)
 	$Main_Camera/WholeScreenParticles/GPUParticles2D.emitting = true
 	_spawn_enemy()
+	$BossTransitionDoor.is_boss_door = true
 
 func _process(delta):
 	pass

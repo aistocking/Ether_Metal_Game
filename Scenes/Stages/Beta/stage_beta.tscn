@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bgh08jietb3lj" path="res://Scenes/Player/main_camera.tscn" id="4_v5bpl"]
 [ext_resource type="PackedScene" uid="uid://35uqfwvcjcyt" path="res://Scenes/Effects/whole_screen_particles.tscn" id="5_b4b1e"]
 [ext_resource type="PackedScene" uid="uid://b82se4wd684p2" path="res://Scenes/Player/player_character.tscn" id="6_i1ylh"]
-[ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Misc/camera_bounds.tscn" id="6_rkblo"]
+[ext_resource type="PackedScene" uid="uid://uikqyx23nbrd" path="res://Scenes/Stages/Objects/camera_bounds.tscn" id="6_rkblo"]
 [ext_resource type="Texture2D" uid="uid://bya3rbn1wymhp" path="res://Art/Stages/TileSets/Stage_Foundry_Tiles_00.png" id="11_d8fne"]
 [ext_resource type="PackedScene" uid="uid://dnijpswm7s6en" path="res://Scenes/Stages/Objects/transition_door.tscn" id="11_k0dhf"]
 [ext_resource type="TileSet" uid="uid://b0dj0m5hj0hxl" path="res://Scenes/Stages/Beta/FoundryTiles00.tres" id="11_ri3q5"]

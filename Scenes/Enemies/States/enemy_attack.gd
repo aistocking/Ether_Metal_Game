@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 	_enemy = owner
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
-	_enemy._anim_player.play("Attack1")
+	_enemy.anim_player.play("Attack1")
 	_enemy.connect("attack_finished", attack_finish)
 	_enemy.player_detection_shape.set_deferred("disabled", true)
 	_enemy._physical_hit_box.set_collision(true)
