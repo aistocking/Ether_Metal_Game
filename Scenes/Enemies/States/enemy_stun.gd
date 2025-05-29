@@ -11,7 +11,7 @@ signal stun_recover
 
 func enter(_msg := {}) -> void:
 	_enemy = owner
-	_enemy._anim_pzlayer.play("RESET")
+	_enemy.anim_player.play("RESET")
 	_player = get_tree().get_first_node_in_group("Player")
 	_enemy.velocity = Vector2.ZERO
 	if _msg.has("parried"):

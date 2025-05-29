@@ -20,15 +20,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var DialogueBoxInst = DialogueBoxResource.instantiate()
 	add_child(DialogueBoxInst)
 	$StageTriggers/CutsceneTrigger.queue_free()
 
+
 func _on_bg_trigger_1_body_entered(body):
 	$BGs/BGRamps.visible = true
 	$BGs/MGRamps.visible = true
 	$BGs/MGGirders.visible = false
+
 
 func _on_bg_trigger_2_body_entered(body):
 	$BGs/BGRamps.visible = true
