@@ -1,9 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://dusmkdis6va78"]
+[gd_scene load_steps=52 format=3 uid="uid://dusmkdis6va78"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
 [ext_resource type="Script" path="res://Scenes/Misc/ui/health_progress_bar.gd" id="2_a06lt"]
 [ext_resource type="PackedScene" uid="uid://byuc5bs66nl24" path="res://Scenes/Entities/health_component.tscn" id="2_yv6wp"]
+[ext_resource type="Script" path="res://Scenes/Misc/ui/stun_progress_bar.gd" id="3_7pqdh"]
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
 [ext_resource type="Texture2D" uid="uid://mnjsyo2o5lvk" path="res://Art/Enemies/MeleeEnemy.png" id="4_kj2ch"]
 [ext_resource type="Texture2D" uid="uid://bjmiy7hnn30vd" path="res://Art/Effects/Stun_Cracks.png" id="5_2d5lv"]
@@ -310,13 +311,15 @@ show_percentage = false
 script = ExtResource("2_a06lt")
 _health_component = NodePath("../../HealthComponent")
 
-[node name="StunHealth" type="ProgressBar" parent="AspectRatioContainer"]
+[node name="StunHealth" type="ProgressBar" parent="AspectRatioContainer" node_paths=PackedStringArray("_health_component")]
 modulate = Color(0, 1, 1, 1)
 layout_mode = 2
 size_flags_vertical = 8
 max_value = 50.0
 step = 1.0
 show_percentage = false
+script = ExtResource("3_7pqdh")
+_health_component = NodePath("../../HealthComponent")
 
 [node name="Label" type="Label" parent="AspectRatioContainer"]
 layout_mode = 2

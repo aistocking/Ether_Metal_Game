@@ -10,6 +10,6 @@ func _ready() -> void:
 	value = _health_component._health
 	_health_component.connect("health_change", _update)
 
-func _update(health: int, stun_health: int) -> void:
-	value = _health_component._health
-	pass
+
+func _update(health: int, _stun_health: int) -> void:
+	value = health
