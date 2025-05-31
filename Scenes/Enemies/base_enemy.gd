@@ -16,21 +16,18 @@ const _hit_SFX: AudioStream = preload("res://Sound/BusterShotHit.wav")
 const _wall_hit_sfx: AudioStream = preload("res://Sound/Intro_Stomp.wav")
 const _big_hit_sfx: AudioStream = preload("res://Sound/Enemy Big Hit.wav")
 const _stun_break_sound: AudioStream = preload("res://Sound/StunBreak.wav")
-var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_direction: int = LEFT
 
 const _stun_fx: PackedScene = preload("res://Scenes/Effects/stun_stars.tscn")
-var _stun_instance
+var _stun_instance: Node2D
 
 var _player: PlayerCharacter
 var _camera: Camera2D
 
 @onready var _flash_timer: Timer = $FlashTimer
-@onready var sprite = $Sprite
-@onready var _hurt_box: HurtBox = $HurtBox
+@onready var sprite: Sprite2D = $Sprite
 @onready var _health_component: HealthComponent = $HealthComponent
 @onready var _effect_audio_player: EffectAudioPlayer = $EffectAudioPlayer
-@onready var _projectile_spawn_marker: Marker2D = $ProjectileSpawnLocation
 @onready var _stun_fx_spawn_marker: Marker2D = $StunStarsSpawnLocation
 @onready var anim_player: AnimationPlayer = $Anims
 @onready var player_detection_shape: CollisionShape2D = $PlayerDetection/Collision
@@ -49,11 +46,14 @@ const SHOVE_TRAILS_SCENE: PackedScene = preload("res://Scenes/Effects/shove_trai
 var _dust_counter: int = 0
 var _trail_counter: int = 0
 
+@warning_ignore("unused_signal")
 signal died
+@warning_ignore("unused_signal")
 signal wall_bounce
+@warning_ignore("unused_signal")
 signal attack_finished
 
-func _ready():
+func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("Player")
 	_camera = get_tree().get_first_node_in_group("Camera")
 	_health_component.connect("health_change", _update_health)
@@ -70,10 +70,10 @@ func _ready():
 	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
 
-func _physics_process(delta):
+func _physics_process(_delta: float) -> void:
 	pass
 
-func _hit_flash(health: int, stun_health: int):
+func _hit_flash(health: int, stun_health: int) -> void:
 	if health == _health || stun_health == _stun_health:
 		sprite.material.set_shader_parameter("active", true)
 		_flash_timer.start(0.1)
@@ -82,7 +82,7 @@ func _hit_push(direction: Vector2, power: int) -> void:
 	if _stun_health <= 0:
 		if power == -1:
 			_state_machine.transition_to("EnemyShove", {"direction": direction})
-		var push_vector = direction * power
+		var push_vector: Vector2 = direction * power
 		velocity += push_vector
 
 func _reset_sprite_flash() -> void:
@@ -90,7 +90,7 @@ func _reset_sprite_flash() -> void:
 		sprite.material.set_shader_parameter("active", false)
 		sprite.material.set_shader_parameter("mix_factor", 1)
 
-func _on_flash_timer_timeout():
+func _on_flash_timer_timeout() -> void:
 	_reset_sprite_flash()
 
 func _update_health(health: int, stun: int) -> void:
@@ -118,8 +118,8 @@ func _set_stun_shader() -> void:
 		_tween.kill()
 	_tween = create_tween()
 	_tween.set_loops()
-	_tween.tween_method(func(value): sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.8, 1)
-	_tween.chain().tween_method(func(value): sprite.material.set_shader_parameter("mix_factor", value), 0.8, 0.4, 1)
+	_tween.tween_method(func(value: float) -> void: sprite.material.set_shader_parameter("mix_factor", value), 0.4, 0.8, 1)
+	_tween.chain().tween_method(func(value: float) -> void: sprite.material.set_shader_parameter("mix_factor", value), 0.8, 0.4, 1)
 
 func _create_stun_fx() -> void:
 	_stun_instance = _stun_fx.instantiate()
@@ -145,7 +145,7 @@ func dash_attack() -> void:
 	_tween.tween_property(self, "velocity:x", 0, 0.4)
 
 func face_player() -> void:
-	var comparison = global_position.x - _player.global_position.x
+	var comparison: float = global_position.x - _player.global_position.x
 	if comparison < 0:
 		if facing_direction == LEFT:
 			flip()
@@ -194,21 +194,21 @@ func set_wall_bounce_collision(text: String) -> void:
 			_bouncy_collision.shape.extents = Vector2(0,0)
 			_bouncy_collision.position = Vector2(0,0)
 
-func die():
+func die() -> void:
 	emit_signal("died")
-	var ExplosionInstance = ExplosionEffect.instantiate()
+	var ExplosionInstance: Node = ExplosionEffect.instantiate()
 	get_parent().add_child(ExplosionInstance)
 	ExplosionInstance.global_position = global_position
 	queue_free()
 
 
-func _on_bounce_boxes_body_entered(body):
+func _on_bounce_boxes_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
 	emit_signal("wall_bounce")
 
 
-func _on_bounce_boxes_area_entered(hurtbox: HurtBox):
+func _on_bounce_boxes_area_entered(hurtbox: HurtBox) -> void:
 	if hurtbox == $HurtBox:
 		return
 	if(hurtbox.has_method("take_damage")):
@@ -220,7 +220,7 @@ func _stun_break_fx_start() -> void:
 	$Sprite/Cracks.visible = true
 	$Sprite/Cracks.play()
 
-func _on_cracks_animation_finished():
+func _on_cracks_animation_finished() -> void:
 	$SmallShards.visible = true
 	$MediumShards.visible = true
 	$ShineBurst.visible = true
@@ -230,22 +230,22 @@ func _on_cracks_animation_finished():
 	$SmallShards.emitting = true
 	$MediumShards.emitting = true
 
-func _on_medium_shards_finished():
+func _on_medium_shards_finished() -> void:
 	$SmallShards.visible = false
 	$MediumShards.visible = false
 	$ShineBurst.visible = false
 
 
-func _on_player_detection_body_entered(body):
+func _on_player_detection_body_entered(_body: Node2D) -> void:
 	_state_machine.transition_to("EnemyAttack")
 
 
-func _on_anims_animation_finished(anim_name):
+func _on_anims_animation_finished(anim_name: String) -> void:
 	if anim_name == "Attack1":
 		_tween.kill()
 		emit_signal("attack_finished")
 
 
-func _on_enemy_hit_box_body_entered(body):
+func _on_enemy_hit_box_body_entered(body: Node2D) -> void:
 	if(body.has_method("takeDamage")):
 		body.takeDamage(_damage)
