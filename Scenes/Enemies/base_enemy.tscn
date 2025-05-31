@@ -321,9 +321,6 @@ show_percentage = false
 script = ExtResource("3_7pqdh")
 _health_component = NodePath("../../HealthComponent")
 
-[node name="Label" type="Label" parent="AspectRatioContainer"]
-layout_mode = 2
-
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("_hurt_box") instance=ExtResource("2_yv6wp")]
 _health = 25
 _max_health = 25

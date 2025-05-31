@@ -29,7 +29,6 @@ var _camera: Camera2D
 @onready var sprite = $Sprite
 @onready var _hurt_box: HurtBox = $HurtBox
 @onready var _health_component: HealthComponent = $HealthComponent
-@onready var _state_label: Label = $Label
 @onready var _effect_audio_player: EffectAudioPlayer = $EffectAudioPlayer
 @onready var _projectile_spawn_marker: Marker2D = $ProjectileSpawnLocation
 @onready var _stun_fx_spawn_marker: Marker2D = $StunStarsSpawnLocation
