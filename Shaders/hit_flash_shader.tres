@@ -3,6 +3,7 @@
 [ext_resource type="Shader" path="res://Shaders/hit_effect.gdshader" id="1_baqa0"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_baqa0")
 shader_parameter/active = false
 shader_parameter/stun = false
