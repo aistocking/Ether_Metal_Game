@@ -23,7 +23,7 @@ func _on_enemy_changed() -> void:
 	
 func _spawn() -> void:
 	var instance = enemy.instantiate()
-	add_child(instance)
+	call_deferred("add_child", instance)
 	if not Engine.is_editor_hint():
 		instance.connect("died", _spawn)
 
