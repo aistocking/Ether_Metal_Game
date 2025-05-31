@@ -66,8 +66,6 @@ func _ready():
 	_stun_health = _health_component._stun_health
 	_max_stun_health = _health_component._max_stun_health
 	$EnemyStateMachine/EnemyStun.connect("stun_recover", _restore_stun)
-	$AspectRatioContainer/StunHealth.max_value = _health_component._max_stun_health
-	$AspectRatioContainer/StunHealth.value = _stun_health
 	set_wall_bounce_collision("Off")
 	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
@@ -99,7 +97,6 @@ func _update_health(health: int, stun: int) -> void:
 	#_hit_push(direction, power)
 	_health = health
 	_stun_health = stun
-	$AspectRatioContainer/StunHealth.value = _stun_health
 	if _stun_health <= 0:
 		_effect_audio_player.play_sound(_big_hit_sfx)
 	else:
