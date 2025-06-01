@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlbn6aiglmufi"]
+[gd_scene load_steps=11 format=3 uid="uid://dlbn6aiglmufi"]
 
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2x7ef"]
+[ext_resource type="Script" path="res://Scenes/Entities/Movement/straight_projectile.gd" id="2_cy5jk"]
 [ext_resource type="Script" path="res://Scenes/Player/Attacks/plasma_shot.gd" id="2_ewlw1"]
 [ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Player/Attacks/plasma_shot.tres" id="2_mq5uu"]
 [ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_v3s2x"]
+[ext_resource type="Script" path="res://Scenes/Entities/effect_on_hit.gd" id="3_vxxfu"]
+[ext_resource type="PackedScene" uid="uid://cg8bjbluftn52" path="res://Scenes/Effects/large_shot_effect.tscn" id="4_axnam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
 size = Vector2(13, 12)
@@ -27,31 +30,40 @@ anim_speed_max = 2.0
 [node name="PlasmaShot" type="Node2D"]
 script = ExtResource("2_ewlw1")
 
-[node name="HitBox" parent="." instance=ExtResource("2_2x7ef")]
-collision_mask = 4
+[node name="StraightProjectile" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_cy5jk")
 
-[node name="HitCollision" parent="HitBox" index="0"]
+[node name="EffectOnHit" type="Node" parent="." node_paths=PackedStringArray("at", "hit_box")]
+script = ExtResource("3_vxxfu")
+at = NodePath("../Projectile/CollisionPoint")
+effect = ExtResource("4_axnam")
+hit_box = NodePath("../Projectile/HitBox")
+
+[node name="Projectile" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="HitBox" parent="Projectile" instance=ExtResource("2_2x7ef")]
+collision_mask = 4
+_damage = 8
+_stun_damage = 5
+_direction = Vector2(1, 0)
+_power = 300.0
+
+[node name="HitCollision" parent="Projectile/HitBox" index="0"]
 position = Vector2(4.5, 0)
 
-[node name="Physical" type="Area2D" parent="."]
+[node name="Physical" type="Area2D" parent="Projectile"]
 collision_layer = 2
 collision_mask = 16
 
-[node name="PhysicalCollision" type="CollisionShape2D" parent="Physical"]
+[node name="PhysicalCollision" type="CollisionShape2D" parent="Projectile/Physical"]
 position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_owdon")
 debug_color = Color(0.322515, 0.624569, 7.70092e-07, 0.42)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_3to26")
-position = Vector2(-4.71, 0)
-emitting = false
-amount = 12
-process_material = SubResource("ParticleProcessMaterial_skxi2")
-texture = ExtResource("3_v3s2x")
-lifetime = 0.3
-
-[node name="Sprites" type="AnimatedSprite2D" parent="."]
+[node name="Sprites" type="AnimatedSprite2D" parent="Projectile"]
+unique_name_in_owner = true
 z_index = 1
 texture_filter = 1
 sprite_frames = ExtResource("2_mq5uu")
@@ -59,15 +71,26 @@ autoplay = "default"
 frame = 2
 frame_progress = 0.50866
 
+[node name="CollisionPoint" type="Marker2D" parent="Projectile"]
+unique_name_in_owner = true
+position = Vector2(18, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_3to26")
+position = Vector2(-4.71, 0)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_skxi2")
+texture = ExtResource("3_v3s2x")
+lifetime = 0.3
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.3
 one_shot = true
 autostart = true
 
-[node name="CollisionPoint" type="Marker2D" parent="."]
-position = Vector2(18, 0)
-
-[connection signal="body_entered" from="Physical" to="." method="_on_physical_body_entered"]
+[connection signal="area_entered" from="Projectile/HitBox" to="." method="_on_hit"]
+[connection signal="area_entered" from="Projectile/Physical" to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
-[editable path="HitBox"]
+[editable path="Projectile/HitBox"]

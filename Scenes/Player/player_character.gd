@@ -202,9 +202,9 @@ func plasma_shot() -> void:
 	_camera.apply_shake(1.5, 0.1)
 	effect_audio_player.play_sound(CHARGE_SHOT_AUDIO)
 	var instance: PlasmaShot = _CHARGE_SHOT_SCENE.instantiate()
-	instance.set_direction(Vector2(facing_direction, 0))
+	instance.direction = Vector2(facing_direction, 0)
 	get_parent().add_child(instance)
-	instance.position = _buster_position.global_position
+	instance.global_position = _buster_position.global_position
 
 func upper() -> void:
 	_remove_charge_level()
