@@ -28,9 +28,7 @@ func set_direction(vec: Vector2) -> void:
 func flip() -> void:
 	$Sprites.flip_h = !$Sprites.flip_h
 	_collision_point.x = _collision_point.x * -1
-
-func _on_timer_timeout():
-	queue_free()
+	
 
 func _spawn_wall_hit_effect() -> void:
 	var hitFX = _hit_fx.instantiate()

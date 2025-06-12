@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dogf16vlq6m0y"]
+[gd_scene load_steps=13 format=3 uid="uid://dogf16vlq6m0y"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Projectiles/en_big_ball.gd" id="1_qbogi"]
 [ext_resource type="Texture2D" uid="uid://cde6y3i6im42p" path="res://Art/Effects/BigBullet.png" id="2_giuc0"]
 [ext_resource type="PackedScene" uid="uid://d0job8yom0pgy" path="res://Scenes/Entities/enemy_hit_box.tscn" id="3_0jub1"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_brmhq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0a855"]
 friction = 0.0
@@ -65,10 +66,11 @@ sprite_frames = SubResource("SpriteFrames_vqu2g")
 animation = &"basic_shot"
 autoplay = "basic_shot"
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
+script = ExtResource("3_brmhq")
 
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_smju2")
@@ -80,7 +82,5 @@ collision_layer = 264
 [node name="Collision" parent="EnemyHitBox" index="0"]
 shape = SubResource("RectangleShape2D_hg6xw")
 disabled = false
-
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 
 [editable path="EnemyHitBox"]

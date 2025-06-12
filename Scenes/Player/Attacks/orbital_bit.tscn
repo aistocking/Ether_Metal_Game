@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://caqyhnm05hh2e"]
+[gd_scene load_steps=4 format=3 uid="uid://caqyhnm05hh2e"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Attacks/orbital_bit.gd" id="1_y5lox"]
 [ext_resource type="Texture2D" uid="uid://d38kv6lj8xqyb" path="res://Art/Effects/OrbitalBit.png" id="2_uvs24"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_5gjk4"]
 
 [node name="OrbitalBit" type="Node2D"]
 script = ExtResource("1_y5lox")
@@ -11,14 +12,13 @@ texture = ExtResource("2_uvs24")
 hframes = 4
 frame = 2
 
-[node name="BitTimer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 autostart = true
+script = ExtResource("3_5gjk4")
 
 [node name="Speen" type="Marker2D" parent="."]
 
 [node name="bit position" type="Marker2D" parent="Speen"]
 position = Vector2(0, -22)
-
-[connection signal="timeout" from="BitTimer" to="." method="_on_bit_timer_timeout"]

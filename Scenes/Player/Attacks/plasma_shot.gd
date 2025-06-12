@@ -14,10 +14,6 @@ func _ready() -> void:
 	%Sprites.frame = randi_range(0,4)
 
 
-func _on_timer_timeout() -> void:
-	_die()
-
-
 func _on_hit(area: Area2D) -> void:
 	_die()
 

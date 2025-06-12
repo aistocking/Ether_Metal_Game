@@ -38,9 +38,6 @@ func findClosestEnemy():
 func getDirection(dir):
 	direction = dir
 
-func _on_death_timer_timeout():
-	queue_free()
-
 
 func _on_area_2d_area_entered(area):
 	if(area.has_method("takeDamage")):

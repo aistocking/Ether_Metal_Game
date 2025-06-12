@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlbn6aiglmufi"]
+[gd_scene load_steps=12 format=3 uid="uid://dlbn6aiglmufi"]
 
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2x7ef"]
 [ext_resource type="Script" path="res://Scenes/Entities/Movement/straight_projectile.gd" id="2_cy5jk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_v3s2x"]
 [ext_resource type="Script" path="res://Scenes/Entities/effect_on_hit.gd" id="3_vxxfu"]
 [ext_resource type="PackedScene" uid="uid://cg8bjbluftn52" path="res://Scenes/Effects/large_shot_effect.tscn" id="4_axnam"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="8_1xuot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
 size = Vector2(13, 12)
@@ -88,6 +89,12 @@ lifetime = 0.3
 wait_time = 1.3
 one_shot = true
 autostart = true
+
+[node name="TimedDealthComponent" type="Timer" parent="."]
+wait_time = 1.3
+one_shot = true
+autostart = true
+script = ExtResource("8_1xuot")
 
 [connection signal="area_entered" from="Projectile/HitBox" to="." method="_on_hit"]
 [connection signal="area_entered" from="Projectile/Physical" to="." method="_on_hit"]

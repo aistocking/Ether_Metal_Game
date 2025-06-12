@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://qrjstnncgv7w"]
+[gd_scene load_steps=5 format=3 uid="uid://qrjstnncgv7w"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/base_projectile.gd" id="1_2jnix"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_wom85"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_7iu0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ccte"]
 
@@ -14,9 +15,10 @@ script = ExtResource("1_2jnix")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 
-[node name="LifeTimer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 one_shot = true
 autostart = true
+script = ExtResource("3_7iu0f")
 
 [node name="PhysicalCollision" type="Area2D" parent="."]
 
@@ -25,5 +27,4 @@ shape = SubResource("RectangleShape2D_0ccte")
 debug_color = Color(0, 1, 0.0235294, 0.419608)
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
 [connection signal="body_entered" from="PhysicalCollision" to="." method="_on_physical_collision_body_entered"]

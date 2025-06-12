@@ -29,6 +29,6 @@ func _hit() -> void:
 	queue_free()
 
 
-func _on_timer_timeout():
+func die():
 	emit_signal("timeout")
 	queue_free()

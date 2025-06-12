@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs6lqe1fh5v3b"]
+[gd_scene load_steps=5 format=3 uid="uid://cs6lqe1fh5v3b"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Attacks/sp_attack_stinger.gd" id="1_24trm"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_hopnt"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_jed37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abv7y"]
 size = Vector2(12, 22)
@@ -20,10 +21,9 @@ _power = -1.0
 position = Vector2(14, 0)
 shape = SubResource("RectangleShape2D_abv7y")
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 one_shot = true
 autostart = true
-
-[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]
+script = ExtResource("3_jed37")
 
 [editable path="HitBox"]

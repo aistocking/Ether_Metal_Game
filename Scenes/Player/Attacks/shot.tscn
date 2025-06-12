@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqlrhrg6x76ql"]
+[gd_scene load_steps=11 format=3 uid="uid://cqlrhrg6x76ql"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Attacks/shot.gd" id="1_5l87p"]
 [ext_resource type="Texture2D" uid="uid://c4njjlnmm8y1q" path="res://Art/Effects/BasicShot.png" id="2_k0reg"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_cot61"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_hle2d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svrs1"]
@@ -48,10 +49,11 @@ sprite_frames = SubResource("SpriteFrames_vqu2g")
 animation = &"basic_shot"
 autoplay = "basic_shot"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 autostart = true
+script = ExtResource("3_cot61")
 
 [node name="HitBox" parent="." instance=ExtResource("3_hle2d")]
 collision_layer = 2
@@ -76,7 +78,6 @@ debug_color = Color(0, 0.647179, 0.218115, 0.42)
 [node name="CollisionPoint" type="Marker2D" parent="."]
 position = Vector2(4, 0)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="Physical" to="." method="_on_physical_body_entered"]
 

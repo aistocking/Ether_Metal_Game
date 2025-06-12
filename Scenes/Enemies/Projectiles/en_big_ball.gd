@@ -35,6 +35,3 @@ func _spawn_wall_hit_effect() -> void:
 
 func _on_physical_body_entered(body):
 	_spawn_wall_hit_effect()
-
-func _on_death_timer_timeout():
-	queue_free()

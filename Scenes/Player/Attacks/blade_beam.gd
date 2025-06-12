@@ -17,7 +17,3 @@ func set_direction(dir: int) -> void:
 	if dir == -1:
 		$BladeSprite.flip_h = true
 	direction = dir
-
-
-func _on_blade_timer_timeout():
-	queue_free()

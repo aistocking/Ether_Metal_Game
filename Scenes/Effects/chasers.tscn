@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4t4072qe35t"]
+[gd_scene load_steps=18 format=3 uid="uid://c4t4072qe35t"]
 
 [ext_resource type="Script" path="res://Scenes/Effects/chasers.gd" id="1_86is2"]
 [ext_resource type="Texture2D" uid="uid://bar8bkojj12j5" path="res://Art/Effects/Chasers.png" id="2_6yc2d"]
+[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_kwrpv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuqf2"]
 atlas = ExtResource("2_6yc2d")
@@ -108,10 +109,11 @@ frame_progress = 0.696819
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2e5qk")
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="TimedDealthComponent" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
+script = ExtResource("3_kwrpv")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -120,6 +122,5 @@ collision_mask = 4
 [node name="HurtBox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_uhtqd")
 
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

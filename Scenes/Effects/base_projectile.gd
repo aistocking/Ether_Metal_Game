@@ -53,9 +53,6 @@ func _spawn_hit_effect() -> void:
 	get_parent().add_child(hitFX)
 	hitFX.global_position = _collision_point.global_position
 
-func _on_life_timer_timeout():
-	queue_free()
-
 
 func _on_hit_box_area_entered(hurtbox: HurtBox):
 	if !_peircing:
