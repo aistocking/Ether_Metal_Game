@@ -2,6 +2,7 @@ extends Node2D
 
 var _player
 
+signal full_fire
 signal done
 # Called when the node enters the scene tree for the first time.
 func _ready():

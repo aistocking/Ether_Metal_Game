@@ -33,9 +33,7 @@ func enter(_msg := {}) -> void:
 	if _msg.has("Ultimate"):
 		is_ult = true
 		if _msg.Ultimate == "beam":
-			player.ult_beam()
 			CurrentSpecial = SPECIALS.ULTBEAM
-			player.velocity.x = player.facing_direction * -30
 		else:
 			CurrentSpecial = SPECIALS.ULTTRIGGER
 	if !player.is_on_floor():
@@ -111,6 +109,7 @@ func reset_cancel() -> void:
 
 func designate_attack() -> void:
 	if is_ult:
+		player.ult_beam()
 		return
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):

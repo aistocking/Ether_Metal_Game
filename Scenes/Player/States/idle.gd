@@ -18,22 +18,25 @@ func handle_input(event) -> void:
 			if Input.is_action_pressed("Offensive Trigger") and Input.is_action_pressed("Defensive Trigger"):
 				if event.is_action_pressed("Face Buttons") and player.charge_level >= 4:
 					state_machine.transition_to("Special Attack", { "Ultimate": "beam" })
+					return
 					
 			elif Input.is_action_pressed("Offensive Trigger"):
 				if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
 					state_machine.transition_to("Special Attack", { "IsOffensive": true })
+					return
 	
 			elif Input.is_action_pressed("Defensive Trigger"):
 				if event.is_action_pressed("Face Buttons") && player.charge_level != 0:
 					state_machine.transition_to("Special Attack", { "IsOffensive": false })
-		else:
-			if event.is_action_pressed("Jump"):
-				state_machine.transition_to("Jump")
+					return
+		
+		if event.is_action_pressed("Jump"):
+			state_machine.transition_to("Jump")
 	
-			if event.is_action_pressed("Shot"):
-				if player._basic_shot() == true:
-					player.player_animations.stop()
-					player.player_animations.play("IdleShot")
+		if event.is_action_pressed("Shot"):
+			if player._basic_shot() == true:
+				player.player_animations.stop()
+				player.player_animations.play("IdleShot")
 	
 		if event.is_action_pressed("Dash"):
 			var direction = player.facing_direction

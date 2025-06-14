@@ -332,6 +332,13 @@ func mine_thrower() -> void:
 func recoil() -> void:
 	_remove_charge_level()
 
+
+"""
+
+Ultimates
+
+"""
+
 func ult_beam() -> void:
 	$Hurtbox/HurtCollision.set_deferred("disabled", true)
 	var instance = _ULT_BEAM_SCENE.instantiate()
@@ -340,7 +347,17 @@ func ult_beam() -> void:
 	await player_animations.animation_finished
 	_hud.darken_screen(false)
 	$SpawnMarkers/BusterPosition.add_child(instance)
+	instance.connect("full_fire", ult_pushback)
 	instance.connect("done", reset_state)
+	instance.connect("done", ult_finish)
+
+func ult_pushback() -> void:
+	velocity.x = facing_direction * -30
+
+func ult_finish() -> void:
+	$Hurtbox/HurtCollision.set_deferred("disabled", false)
+	velocity.x = 0
+	
 
 
 """
@@ -423,7 +440,6 @@ func reset_dash_properties() -> void:
 	spent_dash = false
 
 func reset_state() -> void:
-	$Hurtbox/HurtCollision.set_deferred("disabled", false)
 	if is_on_floor():
 		_player_state_machine.transition_to("Idle")
 	else:

@@ -232,6 +232,20 @@ tracks/17/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath(".")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"full_fire"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kjmmk"]
 resource_name = "End"
@@ -1242,6 +1256,7 @@ gravity = Vector3(0, 0, 0)
 anim_offset_max = 1.0
 
 [node name="Ultima" type="Node2D" groups=["Player_Specials"]]
+z_index = 2
 script = ExtResource("1_u7sl6")
 
 [node name="StraightProjectile" type="Node" parent="."]
@@ -1314,7 +1329,7 @@ offset_bottom = 1.0
 
 [node name="rings_top" type="AnimatedSprite2D" parent="Projectile"]
 visible = false
-z_index = 1
+z_index = 15
 sprite_frames = SubResource("SpriteFrames_2gpxg")
 autoplay = "default"
 offset = Vector2(-7, -43)
@@ -1322,7 +1337,7 @@ flip_h = true
 
 [node name="rings_bottom" type="AnimatedSprite2D" parent="Projectile"]
 visible = false
-z_index = 1
+z_index = 15
 sprite_frames = SubResource("SpriteFrames_2gpxg")
 autoplay = "default"
 offset = Vector2(-7, 43)

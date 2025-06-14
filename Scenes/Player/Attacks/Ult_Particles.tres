@@ -2,15 +2,15 @@
 
 [resource]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(130, 130, 1)
+emission_shape_scale = Vector3(80, 80, 1)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.8
+emission_ring_inner_radius = 0.0
 direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
-radial_accel_min = -250.0
-radial_accel_max = -250.0
+radial_accel_min = -700.0
+radial_accel_max = -700.0
 tangential_accel_min = -2.23517e-06
 tangential_accel_max = -2.23517e-06
