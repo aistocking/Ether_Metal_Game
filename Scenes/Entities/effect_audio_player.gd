@@ -8,6 +8,6 @@ func _ready():
 func _on_volume_changed():
 	volume_db = Global.get_effect_volume()
 
-func play_sound(effect: AudioStream) -> void:
+func play_sound(effect: AudioStream, start_time: float=0.0) -> void:
 	set_stream(effect)
-	play()
+	play(start_time)

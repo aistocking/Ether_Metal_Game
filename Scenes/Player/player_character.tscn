@@ -1,11 +1,13 @@
-[gd_scene load_steps=72 format=3 uid="uid://b82se4wd684p2"]
+[gd_scene load_steps=75 format=3 uid="uid://b82se4wd684p2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="AudioStream" uid="uid://b8e8phdoc6vqs" path="res://Sound/MediumExplosion.wav" id="2_01bhd"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2vd2u"]
 [ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
 [ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="4_msi58"]
+[ext_resource type="AudioStream" uid="uid://bctb1rw7ijmoq" path="res://Sound/UltimateCharge.wav" id="4_sf4ba"]
 [ext_resource type="Shader" path="res://Scenes/Player/player_character_charge_FX.gdshader" id="5_g7vld"]
+[ext_resource type="Material" uid="uid://sbys7kit02l3" path="res://Scenes/Player/Attacks/Ult_Particles.tres" id="5_pqvhv"]
 [ext_resource type="Texture2D" uid="uid://dkf5b4m0ywfnu" path="res://Art/Player/PlayerSprite_BG_Leg.png" id="6_wjs46"]
 [ext_resource type="Texture2D" uid="uid://g5rychecuajn" path="res://Art/Player/PlayerSprite_BG_Arm.png" id="7_kgfhf"]
 [ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="8_u0rhq"]
@@ -2442,6 +2444,66 @@ tracks/11/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:radial_accel")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-700, -700)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:emission_shape_scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(80, 80, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:lifetime")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:emission_ring_inner_radius")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_x3up6"]
 resource_name = "Run"
@@ -3017,6 +3079,181 @@ tracks/7/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_tplx7"]
+resource_name = "Ult_Charge"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/BGArm:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite/BGLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprite/Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprite/Head:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerSprite/FGLeg:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerSprite/FGArm:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlayerSprite/FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [41]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_pqvhv")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:emission_shape_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.6, 2),
+"transitions": PackedFloat32Array(1.8025, 1, 1),
+"update": 0,
+"values": [Vector3(130, 130, 1), Vector3(10, 10, 1), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:radial_accel")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1.41421, 1),
+"update": 0,
+"values": [Vector2(-250, -250), Vector2(-700, -700)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:lifetime")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1.68179, 1, 1),
+"update": 0,
+"values": [1.0, 0.6, 0.1]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("SpawnMarkers/BusterPosition/UltParticles:process_material:emission_ring_inner_radius")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.8, 0.0]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AudioStreamPlayer")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("4_sf4ba"), 0.0],
+"method": &"play_sound"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_mfwir"]
 resource_name = "Upper"
 length = 0.05
@@ -3342,6 +3579,7 @@ _data = {
 "Stand": SubResource("Animation_1uagx"),
 "Stinger": SubResource("Animation_k64yk"),
 "Stinger_Loop": SubResource("Animation_7rt8t"),
+"Ult_Charge": SubResource("Animation_tplx7"),
 "Upper": SubResource("Animation_mfwir"),
 "Upper_Loop": SubResource("Animation_yjxg3"),
 "Wall_Slide": SubResource("Animation_fom4x")
@@ -3454,6 +3692,17 @@ collision_mask = 16
 [node name="BusterPosition" type="Marker2D" parent="SpawnMarkers"]
 position = Vector2(21, -2)
 
+[node name="UltParticles" type="GPUParticles2D" parent="SpawnMarkers/BusterPosition"]
+z_index = 15
+emitting = false
+amount = 20
+process_material = ExtResource("5_pqvhv")
+lifetime = 0.4
+speed_scale = 1.25
+randomness = 0.11
+trail_enabled = true
+trail_sections = 4
+
 [node name="DustPosition" type="Marker2D" parent="SpawnMarkers"]
 position = Vector2(-13, 19)
 
@@ -3463,6 +3712,7 @@ position = Vector2(-13, 19)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+stream = ExtResource("4_sf4ba")
 volume_db = -15.928
 script = ExtResource("4_msi58")
 

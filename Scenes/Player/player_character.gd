@@ -15,6 +15,7 @@ var facing_direction: int = 1
 var _is_shooting := false
 var is_dashing := false
 var can_cancel := true
+var energy_drain := false
 
 var _charge_counter: int = 0
 var charge_level: int = 0
@@ -75,6 +76,9 @@ const _PARRY_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/parry_bur
 const _FLASH_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/flash_burst.tscn")
 const _ORBITAL_BIT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/orbital_bit.tscn")
 
+#Ultimate spacial scenes
+const _ULT_BEAM_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/ultimate_ether.tscn")
+
 #Basic shot scenes & systems
 const _SHOT_SCENE: PackedScene = preload("res://Scenes/Player/Attacks/shot.tscn")
 const _SHOT_EFFECT_SCENE: PackedScene = preload("res://Scenes/Effects/shot_effect.tscn")
@@ -105,6 +109,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal health_changed (value: int)
 signal energy_changed
+signal energy_lost
 signal die
 
 func _ready() -> void:
@@ -327,14 +332,36 @@ func mine_thrower() -> void:
 func recoil() -> void:
 	_remove_charge_level()
 
+func ult_beam() -> void:
+	$Hurtbox/HurtCollision.set_deferred("disabled", true)
+	var instance = _ULT_BEAM_SCENE.instantiate()
+	player_animations.play("Ult_Charge")
+	_hud.darken_screen(true)
+	await player_animations.animation_finished
+	_hud.darken_screen(false)
+	$SpawnMarkers/BusterPosition.add_child(instance)
+	instance.connect("done", reset_state)
+
+
+"""
+
+Sub-Systems
+
+"""
 
 func _handle_charging() -> void:
 	if _charge_counter >= _max_charge_level*256:
 		pass
+	if energy_drain:
+		if _charge_counter <= 0:
+			emit_signal("energy_lost")
+			energy_drain = false
+		else:
+			_charge_counter -= 8
 	else:
 		_charge_counter += 1
-		if _charge_counter%16 == 0:
-			emit_signal("energy_changed")
+	if _charge_counter%16 == 0:
+		emit_signal("energy_changed")
 
 
 func _remove_charge_level() -> void:
@@ -394,6 +421,13 @@ func set_dash_properties(spent: bool) -> void:
 func reset_dash_properties() -> void:
 	is_dashing = false
 	spent_dash = false
+
+func reset_state() -> void:
+	$Hurtbox/HurtCollision.set_deferred("disabled", false)
+	if is_on_floor():
+		_player_state_machine.transition_to("Idle")
+	else:
+		_player_state_machine.transition_to("Falling")
 
 func disable_collision(b: bool = false) -> void:
 	$PhysicalCollision.set_deferred("disabled", b)

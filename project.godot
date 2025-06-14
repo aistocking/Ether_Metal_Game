@@ -68,6 +68,7 @@ Player=""
 ReadyAnnounce=""
 Camera=""
 "Spawn Area"=""
+Player_Specials=""
 
 [gui]
 

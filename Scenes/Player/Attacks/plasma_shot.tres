@@ -1,44 +1,44 @@
 [gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://ubwwm1gge5e"]
 
-[ext_resource type="Texture2D" uid="uid://pjpncetcrugi" path="res://Art/Effects/Plasma_Shot.png" id="1_oun1a"]
+[ext_resource type="Texture2D" uid="uid://pjpncetcrugi" path="res://Art/Effects/Plasma_Shot.png" id="1_fmi8j"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypig5"]
-atlas = ExtResource("1_oun1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b326b"]
+atlas = ExtResource("1_fmi8j")
 region = Rect2(0, 0, 41, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcwu2"]
-atlas = ExtResource("1_oun1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmymu"]
+atlas = ExtResource("1_fmi8j")
 region = Rect2(41, 0, 41, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_to6c3"]
-atlas = ExtResource("1_oun1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpq3b"]
+atlas = ExtResource("1_fmi8j")
 region = Rect2(0, 37, 41, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hryoy"]
-atlas = ExtResource("1_oun1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tocw3"]
+atlas = ExtResource("1_fmi8j")
 region = Rect2(41, 37, 41, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dvjt"]
-atlas = ExtResource("1_oun1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohepi"]
+atlas = ExtResource("1_fmi8j")
 region = Rect2(0, 74, 41, 37)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ypig5")
+"texture": SubResource("AtlasTexture_b326b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qcwu2")
+"texture": SubResource("AtlasTexture_kmymu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_to6c3")
+"texture": SubResource("AtlasTexture_qpq3b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hryoy")
+"texture": SubResource("AtlasTexture_tocw3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0dvjt")
+"texture": SubResource("AtlasTexture_ohepi")
 }],
 "loop": true,
 "name": &"default",

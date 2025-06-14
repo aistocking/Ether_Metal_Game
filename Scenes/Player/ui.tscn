@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqhc1a1233nt4"]
+[gd_scene load_steps=20 format=3 uid="uid://dqhc1a1233nt4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
@@ -14,6 +14,34 @@
 [ext_resource type="Texture2D" uid="uid://ctgsw0nxfbwx2" path="res://Art/MiscUI/Hud_Charge_Bar_Pellet_Endcap.png" id="12_j8ewg"]
 [ext_resource type="Texture2D" uid="uid://d1aqotassip3b" path="res://Art/MiscUI/Hud_Health_Bar.png" id="13_1dkpj"]
 [ext_resource type="Texture2D" uid="uid://c4q7jr8l0356y" path="res://Art/MiscUI/Hud_Health_Energy.png" id="14_1xsce"]
+
+[sub_resource type="Animation" id="Animation_fueq6"]
+resource_name = "Fade_Black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WholeScreen/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WholeScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.317647)]
+}
 
 [sub_resource type="Animation" id="Animation_juq0u"]
 length = 0.001
@@ -40,6 +68,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WholeScreen/ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WholeScreen/ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_d2wun"]
@@ -71,8 +123,39 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_14jf7"]
+resource_name = "Fade_Normal"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WholeScreen/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WholeScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.317647), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxe1"]
 _data = {
+"Fade_Black": SubResource("Animation_fueq6"),
+"Fade_Normal": SubResource("Animation_14jf7"),
 "RESET": SubResource("Animation_juq0u"),
 "Whiteout": SubResource("Animation_d2wun")
 }
@@ -87,6 +170,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="WholeScreen"]
+visible = false
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 222.0
+color = Color(0, 0, 0, 0)
 
 [node name="ReadyIntroControl" parent="WholeScreen" instance=ExtResource("2_72e41")]
 layout_mode = 1

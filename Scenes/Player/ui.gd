@@ -114,6 +114,13 @@ func _screen_whiteout() -> void:
 	Engine.time_scale = 1
 	Global.reset_stage()
 
+func darken_screen(darken: bool) -> void:
+	if darken:
+		AnimPlayer.play("Fade_Black")
+	else:
+		AnimPlayer.play("Fade_Normal")
+	
+
 func set_charge_bar() -> void:
 	match Global.get_charge_capacitor_number():
 		0:

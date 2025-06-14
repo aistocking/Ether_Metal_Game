@@ -12,6 +12,7 @@ extends Node2D
 
 func _ready() -> void:
 	%Sprites.frame = randi_range(0,4)
+	%GPUParticles2D.emitting = true
 
 
 func _on_hit(area: Area2D) -> void:

@@ -69,7 +69,6 @@ z_index = 1
 texture_filter = 1
 sprite_frames = ExtResource("2_mq5uu")
 autoplay = "default"
-frame = 2
 frame_progress = 0.50866
 
 [node name="CollisionPoint" type="Marker2D" parent="Projectile"]
@@ -80,6 +79,7 @@ position = Vector2(18, 0)
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_3to26")
 position = Vector2(-4.71, 0)
+emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_skxi2")
 texture = ExtResource("3_v3s2x")

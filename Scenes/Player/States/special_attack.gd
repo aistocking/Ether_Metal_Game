@@ -5,13 +5,16 @@ var player: CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-enum SPECIALS {HELMBRKR, UPPER, PLASMA, BARRAGE, STINGER, BLADE, BLINK, FLASH, PARRY, DISENGAGE, NONE}
+enum SPECIALS {HELMBRKR, UPPER, PLASMA, BARRAGE, STINGER, BLADE, BLINK, FLASH, PARRY, DISENGAGE, ULTBEAM, ULTTRIGGER, NONE}
 
 var CurrentSpecial: SPECIALS
 
 var IsOffensive: bool
+var is_ult: bool
 var IsInAir: bool
 var CanCancel: bool
+
+var outside_signal
 
 var direction: int
 
@@ -27,6 +30,14 @@ func enter(_msg := {}) -> void:
 		direction = player.facing_direction
 	if _msg.has("IsOffensive"):
 		IsOffensive = _msg.IsOffensive
+	if _msg.has("Ultimate"):
+		is_ult = true
+		if _msg.Ultimate == "beam":
+			player.ult_beam()
+			CurrentSpecial = SPECIALS.ULTBEAM
+			player.velocity.x = player.facing_direction * -30
+		else:
+			CurrentSpecial = SPECIALS.ULTTRIGGER
 	if !player.is_on_floor():
 		IsInAir = true
 	else:
@@ -91,12 +102,16 @@ func physics_update(delta: float) -> void:
 				pass
 			SPECIALS.BLADE:
 				pass
+			SPECIALS.ULTBEAM:
+				player.create_dust()
 	player.move_and_slide()
 
 func reset_cancel() -> void:
 	CanCancel = true
 
 func designate_attack() -> void:
+	if is_ult:
+		return
 	if IsOffensive == true:
 		if Input.is_action_pressed("Bottom Button"):
 			_stinger()
@@ -166,7 +181,6 @@ func _flash() -> void:
 
 func _orbital_bit() -> void:
 	player.orbital_bit()
-
 
 func _on_player_anims_animation_finished(anim_name):
 	#In air beviour
