@@ -54,7 +54,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Sliding")
 	
 	player.velocity.y += gravity * delta
-	player.velocity.y = clamp(player.velocity.y, -100, 800)
+	player.velocity.y = clamp(player.velocity.y, -100, 600)
 	player.handle_horizontal()
 	player.move_and_slide()
 	

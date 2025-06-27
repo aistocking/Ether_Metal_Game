@@ -36,7 +36,6 @@ func _on_save_slot_1_pressed():
 	_sfx_player.play_sound(_charge_shot_sfx)
 	var instance = _CHARGE_SHOT_SCENE.instantiate()
 	instance.global_position = $Liliya1/BusterPosition.global_position
-	instance.set_direction(Vector2(1, 0))
 	add_child(instance)
 	await $AnimationPlayer.animation_finished
 	Global.change_scene("res://Scenes/Misc/menus/stage_select.tscn")

@@ -26,7 +26,3 @@ func _spawn() -> void:
 	call_deferred("add_child", instance)
 	if not Engine.is_editor_hint():
 		instance.connect("died", _spawn)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

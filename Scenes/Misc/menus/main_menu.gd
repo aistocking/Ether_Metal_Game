@@ -24,7 +24,6 @@ func lily_shot_animation() -> void:
 	$AnimationPlayer.play("LilyShot")
 	var instance = _CHARGE_SHOT_SCENE.instantiate()
 	instance.global_position = $PlayerSprite/BusterPosition.global_position
-	instance.set_direction(Vector2(1, 0))
 	add_child(instance)
 
 func _on_start_pressed() -> void:

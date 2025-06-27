@@ -79,7 +79,7 @@ func _on_fullscreen_text_pressed():
 		$CenterContainer/HOptionsContainer/RightVBox/CheckBox.texture.region.position.x = 0
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	_match_scale()
-z
+
 func _on_controls_text_pressed():
 	pass # Replace with function body.
 
