@@ -461,7 +461,7 @@ scroll_scale = Vector2(1.2, 1.4)
 scroll_offset = Vector2(65, -64)
 repeat_size = Vector2(189, 0)
 autoscroll = Vector2(6, 0)
-repeat_times = 5
+repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
 texture = ExtResource("8_hl5tf")

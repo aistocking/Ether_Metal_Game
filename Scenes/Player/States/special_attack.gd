@@ -36,6 +36,8 @@ func enter(_msg := {}) -> void:
 			CurrentSpecial = SPECIALS.ULTBEAM
 		else:
 			CurrentSpecial = SPECIALS.ULTTRIGGER
+	else:
+		is_ult = false
 	if !player.is_on_floor():
 		IsInAir = true
 	else:

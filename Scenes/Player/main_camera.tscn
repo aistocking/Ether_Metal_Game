@@ -19,3 +19,12 @@ collision_mask = 2048
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_area"]
 shape = SubResource("RectangleShape2D_pclmu")
 debug_color = Color(0.584314, 0.545098, 0.462745, 0.156863)
+
+[node name="BlackFade" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_as_relative = false
+offset_left = -483.0
+offset_top = -264.0
+offset_right = 480.0
+offset_bottom = 259.0
+color = Color(0, 0, 0, 1)

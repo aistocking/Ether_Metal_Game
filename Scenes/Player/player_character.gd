@@ -343,9 +343,9 @@ func ult_beam() -> void:
 	$Hurtbox/HurtCollision.set_deferred("disabled", true)
 	var instance = _ULT_BEAM_SCENE.instantiate()
 	player_animations.play("Ult_Charge")
-	_hud.darken_screen(true)
+	_camera.darken_screen(true)
 	await player_animations.animation_finished
-	_hud.darken_screen(false)
+	_camera.darken_screen(false)
 	$SpawnMarkers/BusterPosition.add_child(instance)
 	instance.connect("full_fire", ult_pushback)
 	instance.connect("done", reset_state)
@@ -377,8 +377,7 @@ func _handle_charging() -> void:
 			_charge_counter -= 8
 	else:
 		_charge_counter += 1
-	if _charge_counter%16 == 0:
-		emit_signal("energy_changed")
+	emit_signal("energy_changed")
 
 
 func _remove_charge_level() -> void:

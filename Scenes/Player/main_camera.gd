@@ -16,7 +16,6 @@ func _physics_process(_delta):
 	position = _player.position
 	position.y -= 15
 	
-	
 	if _shake_strength > 0.0:
 		offset = _random_offset()
 
@@ -24,6 +23,15 @@ func _physics_process(_delta):
 func apply_shake(strength: float, time: float) -> void:
 	_shake_strength = strength
 	create_tween().tween_property(self, "_shake_strength", 0.0, time)
+
+func darken_screen(darken: bool) -> void:
+	var tween = create_tween()
+	var darken_value
+	if darken:
+		darken_value = 0.5
+	else:
+		darken_value = 0
+	tween.tween_property($BlackFade, "modulate:a", darken_value, 0.1) 
 
 func _random_offset() -> Vector2:
 	return Vector2(_rng.randf_range(-_shake_strength, _shake_strength), _rng.randf_range(-_shake_strength, _shake_strength))
