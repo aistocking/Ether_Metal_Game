@@ -1,32 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://uikqyx23nbrd"]
+[gd_scene load_steps=2 format=3 uid="uid://uikqyx23nbrd"]
 
 [ext_resource type="Script" path="res://Scenes/Stages/Objects/camera_bounds.gd" id="1_bmqie"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bddtt"]
-size = Vector2(124, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihlj4"]
-size = Vector2(20, 40)
 
 [node name="CameraBounds" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_bmqie")
 
-[node name="StartTrigger" type="Area2D" parent="."]
+[node name="AreaTrigger" type="Area2D" parent="."]
 collision_layer = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrigger"]
-shape = SubResource("RectangleShape2D_bddtt")
-
-[node name="EndTrigger" type="Area2D" parent="."]
-collision_layer = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
-shape = SubResource("RectangleShape2D_ihlj4")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaTrigger"]
+build_mode = 1
 
 [node name="BottomLeftPosition" type="Marker2D" parent="."]
 
 [node name="TopRightPosition" type="Marker2D" parent="."]
 
-[connection signal="body_entered" from="StartTrigger" to="." method="_on_start_trigger_body_entered"]
-[connection signal="body_entered" from="EndTrigger" to="." method="_on_end_trigger_body_entered"]
+[connection signal="body_entered" from="AreaTrigger" to="." method="_on_area_trigger_body_entered"]
