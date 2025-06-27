@@ -6,7 +6,7 @@ extends Node2D
 
 func _ready():
 	Global.change_music(_stage_bgm, 17.32)
-	_camera.change_camera_limits($CameraBounds/BottomLeftPosition.global_position, $CameraBounds/TopRightPosition.global_position, 0, false)
+	_camera.change_camera_limits($Camera_Triggers/CameraBounds1/BottomLeftPosition.global_position, $Camera_Triggers/CameraBounds1/TopRightPosition.global_position, 0, false)
 	$Main_Camera/WholeScreenParticles/GPUParticles2D.emitting = true
 	_spawn_enemy()
 	$BossTransitionDoor.is_boss_door = true
