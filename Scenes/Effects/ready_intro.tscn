@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b82fv4j54eyej"]
 
 [ext_resource type="AudioStream" uid="uid://dywcx1eshyf2y" path="res://Sound/AnnouncerReady.wav" id="3_85sjr"]
-[ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="6_gvvig"]
+[ext_resource type="Script" uid="uid://c5wlbpfg873yh" path="res://Scenes/Entities/effect_audio_player.gd" id="6_gvvig"]
 [ext_resource type="Texture2D" uid="uid://d0y5g6a3qg8ql" path="res://Art/Effects/READY_v2.png" id="7_ij0vb"]
 
 [sub_resource type="Animation" id="Animation_lh8uf"]
@@ -102,8 +102,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_basdf"]
 _data = {
-"RESET": SubResource("Animation_lh8uf"),
-"intro": SubResource("Animation_m7fwf")
+&"RESET": SubResource("Animation_lh8uf"),
+&"intro": SubResource("Animation_m7fwf")
 }
 
 [node name="ReadyIntroControl" type="Control"]

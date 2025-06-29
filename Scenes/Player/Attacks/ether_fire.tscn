@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://blbjx2n5kjy2r"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/ether_fire.gd" id="2_xdqqk"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_5mge3"]
+[ext_resource type="Script" uid="uid://8bw8esdqoobo" path="res://Scenes/Player/Attacks/ether_fire.gd" id="2_xdqqk"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="3_5mge3"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="3_gl5j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puyqu"]

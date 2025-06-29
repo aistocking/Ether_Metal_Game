@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://dlbn6aiglmufi"]
 
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2x7ef"]
-[ext_resource type="Script" path="res://Scenes/Entities/Movement/straight_projectile.gd" id="2_cy5jk"]
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/plasma_shot.gd" id="2_ewlw1"]
+[ext_resource type="Script" uid="uid://bwa1so0ydlvd8" path="res://Scenes/Entities/Movement/straight_projectile.gd" id="2_cy5jk"]
+[ext_resource type="Script" uid="uid://dl7vxjnoqlbbe" path="res://Scenes/Player/Attacks/plasma_shot.gd" id="2_ewlw1"]
 [ext_resource type="SpriteFrames" uid="uid://ubwwm1gge5e" path="res://Scenes/Player/Attacks/plasma_shot.tres" id="2_mq5uu"]
 [ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_v3s2x"]
-[ext_resource type="Script" path="res://Scenes/Entities/effect_on_hit.gd" id="3_vxxfu"]
+[ext_resource type="Script" uid="uid://cvqpnu4pmjaao" path="res://Scenes/Entities/effect_on_hit.gd" id="3_vxxfu"]
 [ext_resource type="PackedScene" uid="uid://cg8bjbluftn52" path="res://Scenes/Effects/large_shot_effect.tscn" id="4_axnam"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="8_1xuot"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="8_1xuot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owdon"]
 size = Vector2(13, 12)
@@ -81,9 +81,9 @@ material = SubResource("CanvasItemMaterial_3to26")
 position = Vector2(-4.71, 0)
 emitting = false
 amount = 12
-process_material = SubResource("ParticleProcessMaterial_skxi2")
 texture = ExtResource("3_v3s2x")
 lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_skxi2")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.3

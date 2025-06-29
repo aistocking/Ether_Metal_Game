@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhw0wlknlguda"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/hit_fx.gd" id="1_wktkv"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="2_uavp7"]
+[ext_resource type="Script" uid="uid://b61ti4aiexfic" path="res://Scenes/Effects/hit_fx.gd" id="1_wktkv"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="2_uavp7"]
 
 [node name="HitFX" type="Node2D"]
 script = ExtResource("1_wktkv")

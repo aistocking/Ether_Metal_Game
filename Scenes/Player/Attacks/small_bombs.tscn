@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://disj0ma6ictti"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/small_bombs.gd" id="1_m5cj0"]
+[ext_resource type="Script" uid="uid://7sh4gool66fv" path="res://Scenes/Player/Attacks/small_bombs.gd" id="1_m5cj0"]
 [ext_resource type="Texture2D" uid="uid://bg33im4vqhq0u" path="res://Art/Effects/Small_Bomb.png" id="2_w6tpw"]
 [ext_resource type="Texture2D" uid="uid://c4kj5wlgsypjb" path="res://Art/Effects/Small_Explosion.png" id="3_lfifk"]
-[ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="4_6cvqn"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="5_72blc"]
+[ext_resource type="Script" uid="uid://c5wlbpfg873yh" path="res://Scenes/Entities/effect_audio_player.gd" id="4_6cvqn"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="5_72blc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fsw7"]
 size = Vector2(14, 14)

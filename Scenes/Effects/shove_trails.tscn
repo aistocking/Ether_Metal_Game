@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3dd703i0q25l"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/shove_trails.gd" id="1_q4j4l"]
+[ext_resource type="Script" uid="uid://d0asa3q50h7uf" path="res://Scenes/Effects/shove_trails.gd" id="1_q4j4l"]
 [ext_resource type="Texture2D" uid="uid://cg0jvtebp70ok" path="res://Art/Effects/Thrown_Trails.png" id="2_roqwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iu38p"]

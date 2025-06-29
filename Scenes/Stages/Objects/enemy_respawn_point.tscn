@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dedswgfkrlblf"]
 
-[ext_resource type="Script" path="res://Scenes/Stages/Objects/enemy_respawn_point.gd" id="1_hs48x"]
+[ext_resource type="Script" uid="uid://b3163o1rdggx5" path="res://Scenes/Stages/Objects/enemy_respawn_point.gd" id="1_hs48x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxkoi"]
 size = Vector2(4, 4)

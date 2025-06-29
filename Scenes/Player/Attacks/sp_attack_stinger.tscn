@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cs6lqe1fh5v3b"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/sp_attack_stinger.gd" id="1_24trm"]
+[ext_resource type="Script" uid="uid://dvje1g7ufa8n1" path="res://Scenes/Player/Attacks/sp_attack_stinger.gd" id="1_24trm"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_hopnt"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_jed37"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="3_jed37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abv7y"]
 size = Vector2(12, 22)

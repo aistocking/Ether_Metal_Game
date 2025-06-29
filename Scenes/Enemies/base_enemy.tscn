@@ -1,29 +1,29 @@
 [gd_scene load_steps=52 format=3 uid="uid://dusmkdis6va78"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
+[ext_resource type="Script" uid="uid://dhdg3ehikcwyc" path="res://Scenes/Enemies/base_enemy.gd" id="1_aad6u"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="1_r2idr"]
-[ext_resource type="Script" path="res://Scenes/Misc/ui/health_progress_bar.gd" id="2_a06lt"]
+[ext_resource type="Script" uid="uid://cxmfsshadfdls" path="res://Scenes/Misc/ui/health_progress_bar.gd" id="2_a06lt"]
 [ext_resource type="PackedScene" uid="uid://byuc5bs66nl24" path="res://Scenes/Entities/health_component.tscn" id="2_yv6wp"]
-[ext_resource type="Script" path="res://Scenes/Misc/ui/stun_progress_bar.gd" id="3_7pqdh"]
+[ext_resource type="Script" uid="uid://ck786summbafy" path="res://Scenes/Misc/ui/stun_progress_bar.gd" id="3_7pqdh"]
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="3_juej3"]
 [ext_resource type="Texture2D" uid="uid://mnjsyo2o5lvk" path="res://Art/Enemies/MeleeEnemy.png" id="4_kj2ch"]
 [ext_resource type="Texture2D" uid="uid://bjmiy7hnn30vd" path="res://Art/Effects/Stun_Cracks.png" id="5_2d5lv"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="6_8kifp"]
 [ext_resource type="Texture2D" uid="uid://dncyse1f5l1rr" path="res://Art/Effects/Glass_Shard_Small.png" id="6_33q85"]
-[ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="7_i6sjv"]
+[ext_resource type="Script" uid="uid://cm456leh1po0u" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="7_i6sjv"]
 [ext_resource type="Texture2D" uid="uid://bddp5aa44kwa" path="res://Art/Effects/Glass_Shard_Medium.png" id="7_kua0b"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_state_machine.gd" id="7_m2w8q"]
+[ext_resource type="Script" uid="uid://b3pbf3juu4w4k" path="res://Scenes/Enemies/enemy_state_machine.gd" id="7_m2w8q"]
 [ext_resource type="Texture2D" uid="uid://du2n8jb1np5pg" path="res://Art/Effects/Stun_Break_Shine.png" id="8_h4tgd"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_idle.gd" id="8_t74am"]
+[ext_resource type="Script" uid="uid://dexfjlnvqdv7w" path="res://Scenes/Enemies/States/enemy_idle.gd" id="8_t74am"]
 [ext_resource type="Texture2D" uid="uid://py5xfvclxfqr" path="res://Art/Effects/EnemyAttackIndicator.png" id="9_i4063"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_move.gd" id="9_ox7mg"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_attack.gd" id="10_02p52"]
+[ext_resource type="Script" uid="uid://kc7xf8bj3tf3" path="res://Scenes/Enemies/States/enemy_move.gd" id="9_ox7mg"]
+[ext_resource type="Script" uid="uid://db0ds6ibgu1db" path="res://Scenes/Enemies/States/enemy_attack.gd" id="10_02p52"]
 [ext_resource type="PackedScene" uid="uid://d0job8yom0pgy" path="res://Scenes/Entities/enemy_hit_box.tscn" id="10_ljnv3"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_die.gd" id="11_8w425"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_stun.gd" id="12_8nq0x"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_recover.gd" id="13_jefyu"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_shove.gd" id="15_pt4qx"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_bounce.gd" id="16_obhxj"]
+[ext_resource type="Script" uid="uid://dw4dpu30acb4r" path="res://Scenes/Enemies/States/enemy_die.gd" id="11_8w425"]
+[ext_resource type="Script" uid="uid://ww4w28pwrqm2" path="res://Scenes/Enemies/States/enemy_stun.gd" id="12_8nq0x"]
+[ext_resource type="Script" uid="uid://cdijb2ebkhma6" path="res://Scenes/Enemies/States/enemy_recover.gd" id="13_jefyu"]
+[ext_resource type="Script" uid="uid://detw76bb64xyg" path="res://Scenes/Enemies/enemy_shove.gd" id="15_pt4qx"]
+[ext_resource type="Script" uid="uid://yyoxbhinw44o" path="res://Scenes/Enemies/enemy_bounce.gd" id="16_obhxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jc2lx"]
 size = Vector2(23, 36)
@@ -262,9 +262,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvu4t"]
 _data = {
-"Attack1": SubResource("Animation_6jaer"),
-"Idle": SubResource("Animation_6st1q"),
-"RESET": SubResource("Animation_7ug4t")
+&"Attack1": SubResource("Animation_6jaer"),
+&"Idle": SubResource("Animation_6st1q"),
+&"RESET": SubResource("Animation_7ug4t")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abci2"]

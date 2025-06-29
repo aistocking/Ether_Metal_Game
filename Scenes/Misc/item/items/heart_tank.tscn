@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://dyhhn3flnctub"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_0ky4q"]
+[ext_resource type="Script" uid="uid://61h4fomar7wq" path="res://Scenes/Misc/item/item.gd" id="1_0ky4q"]
 [ext_resource type="Texture2D" uid="uid://ciacl4q7scsiu" path="res://Art/MiscUI/HeartTank.png" id="1_am05w"]
-[ext_resource type="Script" path="res://Scenes/Misc/item/action/max_health_pickup_action.gd" id="4_6vtri"]
+[ext_resource type="Script" uid="uid://cxlupfqb8ux53" path="res://Scenes/Misc/item/action/max_health_pickup_action.gd" id="4_6vtri"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkojq"]
 atlas = ExtResource("1_am05w")

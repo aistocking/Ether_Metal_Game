@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="1_cp1ji"]
 [ext_resource type="Texture2D" uid="uid://bqecow204r0x2" path="res://Art/MiscUI/Boss_Warning_Text.png" id="1_m2juq"]
-[ext_resource type="Script" path="res://Scenes/Misc/cutscenes/warning_cutscene.gd" id="1_yd0i4"]
+[ext_resource type="Script" uid="uid://pqke6qj8j54m" path="res://Scenes/Misc/cutscenes/warning_cutscene.gd" id="1_yd0i4"]
 [ext_resource type="Texture2D" uid="uid://berv5m75xg3ay" path="res://Art/MiscUI/Boss_Warning_Text_Border.png" id="2_w63nd"]
 [ext_resource type="AudioStream" uid="uid://dae4kdqh3qv2e" path="res://Sound/WarningSiren.wav" id="2_yjwc8"]
 
@@ -345,9 +345,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbexd"]
 _data = {
-"Intro": SubResource("Animation_w2lo8"),
-"RESET": SubResource("Animation_0bqg4"),
-"Stop": SubResource("Animation_auxra")
+&"Intro": SubResource("Animation_w2lo8"),
+&"RESET": SubResource("Animation_0bqg4"),
+&"Stop": SubResource("Animation_auxra")
 }
 
 [node name="WarningCutscene" type="CanvasLayer"]

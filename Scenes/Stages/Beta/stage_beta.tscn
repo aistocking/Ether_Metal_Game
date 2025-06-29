@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://db4lf6nbwbtfc"]
 
-[ext_resource type="Script" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
+[ext_resource type="Script" uid="uid://wupwg6yp7e3e" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="2_d3haq"]
 [ext_resource type="Texture2D" uid="uid://b04wncpl7i7a4" path="res://Art/Stages/BGs/Stage_Foundry_Back_00.png" id="2_qitdd"]
 [ext_resource type="PackedScene" uid="uid://dqhc1a1233nt4" path="res://Scenes/Player/ui.tscn" id="3_otbpm"]
@@ -15,7 +15,7 @@
 [ext_resource type="TileSet" uid="uid://b0dj0m5hj0hxl" path="res://Scenes/Stages/Beta/FoundryTiles00.tres" id="11_ri3q5"]
 [ext_resource type="PackedScene" uid="uid://c2t0rtnx8e44b" path="res://Scenes/Stages/Objects/armour_pod.tscn" id="12_vjg4t"]
 [ext_resource type="PackedScene" uid="uid://c6pn3v7e6fe24" path="res://Scenes/Stages/Objects/moving_platform.tscn" id="14_3vo1y"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_spawner.gd" id="16_aaebo"]
+[ext_resource type="Script" uid="uid://bvqqw42igl64k" path="res://Scenes/Enemies/enemy_spawner.gd" id="16_aaebo"]
 [ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/base_enemy.tscn" id="17_uh1rd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7rt"]

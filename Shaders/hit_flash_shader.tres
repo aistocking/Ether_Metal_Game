@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cu0sg16jvibe4"]
 
-[ext_resource type="Shader" path="res://Shaders/hit_effect.gdshader" id="1_baqa0"]
+[ext_resource type="Shader" uid="uid://b2bnvr2x2ob4y" path="res://Shaders/hit_effect.gdshader" id="1_baqa0"]
 
 [resource]
 resource_local_to_scene = true

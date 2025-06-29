@@ -110,8 +110,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_678mt"]
 _data = {
-"RESET": SubResource("Animation_bodf5"),
-"Wiggle": SubResource("Animation_yawa3")
+&"RESET": SubResource("Animation_bodf5"),
+&"Wiggle": SubResource("Animation_yawa3")
 }
 
 [node name="StunStars" type="Node2D"]

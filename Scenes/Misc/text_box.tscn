@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d3ltb80osdyjn"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/text_box.gd" id="1_fqpfd"]
+[ext_resource type="Script" uid="uid://cq0j7k71opowk" path="res://Scenes/Misc/text_box.gd" id="1_fqpfd"]
 [ext_resource type="SpriteFrames" uid="uid://b1ty3v3rgl1tk" path="res://Scenes/Misc/dialog/empty.tres" id="2_wuwow"]
 [ext_resource type="FontFile" uid="uid://cn2hufxsapyb4" path="res://Art/Early GameBoy.ttf" id="3_bj7lx"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="4_y2rsh"]

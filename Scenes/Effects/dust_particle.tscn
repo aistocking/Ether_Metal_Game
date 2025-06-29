@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://psdv02okv0ld"]
 
 [ext_resource type="Texture2D" uid="uid://cjcqfvq12a72o" path="res://Art/Effects/wallcling_dust.png" id="1_wxnrd"]
-[ext_resource type="Script" path="res://Scenes/Effects/dust_particle.gd" id="2_nmgoe"]
+[ext_resource type="Script" uid="uid://bw7luqn5un8x4" path="res://Scenes/Effects/dust_particle.gd" id="2_nmgoe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gw8ly"]
 atlas = ExtResource("1_wxnrd")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://wrccugt3qk28"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/helm_splitter_blast.gd" id="1_jspds"]
+[ext_resource type="Script" uid="uid://bjls0ay4an7ie" path="res://Scenes/Player/Attacks/helm_splitter_blast.gd" id="1_jspds"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_kcri8"]
 [ext_resource type="Texture2D" uid="uid://clrb00g5q7e63" path="res://Art/Effects/ChargeParticles.png" id="3_34x81"]
 [ext_resource type="Texture2D" uid="uid://xbfc01gmscgg" path="res://Art/Effects/Helm_Breaker_Effect.png" id="4_hi6dr"]

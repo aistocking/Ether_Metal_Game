@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1qkmlyj4ap76"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/parry_burst.gd" id="1_s2nq6"]
+[ext_resource type="Script" uid="uid://eyffetdtw61f" path="res://Scenes/Player/Attacks/parry_burst.gd" id="1_s2nq6"]
 [ext_resource type="Texture2D" uid="uid://d3id5f8ofm1d0" path="res://Art/Effects/Parry_Shine.png" id="2_3m3hh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mhy3"]

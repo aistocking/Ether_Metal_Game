@@ -1,35 +1,35 @@
 [gd_scene load_steps=75 format=3 uid="uid://b82se4wd684p2"]
 
-[ext_resource type="Script" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
+[ext_resource type="Script" uid="uid://do07f7l6aehwr" path="res://Scenes/Player/player_character.gd" id="1_otumk"]
 [ext_resource type="AudioStream" uid="uid://b8e8phdoc6vqs" path="res://Sound/MediumExplosion.wav" id="2_01bhd"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_2vd2u"]
 [ext_resource type="PackedScene" uid="uid://x4jrpbqt7kum" path="res://Scenes/Effects/charge_particles.tscn" id="3_yaeha"]
-[ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="4_msi58"]
+[ext_resource type="Script" uid="uid://c5wlbpfg873yh" path="res://Scenes/Entities/effect_audio_player.gd" id="4_msi58"]
 [ext_resource type="AudioStream" uid="uid://bctb1rw7ijmoq" path="res://Sound/UltimateCharge.wav" id="4_sf4ba"]
-[ext_resource type="Shader" path="res://Scenes/Player/player_character_charge_FX.gdshader" id="5_g7vld"]
+[ext_resource type="Shader" uid="uid://cp3hbl8g06x0i" path="res://Scenes/Player/player_character_charge_FX.gdshader" id="5_g7vld"]
 [ext_resource type="Material" uid="uid://sbys7kit02l3" path="res://Scenes/Player/Attacks/Ult_Particles.tres" id="5_pqvhv"]
 [ext_resource type="Texture2D" uid="uid://dkf5b4m0ywfnu" path="res://Art/Player/PlayerSprite_BG_Leg.png" id="6_wjs46"]
 [ext_resource type="Texture2D" uid="uid://g5rychecuajn" path="res://Art/Player/PlayerSprite_BG_Arm.png" id="7_kgfhf"]
-[ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="8_u0rhq"]
+[ext_resource type="Script" uid="uid://cm456leh1po0u" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="8_u0rhq"]
 [ext_resource type="Texture2D" uid="uid://c7gxxxpxsg06u" path="res://Art/Player/PlayerSprite_Body.png" id="8_vska3"]
-[ext_resource type="Script" path="res://Scenes/Player/player_state_machine.gd" id="9_c2ogj"]
+[ext_resource type="Script" uid="uid://bc1wg0vr0tar0" path="res://Scenes/Player/player_state_machine.gd" id="9_c2ogj"]
 [ext_resource type="Texture2D" uid="uid://dff8yqrudb0o4" path="res://Art/Player/PlayerSprite_Head.png" id="9_sccf4"]
 [ext_resource type="Texture2D" uid="uid://dg0twev5adrth" path="res://Art/Player/PlayerSprite_FG_Leg.png" id="10_3lgeu"]
 [ext_resource type="PackedScene" uid="uid://c1pstklyl2kp1" path="res://Scenes/Effects/death_particles.tscn" id="10_iq7bk"]
-[ext_resource type="Script" path="res://Scenes/Player/States/idle.gd" id="10_ycp14"]
+[ext_resource type="Script" uid="uid://sxdqptea0uxj" path="res://Scenes/Player/States/idle.gd" id="10_ycp14"]
 [ext_resource type="Texture2D" uid="uid://xgv8d7ajr8bi" path="res://Art/Player/PlayerSprite_FG_Arm.png" id="11_4ee58"]
-[ext_resource type="Script" path="res://Scenes/Player/States/run.gd" id="11_cvhcd"]
+[ext_resource type="Script" uid="uid://dkxymjyj23ncm" path="res://Scenes/Player/States/run.gd" id="11_cvhcd"]
 [ext_resource type="Texture2D" uid="uid://c4n3l8a5cy4f8" path="res://Art/Player/PlayerSprite_FX.png" id="12_i5hvy"]
-[ext_resource type="Script" path="res://Scenes/Player/States/jump.gd" id="12_nvavq"]
-[ext_resource type="Script" path="res://Scenes/Player/States/falling.gd" id="13_q85jw"]
+[ext_resource type="Script" uid="uid://iap03o11lntq" path="res://Scenes/Player/States/jump.gd" id="12_nvavq"]
+[ext_resource type="Script" uid="uid://dhaky2wjc6v7a" path="res://Scenes/Player/States/falling.gd" id="13_q85jw"]
 [ext_resource type="Texture2D" uid="uid://d3id5f8ofm1d0" path="res://Art/Effects/Parry_Shine.png" id="13_x6hto"]
-[ext_resource type="Script" path="res://Scenes/Player/States/dash.gd" id="14_sglpw"]
-[ext_resource type="Script" path="res://Scenes/Player/States/special_attack.gd" id="15_7l818"]
-[ext_resource type="Script" path="res://Scenes/Player/States/sliding.gd" id="16_01rhr"]
-[ext_resource type="Script" path="res://Scenes/Player/States/entrance.gd" id="17_776qv"]
-[ext_resource type="Script" path="res://Scenes/Player/States/damaged.gd" id="19_p8egc"]
-[ext_resource type="Script" path="res://Scenes/Player/States/die.gd" id="22_ta164"]
-[ext_resource type="Script" path="res://Scenes/Player/cutscene.gd" id="25_pgdpy"]
+[ext_resource type="Script" uid="uid://ceqwv73wl1pb5" path="res://Scenes/Player/States/dash.gd" id="14_sglpw"]
+[ext_resource type="Script" uid="uid://3jahiaffrniv" path="res://Scenes/Player/States/special_attack.gd" id="15_7l818"]
+[ext_resource type="Script" uid="uid://cgad66nyh5xo0" path="res://Scenes/Player/States/sliding.gd" id="16_01rhr"]
+[ext_resource type="Script" uid="uid://b1ayo84i41acs" path="res://Scenes/Player/States/entrance.gd" id="17_776qv"]
+[ext_resource type="Script" uid="uid://d3clpeod1alwe" path="res://Scenes/Player/States/damaged.gd" id="19_p8egc"]
+[ext_resource type="Script" uid="uid://bwh7a43r1iia5" path="res://Scenes/Player/States/die.gd" id="22_ta164"]
+[ext_resource type="Script" uid="uid://c40iw0sxvmmu" path="res://Scenes/Player/cutscene.gd" id="25_pgdpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70gom"]
 size = Vector2(22, 35)
@@ -3549,46 +3549,46 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj4p7"]
 _data = {
-"Basic_Shot_Air": SubResource("Animation_fupu4"),
-"Damaged_Loop": SubResource("Animation_2ci3x"),
-"Damaged_Minor": SubResource("Animation_tesic"),
-"Dash_End": SubResource("Animation_clase"),
-"Dash_Loop": SubResource("Animation_g5a5r"),
-"Dash_Shoot": SubResource("Animation_kde3a"),
-"Dash_Start": SubResource("Animation_j77q0"),
-"Die": SubResource("Animation_cendp"),
-"Disengage": SubResource("Animation_8khiu"),
-"Entrance": SubResource("Animation_yri23"),
-"Falling": SubResource("Animation_1xpcr"),
-"Flash": SubResource("Animation_mjnkt"),
-"Helm_Breaker_Air_Loop": SubResource("Animation_plbhy"),
-"Helm_Breaker_Air_Start": SubResource("Animation_jcyjq"),
-"Helm_Breaker_Ground": SubResource("Animation_ypmrp"),
-"Idle": SubResource("Animation_jlkc0"),
-"IdleShot": SubResource("Animation_fum2l"),
-"Jump": SubResource("Animation_pyjbh"),
-"Parry": SubResource("Animation_673aj"),
-"Parry_Wait": SubResource("Animation_q406w"),
-"Plasma_Shot": SubResource("Animation_ojqax"),
-"Plasma_Shot_Air": SubResource("Animation_b3fig"),
-"Punch": SubResource("Animation_836ij"),
-"RESET": SubResource("Animation_ydw3r"),
-"Run_Loop": SubResource("Animation_x3up6"),
-"Run_Shoot": SubResource("Animation_35rnv"),
-"Run_Start": SubResource("Animation_ac6w5"),
-"Stand": SubResource("Animation_1uagx"),
-"Stinger": SubResource("Animation_k64yk"),
-"Stinger_Loop": SubResource("Animation_7rt8t"),
-"Ult_Charge": SubResource("Animation_tplx7"),
-"Upper": SubResource("Animation_mfwir"),
-"Upper_Loop": SubResource("Animation_yjxg3"),
-"Wall_Slide": SubResource("Animation_fom4x")
+&"Basic_Shot_Air": SubResource("Animation_fupu4"),
+&"Damaged_Loop": SubResource("Animation_2ci3x"),
+&"Damaged_Minor": SubResource("Animation_tesic"),
+&"Dash_End": SubResource("Animation_clase"),
+&"Dash_Loop": SubResource("Animation_g5a5r"),
+&"Dash_Shoot": SubResource("Animation_kde3a"),
+&"Dash_Start": SubResource("Animation_j77q0"),
+&"Die": SubResource("Animation_cendp"),
+&"Disengage": SubResource("Animation_8khiu"),
+&"Entrance": SubResource("Animation_yri23"),
+&"Falling": SubResource("Animation_1xpcr"),
+&"Flash": SubResource("Animation_mjnkt"),
+&"Helm_Breaker_Air_Loop": SubResource("Animation_plbhy"),
+&"Helm_Breaker_Air_Start": SubResource("Animation_jcyjq"),
+&"Helm_Breaker_Ground": SubResource("Animation_ypmrp"),
+&"Idle": SubResource("Animation_jlkc0"),
+&"IdleShot": SubResource("Animation_fum2l"),
+&"Jump": SubResource("Animation_pyjbh"),
+&"Parry": SubResource("Animation_673aj"),
+&"Parry_Wait": SubResource("Animation_q406w"),
+&"Plasma_Shot": SubResource("Animation_ojqax"),
+&"Plasma_Shot_Air": SubResource("Animation_b3fig"),
+&"Punch": SubResource("Animation_836ij"),
+&"RESET": SubResource("Animation_ydw3r"),
+&"Run_Loop": SubResource("Animation_x3up6"),
+&"Run_Shoot": SubResource("Animation_35rnv"),
+&"Run_Start": SubResource("Animation_ac6w5"),
+&"Stand": SubResource("Animation_1uagx"),
+&"Stinger": SubResource("Animation_k64yk"),
+&"Stinger_Loop": SubResource("Animation_7rt8t"),
+&"Ult_Charge": SubResource("Animation_tplx7"),
+&"Upper": SubResource("Animation_mfwir"),
+&"Upper_Loop": SubResource("Animation_yjxg3"),
+&"Wall_Slide": SubResource("Animation_fom4x")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b711u"]
 shader = ExtResource("5_g7vld")
 shader_parameter/charging = false
-shader_parameter/charge_color = null
+shader_parameter/charge_color = Vector3(0, 0, 0)
 shader_parameter/mix_factor = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ydut"]
@@ -3665,7 +3665,7 @@ debug_color = Color(0.815686, 0.686275, 0, 0.615686)
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_xj4p7")
+&"": SubResource("AnimationLibrary_xj4p7")
 }
 
 [node name="ShotTimer" type="Timer" parent="."]
@@ -3696,12 +3696,12 @@ position = Vector2(21, -2)
 z_index = 15
 emitting = false
 amount = 20
-process_material = ExtResource("5_pqvhv")
 lifetime = 0.4
 speed_scale = 1.25
 randomness = 0.11
 trail_enabled = true
 trail_sections = 4
+process_material = ExtResource("5_pqvhv")
 
 [node name="DustPosition" type="Marker2D" parent="SpawnMarkers"]
 position = Vector2(-13, 19)

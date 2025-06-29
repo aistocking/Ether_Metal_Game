@@ -1,6 +1,6 @@
 [gd_scene load_steps=51 format=3 uid="uid://d2qac7nfvyng1"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/base_enemy.gd" id="1_3dl06"]
+[ext_resource type="Script" uid="uid://dhdg3ehikcwyc" path="res://Scenes/Enemies/base_enemy.gd" id="1_3dl06"]
 [ext_resource type="PackedScene" uid="uid://byuc5bs66nl24" path="res://Scenes/Entities/health_component.tscn" id="2_q1kqn"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="3_mcgac"]
 [ext_resource type="Texture2D" uid="uid://dxo7qs76do8ag" path="res://Art/Enemies/JumpJet.png" id="4_n4o6c"]
@@ -12,16 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://d0job8yom0pgy" path="res://Scenes/Entities/enemy_hit_box.tscn" id="10_layv3"]
 [ext_resource type="PackedScene" uid="uid://12moqm3pdi08" path="res://Scenes/Entities/hurt_box.tscn" id="11_26t8t"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="12_cgo6o"]
-[ext_resource type="Script" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="13_ejpgf"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_state_machine.gd" id="14_4fh8e"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_idle.gd" id="15_tsfvs"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_move.gd" id="16_i71r8"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_attack.gd" id="17_4y7h4"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_die.gd" id="18_dceos"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_stun.gd" id="19_w38yg"]
-[ext_resource type="Script" path="res://Scenes/Enemies/States/enemy_recover.gd" id="20_nuc0x"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_shove.gd" id="21_6mddv"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_bounce.gd" id="22_pa4od"]
+[ext_resource type="Script" uid="uid://cm456leh1po0u" path="res://Scenes/Misc/state_machine/debug_state_machine_label.gd" id="13_ejpgf"]
+[ext_resource type="Script" uid="uid://b3pbf3juu4w4k" path="res://Scenes/Enemies/enemy_state_machine.gd" id="14_4fh8e"]
+[ext_resource type="Script" uid="uid://dexfjlnvqdv7w" path="res://Scenes/Enemies/States/enemy_idle.gd" id="15_tsfvs"]
+[ext_resource type="Script" uid="uid://kc7xf8bj3tf3" path="res://Scenes/Enemies/States/enemy_move.gd" id="16_i71r8"]
+[ext_resource type="Script" uid="uid://db0ds6ibgu1db" path="res://Scenes/Enemies/States/enemy_attack.gd" id="17_4y7h4"]
+[ext_resource type="Script" uid="uid://dw4dpu30acb4r" path="res://Scenes/Enemies/States/enemy_die.gd" id="18_dceos"]
+[ext_resource type="Script" uid="uid://ww4w28pwrqm2" path="res://Scenes/Enemies/States/enemy_stun.gd" id="19_w38yg"]
+[ext_resource type="Script" uid="uid://cdijb2ebkhma6" path="res://Scenes/Enemies/States/enemy_recover.gd" id="20_nuc0x"]
+[ext_resource type="Script" uid="uid://detw76bb64xyg" path="res://Scenes/Enemies/enemy_shove.gd" id="21_6mddv"]
+[ext_resource type="Script" uid="uid://yyoxbhinw44o" path="res://Scenes/Enemies/enemy_bounce.gd" id="22_pa4od"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55j2l"]
 
@@ -245,10 +245,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvu4t"]
 _data = {
-"Idle": SubResource("Animation_6st1q"),
-"RESET": SubResource("Animation_7ug4t"),
-"Recover": SubResource("Animation_56tkv"),
-"Spin": SubResource("Animation_6jaer")
+&"Idle": SubResource("Animation_6st1q"),
+&"RESET": SubResource("Animation_7ug4t"),
+&"Recover": SubResource("Animation_56tkv"),
+&"Spin": SubResource("Animation_6jaer")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epdjn"]
@@ -340,11 +340,11 @@ z_index = 2
 material = SubResource("CanvasItemMaterial_tibrm")
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_no6tk")
 texture = ExtResource("6_xhxy8")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_no6tk")
 
 [node name="MediumShards" type="GPUParticles2D" parent="."]
 visible = false
@@ -352,11 +352,11 @@ z_index = 2
 material = SubResource("CanvasItemMaterial_5tr71")
 emitting = false
 amount = 2
-process_material = SubResource("ParticleProcessMaterial_8cs2x")
 texture = ExtResource("7_3wll6")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8cs2x")
 
 [node name="ShineBurst" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -379,7 +379,7 @@ position = Vector2(0, 11)
 
 [node name="Anims" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dvu4t")
+&"": SubResource("AnimationLibrary_dvu4t")
 }
 
 [node name="EnemyHitBox" parent="." instance=ExtResource("10_layv3")]

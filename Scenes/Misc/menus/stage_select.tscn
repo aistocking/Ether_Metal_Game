@@ -1,8 +1,8 @@
 [gd_scene load_steps=38 format=3 uid="uid://istvwwfmi6md"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/menus/stage_select.gd" id="1_4myet"]
+[ext_resource type="Script" uid="uid://88m2so28v835" path="res://Scenes/Misc/menus/stage_select.gd" id="1_4myet"]
 [ext_resource type="Texture2D" uid="uid://vd3pmivggmxx" path="res://Art/MiscUI/StageSelect/BigMagicCircleRotation.png" id="2_jdmdm"]
-[ext_resource type="Shader" path="res://Scenes/Misc/menus/map_wavy.gdshader" id="6_oai2g"]
+[ext_resource type="Shader" uid="uid://h2rlxfrk1fim" path="res://Scenes/Misc/menus/map_wavy.gdshader" id="6_oai2g"]
 [ext_resource type="Texture2D" uid="uid://lwcwireamgkq" path="res://Art/MiscUI/StageSelect/Stage_Select_Map.png" id="7_emvsv"]
 [ext_resource type="Texture2D" uid="uid://bedgfkn33sn3" path="res://Art/MiscUI/StageSelect/StageSelectIntroStage.png" id="9_62bvl"]
 [ext_resource type="Texture2D" uid="uid://c3tmkpxopb458" path="res://Art/MiscUI/StageSelect/Stage_Select_Outer_Placeholder_Dark.png" id="9_h5y54"]

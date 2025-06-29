@@ -13,4 +13,3 @@ void fragment() {
 	vec3 blueSpriteTex = mix(spriteTex.rgb, vec3(1,1,1), 0.5);
 	COLOR.rgb = blueSpriteTex;
 }
-

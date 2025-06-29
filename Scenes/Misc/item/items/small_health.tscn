@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://brtxa5gm21b0"]
 
 [ext_resource type="Texture2D" uid="uid://bvsicr4dif2wn" path="res://Art/MiscUI/SmallHealthUp.png" id="1_0ntod"]
-[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_hbhc2"]
-[ext_resource type="Script" path="res://Scenes/Misc/item/action/health_pickup_action.gd" id="4_lycs8"]
+[ext_resource type="Script" uid="uid://61h4fomar7wq" path="res://Scenes/Misc/item/item.gd" id="1_hbhc2"]
+[ext_resource type="Script" uid="uid://d02t6dptghbqi" path="res://Scenes/Misc/item/action/health_pickup_action.gd" id="4_lycs8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7c211"]
 atlas = ExtResource("1_0ntod")

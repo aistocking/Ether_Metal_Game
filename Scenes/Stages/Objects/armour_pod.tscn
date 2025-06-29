@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2t0rtnx8e44b"]
 
 [ext_resource type="Texture2D" uid="uid://ck0xltiv813ol" path="res://Art/Stages/Objects/Armour_Pod.png" id="1_gvikr"]
-[ext_resource type="Script" path="res://Scenes/Stages/Objects/armour_pod.gd" id="1_tkhe1"]
+[ext_resource type="Script" uid="uid://ca7dhpiw0t0n" path="res://Scenes/Stages/Objects/armour_pod.gd" id="1_tkhe1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7waex"]
 size = Vector2(22, 26)

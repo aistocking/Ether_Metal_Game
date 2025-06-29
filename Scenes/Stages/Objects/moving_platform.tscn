@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6pn3v7e6fe24"]
 
-[ext_resource type="Script" path="res://Scenes/Stages/Objects/moving_platform.gd" id="1_7r4u0"]
+[ext_resource type="Script" uid="uid://qcq15f4hytmf" path="res://Scenes/Stages/Objects/moving_platform.gd" id="1_7r4u0"]
 [ext_resource type="Texture2D" uid="uid://cowdhrufsgxx3" path="res://Art/Stages/Objects/Moving_Platform.png" id="2_yjqjm"]
 [ext_resource type="Texture2D" uid="uid://dk72l8ee3x3xd" path="res://Art/Stages/Objects/Platform_Fire.png" id="3_rfi5k"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0ej70a5ti7hh"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/cutscenes/intro_cutscene.gd" id="1_xux3p"]
+[ext_resource type="Script" uid="uid://f8gfrkhoq631" path="res://Scenes/Misc/cutscenes/intro_cutscene.gd" id="1_xux3p"]
 [ext_resource type="Texture2D" uid="uid://btnrskjagrsvy" path="res://Art/MiscUI/Cutscenes/Intro/IntroRightShoulderActive.png" id="2_4advp"]
 [ext_resource type="Texture2D" uid="uid://b0yrlqgtxkghg" path="res://Art/MiscUI/Cutscenes/Intro/IntroChestrActive.png" id="3_u504w"]
 [ext_resource type="Texture2D" uid="uid://cxgr6w46h47b0" path="res://Art/MiscUI/Cutscenes/Intro/IntroHeadActive.png" id="4_2b08s"]
@@ -262,8 +262,8 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pwmvh"]
 _data = {
-"Intro": SubResource("Animation_nswib"),
-"RESET": SubResource("Animation_qvvhq")
+&"Intro": SubResource("Animation_nswib"),
+&"RESET": SubResource("Animation_qvvhq")
 }
 
 [node name="Control" type="Control"]

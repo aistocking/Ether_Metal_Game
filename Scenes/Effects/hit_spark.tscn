@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bxdty8m8n6p2m"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/hit_spark.gd" id="1_e4q36"]
+[ext_resource type="Script" uid="uid://b4wd8oasuvk04" path="res://Scenes/Effects/hit_spark.gd" id="1_e4q36"]
 [ext_resource type="Texture2D" uid="uid://r10jadtyte07" path="res://Art/Effects/Hit_FX.png" id="2_mevga"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vw88v"]

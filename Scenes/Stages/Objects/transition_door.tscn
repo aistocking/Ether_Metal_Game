@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dnijpswm7s6en"]
 
-[ext_resource type="Script" path="res://Scenes/Stages/Objects/transition_door.gd" id="1_hl1cw"]
+[ext_resource type="Script" uid="uid://clk4u6rh53hc2" path="res://Scenes/Stages/Objects/transition_door.gd" id="1_hl1cw"]
 [ext_resource type="Texture2D" uid="uid://c52fc2hj3dj63" path="res://Art/Stages/Objects/Transition_Door.png" id="1_mf8xa"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="3_ypnch"]
 [ext_resource type="AudioStream" uid="uid://bp7o1x2lsnx8h" path="res://Sound/Door Open.wav" id="4_q3v5x"]
@@ -96,10 +96,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58i6m"]
 _data = {
-"Lock": SubResource("Animation_71iqa"),
-"Open": SubResource("Animation_758f6"),
-"RESET": SubResource("Animation_pphxa"),
-"Unseal": SubResource("Animation_rbtrs")
+&"Lock": SubResource("Animation_71iqa"),
+&"Open": SubResource("Animation_758f6"),
+&"RESET": SubResource("Animation_pphxa"),
+&"Unseal": SubResource("Animation_rbtrs")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vk0m"]
@@ -126,7 +126,7 @@ frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_58i6m")
+&"": SubResource("AnimationLibrary_58i6m")
 }
 
 [node name="TransitionTrigger" type="Area2D" parent="."]

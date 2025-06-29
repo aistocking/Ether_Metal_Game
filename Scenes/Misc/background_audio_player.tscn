@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6wy57p1scnyg"]
 
-[ext_resource type="AudioStream" uid="uid://daddxw7spqwjh" path="res://Sound/Music/03_Title.mp3" id="1_7r88m"]
+[ext_resource type="AudioStream" uid="uid://b7baojwsb5wn" path="res://Sound/Music/03_Title.mp3" id="1_7r88m"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
 process_mode = 3

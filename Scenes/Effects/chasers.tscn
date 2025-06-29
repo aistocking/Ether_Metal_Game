@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://c4t4072qe35t"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/chasers.gd" id="1_86is2"]
+[ext_resource type="Script" uid="uid://bh2jotpctprkd" path="res://Scenes/Effects/chasers.gd" id="1_86is2"]
 [ext_resource type="Texture2D" uid="uid://bar8bkojj12j5" path="res://Art/Effects/Chasers.png" id="2_6yc2d"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_kwrpv"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="3_kwrpv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuqf2"]
 atlas = ExtResource("2_6yc2d")

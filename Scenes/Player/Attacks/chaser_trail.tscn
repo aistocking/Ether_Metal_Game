@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brkmr6wne8c8e"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Attacks/chaser_trail.gd" id="1_bkhw3"]
+[ext_resource type="Script" uid="uid://dw583e2yo7y6y" path="res://Scenes/Player/Attacks/chaser_trail.gd" id="1_bkhw3"]
 
 [sub_resource type="Curve" id="Curve_pkyyy"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.986047, 1), 0.0, 0.0, 0, 0]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://6mvh68uo4uwc"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/medium_enemy.gd" id="1_8sxkv"]
+[ext_resource type="Script" uid="uid://cle067v86vrb8" path="res://Scenes/Enemies/medium_enemy.gd" id="1_8sxkv"]
 [ext_resource type="Material" uid="uid://cu0sg16jvibe4" path="res://Shaders/hit_flash_shader.tres" id="2_becwy"]
 [ext_resource type="Texture2D" uid="uid://trut2k521ryw" path="res://Art/Enemies/Gunner.png" id="2_xiahg"]
 
@@ -73,10 +73,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p1qen"]
 _data = {
-"PrepareShot": SubResource("Animation_moh6a"),
-"RESET": SubResource("Animation_oyntf"),
-"Shooting": SubResource("Animation_mk30k"),
-"Walk": SubResource("Animation_w2abj")
+&"PrepareShot": SubResource("Animation_moh6a"),
+&"RESET": SubResource("Animation_oyntf"),
+&"Shooting": SubResource("Animation_mk30k"),
+&"Walk": SubResource("Animation_w2abj")
 }
 
 [node name="Medium Enemy" type="Area2D" groups=["Enemies"]]

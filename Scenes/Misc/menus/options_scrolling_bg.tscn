@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3mje2gb8ccm7"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/menus/options_scrolling_bg.gd" id="1_r3lu5"]
+[ext_resource type="Script" uid="uid://bv1ja2cx1cglk" path="res://Scenes/Misc/menus/options_scrolling_bg.gd" id="1_r3lu5"]
 [ext_resource type="PackedScene" uid="uid://cq5tngsakfsah" path="res://Scenes/Misc/menus/options_bg_elements.tscn" id="2_mk4wx"]
 
 [node name="OptionsScrollingBg" type="Control"]

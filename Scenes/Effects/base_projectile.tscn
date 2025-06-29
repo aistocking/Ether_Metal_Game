@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://qrjstnncgv7w"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/base_projectile.gd" id="1_2jnix"]
+[ext_resource type="Script" uid="uid://bsibi5vxg3ola" path="res://Scenes/Effects/base_projectile.gd" id="1_2jnix"]
 [ext_resource type="PackedScene" uid="uid://csc0lo74xf1od" path="res://Scenes/Entities/hit_box.tscn" id="2_wom85"]
-[ext_resource type="Script" path="res://Scenes/Entities/timed_death_component.gd" id="3_7iu0f"]
+[ext_resource type="Script" uid="uid://dsais2ikyxopu" path="res://Scenes/Entities/timed_death_component.gd" id="3_7iu0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ccte"]
 

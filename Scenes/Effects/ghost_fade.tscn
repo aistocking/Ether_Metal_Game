@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2sees10ulkto"]
 
 [ext_resource type="Material" uid="uid://blvr8jbwxpd2n" path="res://Scenes/Effects/ghost_fade.tres" id="2_rt6g3"]
-[ext_resource type="Script" path="res://Scenes/Effects/ghost_fade.gd" id="2_t8juv"]
+[ext_resource type="Script" uid="uid://cideqg35in47n" path="res://Scenes/Effects/ghost_fade.gd" id="2_t8juv"]
 
 [node name="GhostFade" type="Node2D"]
 z_index = 9

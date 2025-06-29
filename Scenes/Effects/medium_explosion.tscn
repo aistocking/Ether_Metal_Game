@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://kmkh78w82juu"]
 
 [ext_resource type="Texture2D" uid="uid://bkliyo6vvfa0g" path="res://Art/Effects/Medium_Explosion_Effects.png" id="1_j14e3"]
-[ext_resource type="Script" path="res://Scenes/Effects/medium_explosion.gd" id="2_33v2p"]
-[ext_resource type="Script" path="res://Scenes/Entities/effect_audio_player.gd" id="3_m1eb4"]
+[ext_resource type="Script" uid="uid://bm8behtgvrbtk" path="res://Scenes/Effects/medium_explosion.gd" id="2_33v2p"]
+[ext_resource type="Script" uid="uid://c5wlbpfg873yh" path="res://Scenes/Entities/effect_audio_player.gd" id="3_m1eb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7sd2k"]
 atlas = ExtResource("1_j14e3")

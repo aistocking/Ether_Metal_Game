@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cejkvbjfpkv5s"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/menus/save_select_menu.gd" id="1_82yd3"]
+[ext_resource type="Script" uid="uid://52726eeaxy3h" path="res://Scenes/Misc/menus/save_select_menu.gd" id="1_82yd3"]
 [ext_resource type="PackedScene" uid="uid://cqn4n44lubnpt" path="res://Scenes/Entities/effect_audio_player.tscn" id="2_eicky"]
 [ext_resource type="PackedScene" uid="uid://cbacm7dfbp70q" path="res://Scenes/Misc/menus/resizeable_menu_box.tscn" id="2_fmqtt"]
 [ext_resource type="Texture2D" uid="uid://cxbsbs0hqchwy" path="res://Art/MiscUI/Menu_Box_Background_Dark.png" id="3_mhk0w"]
@@ -68,8 +68,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ntar0"]
 _data = {
-"RESET": SubResource("Animation_7ydmp"),
-"Slot1_New": SubResource("Animation_6egfs")
+&"RESET": SubResource("Animation_7ydmp"),
+&"Slot1_New": SubResource("Animation_6egfs")
 }
 
 [node name="SaveSelectMenu" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dqhc1a1233nt4"]
 
-[ext_resource type="Script" path="res://Scenes/Player/ui.gd" id="1_echso"]
+[ext_resource type="Script" uid="uid://bjj2to0kjpvut" path="res://Scenes/Player/ui.gd" id="1_echso"]
 [ext_resource type="PackedScene" uid="uid://b82fv4j54eyej" path="res://Scenes/Effects/ready_intro.tscn" id="2_72e41"]
 [ext_resource type="Texture2D" uid="uid://xuofhrtq65nm" path="res://Art/MiscUI/Hud_Gem.png" id="8_d2h46"]
 [ext_resource type="Texture2D" uid="uid://cps65sw656odu" path="res://Art/MiscUI/Hud_Charge_Bar_Insides.png" id="9_fx4ob"]
@@ -154,10 +154,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxe1"]
 _data = {
-"Fade_Black": SubResource("Animation_fueq6"),
-"Fade_Normal": SubResource("Animation_14jf7"),
-"RESET": SubResource("Animation_juq0u"),
-"Whiteout": SubResource("Animation_d2wun")
+&"Fade_Black": SubResource("Animation_fueq6"),
+&"Fade_Normal": SubResource("Animation_14jf7"),
+&"RESET": SubResource("Animation_juq0u"),
+&"Whiteout": SubResource("Animation_d2wun")
 }
 
 [node name="UI" type="CanvasLayer" groups=["UI Elements"]]

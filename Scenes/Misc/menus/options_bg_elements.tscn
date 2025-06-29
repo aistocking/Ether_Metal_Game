@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cq5tngsakfsah"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/menus/options_bg_elements.gd" id="1_okhwc"]
+[ext_resource type="Script" uid="uid://dgmswo8a6427j" path="res://Scenes/Misc/menus/options_bg_elements.gd" id="1_okhwc"]
 [ext_resource type="Texture2D" uid="uid://ccmf3vqijrmq1" path="res://Art/MiscUI/Options_BG.png" id="1_t0sw1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwvry"]

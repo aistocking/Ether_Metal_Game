@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dl24fje6uuif8"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/menus/main_menu.gd" id="1_dpnep"]
+[ext_resource type="Script" uid="uid://beghjxcuybv3o" path="res://Scenes/Misc/menus/main_menu.gd" id="1_dpnep"]
 [ext_resource type="Texture2D" uid="uid://c0i0uu05gyy6f" path="res://Art/MiscUI/TitleGraphics.png" id="2_3n42y"]
 [ext_resource type="Texture2D" uid="uid://e5ndj133b74x" path="res://Art/MiscUI/Start_Text_Dark.png" id="3_3sq7u"]
 [ext_resource type="Texture2D" uid="uid://b0ytm3mar2osx" path="res://Art/MiscUI/Start_Text.png" id="4_6hkik"]
@@ -135,9 +135,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fb42"]
 _data = {
-"FadeIn": SubResource("Animation_gd4wt"),
-"LilyShot": SubResource("Animation_q3xcm"),
-"RESET": SubResource("Animation_6t08i")
+&"FadeIn": SubResource("Animation_gd4wt"),
+&"LilyShot": SubResource("Animation_q3xcm"),
+&"RESET": SubResource("Animation_6t08i")
 }
 
 [node name="MainMenu" type="Control"]
@@ -230,7 +230,7 @@ size_flags_stretch_ratio = 0.45
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1fb42")
+&"": SubResource("AnimationLibrary_1fb42")
 }
 autoplay = "FadeIn"
 

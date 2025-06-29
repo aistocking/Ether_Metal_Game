@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://chsgwebw1nxkc"]
 
-[ext_resource type="Script" path="res://Scenes/Effects/intro_teleport.gd" id="1_bv58l"]
+[ext_resource type="Script" uid="uid://swap85uvwrhx" path="res://Scenes/Effects/intro_teleport.gd" id="1_bv58l"]
 [ext_resource type="Texture2D" uid="uid://ctu75dewbdyc1" path="res://Art/Effects/Teleport_Circle.png" id="2_k0yk8"]
 [ext_resource type="Texture2D" uid="uid://mmhk3hx26p52" path="res://Art/Effects/Teleport_Beam.png" id="3_4hatf"]
 
@@ -211,9 +211,9 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u4qwc"]
 _data = {
-"BeamIn": SubResource("Animation_bhbh8"),
-"CirclesIntro": SubResource("Animation_08udy"),
-"RESET": SubResource("Animation_annu5")
+&"BeamIn": SubResource("Animation_bhbh8"),
+&"CirclesIntro": SubResource("Animation_08udy"),
+&"RESET": SubResource("Animation_annu5")
 }
 
 [node name="IntroTeleport" type="Node2D"]

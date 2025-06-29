@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://dkiyhlrmwu41f"]
 
 [ext_resource type="Texture2D" uid="uid://cejm2j4b326yq" path="res://Art/MiscUI/EnergyTank.png" id="1_e7wn8"]
-[ext_resource type="Script" path="res://Scenes/Misc/item/item.gd" id="1_xpwek"]
-[ext_resource type="Script" path="res://Scenes/Misc/item/action/max_energy_pickup_action.gd" id="3_nqd3o"]
+[ext_resource type="Script" uid="uid://61h4fomar7wq" path="res://Scenes/Misc/item/item.gd" id="1_xpwek"]
+[ext_resource type="Script" uid="uid://datpvlt13rilx" path="res://Scenes/Misc/item/action/max_energy_pickup_action.gd" id="3_nqd3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv8ce"]
 atlas = ExtResource("1_e7wn8")

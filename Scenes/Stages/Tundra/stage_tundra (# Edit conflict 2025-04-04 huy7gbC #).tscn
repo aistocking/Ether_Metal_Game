@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://brsl5rqy10vm2"]
 
-[ext_resource type="Script" path="res://Scenes/Stages/Tundra/stage_tundra.gd" id="1_hqtbj"]
+[ext_resource type="Script" uid="uid://db65r68wo3vru" path="res://Scenes/Stages/Tundra/stage_tundra.gd" id="1_hqtbj"]
 [ext_resource type="Texture2D" uid="uid://d0w2bw32gaooi" path="res://Art/Stages/BGs/Stage_Tundra_Back_00.png" id="1_pu4bj"]
 [ext_resource type="Texture2D" uid="uid://embc6dh80rko" path="res://Art/Stages/TileSets/StageTundraTileSheet.png" id="2_4pnxr"]
 [ext_resource type="Texture2D" uid="uid://66wjtdttibjs" path="res://Art/Stages/BGs/StageTundraBG_Mountains.png" id="3_878s1"]

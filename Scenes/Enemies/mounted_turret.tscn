@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://ddhgqd7utunxr"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/mounted_turret.gd" id="1_5t4ta"]
+[ext_resource type="Script" uid="uid://tqydch44bbl2" path="res://Scenes/Enemies/mounted_turret.gd" id="1_5t4ta"]
 [ext_resource type="Texture2D" uid="uid://dm6gmb6v241mo" path="res://Art/Enemies/MountedTurret.png" id="2_7eko0"]
 [ext_resource type="Texture2D" uid="uid://b3fy42tcvph1c" path="res://Art/Effects/Turret_Blast.png" id="3_4oj4b"]
 [ext_resource type="Texture2D" uid="uid://cxh6n7gcoflsn" path="res://Art/Enemies/MountedTurretBase.png" id="3_lvb0d"]
