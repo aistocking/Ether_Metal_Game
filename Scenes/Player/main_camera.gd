@@ -13,8 +13,7 @@ func _ready():
 	_player.connect("screen_shake", apply_shake)
 
 func _physics_process(_delta):
-	position = _player.position
-	position.y -= 15
+	position = _player.position + Vector2(0, 20)
 	
 	if _shake_strength > 0.0:
 		offset = _random_offset()

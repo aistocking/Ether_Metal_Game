@@ -2,7 +2,7 @@ extends Node2D
 
 var _player
 var _camera
-var is_boss_door: bool = false
+@export var is_boss_door: bool = false
 @onready var _audio_player: EffectAudioPlayer = $EffectAudioPlayer
 @onready var _open_sound: AudioStream = load("res://Sound/Door Open.wav")
 @onready var _close_sound: AudioStream = load("res://Sound/Door Close.wav")
