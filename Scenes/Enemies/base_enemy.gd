@@ -33,7 +33,7 @@ var _camera: Camera2D
 @onready var player_detection_shape: CollisionShape2D = $PlayerDetection/Collision
 @onready var _physical_hit_box: Area2D = $EnemyHitBox
 @onready var _state_machine: EnemyStateMachine = $EnemyStateMachine
-@onready var _bouncy_collision: CollisionShape2D = $BounceBoxes/Collision
+@onready var _bouncy_collision: BounceCollider = $EnemyBounceColliders
 var _tween: Tween
 
 #Projectiles
@@ -66,7 +66,7 @@ func _ready() -> void:
 	_stun_health = _health_component._stun_health
 	_max_stun_health = _health_component._max_stun_health
 	$EnemyStateMachine/EnemyStun.connect("stun_recover", _restore_stun)
-	set_wall_bounce_collision("Off")
+	_bouncy_collision.set_wall_bounce_collision("Off")
 	sprite.material.set_shader_parameter("stun", false)
 	_reset_sprite_flash()
 
@@ -171,51 +171,13 @@ func create_shove_trails(left: bool) -> void:
 		_instance.global_position = global_position
 		_trail_counter = 0
 
-func set_wall_bounce_collision(text: String) -> void:
-	match text:
-		"Top":
-			_bouncy_collision.set_deferred("disabled", false)
-			_bouncy_collision.shape.extents = Vector2(22,4)
-			_bouncy_collision.position = Vector2(0,-21)
-		"Bottom":
-			_bouncy_collision.set_deferred("disabled", false)
-			_bouncy_collision.shape.extents = Vector2(22,4)
-			_bouncy_collision.position = Vector2(0,21)
-		"Right":
-			_bouncy_collision.set_deferred("disabled", false)
-			_bouncy_collision.shape.extents = Vector2(4,15)
-			_bouncy_collision.position = Vector2(15,0)
-		"Left":
-			_bouncy_collision.set_deferred("disabled", false)
-			_bouncy_collision.shape.extents = Vector2(4,15)
-			_bouncy_collision.position = Vector2(-15,0)
-		"Off":
-			_bouncy_collision.set_deferred("disabled", true) 
-			_bouncy_collision.shape.extents = Vector2(0,0)
-			_bouncy_collision.position = Vector2(0,0)
-
 func die() -> void:
 	emit_signal("died")
 	var ExplosionInstance: Node = ExplosionEffect.instantiate()
 	get_parent().add_child(ExplosionInstance)
 	ExplosionInstance.global_position = global_position
 	queue_free()
-
-
-func _on_bounce_boxes_body_entered(body: Node2D) -> void:
-	if body == self:
-		return
-	emit_signal("wall_bounce")
-
-
-func _on_bounce_boxes_area_entered(hurtbox: HurtBox) -> void:
-	if hurtbox == $HurtBox:
-		return
-	if(hurtbox.has_method("take_damage")):
-		hurtbox.take_damage(5, 35, Vector2(0,0), 0)
-	emit_signal("wall_bounce")
-		
-
+	
 func _stun_break_fx_start() -> void:
 	$Sprite/Cracks.visible = true
 	$Sprite/Cracks.play()

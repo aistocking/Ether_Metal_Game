@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxonvkrc5v13c"]
+
+[ext_resource type="Script" uid="uid://d3k0ipebgftx7" path="res://Scenes/Entities/enemy_bounce_colliders.gd" id="1_4w2rh"]
+
+[node name="EnemyBounceColliders" type="Area2D"]
+collision_layer = 0
+collision_mask = 20
+script = ExtResource("1_4w2rh")
+
+[node name="BouncyCollision" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

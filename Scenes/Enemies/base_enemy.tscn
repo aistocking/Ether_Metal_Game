@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dw4dpu30acb4r" path="res://Scenes/Enemies/States/enemy_die.gd" id="11_8w425"]
 [ext_resource type="Script" uid="uid://ww4w28pwrqm2" path="res://Scenes/Enemies/States/enemy_stun.gd" id="12_8nq0x"]
 [ext_resource type="Script" uid="uid://cdijb2ebkhma6" path="res://Scenes/Enemies/States/enemy_recover.gd" id="13_jefyu"]
+[ext_resource type="PackedScene" uid="uid://cxonvkrc5v13c" path="res://Scenes/Entities/enemy_bounce_colliders.tscn" id="14_wllqi"]
 [ext_resource type="Script" uid="uid://detw76bb64xyg" path="res://Scenes/Enemies/enemy_shove.gd" id="15_pt4qx"]
 [ext_resource type="Script" uid="uid://yyoxbhinw44o" path="res://Scenes/Enemies/enemy_bounce.gd" id="16_obhxj"]
 
@@ -270,9 +271,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abci2"]
 size = Vector2(15, 36)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bmx8"]
-size = Vector2(0, 0)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iktg"]
 size = Vector2(22, 37)
 
@@ -357,11 +355,11 @@ z_index = 2
 material = SubResource("CanvasItemMaterial_tibrm")
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_no6tk")
 texture = ExtResource("6_33q85")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_no6tk")
 
 [node name="MediumShards" type="GPUParticles2D" parent="."]
 visible = false
@@ -369,11 +367,11 @@ z_index = 2
 material = SubResource("CanvasItemMaterial_5tr71")
 emitting = false
 amount = 2
-process_material = SubResource("ParticleProcessMaterial_8cs2x")
 texture = ExtResource("7_kua0b")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8cs2x")
 
 [node name="ShineBurst" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -396,7 +394,7 @@ position = Vector2(0, 18.005)
 
 [node name="Anims" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dvu4t")
+&"": SubResource("AnimationLibrary_dvu4t")
 }
 
 [node name="EnemyHitBox" parent="." instance=ExtResource("10_ljnv3")]
@@ -407,19 +405,13 @@ collision_mask = 513
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_abci2")
 
-[node name="BounceBoxes" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 20
-
-[node name="Collision" type="CollisionShape2D" parent="BounceBoxes"]
-shape = SubResource("RectangleShape2D_5bmx8")
-debug_color = Color(0.864566, 0.0508572, 0, 0.42)
-
 [node name="HurtBox" parent="." instance=ExtResource("3_juej3")]
 
 [node name="HurtCollision" parent="HurtBox" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_8iktg")
+
+[node name="EnemyBounceColliders" parent="." instance=ExtResource("14_wllqi")]
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
@@ -489,8 +481,6 @@ script = ExtResource("16_obhxj")
 [connection signal="animation_finished" from="Sprite/Cracks" to="." method="_on_cracks_animation_finished"]
 [connection signal="finished" from="MediumShards" to="." method="_on_medium_shards_finished"]
 [connection signal="animation_finished" from="Anims" to="." method="_on_anims_animation_finished"]
-[connection signal="area_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_area_entered"]
-[connection signal="body_entered" from="BounceBoxes" to="." method="_on_bounce_boxes_body_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/EnemyStun/StunTimer" to="EnemyStateMachine/EnemyStun" method="_on_stun_timer_timeout"]

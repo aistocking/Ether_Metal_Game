@@ -16,16 +16,16 @@ func enter(_msg := {}) -> void:
 	if _msg.has("direction"):
 		_direction = _msg.direction
 	_enemy.velocity = _direction * _enemy.SHOVE_SPEED
-	_enemy.connect("wall_bounce", change_to_bounce)
+	_enemy._bouncy_collision.connect("wall_bounce", change_to_bounce)
 	match _direction:
 		Vector2(-1,0):
-			_enemy.set_wall_bounce_collision("Left")
+			_enemy._bouncy_collision.set_wall_bounce_collision("Left")
 		Vector2(1,0):
-			_enemy.set_wall_bounce_collision("Right")
+			_enemy._bouncy_collision.set_wall_bounce_collision("Right")
 		Vector2(0,-1):
-			_enemy.set_wall_bounce_collision("Top")
+			_enemy._bouncy_collision.set_wall_bounce_collision("Top")
 		Vector2(0,1):
-			_enemy.set_wall_bounce_collision("Bottom")
+			_enemy._bouncy_collision.set_wall_bounce_collision("Bottom")
 
 
 
@@ -40,4 +40,4 @@ func physics_update(delta: float) -> void:
 	_enemy.move_and_slide()
 	
 func exit() -> void:
-	_enemy.set_wall_bounce_collision("Off")
+	_enemy._bouncy_collision.set_wall_bounce_collision("Off")
