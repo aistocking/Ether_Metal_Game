@@ -161,12 +161,19 @@ func create_dust() -> void:
 		_instance.global_position = _dust_position.global_position
 		_dust_counter = 0
 
-func create_shove_trails(left: bool) -> void:
+func create_shove_trails(direction: String) -> void:
 	_trail_counter += 1
 	if _trail_counter > 3:
 		var _instance: ShoveTrails = SHOVE_TRAILS_SCENE.instantiate()
-		if left == true:
-			_instance.face_left()
+		match direction:
+			"up":
+				_instance.face_up()
+			"down":
+				_instance.face_down()
+			"left":
+				_instance.face_left()
+			"right":
+				pass
 		get_parent().add_child(_instance)
 		_instance.global_position = global_position
 		_trail_counter = 0

@@ -4,9 +4,6 @@ var _player: CharacterBody2D
 var _enemy: CharacterBody2D
 var _direction: Vector2
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var _stun_instance: Node2D
-
 signal stun_recover
 
 func enter(_msg := {}) -> void:
@@ -33,10 +30,15 @@ func change_to_bounce() -> void:
 	state_machine.transition_to("EnemyBounce", {"impact_direction": _direction})
 
 func physics_update(delta: float) -> void:
-	if _direction.x == -1:
-		_enemy.create_shove_trails(true)
-	else:
-		_enemy.create_shove_trails(false)
+	match _direction:
+		Vector2(-1, 0):
+			_enemy.create_shove_trails("left")
+		Vector2(1, 0):
+			_enemy.create_shove_trails("right")
+		Vector2(0, -1):
+			_enemy.create_shove_trails("up")
+		Vector2(0, 1):
+			_enemy.create_shove_trails("down")
 	_enemy.move_and_slide()
 	
 func exit() -> void:
