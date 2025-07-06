@@ -49,8 +49,11 @@ func handle_input(event):
 				state_machine.transition_to("Run")
 			else:
 				state_machine.transition_to("Idle")
-	if event.is_action_pressed("Jump") && !IsAirdash:
-		state_machine.transition_to("Jump")
+	if event.is_action_pressed("Jump"):
+		if !IsAirdash:
+			state_machine.transition_to("Jump")
+		elif player.can_dbl_jump:
+			state_machine.transition_to("Jump")
 	
 	if event.is_action_pressed("Shot"):
 		player._basic_shot()

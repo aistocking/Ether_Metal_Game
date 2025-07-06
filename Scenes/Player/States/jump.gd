@@ -16,8 +16,14 @@ func enter(_msg := {}) -> void:
 	if _msg.has("walljumpdirection"):
 		walljumpdirection = _msg.walljumpdirection
 		player.velocity.x = walljumpdirection * 150
+	if _msg.has("double_jump"):
+		player.player_animations.play("Double_Jump")
+		player.can_dbl_jump = false
+		player.create_dash_fx("up")
 	if Input.is_action_pressed("Dash"):
 		player.set_dash_properties(true)
+		player.speed = player.DASHING_SPEED
+	elif player.is_dashing:
 		player.speed = player.DASHING_SPEED
 	else:
 		player.speed = player.DEFAULT_SPEED

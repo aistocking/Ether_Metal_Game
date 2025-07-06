@@ -33,8 +33,11 @@ func handle_input(event):
 			if Input.is_action_pressed("Right"):
 				state_machine.transition_to("Dash", { "direction": player.RIGHT })
 	
-		if event.is_action_pressed("Jump") && !player.coyote_timer.is_stopped():
-			state_machine.transition_to("Jump")
+		if event.is_action_pressed("Jump"):
+			if !player.coyote_timer.is_stopped():
+				state_machine.transition_to("Jump")
+			if player.can_dbl_jump:
+				state_machine.transition_to("Jump", {"double_jump": true})
 	
 		if event.is_action_pressed("Shot"):
 			player.player_animations.play("Basic_Shot_Air")

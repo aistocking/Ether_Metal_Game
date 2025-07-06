@@ -11,9 +11,6 @@ func _ready():
 	_spawn_enemy()
 	$BossTransitionDoor.is_boss_door = true
 
-func _process(delta):
-	pass
-
 func _spawn_enemy() -> void:
 	await get_tree().create_timer(3).timeout
 	if $Enemies/EnemyRespawnPoint.get_child_count() == 0:

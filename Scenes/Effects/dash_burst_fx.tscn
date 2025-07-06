@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://p1wr6gdaol6"]
+
+[ext_resource type="Texture2D" uid="uid://0drquxmo4xnu" path="res://Art/Effects/Dash_Burst.png" id="1_hm2y6"]
+[ext_resource type="Script" uid="uid://bnrbiooon7k2v" path="res://Scenes/Effects/dash_burst_fx.gd" id="2_qnewd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm2y6"]
+atlas = ExtResource("1_hm2y6")
+region = Rect2(0, 0, 17, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnewd"]
+atlas = ExtResource("1_hm2y6")
+region = Rect2(17, 0, 17, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqt83"]
+atlas = ExtResource("1_hm2y6")
+region = Rect2(0, 21, 17, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b8ej"]
+atlas = ExtResource("1_hm2y6")
+region = Rect2(17, 21, 17, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16hom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm2y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnewd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqt83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b8ej")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="DashBurstFx" type="AnimatedSprite2D"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_16hom")
+autoplay = "default"
+offset = Vector2(-6, 0)
+script = ExtResource("2_qnewd")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

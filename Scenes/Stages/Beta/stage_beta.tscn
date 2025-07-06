@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://db4lf6nbwbtfc"]
+[gd_scene load_steps=24 format=4 uid="uid://db4lf6nbwbtfc"]
 
 [ext_resource type="Script" uid="uid://wupwg6yp7e3e" path="res://Scenes/Stages/Beta/stage_beta.gd" id="1_fflmp"]
 [ext_resource type="PackedScene" uid="uid://nffbgp1naxa1" path="res://Scenes/Misc/menus/pause_ui.tscn" id="2_d3haq"]
@@ -17,14 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://c6pn3v7e6fe24" path="res://Scenes/Stages/Objects/moving_platform.tscn" id="14_3vo1y"]
 [ext_resource type="Script" uid="uid://bvqqw42igl64k" path="res://Scenes/Enemies/enemy_spawner.gd" id="16_aaebo"]
 [ext_resource type="PackedScene" uid="uid://dusmkdis6va78" path="res://Scenes/Enemies/base_enemy.tscn" id="17_uh1rd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7rt"]
-size = Vector2(180, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aseck"]
-size = Vector2(24, 44)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bba2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2qc8"]
 size = Vector2(106, 20)
@@ -163,73 +155,34 @@ navigation_enabled = false
 [node name="CameraBounds1" parent="StageTriggers" instance=ExtResource("6_rkblo")]
 instant_start_trigger = true
 
-[node name="StartTrigger" parent="StageTriggers/CameraBounds1" index="0"]
-position = Vector2(-33, -72.58)
-
-[node name="CollisionShape2D" parent="StageTriggers/CameraBounds1/StartTrigger" index="0"]
-position = Vector2(-45, 14.58)
-
-[node name="EndTrigger" parent="StageTriggers/CameraBounds1" index="1"]
-position = Vector2(381, -143.095)
-
-[node name="CollisionShape2D" parent="StageTriggers/CameraBounds1/EndTrigger" index="0"]
-shape = SubResource("RectangleShape2D_nf7rt")
-
-[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds1" index="2"]
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds1" index="1"]
 position = Vector2(-159, 111)
 
-[node name="TopRightPosition" parent="StageTriggers/CameraBounds1" index="3"]
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds1" index="2"]
 position = Vector2(591, -206)
 
 [node name="CameraBounds2" parent="StageTriggers" instance=ExtResource("6_rkblo")]
 
-[node name="StartTrigger" parent="StageTriggers/CameraBounds2" index="0"]
-position = Vector2(376, -208)
-
-[node name="CollisionShape2D" parent="StageTriggers/CameraBounds2/StartTrigger" index="0"]
-position = Vector2(-24, -13)
-
-[node name="EndTrigger" parent="StageTriggers/CameraBounds2" index="1"]
-position = Vector2(-35, -296)
-
-[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds2" index="2"]
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds2" index="1"]
 position = Vector2(-65.555, -192)
 
-[node name="TopRightPosition" parent="StageTriggers/CameraBounds2" index="3"]
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds2" index="2"]
 position = Vector2(752, -450)
 
 [node name="CameraBounds4" parent="StageTriggers" instance=ExtResource("6_rkblo")]
 
-[node name="StartTrigger" parent="StageTriggers/CameraBounds4" index="0"]
-position = Vector2(-90, -298)
-
-[node name="CollisionShape2D" parent="StageTriggers/CameraBounds4/StartTrigger" index="0"]
-shape = SubResource("RectangleShape2D_aseck")
-
-[node name="EndTrigger" parent="StageTriggers/CameraBounds4" index="1"]
-position = Vector2(-355, 0)
-
-[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds4" index="2"]
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds4" index="1"]
 position = Vector2(-351, -255)
 
-[node name="TopRightPosition" parent="StageTriggers/CameraBounds4" index="3"]
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds4" index="2"]
 position = Vector2(-49, -420)
 
 [node name="CameraBounds5" parent="StageTriggers" instance=ExtResource("6_rkblo")]
 
-[node name="StartTrigger" parent="StageTriggers/CameraBounds5" index="0"]
-position = Vector2(1023.65, -211.26)
-
-[node name="CollisionShape2D" parent="StageTriggers/CameraBounds5/StartTrigger" index="0"]
-shape = SubResource("RectangleShape2D_bba2v")
-
-[node name="EndTrigger" parent="StageTriggers/CameraBounds5" index="1"]
-position = Vector2(1099.88, -443.725)
-
-[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds5" index="2"]
+[node name="BottomLeftPosition" parent="StageTriggers/CameraBounds5" index="1"]
 position = Vector2(960, -48)
 
-[node name="TopRightPosition" parent="StageTriggers/CameraBounds5" index="3"]
+[node name="TopRightPosition" parent="StageTriggers/CameraBounds5" index="2"]
 position = Vector2(1300, -544)
 
 [node name="CutsceneTrigger" type="Area2D" parent="StageTriggers"]
@@ -314,14 +267,17 @@ position = Vector2(167, 0)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemySpawner1" type="Marker2D" parent="Enemies"]
-position = Vector2(103, -2)
+position = Vector2(98, -264)
 script = ExtResource("16_aaebo")
 enemy = ExtResource("17_uh1rd")
 
 [node name="EnemySpawner2" type="Marker2D" parent="Enemies"]
-position = Vector2(196, -2)
+position = Vector2(191, -264)
 script = ExtResource("16_aaebo")
 enemy = ExtResource("17_uh1rd")
+
+[node name="Enemy" parent="." instance=ExtResource("17_uh1rd")]
+position = Vector2(147, -7)
 
 [connection signal="body_entered" from="StageTriggers/CutsceneTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StageTriggers/BGTrigger2" to="." method="_on_bg_trigger_2_body_entered"]

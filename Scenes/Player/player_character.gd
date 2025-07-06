@@ -11,6 +11,7 @@ var speed := DEFAULT_SPEED
 const JUMP_VELOCITY := -400.0
 var player_input := false
 var spent_dash := false
+var can_dbl_jump := false
 var facing_direction: int = 1
 var _is_shooting := false
 var is_dashing := false
@@ -32,9 +33,9 @@ signal screen_shake (strength: float, time: float)
 @onready var _player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var _hud: Hud = get_tree().get_first_node_in_group("UI Elements")
 
-#For the dashing ghost effect
+#Dashing effects
 const GHOST_FADE_SCENE: PackedScene = preload("res://Scenes/Effects/ghost_fade.tscn")
-var _ghost_counter: int = 0
+const _DASH_FX: PackedScene = preload("res://Scenes/Effects/dash_burst_fx.tscn")
 
 #Sound FX
 const INTRO_STOMP: AudioStream = preload("res://Sound/Intro_Stomp.wav")
@@ -53,6 +54,7 @@ const PICKUP_TANK_AUDIO: AudioStream = preload("res://Sound/Heart Powerup.wav")
 @onready var left_ray_cast: RayCast2D = $LeftRCast
 @onready var _death_particles: GPUParticles2D = $"Death Particles"
 @onready var _melee_hit_box: CollisionShape2D = $HitBox/HitCollision
+var _ghost_counter: int = 0
 
 #Dust scenes & systems when dashing, wall clinging, etc
 const DUST_SCENE: PackedScene = preload("res://Scenes/Effects/dust_particle.tscn")
@@ -383,6 +385,19 @@ func _handle_charging() -> void:
 func _remove_charge_level() -> void:
 	_charge_counter -= 256
 
+func create_dash_fx(type: String) -> void:
+	var instance = _DASH_FX.instantiate()
+	match type:
+		"normal":
+			instance.position = _dust_position.position
+			instance.position.y -= 10
+			instance.position.x -= 12
+			$SpawnMarkers.add_child(instance)
+		"up":
+			instance.face_up()
+			instance.global_position = global_position
+			instance.global_position.y = _dust_position.global_position.y - 6
+			get_parent().add_child(instance)
 
 func take_damage(damage: int) -> void:
 	if invincibility_timer.is_stopped():
@@ -437,6 +452,7 @@ func set_dash_properties(spent: bool) -> void:
 func reset_dash_properties() -> void:
 	is_dashing = false
 	spent_dash = false
+	can_dbl_jump = true
 
 func reset_state() -> void:
 	if is_on_floor():
